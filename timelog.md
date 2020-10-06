@@ -31,10 +31,11 @@
 * *1.5 hours* Prepared for meeting with supervisor(questions,ideas ready)
 
 ## 2 Oct 2019 
-* *30mins* between 1230 and 1300 had first meeting with supervisor and professional
+* *30mins* Between 1230 and 1300 had first meeting with supervisor and professional
 
+## Week 1
 ## 4 Oct 2019 
 * *30mins* Decided on which technology to use(just need to get OK from supervisor)
 
 ## 5 Oct 2019 
-* *4 hours* Expanded on ideas for a game, writing out fuller explanations and providing paper prototypes of how they might look/work*
+* *4 hours 30mins* Expanded on ideas for a game, writing out fuller explanations and providing paper prototypes of how they might look/work*
