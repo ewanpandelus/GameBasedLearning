@@ -20,22 +20,24 @@
 * *0.5 hour* Created GitLab repository and Trello(issue board) for the project
 * *2 hours* Started researching and formulating ideas based on the project specification
 
-## 30 Sep 2019
+### 30 Sep 2020
 
 * *1 hour* Researching current game based learning games and general information on GBL
 * *30 mins* Researched potential technologies to use
 * *20 mins* Organised meeting with supervisor
 * *30 mins* Made a text document with all my initial ideas for a game
 
-## 1 Oct 2019 
+### 1 Oct 2020
 * *1.5 hours* Prepared for meeting with supervisor(questions,ideas ready)
 
-## 2 Oct 2019 
+### 2 Oct 2020 
 * *30mins* Between 1230 and 1300 had first meeting with supervisor and professional
 
-## Week 1
-## 4 Oct 2019 
+## Week 2
+
+
+### 4 Oct 2020 
 * *30mins* Decided on which technology to use(just need to get OK from supervisor)
 
-## 5 Oct 2019 
+### 5 Oct 2020 
 * *4 hours 30mins* Expanded on ideas for a game, writing out fuller explanations and providing paper prototypes of how they might look/work*
