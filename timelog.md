@@ -36,7 +36,7 @@
 ## Week 2
 
 ### 4 Oct 2020 
-* *30mins* Decided on which technology to use(just need to get OK from supervisor)
+* *30mins* Decided on which technology to use
 
 ### 5 Oct 2020 
 * *4 hours 30mins* Expanded on ideas for a game, writing out fuller explanations and providing paper prototypes of how they might look/work*
