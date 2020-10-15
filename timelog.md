@@ -35,9 +35,27 @@
 
 ## Week 2
 
-
 ### 4 Oct 2020 
 * *30mins* Decided on which technology to use(just need to get OK from supervisor)
 
 ### 5 Oct 2020 
 * *4 hours 30mins* Expanded on ideas for a game, writing out fuller explanations and providing paper prototypes of how they might look/work*
+
+### 6 Oct 2020
+* *5hours* Further Research and Reading 'Graduate Skills and Game-Based Learning'
+
+### 9 Oct 2020 
+* *30mins* Between 1230 and 1300 had meeting with supervisor 
+* *1hour* Writing up notes and creating plan of action for the next week
+
+## Week 3
+
+### 13 Oct 2020 
+* *5hours* Reading 'Graduate Skills and Game-Based Learning' and ‘Interdisciplinary Design of Gamebased Learning Platforms’
+
+### 14 Oct 2020 
+* *5hours* Expanding on ideas for games, looking at different games and thinking about what I learned from reading to inspire this
+
+### 15 Oct 2020 
+* *3hours* Writing up ideas and relating them to the reading and research
+
