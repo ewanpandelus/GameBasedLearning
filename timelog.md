@@ -59,3 +59,35 @@
 ### 15 Oct 2020 
 * *3hours* Writing up ideas and relating them to the reading and research
 
+
+## Week 4
+* * Absence due to family issue
+
+
+## Week 5 
+
+### 26 Oct 2020
+* *4 hours* More research about learning within games 
+
+### 28 Oct 2020
+* *1 hour* Meeting with supervisor, discussed 'converging' and to make low-fidelity prototypes
+
+### 30 Oct 2020
+
+* *5 hours* Creating initial prototypes for flow of 'puzzle game' and 'algorithm solver'
+
+## Week 6 
+
+### 3 Oct 2020 
+
+* *1 hour* looked at Brilliant.org for inspiration
+* *1 hour* Looked at ways of visualising and presenting information(Complexometer and youtube sorting algorithms)
+* *6 hours* Thought of then added new ideas to prototypes as well as explanations and extra examples for games
+
+### 5 Oct 2020
+
+* *4 hours* Research into other Game-based learning studies 'Teaching Artificial intelligence and Robotics Via Games' + References and 'Foundations of Game-Based Learning'
+
+### 6 Oct 2020
+
+* *1 hour* Meeting with supervisor. Discussed using MOSCOW method, doing a research review and starting to develop a semi-working prototype on Unity
