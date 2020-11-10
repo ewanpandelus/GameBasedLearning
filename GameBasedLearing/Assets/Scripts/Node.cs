@@ -44,11 +44,11 @@ public class Node : MonoBehaviour
     private void OnMouseDown()
     {
         travellingSalesman = TravellingSalesman.instance;
-        if (travellingSalesman.getIsMovePossible(gameObject))
+        if (travellingSalesman.GetIsMovePossible(gameObject))
         {
-            travellingSalesman.setPlayedNode(gameObject);
+            travellingSalesman.SetPlayedNode(gameObject);
             selected = true;
-            travellingSalesman.setPlayedEdge();
+            travellingSalesman.SetPlayedEdge();
         }
        
     }
