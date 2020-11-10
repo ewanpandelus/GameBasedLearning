@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 public interface IPuzzle
 {
-    void MakeMove();
+    void MakeMove(GameObject playedObject);
     void StartGame();
 
     Boolean CheckMoveIsPossible();

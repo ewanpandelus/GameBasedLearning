@@ -14,9 +14,10 @@ public class Node : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        travellingSalesman = TravellingSalesman.instance;
+        
         rend = GetComponent<Renderer>();
         initialColour = rend.material.color;
+        
     }
 
     // Update is called once per frame
@@ -42,10 +43,12 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (travellingSalesman.getIsMovePossible())
+        travellingSalesman = TravellingSalesman.instance;
+        if (travellingSalesman.getIsMovePossible(gameObject))
         {
-
+            travellingSalesman.setPlayedNode(gameObject);
             selected = true;
+            travellingSalesman.setPlayedEdge();
         }
        
     }
