@@ -11,6 +11,7 @@ using System.Linq;
 public class TravellingSalesman : MonoBehaviour, IPuzzle
 {
     public static TravellingSalesman instance;
+    Permutations Permutate;
     private int moveCount = 0;
     private int totalDistance = 0;
     public GameObject[] nodes;
@@ -18,7 +19,8 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     List<GameObject> playedNodes = new List<GameObject>();
     List<int> distances = new List<int>();
     private Edge edge;
-
+    private int mininumDistance = 0;
+  
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         {
             instance = this;
         }
+        
         nodes = GameObject.FindGameObjectsWithTag("Node");
         edges = GameObject.FindGameObjectsWithTag("Edge").ToList<GameObject>();
         foreach (GameObject distance in GameObject.FindGameObjectsWithTag("Distance"))
@@ -33,6 +36,9 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
             distances.Add(Int32.Parse(distance.name));
         }
         this.playedNodes.Add(nodes[0]);
+        Permutate = Permutations.instance;
+        Solve();
+      
     }
     void Update()
     {
@@ -112,7 +118,54 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         GameObject.Find("MoveCount").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Move Count: " + moveCount.ToString(); //Increment move count and display
         
     }
-  
+    private Boolean TrySolution()
+    {
+        return totalDistance == mininumDistance;
+    }
+    private void Solve()
+    {
+        List<List<char>> intermediatePermutations = CalculatePermutationsForNodes();
+        List<List<char>> finalPermuations = RemoveUneccesaryPermutations(intermediatePermutations);
+    }
+    private List<List<char>> RemoveUneccesaryPermutations(List<List<char>> permList)
+    {
+        Dictionary<char, int> intermediateLetterDict = new Dictionary<char, int>();    //(d,b,c) == (c,b,d) so removing those permutations as unnecessary
+        char[] nodeChars = SetNodesToPermute();
+        List<List<char>> finPermutations = new List<List<char>>();
+        foreach (char c in nodeChars)
+        {
+            intermediateLetterDict.Add(c, 0);
+        }
+        foreach (IList<char> permutation in permList)
+        {
+            if (intermediateLetterDict[permutation[0]] < 1)
+            {
+                intermediateLetterDict[permutation[0]]++;
+                finPermutations.Add((List<char>)permutation);
+            }
+            else
+            {
+                continue;
+            }
+           
+        }
+        return finPermutations;
+    }
+    private char[] SetNodesToPermute()
+    {
+        char[] nodeChars = { 'A', 'A', 'A' };
+        for (int i = 1; i < (nodes.Length); i++)
+        {
+            nodeChars.SetValue(Convert.ToChar(nodes[i].name), i - 1); //Setting up intermediate list of nodes to be permuted, !(n-1) 
+        }
+        return nodeChars;
+    }
+    private List<List<char>> CalculatePermutationsForNodes()
+    {
+        char[] nodeChars = SetNodesToPermute();
+        return Permutate.Permute(nodeChars);
+    }
+
     void IPuzzle.ComputerSolve()
     {
         throw new System.NotImplementedException();
