@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -21,8 +22,15 @@ public class Edge : MonoBehaviour
     {
         
     }
-    public void setColour()
+    public void setColour(Boolean on)
     {
-        rend.material.color = lightGren;
+        if (!on) {
+            rend.material.color = lightGren;
+        }
+        else
+        {
+            rend.material.color = initialColour;
+        }
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class Permutations: MonoBehaviour
@@ -7,7 +8,7 @@ public class Permutations: MonoBehaviour
     private GameObject[] nodes;
     public static Permutations instance;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         nodes = GameObject.FindGameObjectsWithTag("Node");
         if (!instance)
@@ -53,11 +54,15 @@ public class Permutations: MonoBehaviour
         a = b;
         b = temp;
     }
-
-    private void Solve()
+    public List<List<char>> GetFinalPermutations()
+    {
+        return SolveFinalPermutations();
+    }
+    private List<List<char>> SolveFinalPermutations()
     {
         List<List<char>> intermediatePermutations = CalculatePermutationsForNodes();
         List<List<char>> finalPermuations = RemoveUneccesaryPermutations(intermediatePermutations);
+        return finalPermuations;
     }
     private List<List<char>> CalculatePermutationsForNodes()
     {

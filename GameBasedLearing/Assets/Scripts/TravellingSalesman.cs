@@ -8,6 +8,8 @@ using TMPro;
 using System.Text.RegularExpressions;
 using System.Linq;
 using UnityEngine.UIElements;
+using System.Threading;
+
 
 public class TravellingSalesman : MonoBehaviour, IPuzzle
 {
@@ -29,7 +31,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         {
             instance = this;
         }
-        
+        Permutate = Permutations.instance;
         nodes = GameObject.FindGameObjectsWithTag("Node");
         edges = GameObject.FindGameObjectsWithTag("Edge").ToList<GameObject>();
         this.playedNodes.Add(nodes[0]);
@@ -37,28 +39,55 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         {
             distances.Add(Int32.Parse(distance.name));
         }
-        SetupTSP();
         
     }
-    private int [,] CreateAdjacencyList()
-    {
-        int[,] graph = {
-        { 0, 10, 15, 20 },
-        { 10, 0, 35, 25 },
-        { 15, 35, 0, 30 },
-        { 20, 25, 30, 0 }
-        };
-        return graph;
+    private void clearBoard() 
+    { 
+        foreach(GameObject edge in edges)
+        {
+            edge.GetComponent<Edge>().setColour(true);
+        }
+        foreach(GameObject node in nodes)
+        {
+            node.GetComponent<Node>().DeselectNode();
+        }
+        this.playedNodes.Clear();
+        this.playedNodes.Add(nodes[0]);
+        DisplayDistance(0);
     }
-    private int SetupTSP()
+
+    public void Solve()
     {
-        int n = nodes.Count();
-        bool[] v = new bool[n];
-        int [,]graph = CreateAdjacencyList();
-        v[0] = true;
-        return tsp(graph, v, 0, n, 1, 0, int.MaxValue);
+        List<char> winningPath = new List<char>();
+        int minDistance = int.MaxValue;
+        List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
+        foreach(List<char> nodeList in nodePermutations)
+        {
+            foreach(char c in nodeList)
+            {
+               
+                GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();
+            }
+            
+            if (this.totalDistance < minDistance)
+            {
+                minDistance = totalDistance;
+                winningPath = nodeList;
+                winningPath.Add('A');
+            }
+            SetDistance(0);
+            clearBoard();
+        }
+
+        foreach(char c in winningPath)
+        {
+            GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();
+        }
+
+        
     }
-    
+  
+
     private List<Node> setNodes()
     {
         List<Node> nodesScripts = new List<Node>();
@@ -113,10 +142,15 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         if (playedNodes.Count >= 2)
         {
             edge = FindCurrentEdge().GetComponent<Edge>(); //Finds current edge pased
-            edge.setColour();
+            edge.setColour(false);
             int index = FindIndex(FindCurrentEdge());
             DisplayDistance(distances[index]);
          }
+    }
+    public void SetLastEdge()
+    {
+        edge = FindCurrentEdge().GetComponent<Edge>(); //Finds current edge pased
+        edge.setColour(false);
     }
 
     private int FindIndex(GameObject edgeName)
@@ -140,7 +174,10 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         { 20, 25, 30, 0 } };
         return graph;
     }
-
+    public void SetDistance(int distance)
+    {
+        this.totalDistance = distance;
+    }
     private void DisplayDistance(int distanceAdd)
     {
         totalDistance += distanceAdd;
@@ -152,51 +189,19 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         this.playedNodes.Add(playedNode);
         this.moveCount++;
         GameObject.Find("MoveCount").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Move Count: " + moveCount.ToString(); //Increment move count and display
-        
+        SetPlayedEdge();
+    }
+    public void SetLastNode(GameObject playedNode)
+    {
+        this.playedNodes.Add(playedNode);
+        SetLastEdge();
     }
     private Boolean TrySolution()
     {
         return totalDistance == mininumDistance;
     }
  
-    private int tsp(int[,] graph, bool[] v, int currPos,
-        int n, int count, int cost, int ans)
-    {
-        List<Node> nodeObjects = setNodes();
-
-        // If last node is reached and it has a link 
-        // to the starting node i.e the source then 
-        // keep the minimum value out of the total cost 
-        // of traversal and "ans" 
-        // Finally return to check for more possible values 
-        if (count == n && graph[currPos, 0] > 0)
-        {
-            ans = Math.Min(ans, cost + graph[currPos, 0]);
-            return ans;
-        }
-
-        // BACKTRACKING STEP 
-        // Loop to traverse the adjacency list 
-        // of currPos node and increasing the count 
-        // by 1 and cost by graph[currPos,i] value 
-        for (int i = 0; i < n; i++)
-        {
-            if (v[i] == false && graph[currPos, i] > 0)
-            {
-
-                // Mark as visited 
-                v[i] = true;
-                nodeObjects[i].SetNode();
-                
-                ans = tsp(graph, v, i, n, count + 1,
-                    cost + graph[currPos, i], ans);
-
-                // Mark ith node as unvisited 
-                v[i] = false;
-            }
-        }
-        return ans;
-    }
+    
    
     void IPuzzle.ComputerSolve()
     {

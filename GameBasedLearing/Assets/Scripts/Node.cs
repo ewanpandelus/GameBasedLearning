@@ -49,17 +49,17 @@ public class Node : MonoBehaviour
     public void SetNode()
     {
         travellingSalesman = TravellingSalesman.instance;
-        if (travellingSalesman.GetIsMovePossible(gameObject))
-        {
-            rend.material.color = lightGreen;
-            travellingSalesman.SetPlayedNode(gameObject);
-            selected = true;
-            travellingSalesman.SetPlayedEdge();
+            if (travellingSalesman.GetIsMovePossible(gameObject))
+            {
+                rend.material.color = lightGreen;
+                travellingSalesman.SetPlayedNode(gameObject);
+                selected = true;
+                
+            }
         }
-    }
-    private void DeselectNode()
+    public void DeselectNode()
     {
-
+        rend.material.color = initialColour;
     }
     
 }
