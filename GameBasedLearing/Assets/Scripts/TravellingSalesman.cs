@@ -5,11 +5,9 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Text.RegularExpressions;
 using System.Linq;
 using UnityEngine.UIElements;
-using System.Threading;
-
+using System.Diagnostics.Tracing;
 
 public class TravellingSalesman : MonoBehaviour, IPuzzle
 {
@@ -58,37 +56,42 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
 
     public void Solve()
     {
+        clearBoard();
+        DisplayDistance(0);
         List<char> winningPath = new List<char>();
         int minDistance = int.MaxValue;
         List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
-        foreach(List<char> nodeList in nodePermutations)
+        StartCoroutine(IterateThroughPermutations(winningPath, minDistance, nodePermutations));
+        }
+
+    IEnumerator IterateThroughPermutations(List<char> winningPath, int minDistance, List<List<char>> nodePermutations)
+    {
+        foreach (List<char> nodeList in nodePermutations)
         {
-            foreach(char c in nodeList)
+            nodeList.Add('A');
+            foreach (char c in nodeList)
             {
-               
+                yield return new WaitForSecondsRealtime(1f);
                 GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();
             }
-            
+
             if (this.totalDistance < minDistance)
             {
                 minDistance = totalDistance;
                 winningPath = nodeList;
-                winningPath.Add('A');
             }
             SetDistance(0);
             clearBoard();
         }
 
-        foreach(char c in winningPath)
+        foreach (char c in winningPath)
         {
-            GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();
-        }
-
-        
+            yield return new WaitForSecondsRealtime(1f);
+            GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();}
+       
     }
-  
 
-    private List<Node> setNodes()
+private List<Node> setNodes()
     {
         List<Node> nodesScripts = new List<Node>();
         foreach(GameObject node in nodes)
@@ -129,8 +132,8 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
             }
         }
         catch (NullReferenceException e) 
-        { 
-            Debug.Log(e); 
+        {
+            UnityEngine.Debug.Log(e); 
         } 
 
         return null;
