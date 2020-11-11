@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Text.RegularExpressions;
 using System.Linq;
+using UnityEngine.UIElements;
 
 public class TravellingSalesman : MonoBehaviour, IPuzzle
 {
@@ -14,7 +15,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     Permutations Permutate;
     private int moveCount = 0;
     private int totalDistance = 0;
-    public GameObject[] nodes;
+    private GameObject[] nodes;
     List<GameObject> edges = new List<GameObject>();
     List<GameObject> playedNodes = new List<GameObject>();
     List<int> distances = new List<int>();
@@ -31,14 +32,41 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         
         nodes = GameObject.FindGameObjectsWithTag("Node");
         edges = GameObject.FindGameObjectsWithTag("Edge").ToList<GameObject>();
+        this.playedNodes.Add(nodes[0]);
         foreach (GameObject distance in GameObject.FindGameObjectsWithTag("Distance"))
         {
             distances.Add(Int32.Parse(distance.name));
         }
-        this.playedNodes.Add(nodes[0]);
-        Permutate = Permutations.instance;
-        Solve();
-      
+        SetupTSP();
+        
+    }
+    private int [,] CreateAdjacencyList()
+    {
+        int[,] graph = {
+        { 0, 10, 15, 20 },
+        { 10, 0, 35, 25 },
+        { 15, 35, 0, 30 },
+        { 20, 25, 30, 0 }
+        };
+        return graph;
+    }
+    private int SetupTSP()
+    {
+        int n = nodes.Count();
+        bool[] v = new bool[n];
+        int [,]graph = CreateAdjacencyList();
+        v[0] = true;
+        return tsp(graph, v, 0, n, 1, 0, int.MaxValue);
+    }
+    
+    private List<Node> setNodes()
+    {
+        List<Node> nodesScripts = new List<Node>();
+        foreach(GameObject node in nodes)
+        {
+            nodesScripts.Add(node.GetComponent<Node>());
+        }
+        return nodesScripts;
     }
     void Update()
     {
@@ -51,7 +79,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         {
             return (!playedNodes.Contains(node));
         }
-        if (node.name == "A")
+        if (node.name == "A" && playedNodes.Count < 5)
         {
             return true;
         }
@@ -84,7 +112,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     {
         if (playedNodes.Count >= 2)
         {
-            edge = FindCurrentEdge().GetComponent<Edge>();
+            edge = FindCurrentEdge().GetComponent<Edge>(); //Finds current edge pased
             edge.setColour();
             int index = FindIndex(FindCurrentEdge());
             DisplayDistance(distances[index]);
@@ -93,7 +121,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
 
     private int FindIndex(GameObject edgeName)
     {
-        for(int i = 0; i < (edges.Count) - 1; i++)
+        for(int i = 0; i < (edges.Count); i++)
         {
             if(edges[i] == edgeName)
             {
@@ -103,7 +131,15 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         return 0;
        
     }
-    
+    private int [,] DistanceToNodes()
+    {
+        int[,] graph = {
+        { 0, 10, 15, 20 },
+        { 10, 0, 35, 25 },
+        { 15, 35, 0, 30 },
+        { 20, 25, 30, 0 } };
+        return graph;
+    }
 
     private void DisplayDistance(int distanceAdd)
     {
@@ -122,50 +158,46 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     {
         return totalDistance == mininumDistance;
     }
-    private void Solve()
+ 
+    private int tsp(int[,] graph, bool[] v, int currPos,
+        int n, int count, int cost, int ans)
     {
-        List<List<char>> intermediatePermutations = CalculatePermutationsForNodes();
-        List<List<char>> finalPermuations = RemoveUneccesaryPermutations(intermediatePermutations);
-    }
-    private List<List<char>> RemoveUneccesaryPermutations(List<List<char>> permList)
-    {
-        Dictionary<char, int> intermediateLetterDict = new Dictionary<char, int>();    //(d,b,c) == (c,b,d) so removing those permutations as unnecessary
-        char[] nodeChars = SetNodesToPermute();
-        List<List<char>> finPermutations = new List<List<char>>();
-        foreach (char c in nodeChars)
-        {
-            intermediateLetterDict.Add(c, 0);
-        }
-        foreach (IList<char> permutation in permList)
-        {
-            if (intermediateLetterDict[permutation[0]] < 1)
-            {
-                intermediateLetterDict[permutation[0]]++;
-                finPermutations.Add((List<char>)permutation);
-            }
-            else
-            {
-                continue;
-            }
-           
-        }
-        return finPermutations;
-    }
-    private char[] SetNodesToPermute()
-    {
-        char[] nodeChars = { 'A', 'A', 'A' };
-        for (int i = 1; i < (nodes.Length); i++)
-        {
-            nodeChars.SetValue(Convert.ToChar(nodes[i].name), i - 1); //Setting up intermediate list of nodes to be permuted, !(n-1) 
-        }
-        return nodeChars;
-    }
-    private List<List<char>> CalculatePermutationsForNodes()
-    {
-        char[] nodeChars = SetNodesToPermute();
-        return Permutate.Permute(nodeChars);
-    }
+        List<Node> nodeObjects = setNodes();
 
+        // If last node is reached and it has a link 
+        // to the starting node i.e the source then 
+        // keep the minimum value out of the total cost 
+        // of traversal and "ans" 
+        // Finally return to check for more possible values 
+        if (count == n && graph[currPos, 0] > 0)
+        {
+            ans = Math.Min(ans, cost + graph[currPos, 0]);
+            return ans;
+        }
+
+        // BACKTRACKING STEP 
+        // Loop to traverse the adjacency list 
+        // of currPos node and increasing the count 
+        // by 1 and cost by graph[currPos,i] value 
+        for (int i = 0; i < n; i++)
+        {
+            if (v[i] == false && graph[currPos, i] > 0)
+            {
+
+                // Mark as visited 
+                v[i] = true;
+                nodeObjects[i].SetNode();
+                
+                ans = tsp(graph, v, i, n, count + 1,
+                    cost + graph[currPos, i], ans);
+
+                // Mark ith node as unvisited 
+                v[i] = false;
+            }
+        }
+        return ans;
+    }
+   
     void IPuzzle.ComputerSolve()
     {
         throw new System.NotImplementedException();

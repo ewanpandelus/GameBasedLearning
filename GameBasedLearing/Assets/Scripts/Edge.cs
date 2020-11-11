@@ -10,8 +10,7 @@ public class Edge : MonoBehaviour
     Color lightGreen = new Color(131f / 255f, 243f / 255f, 127f / 255f, 1);
     Color lightGren = new Color(46f/255f, 1,  0f/ 255f, 1);
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rend = GetComponent<SpriteRenderer>();
         initialColour = rend.material.color;
