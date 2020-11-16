@@ -22,13 +22,15 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     private Edge edge;
     private int mininumDistance = 0;
   
-
-    void Start()
+    void Awake()
     {
         if (!instance)
         {
             instance = this;
         }
+    }
+    void Start()
+    {
         Permutate = Permutations.instance;
         nodes = GameObject.FindGameObjectsWithTag("Node");
         edges = GameObject.FindGameObjectsWithTag("Edge").ToList<GameObject>();
@@ -40,8 +42,9 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         
     }
     private void clearBoard() 
-    { 
-        foreach(GameObject edge in edges)
+    {
+        SetDistance(0);
+        foreach (GameObject edge in edges)
         {
             edge.GetComponent<Edge>().setColour(true);
         }
@@ -57,7 +60,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     public void Solve()
     {
         clearBoard();
-        DisplayDistance(0);
+        this.moveCount = 0;
         List<char> winningPath = new List<char>();
         int minDistance = int.MaxValue;
         List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
@@ -69,10 +72,12 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         foreach (List<char> nodeList in nodePermutations)
         {
             nodeList.Add('A');
+            yield return new  WaitForSecondsRealtime(0.5f);
             foreach (char c in nodeList)
             {
-                yield return new WaitForSecondsRealtime(1f);
+                
                 GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();
+                yield return new WaitForSecondsRealtime(1f);
             }
 
             if (this.totalDistance < minDistance)
@@ -80,6 +85,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
                 minDistance = totalDistance;
                 winningPath = nodeList;
             }
+            yield return new WaitForSecondsRealtime(0.5f);
             SetDistance(0);
             clearBoard();
         }
@@ -87,23 +93,11 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         foreach (char c in winningPath)
         {
             yield return new WaitForSecondsRealtime(1f);
-            GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();}
+            GameObject.Find(c.ToString()).GetComponent<Node>().SetWinningNode();
+        }
        
     }
 
-private List<Node> setNodes()
-    {
-        List<Node> nodesScripts = new List<Node>();
-        foreach(GameObject node in nodes)
-        {
-            nodesScripts.Add(node.GetComponent<Node>());
-        }
-        return nodesScripts;
-    }
-    void Update()
-    {
-
-    }
 
     public Boolean GetIsMovePossible(GameObject node)
     {
@@ -168,15 +162,6 @@ private List<Node> setNodes()
         return 0;
        
     }
-    private int [,] DistanceToNodes()
-    {
-        int[,] graph = {
-        { 0, 10, 15, 20 },
-        { 10, 0, 35, 25 },
-        { 15, 35, 0, 30 },
-        { 20, 25, 30, 0 } };
-        return graph;
-    }
     public void SetDistance(int distance)
     {
         this.totalDistance = distance;
@@ -187,18 +172,17 @@ private List<Node> setNodes()
         GameObject.Find("TotalDistance").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Distance: " + totalDistance.ToString();
     }
 
-    public void SetPlayedNode(GameObject playedNode)
+    public void SetPlayedNode(GameObject playedNode, Boolean bestPath)
     {
         this.playedNodes.Add(playedNode);
-        this.moveCount++;
-        GameObject.Find("MoveCount").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Move Count: " + moveCount.ToString(); //Increment move count and display
         SetPlayedEdge();
+        if (!bestPath)
+        {
+            this.moveCount++;
+            GameObject.Find("MoveCount").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Move Count: " + moveCount.ToString(); //Increment move count and display
+        }
     }
-    public void SetLastNode(GameObject playedNode)
-    {
-        this.playedNodes.Add(playedNode);
-        SetLastEdge();
-    }
+
     private Boolean TrySolution()
     {
         return totalDistance == mininumDistance;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 using UnityEngine;
 
 public class Permutations: MonoBehaviour
@@ -60,42 +61,44 @@ public class Permutations: MonoBehaviour
     }
     private List<List<char>> SolveFinalPermutations()
     {
-        List<List<char>> intermediatePermutations = CalculatePermutationsForNodes();
+        List<List<char>> intermediatePermutations = CalculateAllPermutationsForNodes();
         List<List<char>> finalPermuations = RemoveUneccesaryPermutations(intermediatePermutations);
         return finalPermuations;
     }
-    private List<List<char>> CalculatePermutationsForNodes()
+    private List<List<char>> CalculateAllPermutationsForNodes()
     {
         char[] nodeChars = SetNodesToPermute();
         return Permute(nodeChars);
     }
+    public static string Reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        Array.Reverse(charArray);
+        return new string(charArray);
+    }
     private List<List<char>> RemoveUneccesaryPermutations(List<List<char>> permList)
     {
-        Dictionary<char, int> intermediateLetterDict = new Dictionary<char, int>();    //(d,b,c) == (c,b,d) so removing those permutations as unnecessary
-        char[] nodeChars = SetNodesToPermute();
         List<List<char>> finPermutations = new List<List<char>>();
-        foreach (char c in nodeChars)
-        {
-            intermediateLetterDict.Add(c, 0);
-        }
+        List<string> paths = new List<string>();
         foreach (IList<char> permutation in permList)
         {
-            if (intermediateLetterDict[permutation[0]] < 1)
-            {
-                intermediateLetterDict[permutation[0]]++;
-                finPermutations.Add((List<char>)permutation);
-            }
-            else
+            string s = new string(permutation.ToArray());
+            if (paths.Contains(Reverse(s)))
             {
                 continue;
             }
-
+            else
+            {
+                paths.Add(s);
+                finPermutations.Add((List<char>)permutation);
+            }
         }
+
         return finPermutations;
     }
     private char[] SetNodesToPermute()
     {
-        char[] nodeChars = { 'A', 'A', 'A' };
+        char[] nodeChars = new char[nodes.Length-1];
         for (int i = 1; i < (nodes.Length); i++)
         {
             nodeChars.SetValue(Convert.ToChar(nodes[i].name), i - 1); //Setting up intermediate list of nodes to be permuted, !(n-1) 
