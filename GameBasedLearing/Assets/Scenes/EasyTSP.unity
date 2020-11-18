@@ -261,6 +261,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1604729790}
     m_Modifications:
+    - target: {fileID: 2239794958169965323, guid: ba9e663ed3328d449b2d2be3bd38d325,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3002163675903161478, guid: ba9e663ed3328d449b2d2be3bd38d325,
         type: 3}
       propertyPath: m_fontAsset
@@ -456,6 +461,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1604729790}
     m_Modifications:
+    - target: {fileID: 2239794958169965323, guid: ba9e663ed3328d449b2d2be3bd38d325,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3002163675903161478, guid: ba9e663ed3328d449b2d2be3bd38d325,
         type: 3}
       propertyPath: m_text
@@ -567,6 +577,7 @@ GameObject:
   - component: {fileID: 468979445}
   - component: {fileID: 468979444}
   - component: {fileID: 468979443}
+  - component: {fileID: 468979446}
   m_Layer: 5
   m_Name: 35
   m_TagString: Distance
@@ -654,6 +665,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &468979446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468979441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8089352b22d18cc48a2bd57f91011740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &474166103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,6 +1164,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2239794958169965323, guid: ba9e663ed3328d449b2d2be3bd38d325,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3002163675903161478, guid: ba9e663ed3328d449b2d2be3bd38d325,
         type: 3}
       propertyPath: m_text
@@ -1254,6 +1282,7 @@ GameObject:
   - component: {fileID: 686768511}
   - component: {fileID: 686768510}
   - component: {fileID: 686768509}
+  - component: {fileID: 686768512}
   m_Layer: 5
   m_Name: 25
   m_TagString: Distance
@@ -1341,6 +1370,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &686768512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686768507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8089352b22d18cc48a2bd57f91011740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &697231953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1362,6 +1403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.41037738
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239794958169965323, guid: ba9e663ed3328d449b2d2be3bd38d325,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3002163675903161478, guid: ba9e663ed3328d449b2d2be3bd38d325,
         type: 3}
@@ -1910,6 +1956,7 @@ GameObject:
   - component: {fileID: 941481770}
   - component: {fileID: 941481769}
   - component: {fileID: 941481768}
+  - component: {fileID: 941481771}
   m_Layer: 5
   m_Name: 10
   m_TagString: Distance
@@ -1997,6 +2044,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &941481771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941481766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8089352b22d18cc48a2bd57f91011740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &950790895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,6 +2460,7 @@ GameObject:
   - component: {fileID: 1230927270}
   - component: {fileID: 1230927269}
   - component: {fileID: 1230927268}
+  - component: {fileID: 1230927271}
   m_Layer: 5
   m_Name: 30
   m_TagString: Distance
@@ -2488,6 +2548,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1230927271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230927266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8089352b22d18cc48a2bd57f91011740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1237820058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,6 +3311,7 @@ GameObject:
   - component: {fileID: 1601073951}
   - component: {fileID: 1601073950}
   - component: {fileID: 1601073949}
+  - component: {fileID: 1601073952}
   m_Layer: 5
   m_Name: 20
   m_TagString: Distance
@@ -3326,6 +3399,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1601073952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601073947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8089352b22d18cc48a2bd57f91011740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1604729789
 GameObject:
   m_ObjectHideFlags: 0
@@ -3372,6 +3457,7 @@ GameObject:
   - component: {fileID: 1638344100}
   - component: {fileID: 1638344099}
   - component: {fileID: 1638344098}
+  - component: {fileID: 1638344101}
   m_Layer: 5
   m_Name: 15
   m_TagString: Distance
@@ -3459,6 +3545,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1638344101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638344096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8089352b22d18cc48a2bd57f91011740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1710095799
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,6 @@ public class Node : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         rend = GetComponent<Renderer>();
         initialColour = rend.material.color;
         travellingSalesman = TravellingSalesman.instance;
@@ -25,11 +24,25 @@ public class Node : MonoBehaviour
     {
         
     }
+    private void SetAllColours(bool on, int sortingOrder)
+    {
+        if (!(this.name == "A" && travellingSalesman.GetPlayedNodes().Count != GameObject.FindGameObjectsWithTag("Node").Length))
+        {
+            Distance distance = travellingSalesman.GetDistance(FindEdgeAssociatedWithNode());
+            Edge edge = FindEdgeAssociatedWithNode();
+            edge.setColour(on);
+            edge.SetSortingOrder(sortingOrder);
+            distance.setColour(on);
+        }
+    }
     void OnMouseEnter()
     {
 
         if (!selected) 
         {
+
+            SetAllColours(true, -1);
+          
             rend.material.color = lightGreen;
         }
     }
@@ -37,6 +50,7 @@ public class Node : MonoBehaviour
     {
         if (!selected)
         {
+            SetAllColours(false,-2);
             rend.material.color = initialColour;
         }
     }
@@ -45,7 +59,28 @@ public class Node : MonoBehaviour
     {
         SetNode();
     }
+    
+    private Edge FindEdgeAssociatedWithNode()
+    {
+        try
+        {
+            if (GameObject.Find("(" + travellingSalesman.GetLastPlayedNode().name + "," + this.name + ")") == null)
+            {
+                return   (GameObject.Find("(" + this.name  + "," + travellingSalesman.GetLastPlayedNode().name + ")")).GetComponent<Edge>() ;
+            }
+            else
+            {
+                return GameObject.Find("(" + travellingSalesman.GetLastPlayedNode().name + "," + this.name + ")").GetComponent<Edge>();
+            }
+        }
+        catch (NullReferenceException e)
+        {
+            UnityEngine.Debug.Log(e);
+        }
 
+        return null;
+
+    }
     public void SetNode()
     {
    

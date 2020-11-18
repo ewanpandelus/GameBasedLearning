@@ -4,13 +4,11 @@ using UnityEngine;
 public interface IPuzzle
 {
     void MakeMove(GameObject playedObject);
-    void StartGame();
 
-    Boolean CheckMoveIsPossible();
-    
+    void TrySolution();    
     void ComputerSolve();
 
-    void WinGame(Boolean winCondition);
+    void DisplaySteps();
 
-    void DisplaySteps(int counter);
+    bool CheckMoveIsPossible(GameObject GO );
 }

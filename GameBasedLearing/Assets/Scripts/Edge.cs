@@ -6,31 +6,46 @@ using UnityEngine;
 
 public class Edge : MonoBehaviour
 {
+    TravellingSalesman travellingSalesman;
     private SpriteRenderer rend;
     private Color initialColour;
-    Color lightGreen = new Color(131f / 255f, 243f / 255f, 127f / 255f, 1);
-    Color lightGren = new Color(46f/255f, 1,  0f/ 255f, 1);
+    Color lightGreen = new Color(46f/255f, 1,  0f/ 255f, 1);
+    private bool selected;
 
     void Awake()
     {
         rend = GetComponent<SpriteRenderer>();
         initialColour = rend.material.color;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        selected = false;
         
     }
-    public void setColour(Boolean on)
+    public void SetSelected(bool _selected)
     {
-        if (!on) {
-            rend.material.color = lightGren;
+         selected = _selected;
+    }
+    private void Start()
+    {
+        travellingSalesman = TravellingSalesman.instance;
+    }
+
+    public void SetSortingOrder(int _sortingOrder)
+    {
+        this.rend.sortingOrder = _sortingOrder;
+    }
+    public void setColour(bool on)
+    {
+        if (on) 
+        {
+            rend.sortingOrder = -1;
+            rend.material.color = lightGreen;
         }
         else
         {
-            rend.material.color = initialColour;
+           rend.sortingOrder = -2;
+           rend.material.color = initialColour;
         }
+            
+        
         
     }
 }

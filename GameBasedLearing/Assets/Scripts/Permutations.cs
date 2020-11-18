@@ -18,11 +18,6 @@ public class Permutations: MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public List<List<char>> Permute(char[] nodes)
     {
         var list = new List<List<char>>();
