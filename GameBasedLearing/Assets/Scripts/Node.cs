@@ -10,8 +10,8 @@ public class Node : MonoBehaviour
     private Renderer rend;
     private Color initialColour;
     Color lightGreen = new Color(131f/255f, 243f/255f, 127f/255f, 1);
-    private GameObject Edge;
-    // Start is called before the first frame update
+   
+  
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -32,6 +32,7 @@ public class Node : MonoBehaviour
             Edge edge = FindEdgeAssociatedWithNode();
             edge.setColour(on);
             edge.SetSortingOrder(sortingOrder);
+            rend.material.color = lightGreen;
             distance.setColour(on);
         }
     }
@@ -86,7 +87,7 @@ public class Node : MonoBehaviour
    
             if (travellingSalesman.GetIsMovePossible(gameObject))
             {
-                rend.material.color = lightGreen;
+            SetAllColours(true, -1);
                 travellingSalesman.SetPlayedNode(gameObject, false);
                 selected = true;
                 
@@ -94,12 +95,13 @@ public class Node : MonoBehaviour
         }
     public void SetWinningNode()
     {
-        rend.material.color = lightGreen;
+        SetAllColours(true, -1);
         travellingSalesman.SetPlayedNode(gameObject, true);
     }
     public void DeselectNode()
     {
         rend.material.color = initialColour;
+        selected = false;
     }
     
 }

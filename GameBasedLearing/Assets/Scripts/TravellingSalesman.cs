@@ -11,7 +11,9 @@ using System.Diagnostics.Tracing;
 
 public class TravellingSalesman : MonoBehaviour, IPuzzle
 {
+    
     public static TravellingSalesman instance;
+    public int winningPathLength;
     Permutations Permutate;
     private int moveCount = 0;
     private int totalDistance = 0;
@@ -21,7 +23,6 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     List<GameObject> distanceObjects = new List<GameObject>();
     List<int> distances = new List<int>();
     private Edge edge;
-    private int mininumDistance = 0;
   
     void Awake()
     {
@@ -54,9 +55,9 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     {
         return playedNodes[playedNodes.Count-1];
     }
-    private void ClearBoard() 
+    private void ClearBoard(int setDistance) 
     {
-        SetDistance(0);
+        SetDistance(setDistance);
         foreach (GameObject distance in distanceObjects)
         { 
             distance.GetComponent<Distance>().setColour(false);
@@ -116,7 +117,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
             }
             yield return new WaitForSecondsRealtime(12f/Factorial(nodes.Length));
             SetDistance(0);
-            ClearBoard();
+            ClearBoard(0);
         }
 
         foreach (char c in winningPath)
@@ -153,10 +154,6 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         return null;
 
      }
-    public void RemoveUnplayedNode()
-    {
-        playedNodes.RemoveAt(playedNodes.Count - 1);
-    }
     public void SetPlayedEdge(bool played)
     {
         if (playedNodes.Count >= 2)
@@ -205,18 +202,29 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
             ((IPuzzle)this).DisplaySteps();
         }
     }
-    
+    public void TrySolution()
+    {
+        ((IPuzzle)this).TrySolution();
+    }
 
     void IPuzzle.TrySolution()
     {
-        
+        if (this.totalDistance == winningPathLength)
+        {
+            Debug.Log("Win");
+        }
+        else
+        {
+            Debug.Log("Lose");
+        }
+        ClearBoard(0);
     }
  
     
    
    void IPuzzle.ComputerSolve()
     {
-        ClearBoard();
+        ClearBoard(0);
         this.moveCount = 0;
         List<char> winningPath = new List<char>();
         int minDistance = int.MaxValue;
