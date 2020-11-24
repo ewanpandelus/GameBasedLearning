@@ -13,7 +13,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
 {
     
     public static TravellingSalesman instance;
-    public int winningPathLength;
+    [SerializeField] private int winningPathLength;
     Permutations Permutate;
     private int moveCount = 0;
     private int totalDistance = 0;
@@ -209,7 +209,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
 
     void IPuzzle.TrySolution()
     {
-        if (this.totalDistance == winningPathLength)
+        if (this.totalDistance == winningPathLength &&playedNodes.Count-1  == nodes.Length)
         {
             Debug.Log("Win");
         }

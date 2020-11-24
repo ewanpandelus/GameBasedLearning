@@ -82,21 +82,25 @@ public class Node : MonoBehaviour
         return null;
 
     }
+    private void SwitchOnNode()
+    {
+        SetAllColours(true, -1);
+        selected = true;
+    }
     public void SetNode()
     {
    
             if (travellingSalesman.GetIsMovePossible(gameObject))
             {
-            SetAllColours(true, -1);
+                SwitchOnNode();
                 travellingSalesman.SetPlayedNode(gameObject, false);
-                selected = true;
-                
             }
         }
     public void SetWinningNode()
     {
-        SetAllColours(true, -1);
+        SwitchOnNode();
         travellingSalesman.SetPlayedNode(gameObject, true);
+        
     }
     public void DeselectNode()
     {
