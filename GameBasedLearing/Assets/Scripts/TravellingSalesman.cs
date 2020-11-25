@@ -8,15 +8,18 @@ using TMPro;
 using System.Linq;
 using UnityEngine.UIElements;
 using System.Diagnostics.Tracing;
+using UnityEngine.SceneManagement;
 
 public class TravellingSalesman : MonoBehaviour, IPuzzle
 {
     
     public static TravellingSalesman instance;
     [SerializeField] private int winningPathLength;
+    [SerializeField] private DynamicUI dynamicUI;
     Permutations Permutate;
     private int moveCount = 0;
     private int totalDistance = 0;
+    private bool solved = false;
     private GameObject[] nodes;
     List<GameObject> edges = new List<GameObject>();
     List<GameObject> playedNodes = new List<GameObject>();
@@ -206,30 +209,50 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
     {
         ((IPuzzle)this).TrySolution();
     }
+    public void Replay()
+    {
+        DisplayDistance(totalDistance - totalDistance);
+        ClearBoard(0);
+        moveCount = 0;
+        ((IPuzzle)this).DisplaySteps();
+        dynamicUI.SetButtonsUnactive();
+        dynamicUI.FadeOutWinningPathtext();
+    }
+
 
     void IPuzzle.TrySolution()
     {
         if (this.totalDistance == winningPathLength &&playedNodes.Count-1  == nodes.Length)
         {
-            Debug.Log("Win");
+            if (!solved)
+            {
+                dynamicUI.SetWinningPathText();
+                dynamicUI.SetButtonsActive();
+            }
         }
         else
         {
-            Debug.Log("Lose");
+            dynamicUI.SetWrongPathText();
+            ClearBoard(0);
         }
-        ClearBoard(0);
+        
     }
  
     
    
    void IPuzzle.ComputerSolve()
     {
-        ClearBoard(0);
-        this.moveCount = 0;
-        List<char> winningPath = new List<char>();
-        int minDistance = int.MaxValue;
-        List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
-        StartCoroutine(IterateThroughPermutations(winningPath, minDistance, nodePermutations));
+        if (!solved) 
+        {
+            solved = true;
+            ClearBoard(0);
+            this.moveCount = 0;
+            List<char> winningPath = new List<char>();
+            int minDistance = int.MaxValue;
+            List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
+            StartCoroutine(IterateThroughPermutations(winningPath, minDistance, nodePermutations));
+        }
+        
     }
 
     void IPuzzle.DisplaySteps()

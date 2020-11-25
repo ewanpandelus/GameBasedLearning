@@ -9,13 +9,14 @@ public class ComplexityGraph : MonoBehaviour
 {
     private RectTransform graphContainer;
     [SerializeField] private Sprite circleSprite;
+    [SerializeField] private Sprite lineSprite;
     private void Awake()
     {
         graphContainer = GameObject.Find("GraphContainer").GetComponent<RectTransform>();
 
         ShowGraph(CreateLinearList(),Color.red,10f);
         ShowGraph(CreateConstantList(), Color.yellow,10f);
-        ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60,360,2520}, Color.blue,25f);
+        ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60,200,600}, Color.blue,25f);
         ShowGraph(CreateONLogNList(), Color.white, 15f);
         ShowGraph(CreateLogNList(), Color.magenta, 15f);
         ShowGraph(CreateNSquaredList(),Color.green,15f);
@@ -107,6 +108,7 @@ public class ComplexityGraph : MonoBehaviour
         GameObject gameObject = new GameObject("dotConnection", typeof(Image));
         gameObject.transform.SetParent(graphContainer,false);
         gameObject.GetComponent<Image>().color = color;
+        gameObject.GetComponent<Image>().sprite = lineSprite;
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         Vector2 dir = (dotPosition2 - dotPosition1).normalized;
         float distance = Vector2.Distance(dotPosition1, dotPosition2);

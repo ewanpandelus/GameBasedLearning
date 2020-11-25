@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EasyTSP.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/ComplexityGraph.unity
+    guid: 381ca5f2e141e544291b28c1e1759b91
+  - enabled: 1
+    path: Assets/Scenes/HardTSP.unity
+    guid: f29ba4fb8251f784782821c6e94de685
   m_configObjects: {}
