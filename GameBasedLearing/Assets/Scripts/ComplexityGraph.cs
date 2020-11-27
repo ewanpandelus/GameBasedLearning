@@ -10,71 +10,103 @@ public class ComplexityGraph : MonoBehaviour
     private RectTransform graphContainer;
     [SerializeField] private Sprite circleSprite;
     [SerializeField] private Sprite lineSprite;
+    [SerializeField] private bool complexityIllustration;
     private void Awake()
     {
         graphContainer = GameObject.Find("GraphContainer").GetComponent<RectTransform>();
-
-        ShowGraph(CreateLinearList(),Color.red,10f);
-        ShowGraph(CreateConstantList(), Color.yellow,10f);
-        ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60,200,600}, Color.blue,25f);
-        ShowGraph(CreateONLogNList(), Color.white, 15f);
-        ShowGraph(CreateLogNList(), Color.magenta, 15f);
-        ShowGraph(CreateNSquaredList(),Color.green,15f);
       
     }
-    private List<float> CreateONLogNList()
+    private void Start()
+    {
+        if (!complexityIllustration)
+        {
+            ShowDifferentComplexities();
+        }
+        else
+        {
+            StartCoroutine(ShowGraph(CreateFactorialList(8), Color.white + new Color(0,0,0,-0.5f), 57f, 1f,55));
+        }
+        
+    }
+    private void ShowDifferentComplexities()
+    {
+        StartCoroutine(ShowGraph(CreateLinearList(65), Color.red, 10f,0,1));
+        StartCoroutine(ShowGraph(CreateConstantList(67), Color.yellow, 10f,0,1));
+        StartCoroutine(ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60, 200, 600 }, Color.blue, 25f,0,1));
+        StartCoroutine(ShowGraph(CreateONLogNList(42), Color.white, 15f,0,1));
+        StartCoroutine(ShowGraph(CreateLogNList(45), Color.magenta, 15f, 0,1));
+        StartCoroutine(ShowGraph(CreateNSquaredList(25), Color.green, 15f,0,1));
+    }
+    private List<float> CreateFactorialList(int problemSize)
     {
         List<float> valueList = new List<float>();
         valueList.Add(0);
-        for (int i = 1; i < 42; i++)
+        for (int i = 1 ;i<=problemSize; i++)
+        {
+            valueList.Add(Factorial(i));
+        }
+        return valueList;
+    }
+    private int Factorial(int n)
+    {
+        if (n == 0)
+            return 1;
+        else
+            return n * Factorial(n - 1);
+    }
+    private List<float> CreateONLogNList(int problemSize)
+    {
+        List<float> valueList = new List<float>();
+        valueList.Add(0);
+        for (int i = 1; i < problemSize; i++)
         {
             valueList.Add(i*(8 * (Mathf.Log10(i))));
         }
         return valueList;
     }
-    private List<float> CreateLogNList()
+    private List<float> CreateLogNList(int problemSize)
     {
         List<float> valueList = new List<float>();
         valueList.Add(0);
-        for (int i = 1; i < 45; i++)
+        for (int i = 1; i < problemSize; i++)
         {
             valueList.Add(40*(Mathf.Log10(i)));
         }
         return valueList;
     }
-    private List<float> CreateConstantList()
+    private List<float> CreateConstantList(int problemSize)
     {
         List<float> valueList = new List<float>();
-        for (int i = 0; i < 67; i++)
+        for (int i = 0; i < problemSize; i++)
         {
             valueList.Add(1);
         }
         return valueList;
     }
-    private List<float> CreateNSquaredList()
+    private List<float> CreateNSquaredList(int problemSize)
     {
         List<float> valueList = new List<float>();
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < problemSize; i++)
         {
             valueList.Add((Mathf.Pow(i,2)));
         }
         return valueList;
     }
-    private List<float> CreateLinearList()
+    private List<float> CreateLinearList(int problemSize )
     {
         List<float> valueList = new List<float>();
-        for(int i = 0; i < 65; i++)
+        for(int i = 0; i < problemSize; i++)
         {
             valueList.Add(i*5);
         }
         return valueList;
    }
-    private GameObject CreateCircle(Vector2 anchoredPosition)
+    private GameObject CreateCircle(Vector2 anchoredPosition,Color color)
     {
         GameObject gameObject = new GameObject("circle", typeof(Image));
         gameObject.transform.SetParent(graphContainer,false);
         gameObject.GetComponent<Image>().sprite  = circleSprite;
-        gameObject.GetComponent<Image>().color = Color.clear;
+        gameObject.GetComponent<Image>().color = color;
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = anchoredPosition;
         rectTransform.sizeDelta = new Vector2(5,5);
@@ -82,7 +114,7 @@ public class ComplexityGraph : MonoBehaviour
         rectTransform.anchorMax = new Vector2(0, 0);
         return gameObject;
     }
-    private void ShowGraph(List<float> valueList, Color color,float xSize)
+    private IEnumerator ShowGraph(List<float> valueList, Color color,float xSize,float waitTime,int scalingfactor)
     {
         float graphHeight = graphContainer.sizeDelta.y;
         float yMax = 100f;
@@ -90,9 +122,10 @@ public class ComplexityGraph : MonoBehaviour
         GameObject prevCircleObj = null;
         for(int i = 0; i < valueList.Count; i++)
         {
-            float xPos = 43f+ (i * xSize);
-            float yPos = 39f + (valueList[i] / yMax) * graphHeight;
-            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos));
+            float xPos =  (i * xSize);
+            float yPos = ((valueList[i] / yMax) * graphHeight) / scalingfactor;
+            yield return new WaitForSecondsRealtime(waitTime);
+            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f));
             
 
             if (prevCircleObj)
