@@ -13,24 +13,26 @@ public class ChessBoard : MonoBehaviour
 {
     [HideInInspector] public GameObject mCellPrefab;
 
-    
-   
+
+
     [SerializeField] int problemSize;
-    public Cell[,] mAllCells = new Cell[8, 8];
+    private Cell[,] mAllCells;
     private int compensation;
 
     // We create the board here, no surprise
-    private void Start()
+     void Awake()
     {
-       
+        mAllCells = new Cell[problemSize, problemSize];
     }
     public void Create()
     {
         #region Create
         if (problemSize == 4)
-        {
+        { 
+
+            compensation = 220;
             CreateSmallBoard();
-            compensation = 1;
+            
         }
         else
         {
@@ -38,9 +40,9 @@ public class ChessBoard : MonoBehaviour
             compensation = 0;
         }
         #region Colour
-        for (int x = compensation; x < problemSize+compensation; x += 2)
+        for (int x = 0; x < problemSize; x += 2)
         {
-            for (int y = compensation; y < problemSize+compensation; y++)
+            for (int y = 0; y < problemSize; y++)
             {
                 // Offset for every other line
                 int offset = (y % 2 != 0) ? 0 : 1;
@@ -54,11 +56,11 @@ public class ChessBoard : MonoBehaviour
     }
     private void CreateSmallBoard()
     {
-       for (int y = 1; y < problemSize+1; y++)
+       for (int y = 0; y < problemSize; y++)
        {
-           for (int x = 1; x < problemSize+1; x++)
+           for (int x = 0; x < problemSize; x++)
            {
-             CreateCell(125, x, y);
+             CreateCell(100, x, y);
            }
        }
     }
@@ -80,7 +82,7 @@ public class ChessBoard : MonoBehaviour
         // Position
         RectTransform rectTransform = newCell.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(sizeDelta, sizeDelta);
-        rectTransform.anchoredPosition = new Vector2((x * rectTransform.sizeDelta.x) + rectTransform.sizeDelta.x / 2, (y * rectTransform.sizeDelta.y) + rectTransform.sizeDelta.y / 2);
+        rectTransform.anchoredPosition = new Vector2(((x * rectTransform.sizeDelta.x)+compensation) + rectTransform.sizeDelta.x / 2, ((y * rectTransform.sizeDelta.y)+compensation) + rectTransform.sizeDelta.y / 2);
 
         // Setup
         mAllCells[x, y] = newCell.GetComponent<Cell>();

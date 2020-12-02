@@ -15,6 +15,8 @@ public class Cell : MonoBehaviour
     [HideInInspector]
     public RectTransform mRectTransform = null;
 
+    private bool occupied = false;
+
     [HideInInspector]
 
     public void Setup(Vector2Int newBoardPosition, ChessBoard newBoard)
@@ -24,5 +26,13 @@ public class Cell : MonoBehaviour
         mBoard = newBoard;
 
         mRectTransform = GetComponent<RectTransform>();
+    }
+    public void SetOccupied(bool _occupied)
+    {
+        this.occupied = _occupied;
+    }
+    public bool GetOccupied()
+    {
+        return this.occupied;
     }
 }

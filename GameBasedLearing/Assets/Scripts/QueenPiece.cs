@@ -59,15 +59,9 @@ public class QueenPiece : EventTrigger
             {
                 for(int y=0; y < problemSize - 1; y++)
                 {
-                    CellState cellState = CellState.None;
-                    cellState = mCurrentCell.mBoard.ValidateCell(x, y, this);
-                    if (cell && cellState!=CellState.Occupied)
+                    if (cell.GetOccupied() == false)
                     {
                         mHighlightedCells.Add(cell);
-                    }
-                    else
-                    {
-                        continue;
                     }
                 }
             }
@@ -98,10 +92,10 @@ public class QueenPiece : EventTrigger
                 break;
             }
                
-            if (mCurrentCell.mBoard.mAllCells[currentX, currentY])
+            if (mCurrentCell.mBoard.GetAllCells()[currentX, currentY])
             {
                 // Add to list
-                mHighlightedCells.Add(mCurrentCell.mBoard.mAllCells[currentX, currentY]);
+                mHighlightedCells.Add(mCurrentCell.mBoard.GetAllCells()[currentX, currentY]);
             }
            
         }
@@ -143,13 +137,13 @@ public class QueenPiece : EventTrigger
         // Clear current
         if (mCurrentCell)
         {
-            mCurrentCell.mCurrentPiece = null;
+            mCurrentCell.SetOccupied(false);
         }
 
 
         // Switch cells
         mCurrentCell = mTargetCell;
-        mCurrentCell.mCurrentPiece = this;
+        mCurrentCell.SetOccupied(true);
 
         // Move on board
         transform.position = mCurrentCell.transform.position;
