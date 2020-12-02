@@ -35,4 +35,8 @@ public class Cell : MonoBehaviour
     {
         return this.occupied;
     }
+    public void SetColour(Color color)
+    {
+        this.mOutlineImage.color = color;
+    }
 }

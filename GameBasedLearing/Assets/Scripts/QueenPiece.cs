@@ -14,15 +14,20 @@ public class QueenPiece : EventTrigger
     protected RectTransform mRectTransform = null;
     protected Cell mTargetCell = null;
     Vector3Int mMovement = new Vector3Int();
-    protected List<Cell> mHighlightedCells = new List<Cell>();
+    protected List<Cell> highlightedCells = new List<Cell>();
+    protected List<Cell> occupiedCells = new List<Cell>();
     [SerializeField] Image image;
     private int problemSize;
+    ChessBoard board;
     
     void Start()
     {
 
-        problemSize = GameObject.Find("ChessBoard").GetComponent<ChessBoard>().GetProblemSize();
-    
+       
+        board = GameObject.Find("ChessBoard").GetComponent<ChessBoard>();
+        problemSize = board.GetProblemSize();
+        mMovement = new Vector3Int(problemSize - 1, problemSize - 1, problemSize - 1);
+        
 
         mRectTransform = GetComponent<RectTransform>();
     }
@@ -40,19 +45,19 @@ public class QueenPiece : EventTrigger
     }
     private void AllCellPaths()
     {
-        ChessBoard board = GameObject.Find("ChessBoard").GetComponent<ChessBoard>();
+    
         foreach(Cell cell in board.GetAllCells())
         {
             if (cell) 
             {
-                mHighlightedCells.Add(cell);
+                highlightedCells.Add(cell);
             }
            
         }
     }
     private void FindPossibleCells()
     {
-        ChessBoard board = GameObject.Find("ChessBoard").GetComponent<ChessBoard>();
+       
         foreach (Cell cell in board.GetAllCells())
         {
             for(int x =0; x < problemSize - 1; x++)
@@ -61,7 +66,7 @@ public class QueenPiece : EventTrigger
                 {
                     if (cell.GetOccupied() == false)
                     {
-                        mHighlightedCells.Add(cell);
+                        highlightedCells.Add(cell);
                     }
                 }
             }
@@ -74,58 +79,97 @@ public class QueenPiece : EventTrigger
         // Target position
         int currentX = mCurrentCell.mBoardPosition.x;
         int currentY = mCurrentCell.mBoardPosition.y;
-
+      
         // Check each cell
         for (int i = 1; i <= movement; i++)
         {
             currentX += xDirection;
             currentY += yDirection;
-
-            // Get the state of the target cell
-            CellState cellState = CellState.None;
-            cellState = mCurrentCell.mBoard.ValidateCell(currentX, currentY, this);
-
-
-            // If the cell is not free, break
-            if (cellState != CellState.Free)
+            try
             {
-                break;
+                Cell cell = board.GetAllCells()[currentX, currentY];
+                CellState cellState = CellState.None;
+                cellState = mCurrentCell.mBoard.ValidateCell(currentX, currentY, this);
+                if (cell.GetOccupied() == true)
+                {
+                    occupiedCells.Add(cell);
+                }
+
+                // If the cell is not free, break
+                if (cell.GetOccupied() == false && cellState != CellState.OutOfBounds)
+                {
+                    highlightedCells.Add(mCurrentCell.mBoard.GetAllCells()[currentX, currentY]);
+                }
             }
-               
-            if (mCurrentCell.mBoard.GetAllCells()[currentX, currentY])
+            catch
             {
-                // Add to list
-                mHighlightedCells.Add(mCurrentCell.mBoard.GetAllCells()[currentX, currentY]);
+                continue;
             }
-           
+            
+          
         }
+           
     }
 
     protected virtual void CheckPathing()
     {
         if (mIsFirstMove)
         {
-            AllCellPaths();
+            FindPossibleCells();
         }
         else
         {
-            FindPossibleCells();
+            CreateCellPath(1, 0, mMovement.x);
+            CreateCellPath(-1, 0, mMovement.x);
+
+            // Vertical 
+            CreateCellPath(0, 1, mMovement.y);
+            CreateCellPath(0, -1, mMovement.y);
+
+            // Upper diagonal
+            CreateCellPath(1, 1, mMovement.z);
+            CreateCellPath(-1, 1, mMovement.z);
+
+            // Lower diagonal
+            CreateCellPath(-1, -1, mMovement.z);
+            CreateCellPath(1, -1, mMovement.z);
         }
   
     }
 
     protected void ShowCells()
     {
-        foreach (Cell cell in mHighlightedCells)
+        foreach (Cell cell in highlightedCells)
+        {
             cell.mOutlineImage.enabled = true;
+            if (!mIsFirstMove)
+            {
+                
+                cell.SetColour(Color.green+ new Color(0,0,0,-0.3f));
+            }
+            else
+            {
+                cell.SetColour(Color.clear);
+            }
+        }
+        foreach(Cell cell in occupiedCells)
+        {
+            cell.mOutlineImage.enabled = true;
+            cell.SetColour(Color.red);
+        }
+           
+      
     }
 
     protected void ClearCells()
     {
-        foreach (Cell cell in mHighlightedCells)
+        foreach (Cell cell in highlightedCells)
             cell.mOutlineImage.enabled = false;
-
-        mHighlightedCells.Clear();
+        foreach (Cell cell in occupiedCells)
+            cell.mOutlineImage.enabled = false;
+       
+        occupiedCells.Clear();
+        highlightedCells.Clear();
     }
     protected virtual void Move()
     {
@@ -171,7 +215,7 @@ public class QueenPiece : EventTrigger
         transform.position += (Vector3)eventData.delta;
 
         // Check for overlapping available squares
-        foreach (Cell cell in mHighlightedCells)
+        foreach (Cell cell in highlightedCells)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
             {
