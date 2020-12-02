@@ -125,6 +125,12 @@ public class ChessBoard : MonoBehaviour
     {
         return this.mAllCells;
     }
-
+    public void ClearCells()
+    {
+        foreach(Cell cell in mAllCells)
+        {
+            cell.SetOccupied(false);
+        }
+    }
 
 }

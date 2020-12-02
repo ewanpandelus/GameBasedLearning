@@ -36,6 +36,16 @@ public class NQueens: MonoBehaviour,IPuzzle
     {
         board.Create();
     }
+    public void ClearBoard()
+    {
+        board.ClearCells();
+        GameObject[] queens;
+        queens = GameObject.FindGameObjectsWithTag("Queen");
+        foreach(GameObject queen in queens)
+        {
+            Destroy(queen);
+        }
+    }
 
     
     

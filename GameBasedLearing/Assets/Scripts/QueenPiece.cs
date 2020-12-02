@@ -30,6 +30,14 @@ public class QueenPiece : EventTrigger
         
 
         mRectTransform = GetComponent<RectTransform>();
+        if (problemSize == 4)
+        {
+            mRectTransform.sizeDelta = new Vector2(100, 100);
+        }
+        else
+        {
+            mRectTransform.sizeDelta = new Vector2(85, 85);
+        }
     }
 
     public virtual void Place(Cell newCell)
@@ -145,7 +153,7 @@ public class QueenPiece : EventTrigger
             if (!mIsFirstMove)
             {
                 
-                cell.SetColour(Color.green+ new Color(0,0,0,-0.3f));
+                cell.SetColour(Color.green+ new Color(0,0,0,-0.5f));
             }
             else
             {
@@ -155,12 +163,12 @@ public class QueenPiece : EventTrigger
         foreach(Cell cell in occupiedCells)
         {
             cell.mOutlineImage.enabled = true;
-            cell.SetColour(Color.red);
+            cell.SetColour(Color.red + new Color(0, 0, 0, -0.3f));
         }
            
       
     }
-
+    
     protected void ClearCells()
     {
         foreach (Cell cell in highlightedCells)
@@ -175,16 +183,11 @@ public class QueenPiece : EventTrigger
     {
         // First move switch
         mIsFirstMove = false;
-
-
-
         // Clear current
         if (mCurrentCell)
         {
             mCurrentCell.SetOccupied(false);
         }
-
-
         // Switch cells
         mCurrentCell = mTargetCell;
         mCurrentCell.SetOccupied(true);
