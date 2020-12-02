@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+public enum CellState
+{
+    None,
+    Occupied,
+    Free,
+    OutOfBounds
+}
 public class ChessBoard : MonoBehaviour
 {
     [HideInInspector] public GameObject mCellPrefab;
@@ -14,6 +20,10 @@ public class ChessBoard : MonoBehaviour
     private int compensation;
 
     // We create the board here, no surprise
+    private void Start()
+    {
+       
+    }
     public void Create()
     {
         #region Create
@@ -76,8 +86,43 @@ public class ChessBoard : MonoBehaviour
         mAllCells[x, y] = newCell.GetComponent<Cell>();
         mAllCells[x, y].Setup(new Vector2Int(x, y), this);
     }
-        #endregion
 
-       
-    
+    #endregion
+    public CellState ValidateCell(int targetX, int targetY, QueenPiece checkingPiece)
+    {
+        // Bounds check
+        if (targetX < 0 || targetX > problemSize-1)
+            return CellState.OutOfBounds;
+
+        if (targetY < 0 || targetY > problemSize-1)
+            return CellState.OutOfBounds;
+
+        // Get cell
+        Cell targetCell = mAllCells[targetX, targetY];
+        try
+        {
+            if (targetCell.mCurrentPiece != null)
+            {
+                return CellState.Occupied;
+            }
+        }
+        catch
+        {
+            return CellState.Free;
+        }
+        // If the cell has a piece
+        return CellState.Free;
+
+
+    }
+    public int GetProblemSize()
+    {
+        return this.problemSize;
+    }
+    public Cell[,]GetAllCells()
+    {
+        return this.mAllCells;
+    }
+
+
 }
