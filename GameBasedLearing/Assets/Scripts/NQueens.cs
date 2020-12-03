@@ -6,7 +6,12 @@ public class NQueens: MonoBehaviour,IPuzzle
 {
     [SerializeField]
     private ChessBoard board;
-
+    GameObject[] queens;
+    void Start()
+    {
+        board.Create();
+       
+    }
     public bool CheckMoveIsPossible(GameObject GO)
     {
         throw new System.NotImplementedException();
@@ -29,18 +34,43 @@ public class NQueens: MonoBehaviour,IPuzzle
 
     public void TrySolution()
     {
-        throw new System.NotImplementedException();
+        queens = GameObject.FindGameObjectsWithTag("Queen");
+        bool safe = true;
+        int count = 0;
+        foreach(GameObject queen in queens)
+        {
+           safe = safe && queen.GetComponent<QueenPiece>().GetSafe();
+            try
+            {
+                if (queen.GetComponent<QueenPiece>().GetCell())
+                {
+                    count++;
+                }
+            }
+            catch
+            {
+                Debug.Log("Error");
+            }
+            
+
+        }
+        if (safe && count == 8)
+        {
+            Debug.Log("Win!");
+        }
+        else
+        {
+            Debug.Log("Lose");
+        }
     }
 
-    void Start()
-    {
-        board.Create();
-    }
+
     public void ClearBoard()
     {
-        board.ClearCells();
-        GameObject[] queens;
         queens = GameObject.FindGameObjectsWithTag("Queen");
+        board.ClearCells();
+        
+        
         foreach(GameObject queen in queens)
         {
             Destroy(queen);

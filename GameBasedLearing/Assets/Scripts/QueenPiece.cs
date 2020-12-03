@@ -19,7 +19,7 @@ public class QueenPiece : EventTrigger
     [SerializeField] Image image;
     private int problemSize;
     ChessBoard board;
-    
+    private bool safe = true;
     void Start()
     {
 
@@ -100,10 +100,11 @@ public class QueenPiece : EventTrigger
                 cellState = mCurrentCell.mBoard.ValidateCell(currentX, currentY, this);
                 if (cell.GetOccupied() == true)
                 {
+                    this.safe = false;
                     occupiedCells.Add(cell);
                 }
 
-                // If the cell is not free, break
+                
                 if (cell.GetOccupied() == false && cellState != CellState.OutOfBounds)
                 {
                     highlightedCells.Add(mCurrentCell.mBoard.GetAllCells()[currentX, currentY]);
@@ -121,6 +122,7 @@ public class QueenPiece : EventTrigger
 
     protected virtual void CheckPathing()
     {
+        this.safe = true;
         if (mIsFirstMove)
         {
             FindPossibleCells();
@@ -165,6 +167,7 @@ public class QueenPiece : EventTrigger
             cell.mOutlineImage.enabled = true;
             cell.SetColour(Color.red + new Color(0, 0, 0, -0.3f));
         }
+        FindPossibleCells();
            
       
     }
@@ -182,18 +185,24 @@ public class QueenPiece : EventTrigger
     protected virtual void Move()
     {
         // First move switch
-        mIsFirstMove = false;
+       
         // Clear current
         if (mCurrentCell)
         {
             mCurrentCell.SetOccupied(false);
         }
         // Switch cells
-        mCurrentCell = mTargetCell;
-        mCurrentCell.SetOccupied(true);
+        if (mTargetCell)
+        {
+            mIsFirstMove = false;
+            mCurrentCell = mTargetCell;
+            mCurrentCell.SetOccupied(true);
+            transform.position = mCurrentCell.transform.position;
+        }
+        
 
         // Move on board
-        transform.position = mCurrentCell.transform.position;
+       
         mTargetCell = null;
     }
 
@@ -240,7 +249,7 @@ public class QueenPiece : EventTrigger
         ClearCells();
 
         // Return to original position
-        if (!mTargetCell)
+        if (!mTargetCell&&mCurrentCell)
         {
             transform.position = mCurrentCell.gameObject.transform.position;
             return;
@@ -252,5 +261,15 @@ public class QueenPiece : EventTrigger
        
     }
     #endregion
+    public Cell GetCell()
+    {
+     return this.mCurrentCell;
+  
+    }
+    public bool GetSafe()
+    {
+        CheckPathing();
+        return this.safe;
+    }
 }
 
