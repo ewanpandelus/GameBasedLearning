@@ -30,7 +30,7 @@ public class ChessBoard : MonoBehaviour
         if (problemSize == 4)
         { 
 
-            compensation = 220;
+            compensation = 140;
             CreateSmallBoard();
             
         }
@@ -60,7 +60,7 @@ public class ChessBoard : MonoBehaviour
        {
            for (int x = 0; x < problemSize; x++)
            {
-             CreateCell(100, x, y);
+             CreateCell(130, x, y);
            }
        }
     }
@@ -120,6 +120,10 @@ public class ChessBoard : MonoBehaviour
     public int GetProblemSize()
     {
         return this.problemSize;
+    }
+    public Cell GetCellAtXY(int x, int y)
+    {
+        return this.mAllCells[x, y];
     }
     public Cell[,]GetAllCells()
     {
