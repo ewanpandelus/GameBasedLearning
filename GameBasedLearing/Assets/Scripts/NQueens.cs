@@ -2,23 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NQueens : MonoBehaviour, IPuzzle
 {
-    [SerializeField]
-    private ChessBoard board;
+    [SerializeField] private ChessBoard board;
+    [SerializeField] private Slider slider;
     GameObject[] queens;
     private int counter = 0;
     [SerializeField] private GameObject queenPiecePrefab;
     private GameObject parentCanvas;
     private int problemSize;
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
+    private float speed = 0.01f;
     void Start()
     {
         parentCanvas = GameObject.Find("ParentCanvas");
         board.Create();
         problemSize = board.GetProblemSize();
-
+       
     }
     public bool CheckMoveIsPossible(GameObject GO)
     {
@@ -27,6 +29,7 @@ public class NQueens : MonoBehaviour, IPuzzle
 
     void IPuzzle.ComputerSolve()
     {
+        ClearBoard();
         int[,] board = new int[problemSize, problemSize];
         GameObject[,] queenPlacement = new GameObject[problemSize, problemSize];
         solveNQUtil(board, 0, problemSize);
@@ -110,15 +113,8 @@ public class NQueens : MonoBehaviour, IPuzzle
 
         return true;
     }
-    private void WaitTime()
-    {
-        float time = 0;
-        while (time < 0.2f)
-        {
-            time += Time.deltaTime;
-        }
 
-    }
+    
     void AddToMoves(int i, int col, char indicator)
     {
         moves.Add(new Tuple<Tuple<int, int>, char>(new Tuple<int, int>(i, col), indicator));
@@ -133,20 +129,13 @@ public class NQueens : MonoBehaviour, IPuzzle
         then return true */
         if (col >= n)
         {
-
-            Debug.Log(chessBoard);
             return true;
         }
 
         /* Consider this column and try placing 
         this queen in all rows one by one */
         for (int i = 0; i < n; i++)
-        {
-            counter++;
-
-
-
-
+        { 
             /* Check if the queen can be placed on 
             board[i,col] */
             if (isSafe(chessBoard, i, col, n))
@@ -172,6 +161,7 @@ public class NQueens : MonoBehaviour, IPuzzle
 
 
     }
+
     public void Solve()
     {
         ((IPuzzle)this).ComputerSolve();
@@ -181,7 +171,7 @@ public class NQueens : MonoBehaviour, IPuzzle
         {
             foreach (Tuple<Tuple<int, int>, char> move in moves)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(1/slider.value);
                 if (move.Item2 == 'I')
                 {
                     Transform cellTransform = board.GetCellAtXY(move.Item1.Item1, move.Item1.Item2).transform;
