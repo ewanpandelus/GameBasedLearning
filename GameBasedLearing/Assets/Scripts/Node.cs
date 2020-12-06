@@ -32,7 +32,7 @@ public class Node : MonoBehaviour
             Edge edge = FindEdgeAssociatedWithNode();
             edge.setColour(on);
             edge.SetSortingOrder(sortingOrder);
-            rend.material.color = lightGreen;
+            rend.material.color = Color.white;
             distance.setColour(on);
         }
     }
@@ -44,7 +44,7 @@ public class Node : MonoBehaviour
 
             SetAllColours(true, -1);
           
-            rend.material.color = lightGreen;
+            rend.material.color = Color.white;
         }
     }
     private void OnMouseExit()

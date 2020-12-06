@@ -39,7 +39,7 @@ public class TravellingSalesman : MonoBehaviour, IPuzzle
         Permutate = Permutations.instance;
         nodes = GameObject.FindGameObjectsWithTag("Node");
         edges = GameObject.FindGameObjectsWithTag("Edge").ToList<GameObject>();
-        distanceObjects = GameObject.FindGameObjectsWithTag("Distance").ToList<GameObject>(); ;
+        distanceObjects = GameObject.FindGameObjectsWithTag("Distance").ToList<GameObject>();
         this.playedNodes.Add(nodes[0]);
         foreach (GameObject distance in GameObject.FindGameObjectsWithTag("Distance"))
         {

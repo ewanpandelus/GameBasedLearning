@@ -38,13 +38,13 @@ public class DynamicUI : MonoBehaviour
     }
     public void SetButtonsUnactive()
     {
-        continueButton.transform.GetChild(0).gameObject.SetActive(false);
-        replayButton.transform.GetChild(0).gameObject.SetActive(false);
+        continueButton.SetActive(false);
+        replayButton.SetActive(false);
     }
     public void SetButtonsActive()
     {
-        continueButton.transform.GetChild(0).gameObject.SetActive(true);
-        replayButton.transform.GetChild(0).gameObject.SetActive(true);
+        continueButton.SetActive(true);
+        replayButton.SetActive(true);
     }
     private IEnumerator FadeOutRoutine(TextMeshProUGUI text,float waitTime)
     {
