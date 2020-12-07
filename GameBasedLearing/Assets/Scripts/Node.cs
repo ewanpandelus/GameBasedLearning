@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    TravellingSalesman travellingSalesman;
+    TravelingSalesman travellingSalesman;
     private Boolean selected = false;
     private Renderer rend;
     private Color initialColour;
@@ -16,7 +16,7 @@ public class Node : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         initialColour = rend.material.color;
-        travellingSalesman = TravellingSalesman.instance;
+        travellingSalesman = TravelingSalesman.instance;
     }
 
     // Update is called once per frame

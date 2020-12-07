@@ -9,12 +9,10 @@ public class NQueens : MonoBehaviour, IPuzzle
     [SerializeField] private ChessBoard board;
     [SerializeField] private Slider slider;
     GameObject[] queens;
-    private int counter = 0;
     [SerializeField] private GameObject queenPiecePrefab;
     private GameObject parentCanvas;
     private int problemSize;
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
-    private float speed = 0.01f;
     void Start()
     {
         parentCanvas = GameObject.Find("ParentCanvas");

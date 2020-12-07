@@ -10,10 +10,10 @@ using UnityEngine.UIElements;
 using System.Diagnostics.Tracing;
 using UnityEngine.SceneManagement;
 
-public class TravellingSalesman : MonoBehaviour, IPuzzle
+public class TravelingSalesman : MonoBehaviour, IPuzzle
 {
     
-    public static TravellingSalesman instance;
+    public static TravelingSalesman instance;
     [SerializeField] private int winningPathLength;
     [SerializeField] private DynamicUI dynamicUI;
     Permutations Permutate;

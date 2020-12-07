@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Edge : MonoBehaviour
 {
-    TravellingSalesman travellingSalesman;
+    TravelingSalesman travelingSalesman;
     private SpriteRenderer rend;
     private Color initialColour;
     Color lightGreen = new Color(46f/255f, 1,  0f/ 255f, 1);
@@ -25,7 +25,7 @@ public class Edge : MonoBehaviour
     }
     private void Start()
     {
-        travellingSalesman = TravellingSalesman.instance;
+        travelingSalesman = TravelingSalesman.instance;
     }
 
     public void SetSortingOrder(int _sortingOrder)
