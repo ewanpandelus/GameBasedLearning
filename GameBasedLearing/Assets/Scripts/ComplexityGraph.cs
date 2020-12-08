@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,10 @@ public class ComplexityGraph : MonoBehaviour
     [SerializeField] private Sprite circleSprite;
     [SerializeField] private Sprite lineSprite;
     [SerializeField] private bool complexityIllustration;
+    [SerializeField] private GameObject xScaleText;
+    private float currentXPos = 0;
+    private Vector3 down = new Vector3(0, -20, 0);
+    private Vector3 left = new Vector3(-90, 0, 0);
     private void Awake()
     {
         graphContainer = GameObject.Find("GraphContainer").GetComponent<RectTransform>();
@@ -24,18 +29,18 @@ public class ComplexityGraph : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ShowGraph(CreateFactorialList(8), Color.white + new Color(0,0,0,-0.5f), 57f, 1f,55));
+            StartCoroutine(ShowChangableGraph(CreateFactorialList(10), Color.white + new Color(0,0,0,-0.5f), 57f, 1f));
         }
         
     }
     private void ShowDifferentComplexities()
     {
-        StartCoroutine(ShowGraph(CreateLinearList(65), Color.red, 10f,0,1));
-        StartCoroutine(ShowGraph(CreateConstantList(67), Color.yellow, 10f,0,1));
-        StartCoroutine(ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60, 200, 600 }, Color.blue, 25f,0,1));
-        StartCoroutine(ShowGraph(CreateONLogNList(42), Color.white, 15f,0,1));
-        StartCoroutine(ShowGraph(CreateLogNList(45), Color.magenta, 15f, 0,1));
-        StartCoroutine(ShowGraph(CreateNSquaredList(25), Color.green, 15f,0,1));
+       ShowGraph(CreateLinearList(65), Color.red, 10f,0,1);
+       ShowGraph(CreateConstantList(67), Color.yellow, 10f,0,1);
+       ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60, 200, 600 }, Color.blue, 25f,0,1);
+       ShowGraph(CreateONLogNList(42), Color.white, 15f,0,1);
+       ShowGraph(CreateLogNList(45), Color.magenta, 15f, 0,1);
+       ShowGraph(CreateNSquaredList(25), Color.green, 15f,0,1);
     }
     private List<float> CreateFactorialList(int problemSize)
     {
@@ -114,28 +119,72 @@ public class ComplexityGraph : MonoBehaviour
         rectTransform.anchorMax = new Vector2(0, 0);
         return gameObject;
     }
-    private IEnumerator ShowGraph(List<float> valueList, Color color,float xSize,float waitTime,int scalingfactor)
+    private void ShowGraph(List<float> valueList, Color color, float xSize, float waitTime, int scalingfactor)
     {
+        Debug.Log(graphContainer.sizeDelta);
         float graphHeight = graphContainer.sizeDelta.y;
         float yMax = 100f;
-        
+
         GameObject prevCircleObj = null;
-        for(int i = 0; i < valueList.Count; i++)
+        for (int i = 0; i < valueList.Count; i++)
         {
-            float xPos =  (i * xSize);
+            float xPos = (i * xSize);
             float yPos = ((valueList[i] / yMax) * graphHeight) / scalingfactor;
-            yield return new WaitForSecondsRealtime(waitTime);
             GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f));
-            
+
 
             if (prevCircleObj)
             {
-                CreateDotConnection(prevCircleObj.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition,color);
+                CreateDotConnection(prevCircleObj.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition, color);
             }
             prevCircleObj = circleGameObject;
         }
     }
+    private IEnumerator ShowChangableGraph(List<float> valueList, Color color,float xSize,float waitTime)
+    {
+        float startY = 0;
+        float startX = 0;
+        float graphHeight = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.y;
+        float graphWidth = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.x + 57;
+        float yMax = valueList[valueList.Count - 1];
+        xSize = graphWidth / valueList.Count;
+        GameObject prevCircleObj = null;
+        for(int i = 0; i < valueList.Count; i++)
+        {
+            currentXPos += xSize;
+            float xPos =  (i * xSize);
+            float yPos = ((graphHeight/yMax) * valueList[i]);
+            yield return new WaitForSecondsRealtime(waitTime);
+            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f));
+            if (i == 0)
+            {
+                startX = circleGameObject.transform.position.x;
+                startY = circleGameObject.transform.position.y;
+            }
+            Vector3 xAxis = new Vector3(circleGameObject.transform.position.x, startY, 0);
+            CreateScaleText( i, xAxis+down);
 
+
+            if (prevCircleObj)
+            {
+                CreateDotConnection(prevCircleObj.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition, color);
+            }
+            prevCircleObj = circleGameObject;
+            
+        }
+        Vector3 yAxis = new Vector3(startX, prevCircleObj.transform.position.y, 0);
+        CreateScaleText(valueList[valueList.Count-1], yAxis+left);
+    }
+    private void CreateScaleText(float value, Vector3 position)
+    {
+        GameObject textInstance = Instantiate(xScaleText, position, Quaternion.identity);
+        textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value.ToString();
+        if (value.ToString().Length > 3)
+        {
+            textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize /= 1.5f;
+        }
+        textInstance.transform.SetParent(graphContainer, true);
+    }
     private void CreateDotConnection(Vector2 dotPosition1, Vector2 dotPosition2,Color color)
     {
         GameObject gameObject = new GameObject("dotConnection", typeof(Image));

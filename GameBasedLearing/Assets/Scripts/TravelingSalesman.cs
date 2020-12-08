@@ -26,6 +26,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     List<GameObject> distanceObjects = new List<GameObject>();
     List<int> distances = new List<int>();
     private Edge edge;
+    private int counter = 0;
   
     void Awake()
     {
@@ -104,6 +105,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     {
         foreach (List<char> nodeList in nodePermutations)
         {
+            counter++;
             nodeList.Add('A');
             yield return new WaitForSecondsRealtime(12f / Factorial(nodes.Length));   // Shows graphic display with speed relative to the problem size
             foreach (char c in nodeList)
@@ -128,6 +130,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             yield return new WaitForSecondsRealtime(1f);
             GameObject.Find(c.ToString()).GetComponent<Node>().SetWinningNode();
         }
+        Debug.Log(counter);
        
     }
 
