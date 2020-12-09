@@ -29,7 +29,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ShowChangableGraph(CreateFactorialList(10), Color.white + new Color(0,0,0,-0.5f), 57f, 1f));
+            StartCoroutine(ShowChangableGraph(CreateFactorialList(10), Color.yellow + new Color(0,0,0,-0.5f),1f));
         }
         
     }
@@ -106,7 +106,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
    }
-    private GameObject CreateCircle(Vector2 anchoredPosition,Color color)
+    private GameObject CreateCircle(Vector2 anchoredPosition,Color color,int size)
     {
         GameObject gameObject = new GameObject("circle", typeof(Image));
         gameObject.transform.SetParent(graphContainer,false);
@@ -114,7 +114,7 @@ public class ComplexityGraph : MonoBehaviour
         gameObject.GetComponent<Image>().color = color;
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = anchoredPosition;
-        rectTransform.sizeDelta = new Vector2(5,5);
+        rectTransform.sizeDelta = new Vector2(size,size);
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
         return gameObject;
@@ -130,7 +130,7 @@ public class ComplexityGraph : MonoBehaviour
         {
             float xPos = (i * xSize);
             float yPos = ((valueList[i] / yMax) * graphHeight) / scalingfactor;
-            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f));
+            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f),5);
 
 
             if (prevCircleObj)
@@ -140,14 +140,14 @@ public class ComplexityGraph : MonoBehaviour
             prevCircleObj = circleGameObject;
         }
     }
-    private IEnumerator ShowChangableGraph(List<float> valueList, Color color,float xSize,float waitTime)
+    private IEnumerator ShowChangableGraph(List<float> valueList, Color color,float waitTime)
     {
         float startY = 0;
         float startX = 0;
         float graphHeight = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.y;
         float graphWidth = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.x + 57;
         float yMax = valueList[valueList.Count - 1];
-        xSize = graphWidth / valueList.Count;
+        float xSize = graphWidth / valueList.Count;
         GameObject prevCircleObj = null;
         for(int i = 0; i < valueList.Count; i++)
         {
@@ -155,7 +155,7 @@ public class ComplexityGraph : MonoBehaviour
             float xPos =  (i * xSize);
             float yPos = ((graphHeight/yMax) * valueList[i]);
             yield return new WaitForSecondsRealtime(waitTime);
-            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f));
+            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f),10);
             if (i == 0)
             {
                 startX = circleGameObject.transform.position.x;

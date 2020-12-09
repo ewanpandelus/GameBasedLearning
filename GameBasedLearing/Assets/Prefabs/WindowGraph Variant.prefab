@@ -96,6 +96,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindowGraph Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8809046169167241474, guid: 9e8304ced68f9b241a25d1c1d1e7981b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Graph
+      objectReference: {fileID: 0}
     - target: {fileID: 8809046169167241475, guid: 9e8304ced68f9b241a25d1c1d1e7981b,
         type: 3}
       propertyPath: m_LocalPosition.x

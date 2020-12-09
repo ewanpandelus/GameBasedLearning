@@ -10,6 +10,9 @@ public class DynamicUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI wrongPathText;
     [SerializeField] private GameObject replayButton;
     [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject showGraphButon;
+    [SerializeField] private GameObject hideGraphButton;
+    [SerializeField] private Slider slider;
     private string originalWinningPathText;
     private string originalWrongPathText;
     // Start is called before the first frame update
@@ -20,6 +23,10 @@ public class DynamicUI : MonoBehaviour
         winningPathText.text = "";
         wrongPathText.text = "";
         SetButtonsUnactive();
+        SetSliderUnactive();
+        SetShowGraphButtonUnactive();
+        SetHideGraphButtonUnactive();
+        
     }
     public void SetWinningPathText()
     {
@@ -36,10 +43,35 @@ public class DynamicUI : MonoBehaviour
         wrongPathText.text = originalWrongPathText;
         StartCoroutine(FadeOutRoutine(wrongPathText,1f));
     }
+    public void SetShowGraphButtonActive()
+    {
+        showGraphButon.SetActive(true);
+    }
+    public void SetShowGraphButtonUnactive()
+    {
+        showGraphButon.SetActive(false);
+    }
+    public void SetHideGraphButtonActive()
+    {
+        hideGraphButton.SetActive(true);
+    }
+    public void SetHideGraphButtonUnactive()
+    {
+        hideGraphButton.SetActive(false);
+    }
     public void SetButtonsUnactive()
     {
         continueButton.SetActive(false);
         replayButton.SetActive(false);
+    }
+    public void SetSliderUnactive()
+    {
+        slider.gameObject.SetActive(false);
+    }
+    public void SetSliderActive()
+    {
+
+        slider.gameObject.SetActive(true);
     }
     public void SetButtonsActive()
     {
