@@ -25,6 +25,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     List<GameObject> playedNodes = new List<GameObject>();
     List<GameObject> distanceObjects = new List<GameObject>();
     List<int> distances = new List<int>();
+    [SerializeField] private UnityEngine.UI.Slider slider;
     private Edge edge;
     private int counter = 0;
   
@@ -78,6 +79,10 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         this.playedNodes.Add(nodes[0]);
         DisplayDistance(0);
     }
+    public void Reset()
+    {
+        ClearBoard(0);
+    }
     public List<GameObject> GetPlayedNodes()
     {
         return this.playedNodes;
@@ -107,12 +112,12 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         {
             counter++;
             nodeList.Add('A');
-            yield return new WaitForSecondsRealtime(12f / Factorial(nodes.Length));   // Shows graphic display with speed relative to the problem size
+            yield return new WaitForSecondsRealtime(1 / slider.value);   // Shows graphic display with speed relative to the problem size
             foreach (char c in nodeList)
             {
                 
                 GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();
-                yield return new WaitForSecondsRealtime(12f / Factorial(nodes.Length));
+                yield return new WaitForSecondsRealtime(1 / slider.value);
             }
 
             if (this.totalDistance < minDistance)
@@ -120,7 +125,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
                 minDistance = totalDistance;
                 winningPath = nodeList;
             }
-            yield return new WaitForSecondsRealtime(12f/Factorial(nodes.Length));
+            yield return new WaitForSecondsRealtime(1 / slider.value);
             SetDistance(0);
             ClearBoard(0);
         }
@@ -254,6 +259,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             int minDistance = int.MaxValue;
             List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
             StartCoroutine(IterateThroughPermutations(winningPath, minDistance, nodePermutations));
+            solved = false;
         }
         
     }

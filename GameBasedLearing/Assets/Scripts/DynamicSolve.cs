@@ -12,21 +12,46 @@ public class DynamicSolve : MonoBehaviour
     void Start()
     {
         crossFade = GameObject.Find("CrossFade").GetComponent<RectTransform>();
+       
     }
 
-    public void ShowGraphSolve()
+    public void ShowGraphBeeLevel1()
     {
-        Vector3 posUpRight = new Vector3(165f, 50f, 0);
-        complexityIllustration = Instantiate(complexityIllustrationPrefab, gameObject.transform.position+posUpRight,Quaternion.identity);
-        complexityIllustration.transform.SetParent(crossFade,false);
-        complexityIllustration.transform.localScale /= 2.7f;
-        this.gameObject.transform.localScale /= 1.2f;
-        this.gameObject.transform.position += new Vector3(-3.7f,0.6f, 0);
+        BeeAdjustments();
+        this.gameObject.transform.position += new Vector3(-3.7f, 0, 0);
     }
-    public void HideGraphSolve()
+    private void BeeAdjustments()
+    {
+        this.gameObject.transform.localScale /= 1.2f;
+        Vector3 posUpRight = new Vector3(165f, 50f, 0);
+        complexityIllustration = Instantiate(complexityIllustrationPrefab, gameObject.transform.position + posUpRight, Quaternion.identity);
+        complexityIllustration.transform.SetParent(crossFade, false);
+        complexityIllustration.transform.localScale /= 2.7f;
+        ComplexityGraph complexityGraph = complexityIllustration.GetComponent<ComplexityGraph>();
+        complexityGraph.UpdateGraph();
+    }
+    public void ShowGraphBeeLevel2()
+    {
+        BeeAdjustments();
+        
+        this.gameObject.transform.position += new Vector3(-3.7f,0.6f, 0);
+        
+    }
+    public void HideGraphBeeLevel1()
+    {
+
+        DestroyGraph();
+        this.gameObject.transform.localScale *= 1.2f;
+        this.gameObject.transform.position -= new Vector3(-3.7f, 0, 0);
+    }
+    private void DestroyGraph()
     {
         complexityIllustration = GameObject.FindGameObjectWithTag("Graph");
         Destroy(complexityIllustration);
+    }
+    public void HideGraphBeeLevel2()
+    {
+        DestroyGraph();
         this.gameObject.transform.localScale *= 1.2f;
         this.gameObject.transform.position -= new Vector3(-3.7f, 0.6f, 0);
     }
