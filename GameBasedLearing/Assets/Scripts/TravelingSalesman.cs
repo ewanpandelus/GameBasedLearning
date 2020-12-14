@@ -246,9 +246,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         
     }
  
-    
-   
-   void IPuzzle.ComputerSolve()
+    void IPuzzle.ComputerSolve()
     {
         if (!solved) 
         {

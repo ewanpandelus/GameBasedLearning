@@ -12,7 +12,9 @@ public class NQueens : MonoBehaviour, IPuzzle
     [SerializeField] private GameObject queenPiecePrefab;
     private GameObject parentCanvas;
     private int problemSize;
+    private bool solved = false;
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
+    int counter = 0;
     void Start()
     {
         parentCanvas = GameObject.Find("ParentCanvas");
@@ -28,10 +30,12 @@ public class NQueens : MonoBehaviour, IPuzzle
     void IPuzzle.ComputerSolve()
     {
         ClearBoard();
+        moves.Clear();
         int[,] board = new int[problemSize, problemSize];
         GameObject[,] queenPlacement = new GameObject[problemSize, problemSize];
         solveNQUtil(board, 0, problemSize);
         StartCoroutine(IterateThroughMoves(queenPlacement));
+        solved = false;
     }
 
      void IPuzzle.DisplaySteps()
@@ -121,7 +125,7 @@ public class NQueens : MonoBehaviour, IPuzzle
     Queen problem */
     bool solveNQUtil(int[,] chessBoard, int col, int n)
     {
-
+        counter++;
 
         /* base case: If all queens are placed 
         then return true */
@@ -162,11 +166,16 @@ public class NQueens : MonoBehaviour, IPuzzle
 
     public void Solve()
     {
-        ((IPuzzle)this).ComputerSolve();
+        if (!solved)
+        {
+            ((IPuzzle)this).ComputerSolve();
+        }
+      
     }
     IEnumerator IterateThroughMoves(GameObject[,] queenPlacement)
     {
         {
+            solved = true;
             foreach (Tuple<Tuple<int, int>, char> move in moves)
             {
                 yield return new WaitForSeconds(1/slider.value);

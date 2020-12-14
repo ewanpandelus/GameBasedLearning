@@ -44,11 +44,11 @@ public class ComplexityGraph : MonoBehaviour
 
     public void IncrementN()
     {
-        n++;
+        n+=2;
     }
     public void DecrementN()
     {
-        n--;
+        n-=2;
     }
     private void Start()
     {
@@ -210,7 +210,10 @@ public class ComplexityGraph : MonoBehaviour
                 startY = circleGameObject.transform.position.y;
             }
             Vector3 xAxis = new Vector3(circleGameObject.transform.position.x, startY, 0);
-            CreateScaleText( i, xAxis+down);
+            CreateScaleText( i, xAxis+down,valueList[i]);
+            
+          
+            
 
 
             if (prevCircleObj)
@@ -220,36 +223,69 @@ public class ComplexityGraph : MonoBehaviour
             prevCircleObj = circleGameObject;
             
         }
-        ShowTotalSteps(valueList[valueList.Count - 1]);
-      // Vector3 yAxis = new Vector3(startX, prevCircleObj.transform.position.y, 0);
-      //  CreateScaleText(valueList[valueList.Count-1], yAxis+left);
+ 
     }
-    private void ShowTotalSteps(float value)
+
+   private void ShowValueUnderGraph(float value, Vector3 position,float i)
     {
-        GameObject totalSteps = GameObject.Find("TotalSteps");
-        totalSteps.GetComponent<TextMeshProUGUI>().text ="Total Steps = " + value.ToString();
+        InstantiateText(Round(value), position,12,i);
     }
-    private void CreateScaleText(float value, Vector3 position)
+    private bool IfViableToShow(float i)
     {
-        if (n > 12)
+        if (n > 9)
         {
-            if (value % 2 == 0)
+            if (i % 2 == 0)
             {
-                InstantiateText(value, position);
+
+                return true;
+
             }
+            else return false;
         }
-        else
+        return true;
+    }
+    private void CreateScaleText(float loop, Vector3 position,float value)
+    {
+        if (IfViableToShow(loop))
         {
-            InstantiateText(value, position);
+            InstantiateText(loop, position, 32,loop);
+            ShowValueUnderGraph(value, position+(2.5f*down),loop);
         }
     
     }
-   
-    private void InstantiateText(float value, Vector3 position)
+
+    public static float Round(float value)
+    {
+        if (value > 10000)
+        {
+            string s = value.ToString();
+            float rounded = Mathf.Round(value / (1 * (Mathf.Pow(10, s.Length - 4))));
+            return rounded * (Mathf.Pow(10, s.Length - 4));
+        }
+        else return value;
+    }
+    private void InstantiateText(float value, Vector3 position,int size, float i)
     {
         GameObject textInstance = Instantiate(xScaleText, position, Quaternion.identity);
-        textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value.ToString();
-        textInstance.transform.SetParent(graphContainer, true);
+        if (value > 10000&&i%2==0)
+        {
+            var exponent = (Math.Floor(Math.Log10(Math.Abs(value))));
+            var mantissa = (value / Math.Pow(10, exponent));
+            textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = mantissa.ToString("F2")+"e"+exponent;
+            textInstance.transform.SetParent(graphContainer, true);
+            textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = size;
+        }
+        if(value>10000&&i%2!=0)
+        {
+            return;
+        }
+        if(value<10000&&i%2==0)
+        {
+            textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value.ToString();
+            textInstance.transform.SetParent(graphContainer, true);
+            textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = size;
+        }
+     
         scaleTextList.Add(textInstance);
     }
     private void CreateDotConnection(Vector2 dotPosition1, Vector2 dotPosition2,Color color)

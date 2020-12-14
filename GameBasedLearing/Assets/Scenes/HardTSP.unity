@@ -6428,7 +6428,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0}
+  m_BackGroundColor: {r: 0.20572266, g: 0.21135189, b: 0.21698111, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -6781,7 +6781,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112, y: -184.3}
+  m_AnchoredPosition: {x: 133.5, y: -184.3}
   m_SizeDelta: {x: 150.11716, y: 58.617615}
   m_Pivot: {x: 0.5259917, y: 0.5}
 --- !u!114 &1555330311
@@ -6911,7 +6911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.324, y: -132.8}
+  m_AnchoredPosition: {x: -6.2588, y: -184.3}
   m_SizeDelta: {x: 104.39685, y: 58.620605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568031937
@@ -6958,7 +6958,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 758560910}
-        m_MethodName: Replay
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8377,7 +8377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -122.2, y: -184.3}
+  m_AnchoredPosition: {x: -129.1, y: -184.3}
   m_SizeDelta: {x: 104.39685, y: 58.620605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1853024613
@@ -8608,7 +8608,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 917663568}
-        m_MethodName: HideGraphSolve
+        m_MethodName: HideGraphBeeLevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9298,7 +9298,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 917663568}
-        m_MethodName: ShowGraphSolve
+        m_MethodName: ShowGraphBeeLevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
