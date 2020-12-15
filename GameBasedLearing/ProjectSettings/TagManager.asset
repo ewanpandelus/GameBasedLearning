@@ -9,6 +9,7 @@ TagManager:
   - Distance
   - Queen
   - Graph
+  - CardHolder
   layers:
   - Default
   - TransparentFX
