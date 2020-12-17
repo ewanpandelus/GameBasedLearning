@@ -42,6 +42,7 @@ public class Card : EventTrigger
     }
     protected virtual void Move()
     {
+      
         originalCardHolder = currentCardHolder;
      
         // Switch cells
@@ -65,15 +66,22 @@ public class Card : EventTrigger
         this.initialPosition = position;
     }
     private void MoveCard()
-    { 
+    {
         
         if (targetCard)
         {
-           
-            transform.position = targetCard.transform.position;
-            targetCard.transform.position = initialPosition;
-            targetCard.SetPosition(initialPosition);
-            initialPosition = transform.position;
+            if(bubbleSort.CheckMoveIsCorrect(this.gameObject, targetCard.gameObject))
+            {
+                transform.position = targetCard.transform.position;
+                targetCard.transform.position = initialPosition;
+                targetCard.SetPosition(initialPosition);
+                initialPosition = transform.position;
+            }
+            else
+            {
+                transform.position = initialPosition;
+                return;
+            }
            
 
 
@@ -130,22 +138,7 @@ public class Card : EventTrigger
 
 
     }
-    public bool GetMovedVertically()
-    {
-        return this.movedVertically;
-    }
-    public void SetMovedVertically(bool _movedVertically)
-    {
-        movedVertically = _movedVertically;
-    }
-    public int GetValue()
-    {
-        return this.value;
-    }
-    public void SetValue(int _value)
-    {
-        this.value = _value;
-    }
+
     public RectTransform GetRectTransform()
     {
         return this.rectTransform;

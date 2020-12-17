@@ -1,19 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class BubbleSort : MonoBehaviour
 {
-    Vector3 down = new Vector3(0f, -200f);
-    Vector3 up = new Vector3(0f, 200f);
-    private float velocity = 300f;
-    private int animateCounter = 0;
+    private int moveCounter = 0;
+    private Vector3 down = new Vector3(0f, -200f);
+    private Vector3 up = new Vector3(0f, 200f);
+    private float velocity = 150f;
     private GameObject[] allCardHoldersGO;
     int[] cards = new int[9];
     private List<int> numbers = new List<int>();
     private List<Card> allCards = new List<Card>();
     private List<Card> inGameCards = new List<Card>();
+    List<Tuple<int, int>> moves = new List<Tuple<int, int>>();
     [SerializeField] GameObject cardObj;
     private CardHolder[] allCardHolders = new CardHolder[9];
     private bool moving = true;
@@ -47,14 +49,24 @@ public class BubbleSort : MonoBehaviour
         }
         Shuffle();
         cards = ConvertToIntArray(inGameCards);
-        StartCoroutine(BubbleSortAlgorithm(cards));
+        StoreBubbleSortMoves(cards);
+       // StartCoroutine(BubbleSortAnimateAlgorithm(cards));
 
+    }
+    public bool CheckMoveIsCorrect(GameObject leftCard, GameObject rightCard)
+    {
+        if(moves[moveCounter].Item1 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value) &&moves[moveCounter].Item2 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value))
+        {
+            moveCounter++;
+            return true;
+        }
+        return false;
     }
     public void Shuffle()
     {
         for(int i = 0; i < 9; i++)
         {
-            int random = Random.Range(1, numbers.Count);
+            int random = UnityEngine.Random.Range(1, numbers.Count);
             allCardHolders[i].SetCurrentCard(allCards[random]);
             numbers.RemoveAt(random);
             allCards.RemoveAt(random);
@@ -147,7 +159,22 @@ public class BubbleSort : MonoBehaviour
     {
         return this.inGameCards;
     }
-      IEnumerator BubbleSortAlgorithm(int[] arr)
+    private void StoreBubbleSortMoves(int[] arr)
+    {
+        int n = arr.Length;
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (arr[j] > arr[j + 1])
+                {
+                    // swap temp and arr[i] 
+                    moves.Add(new Tuple<int, int>(arr[j], arr[j + 1]));
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                 
+                }
+    }
+    IEnumerator BubbleSortAnimateAlgorithm(int[] arr)
     {
         int n = arr.Length;
         for (int i = 0; i < n - 1; i++)
