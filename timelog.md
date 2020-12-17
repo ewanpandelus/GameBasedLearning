@@ -106,3 +106,21 @@
 
 ### 13 Nov 2020
 * *1 hours* Meeting with supervisor, deciding next steps
+
+
+## Week 8
+
+
+### 17 Nov 2020
+* *4 hours* Writing up Design document referring to previous notes and miro board
+
+### 18 Nov 2020
+* *3 hours* Reading applied literature(algorithms/AI/algorithms game-based learning)
+
+### 19 Nov 2020
+* *3 hours* Writing up applied literature review
+
+### 20 Nov 2020
+* *1 hours 30 minutes* Meeting with supervisor and mock customer meeting to gather requirements.
+
+## Week 9
