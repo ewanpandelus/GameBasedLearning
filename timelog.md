@@ -136,3 +136,47 @@
 
 ### 27 Nov 2020
 * *1 hours* Meeting with supervisor
+
+## Week 10
+
+### 30 Nov 2020
+* *4 hours* Drawing chess board and implementing placing queens on it
+
+### 1 Dec 2020
+* *4 hours* Implementing lighting up squares where queens can take(green if empty, red if occupied)
+
+### 2 Dec 2020
+* *2 hours* Drawing small chess board 4*4
+
+
+### 5 Dec 2020
+* *8 hours* Implementing computer solving problem graphically
+
+## Week 11
+
+
+### 7 Dec 2020
+* *8 hours* Implementing level chooser
+
+
+### 9 Dec 2020
+* *8 hours* Implementing level graph beside mini games to illustrate complexity vs problem size(n)
+
+### 11 Dec 2020
+* *1 hour* Meeting with supervisor discussing next puzzles and plans for evaluation
+## Week 12
+
+### 14 Dec 2020
+* *7hours* Re-formating graph to show number of steps for each problem size
+
+### 15 Dec 2020
+* *4hours* Starting BubbleSort, drawing cards and being able to move them implemented
+* *4hours* Implementing swapping cards 
+
+### 16 Dec 2020
+* *10hours* Implementing computer graphically solving bubblesort 
+
+
+### 17 Dec 2020
+* *3hours* Creating plan for Christmas break/semester2
+* *1hours* Creating status report for semester 1
