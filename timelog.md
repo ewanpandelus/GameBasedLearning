@@ -124,3 +124,15 @@
 * *1 hours 30 minutes* Meeting with supervisor and mock customer meeting to gather requirements.
 
 ## Week 9
+
+### 23 Nov 2020
+* *8 hours* developing graphical solving of TSP problem
+
+### 24 Nov 2020
+* *4 hours* generalising TSP code so it can be used for more levels, adding harder level(level2).
+
+### 25 Nov 2020
+* *4 hours* Creating 'Complexity Graph' so it can be shown to users who will choose the complexity of the algorithm/puzzle.
+
+### 27 Nov 2020
+* *1 hours* Meeting with supervisor
