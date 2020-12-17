@@ -91,3 +91,18 @@
 ### 6 Nov 2020
 
 * *1 hour* Meeting with supervisor. Discussed using MOSCOW method, doing a research review and starting to develop a semi-working prototype on Unity
+
+## Week 7
+
+### 9 Nov 2020
+* *4 hours* Developing traveling salesman prototype
+
+### 10 Nov 2020
+* *4 hours* Developing traveling salesman prototype
+
+### 11 Nov 2020
+* *2 hours* Re-reading background literature for literature review
+* *4 hours* Writing up literature review while referring to literature
+
+### 13 Nov 2020
+* *1 hours* Meeting with supervisor, deciding next steps
