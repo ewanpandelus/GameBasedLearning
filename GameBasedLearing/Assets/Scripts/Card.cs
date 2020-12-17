@@ -11,6 +11,8 @@ public class Card : EventTrigger
     protected CardHolder currentCardHolder = null;
     protected RectTransform rectTransform = null;
     protected CardHolder targetCardHolder = null;
+    private int value;
+    private bool movedVertically = false;
     BubbleSort bubbleSort;
 
     private Vector3 initialPosition = new Vector3(0f, 0f, 0f);
@@ -127,6 +129,22 @@ public class Card : EventTrigger
         MoveCard();
 
 
+    }
+    public bool GetMovedVertically()
+    {
+        return this.movedVertically;
+    }
+    public void SetMovedVertically(bool _movedVertically)
+    {
+        movedVertically = _movedVertically;
+    }
+    public int GetValue()
+    {
+        return this.value;
+    }
+    public void SetValue(int _value)
+    {
+        this.value = _value;
     }
     public RectTransform GetRectTransform()
     {
