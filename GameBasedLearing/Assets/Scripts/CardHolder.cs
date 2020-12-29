@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardHolder : MonoBehaviour
 {
     private Card currentCard = null;
+    private Card initialCard = null;
     private RectTransform rectTransform = null;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,14 @@ public class CardHolder : MonoBehaviour
     void Update()
     {
         
+    }
+    public void SetInitialCard(Card card)
+    {
+        this.initialCard = card;
+    }
+    public Card GetInitialCard()
+    {
+        return this.initialCard;
     }
     public void SetCurrentCard(Card card)
     {

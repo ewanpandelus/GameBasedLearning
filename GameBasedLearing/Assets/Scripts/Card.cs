@@ -61,7 +61,7 @@ public class Card : EventTrigger
         }
 
     }
-   public void SetPosition(Vector3 position)
+   public void SetInitialPosition(Vector3 position)
     {
         this.initialPosition = position;
     }
@@ -74,7 +74,7 @@ public class Card : EventTrigger
             {
                 transform.position = targetCard.transform.position;
                 targetCard.transform.position = initialPosition;
-                targetCard.SetPosition(initialPosition);
+                targetCard.SetInitialPosition(initialPosition);
                 initialPosition = transform.position;
             }
             else
@@ -138,7 +138,10 @@ public class Card : EventTrigger
 
 
     }
-
+    public void  SetCurrentPosition(Vector3 position)
+    {
+        this.transform.position = position;
+    }
     public RectTransform GetRectTransform()
     {
         return this.rectTransform;

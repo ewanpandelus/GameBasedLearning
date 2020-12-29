@@ -55,6 +55,10 @@ public class BubbleSort : MonoBehaviour
     }
     public bool CheckMoveIsCorrect(GameObject leftCard, GameObject rightCard)
     {
+        if (moveCounter >= moves.Count)
+        {
+            return false;
+        }
         if(moves[moveCounter].Item1 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value) &&moves[moveCounter].Item2 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value))
         {
             moveCounter++;
@@ -62,24 +66,40 @@ public class BubbleSort : MonoBehaviour
         }
         return false;
     }
-    public void Shuffle()
+    public void RandomiseCards()
     {
-        for(int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++)
         {
             int random = UnityEngine.Random.Range(1, numbers.Count);
             allCardHolders[i].SetCurrentCard(allCards[random]);
             numbers.RemoveAt(random);
             allCards.RemoveAt(random);
         }
+    }
+    public void Shuffle()
+    {
+        RandomiseCards();
 
         foreach(CardHolder cardHolder in allCardHolders)
         {
             Card cardGO = Instantiate(cardHolder.GetCurrentCard(), cardHolder.transform);
             cardHolder.SetCurrentCard(cardGO);
+            cardHolder.SetInitialCard(cardGO);
             cardGO.SetCurrentCardHolder(cardHolder);
             inGameCards.Add(cardGO);
             cardGO.transform.SetParent(cardObj.transform);
         }
+    }
+    public void Reset()
+    {
+
+        foreach (CardHolder cardHolder in allCardHolders)
+        {
+            cardHolder.GetInitialCard().SetCurrentPosition(cardHolder.transform.position);
+            cardHolder.SetCurrentCard(cardHolder.GetInitialCard());
+            cardHolder.GetCurrentCard().SetInitialPosition(cardHolder.transform.position);
+        }
+        moveCounter = 0;
     }
     private void AnimateMoveLeftAndRight(GameObject leftCard, GameObject rightCard, Vector3 leftInitialPosition, Vector3 rightInitialPosition)
     {

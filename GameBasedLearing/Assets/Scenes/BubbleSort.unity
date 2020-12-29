@@ -876,7 +876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move Count: 0'
+  m_text: 'Step Count: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e98f44c9cd1187b43a17c1c455d3c658, type: 2}
   m_sharedMaterial: {fileID: 9080263544478543278, guid: e98f44c9cd1187b43a17c1c455d3c658,
@@ -1014,6 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28104d82b34b98a45a9496794df2baeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardObj: {fileID: 0}
   cardPrefab1: {fileID: 844145324545747776, guid: 2b1fbd619f9d37e44ae66915f66e8e3c,
     type: 3}
   cardPrefab2: {fileID: 2329891636734944851, guid: c3e2133ad6d819d4c804657a91f9e2f4,

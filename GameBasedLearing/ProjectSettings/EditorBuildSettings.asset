@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NQueensLevel1.unity
     guid: f28540b29951cbb44ac296ac22289ccd
+  - enabled: 1
+    path: Assets/Scenes/BubbleSort.unity
+    guid: 3e749ae24945db24185a53bae3dc81f1
   m_configObjects: {}

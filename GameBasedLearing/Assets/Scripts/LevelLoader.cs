@@ -27,11 +27,21 @@ public class LevelLoader : MonoBehaviour
     }
     public void LoadNQueens2Button()
     {
-        StartCoroutine(loadNQueensLevel2());
+        StartCoroutine(LoadNQueensLevel2());
     }
     public void LoadNQueens1Button()
     {
-        StartCoroutine(loadNQueensLevel1());
+        StartCoroutine(LoadNQueensLevel1());
+    }
+    public void LoadBubbleSortButton()
+    {
+        StartCoroutine(LoadBubbleSortScene());
+    }
+    private IEnumerator LoadBubbleSortScene()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene("BubbleSort");
     }
     private IEnumerator LoadChooseGraphScene()
     { 
@@ -52,14 +62,14 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene("HardTSP");
     }
 
-    private IEnumerator loadNQueensLevel2()
+    private IEnumerator LoadNQueensLevel2()
     {
         transition.SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene("NQueensLevel2");
     }
 
-    private IEnumerator loadNQueensLevel1()
+    private IEnumerator LoadNQueensLevel1()
     {
         transition.SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
