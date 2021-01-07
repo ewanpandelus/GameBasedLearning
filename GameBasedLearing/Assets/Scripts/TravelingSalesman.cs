@@ -28,7 +28,8 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     [SerializeField] private UnityEngine.UI.Slider slider;
     private Edge edge;
     private int counter = 0;
-  
+    AudioManager AudioManagement;
+
     void Awake()
     {
         if (!instance)
@@ -38,6 +39,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     }
     void Start()
     {
+        AudioManagement = AudioManager.instance;
         Permutate = Permutations.instance;
         nodes = GameObject.FindGameObjectsWithTag("Node");
         edges = GameObject.FindGameObjectsWithTag("Edge").ToList<GameObject>();
@@ -47,6 +49,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         {
             distances.Add(Int32.Parse(distance.name));
         }
+        AudioManagement.Play("Bee");
         
     }
     private float Factorial(float n)

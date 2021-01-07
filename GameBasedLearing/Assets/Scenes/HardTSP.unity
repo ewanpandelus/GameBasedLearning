@@ -6125,6 +6125,105 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1732719006}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1405618905
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6926366245186161236, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 467.74442
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 318.7387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -286.40634
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 39b86a1955481454582f3d37f61d0721, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a6182b0e7475e740b66d1bf32a0027a, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1cf7811e44e220145bd14db2fab19f6a, type: 3}
 --- !u!1 &1411741378
 GameObject:
   m_ObjectHideFlags: 0

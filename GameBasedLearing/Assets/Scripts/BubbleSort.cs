@@ -2,10 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BubbleSort : MonoBehaviour
 {
+    AudioManager AudioManagement;
+    [SerializeField] private Slider slider;
     private int moveCounter = 0;
     private Vector3 down = new Vector3(0f, -200f);
     private Vector3 up = new Vector3(0f, 200f);
@@ -36,6 +40,8 @@ public class BubbleSort : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        AudioManagement = AudioManager.instance;
         cardObj = GameObject.Find("Cards");
         numbers = new List<int> {1,2,3,4,5,6,7,8,9,10,11,12,13};
         allCards = new List<Card> { cardPrefab1, cardPrefab2 , cardPrefab3 , cardPrefab4 , cardPrefab5 , cardPrefab6 , cardPrefab7,
@@ -50,8 +56,12 @@ public class BubbleSort : MonoBehaviour
         Shuffle();
         cards = ConvertToIntArray(inGameCards);
         StoreBubbleSortMoves(cards);
-       // StartCoroutine(BubbleSortAnimateAlgorithm(cards));
+   
 
+    }
+    public void Solve()
+    {
+        StartCoroutine(BubbleSortAnimateAlgorithm(ConvertToIntArray(inGameCards)));
     }
     public bool CheckMoveIsCorrect(GameObject leftCard, GameObject rightCard)
     {
@@ -62,9 +72,14 @@ public class BubbleSort : MonoBehaviour
         if(moves[moveCounter].Item1 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value) &&moves[moveCounter].Item2 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value))
         {
             moveCounter++;
+            DisplaySteps();
             return true;
         }
         return false;
+    }
+    private void DisplaySteps()
+    {
+        GameObject.Find("StepCount").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Step Count: " + moveCounter.ToString();
     }
     public void RandomiseCards()
     {
@@ -89,6 +104,7 @@ public class BubbleSort : MonoBehaviour
             inGameCards.Add(cardGO);
             cardGO.transform.SetParent(cardObj.transform);
         }
+        AudioManagement.Play("CardShuffle");
     }
     public void Reset()
     {
@@ -100,12 +116,16 @@ public class BubbleSort : MonoBehaviour
             cardHolder.GetCurrentCard().SetInitialPosition(cardHolder.transform.position);
         }
         moveCounter = 0;
+        DisplaySteps();
+        AudioManagement.Play("CardShuffle");
     }
+
     private void AnimateMoveLeftAndRight(GameObject leftCard, GameObject rightCard, Vector3 leftInitialPosition, Vector3 rightInitialPosition)
     {
         moving = true;
         StartCoroutine(ChangeCardSpaceLeftAndRight(leftCard, rightCard, (rightInitialPosition+up), (leftInitialPosition +down)));
-
+        moveCounter++;
+        DisplaySteps();
     }
     private void AnimateMoveDownAndUp(GameObject leftCard, GameObject rightCard, Vector3 leftInitialPosition,Vector3 rightInitialPosition)
     {
@@ -119,7 +139,7 @@ public class BubbleSort : MonoBehaviour
        
         Vector2 leftCardDirection = leftCardMove - leftCard.transform.position;
         Vector2 rightCardDirection = rightCardMove - rightCard.transform.position;
-        float distanceThisFrame = velocity * 0.02f;
+        float distanceThisFrame = slider.value * 0.02f;
  
         
         while (moving)
@@ -136,10 +156,11 @@ public class BubbleSort : MonoBehaviour
             leftCard.transform.Translate(leftCardDirection.normalized * distanceThisFrame, Space.World);
             yield return new WaitForSecondsRealtime(0.01f);
         }
+       
     }
         IEnumerator ChangeCardSpaceLeftAndRight(GameObject leftCard, GameObject rightCard, Vector3 leftCardMove, Vector3 rightCardMove)
         {
-        float distanceThisFrame = velocity * 0.02f;
+        float distanceThisFrame = slider.value * 0.02f;
      
             Vector2 leftCardDirection = leftCardMove - leftCard.transform.position;
             Vector2 rightCardDirection = rightCardMove - rightCard.transform.position;

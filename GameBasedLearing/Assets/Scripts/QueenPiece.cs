@@ -20,10 +20,12 @@ public class QueenPiece : EventTrigger
     private int problemSize;
     ChessBoard board;
     private bool safe = true;
+
+    AudioManager AudioManagement;
     void Start()
     {
 
-       
+        AudioManagement = AudioManager.instance;
         board = GameObject.Find("ChessBoard").GetComponent<ChessBoard>();
         problemSize = board.GetProblemSize();
         mMovement = new Vector3Int(problemSize - 1, problemSize - 1, problemSize - 1);
@@ -199,10 +201,10 @@ public class QueenPiece : EventTrigger
             mCurrentCell.SetOccupied(true);
             transform.position = mCurrentCell.transform.position;
         }
-        
+
 
         // Move on board
-       
+        AudioManagement.Play("PlacePiece");
         mTargetCell = null;
     }
 
