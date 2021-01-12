@@ -1790,7 +1790,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 546721945}
-  - component: {fileID: 546721944}
   m_Layer: 0
   m_Name: ParentCanvas
   m_TagString: Untagged
@@ -1798,20 +1797,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &546721944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546721943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdd0064194a7684ea0d2e9f25d4a3a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transition: {fileID: 1636937472}
-  dynamicUI: {fileID: 1398195064}
 --- !u!4 &546721945
 Transform:
   m_ObjectHideFlags: 0
@@ -2954,6 +2939,7 @@ GameObject:
   - component: {fileID: 879082404}
   - component: {fileID: 879082403}
   - component: {fileID: 879082402}
+  - component: {fileID: 879082405}
   m_Layer: 0
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -3024,8 +3010,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 546721944}
-        m_MethodName: LoadGraph
+      - m_Target: {fileID: 879082405}
+        m_MethodName: LoadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3072,6 +3058,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879082400}
   m_CullTransparentMesh: 0
+--- !u!114 &879082405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879082400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdd0064194a7684ea0d2e9f25d4a3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 1636937472}
+  dynamicUI: {fileID: 0}
+  levelName: ComplexityGraph
 --- !u!1 &941481766
 GameObject:
   m_ObjectHideFlags: 0
