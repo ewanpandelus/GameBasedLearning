@@ -6,19 +6,27 @@ public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private Animator transition;
     [SerializeField] private DynamicUI dynamicUI;
+    public string levelName;
+    AudioManager AudioManagement;
 
-    private void Start()
+    private void Awake()
     {
-
+        AudioManagement = AudioManager.instance;
     }
     public void LoadGraph()
     {
         dynamicUI.FadeOutWinningPathtext();
         StartCoroutine(LoadChooseGraphScene());
     }
-    public void LoadHardTSPButton()
+    public void LoadLevel()
     {
-        StartCoroutine(LoadHardTSP());
+        StartCoroutine(LoadLevel(levelName));
+    }
+    private IEnumerator LoadLevel(string levelName)
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene(levelName);
     }
 
     public void LoadEasyTSPButton()
@@ -76,7 +84,10 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene("NQueensLevel1");
     }
 
-
+    public void PlaySceneChangeSound()
+    {
+        AudioManagement.Play("ButtonPress");
+    }
 
 }
 

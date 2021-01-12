@@ -834,6 +834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
         type: 3}
+      propertyPath: sounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
       propertyPath: sounds.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: 39b86a1955481454582f3d37f61d0721, type: 3}
@@ -860,7 +865,32 @@ PrefabInstance:
     - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
         type: 3}
       propertyPath: sounds.Array.data[1].volume
-      value: 0.11
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5df4233416b2e0a4d9dec2099d497e4f, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: WinGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cf7811e44e220145bd14db2fab19f6a, type: 3}

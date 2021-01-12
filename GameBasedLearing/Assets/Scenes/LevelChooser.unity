@@ -214,6 +214,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: PlaySceneChangeSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &25927437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +550,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: PlaySceneChangeSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &299851332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +832,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 335139138}
   animator: {fileID: 104946974}
+  soundName: BubblePop
 --- !u!114 &335139137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,7 +875,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 335139138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: LoadBubbleSortButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &335139138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,6 +1240,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4621684836571126305}
         m_MethodName: LoadEasyTSPButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: PlaySceneChangeSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1600,6 +1645,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 862288660}
   animator: {fileID: 543259606}
+  soundName: BeeQuick
 --- !u!114 &862288659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,7 +1688,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 862288660}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: LoadEasyTSPButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &862288660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1773,6 +1830,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: PlaySceneChangeSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &896192994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,6 +1878,190 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896192991}
   m_CullTransparentMesh: 0
+--- !u!1001 &1157068480
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6926366245186161236, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 467.74442
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 318.7387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -286.40634
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161238, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ee3df7a62211674e83a35c345e22d48, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 71099ac2741ae3f48a6550571343b521, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 130e3be6552af514c88ce93be6fed883, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: PlacePiece
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a7489287b81c79c41a631a2f8573f67f, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: BeeQuick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[3].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 882329074ecae9d4bb5c1ab73c04ad52, type: 3}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: BubblePop
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[4].volume
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[2].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: ButtonPress
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1cf7811e44e220145bd14db2fab19f6a, type: 3}
 --- !u!1 &1249890503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,6 +2544,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1494742556}
   animator: {fileID: 38022230}
+  soundName: PlacePiece
 --- !u!114 &1494742555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2334,7 +2587,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1494742556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: LoadNQueens1Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1494742556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2456,6 +2720,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4621684836571126305}
         m_MethodName: LoadNQueens2Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4621684836571126305}
+        m_MethodName: PlaySceneChangeSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

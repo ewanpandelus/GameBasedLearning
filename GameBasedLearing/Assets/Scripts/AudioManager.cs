@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         Play("Background");
+        StartCoroutine(StartFade("Background",6f, 0.1f));
+       
     }
 
     public void Play(string name)
@@ -37,4 +39,24 @@ public class AudioManager : MonoBehaviour
         }
        
     }
+    private AudioSource FindAudioSource(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.GetName() == name);
+        return s.GetSource();
+    }
+    public IEnumerator StartFade(string name ,  float duration, float targetVolume)
+    {
+        AudioSource audioSource = FindAudioSource(name);
+        float currentTime = 0;
+        float start = audioSource.volume;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
+    }
 }
+

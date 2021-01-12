@@ -6,12 +6,20 @@ public class LevelChooseAnimation : Selectable
 {
 
     [SerializeField] private new Animator animator;
-
-
+    [SerializeField] private string soundName;
+    AudioManager AudioManagement;
+  
+   
+  
     private void Update()
     {
-       if(IsHighlighted()||IsPressed()){
+        if (!AudioManagement)
+        {
+            AudioManagement = AudioManager.instance;
+        }
+       if(IsHighlighted()){
             this.animator.speed = 1f;
+            AudioManagement.Play(soundName);
         }
      
         else

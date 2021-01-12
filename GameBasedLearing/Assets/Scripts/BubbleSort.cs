@@ -13,7 +13,6 @@ public class BubbleSort : MonoBehaviour
     private int moveCounter = 0;
     private Vector3 down = new Vector3(0f, -200f);
     private Vector3 up = new Vector3(0f, 200f);
-    private float velocity = 150f;
     private GameObject[] allCardHoldersGO;
     int[] cards = new int[9];
     private List<int> numbers = new List<int>();

@@ -11,6 +11,7 @@ public class QueenSpawner : MonoBehaviour
         GameObject gameObject = (GameObject)Instantiate(queenPiecePrefab, transform.position,transform.rotation);
         GameObject parentCanvas = GameObject.Find("ParentCanvas");
         gameObject.transform.SetParent(parentCanvas.transform);
-        gameObject.transform.position = parentCanvas.transform.GetChild(1).transform.position - new Vector3(0,100);
+        GameObject queenSpawnButton = GameObject.Find("SpawnQueenButton");
+        gameObject.transform.position = queenSpawnButton.transform.position- new Vector3(0,100);
     }
 }
