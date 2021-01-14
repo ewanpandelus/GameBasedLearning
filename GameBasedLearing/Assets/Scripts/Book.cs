@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Book : MonoBehaviour
 {
+    AudioManager AudioManagement;
     public Animator animator;
     [SerializeField] TextMeshProUGUI[] page1Texts = new TextMeshProUGUI[4];
     [SerializeField] TextMeshProUGUI[] page2Texts = new TextMeshProUGUI[4];
@@ -15,16 +16,19 @@ public class Book : MonoBehaviour
 
     void Start()
     {
+        AudioManagement = AudioManager.instance;
         this.animator.speed = 1.25f;
     }
 
     private void  PageTurnAnim()
     {
+        AudioManagement.Play("FlipPage");
         animator.SetBool("Turn",true);
         animator.SetBool("TurnBack", false);
     }
     private void PageTurnBackAnim()
     {
+        AudioManagement.Play("FlipPage");
         animator.SetBool("TurnBack", true);
         animator.SetBool("Turn", false) ;
     }

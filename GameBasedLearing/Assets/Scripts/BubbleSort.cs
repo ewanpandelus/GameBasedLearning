@@ -60,6 +60,7 @@ public class BubbleSort : MonoBehaviour
     }
     public void Solve()
     {
+        Reset();
         StartCoroutine(BubbleSortAnimateAlgorithm(ConvertToIntArray(inGameCards)));
     }
     public bool CheckMoveIsCorrect(GameObject leftCard, GameObject rightCard)

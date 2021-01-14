@@ -7,11 +7,18 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private Animator transition;
     [SerializeField] private DynamicUI dynamicUI;
     public string levelName;
+    public string destinationLevel;
+    
     AudioManager AudioManagement;
+    GlobalDataHolder globalDataHolder;
+    Scene scene;
 
     private void Start()
     {
+        scene = SceneManager.GetActiveScene();
         AudioManagement = AudioManager.instance;
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+
     }
 
     public void LoadLevel()
@@ -20,9 +27,19 @@ public class LevelLoader : MonoBehaviour
     }
     private IEnumerator LoadLevel(string levelName)
     {
+        
         transition.SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
-        SceneManager.LoadScene(levelName);
+        if (scene.name.Contains("Overview")&&!this.name.Contains("Back"))
+        {
+            SceneManager.LoadScene(globalDataHolder.GetDestinationLevel());
+        }
+        else
+        {
+            SceneManager.LoadScene(levelName);
+        }
+        globalDataHolder.SetDestinationLevel(destinationLevel);
+
     }
 
 
