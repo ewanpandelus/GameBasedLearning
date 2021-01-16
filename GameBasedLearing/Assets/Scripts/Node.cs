@@ -2,65 +2,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Node : MonoBehaviour
+public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     TravelingSalesman travellingSalesman;
     private Boolean selected = false;
-    private Renderer rend;
+    private Image image;
     private Color initialColour;
     Color lightGreen = new Color(131f/255f, 243f/255f, 127f/255f, 1);
    
   
     void Start()
     {
-        rend = GetComponent<Renderer>();
-        initialColour = rend.material.color;
+        image = this.GetComponent<Image>();
+        initialColour = image.color;
         travellingSalesman = TravelingSalesman.instance;
     }
 
     // Update is called once per frame
-    void Update()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        
+        if (!selected)
+        {
+
+            SetAllColours(true, -1);
+
+            image.material.color = Color.white;
+        }
     }
-    private void SetAllColours(bool on, int sortingOrder)
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!selected)
+        {
+            SetAllColours(false, -2);
+            image.material.color = initialColour;
+        }
+    }
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        SetNode();
+    }
+        private void SetAllColours(bool on, int sortingOrder)
     {
         if (!(this.name == "A" && travellingSalesman.GetPlayedNodes().Count != GameObject.FindGameObjectsWithTag("Node").Length))
         {
             Distance distance = travellingSalesman.GetDistance(FindEdgeAssociatedWithNode());
             Edge edge = FindEdgeAssociatedWithNode();
             edge.setColour(on);
-            edge.SetSortingOrder(sortingOrder);
-            rend.material.color = Color.white;
+            //edge.SetSortingOrder(sortingOrder);
+            image.material.color = Color.white;
             distance.setColour(on);
         }
     }
-    void OnMouseEnter()
-    {
 
-        if (!selected) 
-        {
-
-            SetAllColours(true, -1);
-          
-            rend.material.color = Color.white;
-        }
-    }
-    private void OnMouseExit()
-    {
-        if (!selected)
-        {
-            SetAllColours(false,-2);
-            rend.material.color = initialColour;
-        }
-    }
-
-    private void OnMouseDown()
-    {
-        SetNode();
-    }
-    
+ 
     private Edge FindEdgeAssociatedWithNode()
     {
         try
@@ -104,7 +101,7 @@ public class Node : MonoBehaviour
     }
     public void DeselectNode()
     {
-        rend.material.color = initialColour;
+        image.material.color = initialColour;
         selected = false;
     }
     

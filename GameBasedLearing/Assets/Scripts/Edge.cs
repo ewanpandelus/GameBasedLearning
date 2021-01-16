@@ -3,19 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Edge : MonoBehaviour
 {
     TravelingSalesman travelingSalesman;
-    private SpriteRenderer rend;
+    private Image image;
     private Color initialColour;
     Color lightGreen = new Color(46f/255f, 1,  0f/ 255f, 1);
     private bool selected;
 
     void Awake()
     {
-        rend = GetComponent<SpriteRenderer>();
-        initialColour = rend.material.color;
+        image = this.GetComponent<Image>();
+        initialColour = image.color;
         selected = false;
         
     }
@@ -28,21 +29,20 @@ public class Edge : MonoBehaviour
         travelingSalesman = TravelingSalesman.instance;
     }
 
-    public void SetSortingOrder(int _sortingOrder)
-    {
-        this.rend.sortingOrder = _sortingOrder;
-    }
+    //public void SetSortingOrder(int _sortingOrder)
+    //{
+      //  this.image.sortingOrder = _sortingOrder;
+    //}
     public void setColour(bool on)
     {
         if (on) 
         {
-            rend.sortingOrder = -1;
-            rend.material.color = lightGreen;
+            
+            image.color = lightGreen;
         }
         else
         {
-           rend.sortingOrder = -2;
-           rend.material.color = initialColour;
+           image.color = initialColour;
         }
             
         

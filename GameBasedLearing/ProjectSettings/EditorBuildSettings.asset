@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NQueensOverview.unity
     guid: 7005c9e0e2fc6b94f9616d7702cc1a46
+  - enabled: 1
+    path: Assets/Scenes/TSPOverview.unity
+    guid: 2f561c778c359b5439ce394a5d920567
   m_configObjects: {}

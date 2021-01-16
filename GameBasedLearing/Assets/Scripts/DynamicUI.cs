@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class DynamicUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI winningPathText;
-    [SerializeField] private TextMeshProUGUI wrongPathText;
+    [SerializeField] private TextMeshProUGUI winningText;
+    [SerializeField] private TextMeshProUGUI incorrectText;
     [SerializeField] private GameObject replayButton;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject showGraphButon;
@@ -18,10 +18,10 @@ public class DynamicUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        originalWinningPathText = winningPathText.text;
-        originalWrongPathText = wrongPathText.text;
-        winningPathText.text = "";
-        wrongPathText.text = "";
+        originalWinningPathText = winningText.text;
+        originalWrongPathText = incorrectText.text;
+        winningText.text = "";
+        incorrectText.text = "";
         SetButtonsUnactive();
         SetSliderUnactive();
         SetShowGraphButtonUnactive();
@@ -30,18 +30,18 @@ public class DynamicUI : MonoBehaviour
     }
     public void SetWinningPathText()
     {
-        winningPathText.color = Color.white;
-        winningPathText.text = originalWinningPathText;
+        winningText.color = Color.white;
+        winningText.text = originalWinningPathText;
     }
     public void FadeOutWinningPathtext()
     {
-        StartCoroutine(FadeOutRoutine(winningPathText,0.2f));
+        StartCoroutine(FadeOutRoutine(winningText,0.2f));
     }
     public void SetWrongPathText()
     {
-        wrongPathText.color = Color.white;
-        wrongPathText.text = originalWrongPathText;
-        StartCoroutine(FadeOutRoutine(wrongPathText,1f));
+        incorrectText.color = Color.white;
+        incorrectText.text = originalWrongPathText;
+        StartCoroutine(FadeOutRoutine(incorrectText,1f));
     }
     public void SetShowGraphButtonActive()
     {

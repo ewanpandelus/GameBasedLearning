@@ -176,6 +176,7 @@ MonoBehaviour:
   transition: {fileID: 1399702524}
   dynamicUI: {fileID: 0}
   levelName: LevelChooser
+  destinationLevel: 
 --- !u!114 &204801168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1410,6 +1411,7 @@ MonoBehaviour:
   transition: {fileID: 1399702524}
   dynamicUI: {fileID: 0}
   levelName: NQueensLevel2
+  destinationLevel: 
 --- !u!114 &1744027153
 MonoBehaviour:
   m_ObjectHideFlags: 0

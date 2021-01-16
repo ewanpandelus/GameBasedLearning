@@ -11,7 +11,7 @@ public class Distance : MonoBehaviour
 
     void Awake()
     {
-        initialColour = transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color;
+        initialColour = transform.GetComponent<TextMeshProUGUI>().color;
     }
 
 
@@ -19,11 +19,11 @@ public class Distance : MonoBehaviour
     {
         if (on)
         {
-            transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color = lightGreen;
+            transform.GetComponent<TextMeshProUGUI>().color = lightGreen;
         }
         else
         {
-            transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color = initialColour;
+            transform.GetComponent<TextMeshProUGUI>().color = initialColour;
         }
 
     }

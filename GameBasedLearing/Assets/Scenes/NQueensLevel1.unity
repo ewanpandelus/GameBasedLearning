@@ -2076,6 +2076,7 @@ GameObject:
   - component: {fileID: 1806343901}
   - component: {fileID: 1806343900}
   - component: {fileID: 1806343899}
+  - component: {fileID: 1806343902}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2113,6 +2114,7 @@ MonoBehaviour:
   slider: {fileID: 1288666536}
   queenPiecePrefab: {fileID: 8649813567948923964, guid: 1f72056612797cc438e9620746e79bc5,
     type: 3}
+  dynamicUI: {fileID: 0}
 --- !u!4 &1806343901
 Transform:
   m_ObjectHideFlags: 0
@@ -2127,6 +2129,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1806343902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806343898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87d24376019a7742ba233ffe24ac5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winningPathText: {fileID: 0}
+  wrongPathText: {fileID: 0}
+  replayButton: {fileID: 0}
+  continueButton: {fileID: 0}
+  showGraphButon: {fileID: 0}
+  hideGraphButton: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!1 &1840669230
 GameObject:
   m_ObjectHideFlags: 0

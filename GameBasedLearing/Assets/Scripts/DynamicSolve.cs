@@ -17,32 +17,39 @@ public class DynamicSolve : MonoBehaviour
 
     public void ShowGraphBeeLevel1()
     {
+        CreateGraph();
         BeeAdjustments();
-        this.gameObject.transform.position += new Vector3(-3.7f, 0, 0);
+       
+
     }
-    private void BeeAdjustments()
+    private void CreateGraph()
     {
-        this.gameObject.transform.localScale /= 1.2f;
-        Vector3 posUpRight = new Vector3(165f, 50f, 0);
-        complexityIllustration = Instantiate(complexityIllustrationPrefab, gameObject.transform.position + posUpRight, Quaternion.identity);
-        complexityIllustration.transform.SetParent(crossFade, false);
+        complexityIllustration = Instantiate(complexityIllustrationPrefab, new Vector3(200,40f,0f), Quaternion.identity);
         complexityIllustration.transform.localScale /= 2.7f;
+        complexityIllustration.transform.SetParent(crossFade, false);
         ComplexityGraph complexityGraph = complexityIllustration.GetComponent<ComplexityGraph>();
         complexityGraph.UpdateGraph();
     }
+    private void BeeAdjustments()
+    {
+        this.gameObject.transform.position += new Vector3(-200f, 20f, 0);
+        this.gameObject.transform.localScale /= 1.2f;
+    }
     public void ShowGraphBeeLevel2()
     {
+        CreateGraph();
         BeeAdjustments();
+
         
-        this.gameObject.transform.position += new Vector3(-3.7f,0.6f, 0);
-        
+
     }
     public void HideGraphBeeLevel1()
     {
 
         DestroyGraph();
         this.gameObject.transform.localScale *= 1.2f;
-        this.gameObject.transform.position -= new Vector3(-3.7f, 0, 0);
+        this.gameObject.transform.position -= new Vector3(-200f, 20f, 0);
+
     }
     private void DestroyGraph()
     {
@@ -53,11 +60,7 @@ public class DynamicSolve : MonoBehaviour
     {
         DestroyGraph();
         this.gameObject.transform.localScale *= 1.2f;
-        this.gameObject.transform.position -= new Vector3(-3.7f, 0.6f, 0);
+        this.gameObject.transform.position -= new Vector3(-200f, 20f, 0);
     }
 
-    void Update()
-    {
-        
-    }
 }

@@ -235,12 +235,9 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     {
         if (this.totalDistance == winningPathLength &&playedNodes.Count-1  == nodes.Length)
         {
-            if (!solved)
-            {
                 dynamicUI.SetWinningPathText();
                 dynamicUI.SetButtonsActive();
                 AudioManagement.Play("WinGame");
-            }
         }
         else
         {

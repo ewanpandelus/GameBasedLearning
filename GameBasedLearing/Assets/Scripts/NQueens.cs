@@ -15,8 +15,11 @@ public class NQueens : MonoBehaviour, IPuzzle
     private bool solved = false;
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
     int counter = 0;
+    [SerializeField] private DynamicUI dynamicUI;
+    AudioManager AudioManagement;
     void Start()
     {
+        AudioManagement = AudioManager.instance;
         parentCanvas = GameObject.Find("ParentCanvas");
         board.Create();
         problemSize = board.GetProblemSize();
@@ -48,15 +51,19 @@ public class NQueens : MonoBehaviour, IPuzzle
         throw new System.NotImplementedException();
     }
 
-     void IPuzzle.TrySolution()
+    public void TrySolution()
+    {
+        ((IPuzzle)this).TrySolution();
+    }
+    void IPuzzle.TrySolution()
     {
         queens = GameObject.FindGameObjectsWithTag("Queen");
         bool safe = true;
-        int count = 0;
         foreach (GameObject queen in queens)
         {
             safe = safe && queen.GetComponent<QueenPiece>().GetSafe();
-            try
+
+           /* try
             {
                 if (queen.GetComponent<QueenPiece>().GetCell())
                 {
@@ -66,17 +73,19 @@ public class NQueens : MonoBehaviour, IPuzzle
             catch
             {
                 Debug.Log("Error");
-            }
+            }*/
 
 
         }
-        if (safe && count == board.GetProblemSize())
+        if (safe && queens.Length == board.GetProblemSize())
         {
-            Debug.Log("Win!");
+            dynamicUI.SetWinningPathText();
+            dynamicUI.SetButtonsActive();
+            AudioManagement.Play("WinGame");
         }
         else
         {
-            Debug.Log("Lose");
+            dynamicUI.SetWrongPathText();
         }
     }
 
