@@ -287,7 +287,7 @@ RectTransform:
   m_Children:
   - {fileID: 19036899}
   m_Father: {fileID: 486964176}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -337,18 +337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: HideGraphBeeLevel1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1228035714}
         m_MethodName: SetHideGraphButtonUnactive
         m_Mode: 1
         m_Arguments:
@@ -359,8 +348,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1228035714}
         m_MethodName: SetShowGraphButtonActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285734209352378038}
+        m_MethodName: HideGraphBeeLevel1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -437,7 +437,7 @@ RectTransform:
   m_LocalScale: {x: 0.41667122, y: 0.41667122, z: 0.41667122}
   m_Children: []
   m_Father: {fileID: 486964176}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -781,7 +781,7 @@ RectTransform:
   m_Children:
   - {fileID: 309147791}
   m_Father: {fileID: 486964176}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -910,7 +910,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 486964176}
-  m_RootOrder: 6
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1003,13 +1003,13 @@ RectTransform:
   - {fileID: 1316985101}
   - {fileID: 1753242304}
   - {fileID: 1522777372}
-  - {fileID: 461739753}
   - {fileID: 1321938095}
   - {fileID: 85378012}
   - {fileID: 82199646}
   - {fileID: 1745305265}
   - {fileID: 327247919}
   - {fileID: 874975541}
+  - {fileID: 461739753}
   m_Father: {fileID: 1777129635}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1612,7 +1612,7 @@ RectTransform:
   m_Children:
   - {fileID: 1367438724}
   m_Father: {fileID: 486964176}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2179,6 +2179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queenPiecePrefab: {fileID: 8649813567948923964, guid: 1f72056612797cc438e9620746e79bc5,
     type: 3}
+  cellSize: 100
 --- !u!114 &1228035714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,7 +2493,7 @@ RectTransform:
   m_LocalScale: {x: 0.41667122, y: 0.41667122, z: 0.41667122}
   m_Children: []
   m_Father: {fileID: 486964176}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2736,7 +2737,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1285734209352378036}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1285734209352378037}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75a5d9d9e178d9941ae98a558b704cbe, type: 3}
@@ -3338,7 +3339,7 @@ RectTransform:
   m_Children:
   - {fileID: 1720523349}
   m_Father: {fileID: 486964176}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3388,18 +3389,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ShowGraphBeeLevel1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1228035714}
         m_MethodName: SetHideGraphButtonActive
         m_Mode: 1
         m_Arguments:
@@ -3410,8 +3400,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1228035714}
         m_MethodName: SetShowGraphButtonUnactive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1285734209352378038}
+        m_MethodName: ShowGraphBeeLevel1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3958,6 +3959,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 420005b0cf1e93941b98cc6f887bcd02, type: 3}
+--- !u!1 &1285734209352378037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1285734210772295468, guid: 420005b0cf1e93941b98cc6f887bcd02,
+    type: 3}
+  m_PrefabInstance: {fileID: 1285734209352378036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1285734209352378038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285734209352378037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f202fb18314664a8b2dbfeb7055873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexityIllustrationPrefab: {fileID: 661332620116118764, guid: 00505f42d7fd99c4db11be2e8cd5746b,
+    type: 3}
+  showGraphButton: {fileID: 1745305264}
 --- !u!1001 &6926366245231576897
 PrefabInstance:
   m_ObjectHideFlags: 0
