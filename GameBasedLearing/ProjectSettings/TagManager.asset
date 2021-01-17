@@ -10,6 +10,7 @@ TagManager:
   - Queen
   - Graph
   - CardHolder
+  - floor
   layers:
   - Default
   - TransparentFX
