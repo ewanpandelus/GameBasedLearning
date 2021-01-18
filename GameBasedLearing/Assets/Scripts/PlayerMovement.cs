@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float m_JumpForce = 3000f;
+    [SerializeField] private Animator animator;
     public Rigidbody2D rb;
     private float speed = 12f;
     float horizontalMove = 0f;
@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
       horizontalMove = Input.GetAxisRaw("Horizontal")*speed;
+      animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
       if (Input.GetButtonDown("Jump"))
       {
         Jump();
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isgrounded == true)
         {
+            animator.SetBool("IsJumping", true);
             rb.velocity = new Vector2(rb.velocity.x, 15f);
         }
     }
@@ -59,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         if (theCollision.gameObject.transform.tag == "floor")
         {
              isgrounded = true;
+            animator.SetBool("IsJumping", false);
         }
     }
 
