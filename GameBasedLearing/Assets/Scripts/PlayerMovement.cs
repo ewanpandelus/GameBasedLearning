@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (theCollision.gameObject.transform.tag == "floor")
         {
-             isgrounded = true;
+            isgrounded = true;
             animator.SetBool("IsJumping", false);
         }
     }

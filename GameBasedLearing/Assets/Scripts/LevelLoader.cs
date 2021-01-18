@@ -17,7 +17,7 @@ public class LevelLoader : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         AudioManagement = AudioManager.instance;
-        //globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
 
     }
 
