@@ -167,7 +167,7 @@ public class ComplexityGraph : MonoBehaviour
     }
     private void ShowGraph(List<float> valueList, Color color, float xSize, float waitTime, int scalingfactor)
     {
-        Debug.Log(graphContainer.sizeDelta);
+        
         float graphHeight = graphContainer.sizeDelta.y;
         float yMax = 100f;
 

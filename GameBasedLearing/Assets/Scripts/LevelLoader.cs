@@ -36,6 +36,7 @@ public class LevelLoader : MonoBehaviour
         }
         else
         {
+            
             SceneManager.LoadScene(levelName);
         }
         globalDataHolder.SetDestinationLevel(destinationLevel);
