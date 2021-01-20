@@ -59,7 +59,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1794366823
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1183192862484326819
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7769008759100719154}
   - component: {fileID: 338212273533884554}
   m_Layer: 0
-  m_Name: sign
+  m_Name: TravellingBee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4173223979912332042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.073, y: 0.187, z: -1.6386719}
+  m_LocalPosition: {x: -2.12, y: 0.52, z: -1.6386719}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 3929121910371774748}
@@ -169,8 +169,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1794366823
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 42820af2772f24bda991ed7de294c2fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 1325534930602165843}
   - component: {fileID: 8881109376610407069}
   - component: {fileID: 1707336265052328820}
+  - component: {fileID: 9020926444551919823}
   m_Layer: 0
   m_Name: BeeAnim
   m_TagString: Untagged
@@ -257,6 +258,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &9020926444551919823
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845609050880251527}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99ca6dfcb68ff7646901d61faeb1909b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6073824891276861300
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +557,7 @@ GameObject:
   - component: {fileID: 9020926443937789206}
   - component: {fileID: 6930996287552512196}
   - component: {fileID: 2462624818397730034}
+  - component: {fileID: 608186980}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -551,7 +572,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9020926443937789207}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.09515381, y: -2.359599, z: 1.6386719}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -621,8 +642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75f59703e8a8324a93418ada36926c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  soundName: 
+  animator: {fileID: 9020926444551919823}
+  soundName: BeeQuick
 --- !u!61 &2462624818397730034
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -633,7 +654,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -649,3 +670,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.375, y: 2.0625}
   m_EdgeRadius: 0
+--- !u!114 &608186980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9020926443937789207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdd0064194a7684ea0d2e9f25d4a3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 0}
+  dynamicUI: {fileID: 0}
+  levelName: TSPOverview
+  destinationLevel: EasyTSP

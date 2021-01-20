@@ -6,20 +6,52 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     public Rigidbody2D rb;
-    private float speed = 12f;
+    private float horizontalVelocity = 12f;
     float horizontalMove = 0f;
     bool isgrounded = true;
     private bool m_FacingRight = true;
+    private bool isClimbing = false;
+    private float verticalVelocity = 0f;
+    float verticalMove = 0f;
 
     // Update is called once per frame
     void Update()
     {
-      horizontalMove = Input.GetAxisRaw("Horizontal")*speed;
-      animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-      if (Input.GetButtonDown("Jump"))
-      {
-        Jump();
-      }
+        animator.speed = 1f;
+        if (!isClimbing)
+        {
+            verticalVelocity = 0f;
+            horizontalVelocity = 12f;
+            NonClimbingMovement();
+        }
+        else
+        {
+            verticalVelocity = 9f;
+            horizontalVelocity = 3f; 
+            ClimbingMovement();
+        }
+    }
+    private void ClimbingMovement()
+    {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * horizontalVelocity;
+        verticalMove = Input.GetAxisRaw("Vertical") * verticalVelocity;
+        animator.SetBool("IsJumping", false);
+        animator.SetBool("IsClimbing", true);
+        if (verticalMove < 0.01)
+        {
+            animator.speed = 0f;
+        }
+    }
+    private void NonClimbingMovement()
+    {
+        
+        animator.SetBool("IsClimbing", false);
+        horizontalMove = Input.GetAxisRaw("Horizontal") * horizontalVelocity;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
         if (horizontalMove > 0 && !m_FacingRight)
         {
             // ... flip the player.
@@ -34,7 +66,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontalMove, rb.velocity.y);
+        if (!isClimbing)
+        {
+            rb.velocity = new Vector2(horizontalMove, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(horizontalMove, verticalMove);
+        }
     }
     private void Jump()
     {
@@ -42,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         if (isgrounded == true)
         {
             animator.SetBool("IsJumping", true);
-            rb.velocity = new Vector2(rb.velocity.x, 15f);
+            rb.velocity = new Vector2(rb.velocity.x, 17.5f);
         }
     }
     private void Flip()
@@ -60,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (theCollision.gameObject.transform.tag == "floor")
         {
+            
             isgrounded = true;
             animator.SetBool("IsJumping", false);
         }
@@ -69,5 +109,9 @@ public class PlayerMovement : MonoBehaviour
         {
          isgrounded = false;
         }
+    public void SetIsClimbing(bool _isClimbing)
+    {
+        isClimbing = _isClimbing;
+    }
 }
 
