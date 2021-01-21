@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPlayerMovement
 {
     [SerializeField] private Animator animator;
     public Rigidbody2D rb;
@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity = 0f;
     float verticalMove = 0f;
     private bool isJumping = false;
- 
+
 
     // Update is called once per frame
     void Update()
@@ -32,10 +32,10 @@ public class PlayerMovement : MonoBehaviour
             horizontalVelocity = 12f;
             NonClimbingMovement();
         }
-        if(!isJumping&&isClimbing)
+        if (!isJumping && isClimbing)
         {
             verticalVelocity = 9f;
-            horizontalVelocity = 3f; 
+            horizontalVelocity = 3f;
             ClimbingMovement();
         }
     }
@@ -52,16 +52,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             animator.speed = 1f;
-            
+
             Jump();
-           
+
         }
         FlipCharacter();
     }
 
     private void NonClimbingMovement()
     {
-        
+
         animator.SetBool("IsClimbing", false);
         horizontalMove = Input.GetAxisRaw("Horizontal") * horizontalVelocity;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -84,13 +84,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-             rb.velocity = new Vector2(horizontalMove, verticalMove);
+            rb.velocity = new Vector2(horizontalMove, verticalMove);
         }
     }
     private void Jump()
     {
 
-        if (isgrounded == true||isClimbing == true)
+        if (isgrounded == true || isClimbing == true)
         {
             isClimbing = false;
             isJumping = true;
@@ -126,9 +126,9 @@ public class PlayerMovement : MonoBehaviour
     //make sure u replace "floor" with your gameobject name.on which player is standing
     void OnCollisionEnter2D(Collision2D theCollision)
     {
-        if (theCollision.gameObject.transform.tag == "floor"&&theCollision.gameObject.name!="Ladder")
+        if (theCollision.gameObject.transform.tag == "floor" && theCollision.gameObject.name != "Ladder")
         {
-            
+
             isgrounded = true;
             animator.SetBool("IsJumping", false);
             isJumping = false;
@@ -137,12 +137,16 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D theCollision)
     {
-       isgrounded = false;
+        isgrounded = false;
+    }
+    public float GetHorizontalVelocity()
+    {
+        return this.horizontalVelocity;
     }
     public float GetVerticalVelocity()
     {
-      return this.rb.velocity.y;
-        
+        return this.rb.velocity.y;
+
     }
     public bool GetIsJumping()
     {
@@ -151,6 +155,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetIsJumping(bool _isJumping)
     {
         isJumping = _isJumping;
+    }
+    public bool GetIsClimbing()
+    {
+        return this.isClimbing;
     }
     public void SetIsClimbing(bool _isClimbing)
     {
