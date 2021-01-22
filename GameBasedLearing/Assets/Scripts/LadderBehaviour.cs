@@ -5,11 +5,11 @@ using UnityEngine;
 public class LadderBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    private IPlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
     private Ladder ladder;
     private void Start()
     {
-        playerMovement = player.GetComponent<IPlayerMovement>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         ladder = new Ladder();
 
     }
@@ -53,17 +53,17 @@ public class LadderBehaviour : MonoBehaviour
     }
 }
 public class Ladder{
-    public void HandleCharacterEnteredNegativeVelocityAndJumping(IPlayerMovement playerMovement)
+    public void HandleCharacterEnteredNegativeVelocityAndJumping(PlayerMovement playerMovement)
     {
         playerMovement.SetIsClimbing(true);
         playerMovement.SetIsJumping(false);
 
     }
-    public void HandleCharacterEnteredPositiveVelocityAndJumping(IPlayerMovement playerMovement)
+    public void HandleCharacterEnteredPositiveVelocityAndJumping(PlayerMovement playerMovement)
     {
         playerMovement.SetIsClimbing(false);
     }
-    public void HandleCharacterEnteredNotJumping(IPlayerMovement playerMovement)
+    public void HandleCharacterEnteredNotJumping(PlayerMovement playerMovement)
     {
         playerMovement.SetIsClimbing(true);
     }

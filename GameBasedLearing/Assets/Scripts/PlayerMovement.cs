@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     float horizontalMove = 0f;
     bool isgrounded = true;
     private bool m_FacingRight = true;
-    private bool isClimbing = false;
+    private bool isClimbing { get; set; }
     private float verticalVelocity = 0f;
     float verticalMove = 0f;
     private bool isJumping = false;

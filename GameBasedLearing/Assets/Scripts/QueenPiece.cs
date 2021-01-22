@@ -273,5 +273,9 @@ public class QueenPiece : EventTrigger
         CheckPathing();
         return this.safe;
     }
+    public void SetSafe(bool _safe)
+    {
+        this.safe = _safe;
+    }
 }
 

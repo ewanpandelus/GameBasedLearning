@@ -10,8 +10,8 @@ public enum CellState
     OutOfBounds
 }
 public class ChessBoard : MonoBehaviour
-{
-    [HideInInspector] public GameObject mCellPrefab;
+{  [SerializeField]
+    private GameObject mCellPrefab;
 
 
 
@@ -117,6 +117,10 @@ public class ChessBoard : MonoBehaviour
         return CellState.Free;
 
 
+    }
+    public void SetProblemSize(int _problemSize)
+    {
+        this.problemSize = _problemSize;
     }
     public int GetProblemSize()
     {

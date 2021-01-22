@@ -10,11 +10,12 @@ public class NQueens : MonoBehaviour, IPuzzle
     [SerializeField] private Slider slider;
     GameObject[] queens;
     [SerializeField] private GameObject queenPiecePrefab;
+
+    private bool safe = true;
     private GameObject parentCanvas;
     private int problemSize;
     private bool solved = false;
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
-    int counter = 0;
     [SerializeField] private DynamicUI dynamicUI;
     AudioManager AudioManagement;
     void Start()
@@ -58,23 +59,10 @@ public class NQueens : MonoBehaviour, IPuzzle
     void IPuzzle.TrySolution()
     {
         queens = GameObject.FindGameObjectsWithTag("Queen");
-        bool safe = true;
+        
         foreach (GameObject queen in queens)
         {
             safe = safe && queen.GetComponent<QueenPiece>().GetSafe();
-
-           /* try
-            {
-                if (queen.GetComponent<QueenPiece>().GetCell())
-                {
-                    count++;
-                }
-            }
-            catch
-            {
-                Debug.Log("Error");
-            }*/
-
 
         }
         if (safe && queens.Length == board.GetProblemSize())
@@ -134,7 +122,7 @@ public class NQueens : MonoBehaviour, IPuzzle
     Queen problem */
     bool solveNQUtil(int[,] chessBoard, int col, int n)
     {
-        counter++;
+      
 
         /* base case: If all queens are placed 
         then return true */
@@ -181,6 +169,11 @@ public class NQueens : MonoBehaviour, IPuzzle
         }
       
     }
+    public bool GetSafe()
+    {
+        return this.safe;
+    }
+  
     IEnumerator IterateThroughMoves(GameObject[,] queenPlacement)
     {
         {

@@ -1,5 +1,6 @@
 ﻿public interface IPlayerMovement
 {
+  
     float GetHorizontalVelocity();
     bool GetIsJumping();
     bool GetIsClimbing();
