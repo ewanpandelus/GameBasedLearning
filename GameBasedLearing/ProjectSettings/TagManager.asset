@@ -54,11 +54,11 @@ TagManager:
   - name: Middleground
     uniqueID: 1794366823
     locked: 0
-  - name: Entity
-    uniqueID: 3071836565
-    locked: 0
   - name: OneWayPlatforms
     uniqueID: 1779233193
+    locked: 0
+  - name: Ladders
+    uniqueID: 3071836565
     locked: 0
   - name: Foreground
     uniqueID: 1156778095
