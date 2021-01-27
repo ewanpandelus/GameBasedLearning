@@ -11,15 +11,16 @@ public class Ball : EventTrigger
     protected RectTransform rectTransform = null;
     protected PoolBallHolder targetPoolBallHolder = null;
     private PoolBallHolder[] allPoolBallHolders = new PoolBallHolder[32];
-    private Vector3 initialPosition = new Vector3(0f, 0f, 0f);
+    private Vector3 currentPosition = new Vector3(0f, 0f, 0f);
     private MergeSort mergeSort;
     private ArrayInformation currentArray;
     private ArrayInformation expectedArray;
+    private bool belongsToArray = false;
 
     private void Start()
     {
        
-        initialPosition = this.transform.position;
+        currentPosition = this.transform.position;
         mergeSort = GameObject.Find("GameManager").GetComponent<MergeSort>();
         allPoolBallHolders = (PoolBallHolder[])Resources.FindObjectsOfTypeAll(typeof(PoolBallHolder));
         currentArray = currentPoolBallHolder.GetAssociatedArray();
@@ -54,15 +55,17 @@ public class Ball : EventTrigger
     }
     private void MoveBall()
     {
-        if (mergeSort.CheckMoveIsCorrect(Int32.Parse(this.name.Substring(0,1)),this.targetPoolBallHolder.GetAssociatedArray()))
+        
+        if (mergeSort.CheckMoveIsCorrect(Int32.Parse(this.name.Substring(0,1)),this.targetPoolBallHolder.GetAssociatedArray(),this.currentPoolBallHolder.GetAssociatedArray(),belongsToArray))
         {
             this.transform.position = targetPoolBallHolder.transform.position;
+            currentPosition = targetPoolBallHolder.transform.position;
             this.currentPoolBallHolder = targetPoolBallHolder;
             currentPoolBallHolder.SetCurrentBall(this);
         }
         else
         {
-            transform.position = initialPosition;
+            transform.position = currentPosition;
             return;
         }
         currentArray = currentPoolBallHolder.GetAssociatedArray();
@@ -79,7 +82,7 @@ public class Ball : EventTrigger
         // Return to original position
         if (!targetPoolBallHolder)
         {
-            transform.position = initialPosition;
+            transform.position = currentPosition;
             return;
         }
 
@@ -87,6 +90,10 @@ public class Ball : EventTrigger
         MoveBall();
 
 
+    }
+    public  void SetBelongsToArray(bool val)
+    {
+        belongsToArray = val;
     }
 }
    

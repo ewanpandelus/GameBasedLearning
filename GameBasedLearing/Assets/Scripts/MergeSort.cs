@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class MergeSort : MonoBehaviour
 {
+    [SerializeField] ArrayInformation initialArray;
     [SerializeField]
     Ball ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
         ballPrefab5, ballPrefab6, ballPrefab7, ballPrefab8;
@@ -20,10 +21,13 @@ public class MergeSort : MonoBehaviour
     List<int> balls = new List<int>();
     private int userLevel = 1;
     private List<Tuple<int, List<int>>> expectedArrays = new List<Tuple<int, List<int>>>();
-
+    Dictionary<List<int>, bool> checkExpectedListFull = new Dictionary<List<int>, bool>();
+    List<ArrayInformation> allArrays = new List<ArrayInformation>();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
     void Start()
     {
+        allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
         aboveAll = GameObject.Find("AboveAll");
         ballObj = GameObject.Find("TopArray");
         allBalls = new List<Ball> { ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
@@ -38,8 +42,13 @@ public class MergeSort : MonoBehaviour
         }
         Shuffle();
         balls = ConvertToIntArray(inGameBalls);
-        CreateExpectedArrays(balls, 0);
-
+        expectedArrays.Add(new Tuple<int, List<int>>(0, balls));
+        initialArray.SetExpectedArrayValues(balls);
+        CreateExpectedArrays(balls, 1);
+        foreach(Tuple<int, List<int>> expectedArray in expectedArrays)
+        {
+            checkExpectedListFull[expectedArray.Item2] = false;
+        }
         
     }
     public void Shuffle()
@@ -68,23 +77,27 @@ public class MergeSort : MonoBehaviour
             allBalls.RemoveAt(random - 1);
         }
     }
-    public bool CheckMoveIsCorrect(int ballNumber, ArrayInformation associatedArray)
+    public bool CheckMoveIsCorrect(int ballNumber, ArrayInformation associatedArray,ArrayInformation previousArray,bool belongsToArray)
 
     {
         List<Tuple<int, List<int>>> ArraysForLevel;
+        int prevBallIndex = FindPreviousBallPosition(ballNumber);
+        Debug.Log(prevBallIndex);
         ArraysForLevel = expectedArrays.FindAll(x => x.Item1 == userLevel);
-        List<int> currrentArray = expectedArrays.Find(x => x.Item2.Contains(ballNumber)).Item2;
+        List<int> currrentArray = expectedArrays.Find(x => x.Item2.Contains(ballNumber)&&x.Item1 ==userLevel ).Item2;
         if (associatedArray.GetLevel() == userLevel)
         {
-            if (associatedArray.GetEmpty())
+            if (associatedArray.GetEmpty()&&!belongsToArray)
             {
 
                 associatedArray.SetExpectedArrayValues(currrentArray);
-                associatedArray.SetEmpty(false);
+                ManipulateArrays(associatedArray, previousArray, ballNumber,prevBallIndex);
                 return true;
             }
             if(!associatedArray.GetEmpty() && associatedArray.GetExpectedArrayValues() == currrentArray)
             {
+                ManipulateArrays(associatedArray, previousArray, ballNumber,prevBallIndex);
+                CheckIfUserLevelShouldIncrement();
                 return true;
             }
             else
@@ -94,13 +107,50 @@ public class MergeSort : MonoBehaviour
         }
         return false;
     }
+    private int FindPreviousBallPosition(int ballNumber)
+
+    {
+        List<Tuple<int, List<int>>> Arrays1= expectedArrays.FindAll(x => x.Item2.Contains(ballNumber));
+        List<Tuple<int, List<int>>> Arrays2 = expectedArrays.FindAll(x=> x.Item1 == userLevel -1);
+
+        return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel - 1).Item2.IndexOf(ballNumber) ;
+    }
+    private void CheckIfUserLevelShouldIncrement()
+    {
+        bool increment = true;
+        List<ArrayInformation> arraysToCheck = new List<ArrayInformation>();
+        arraysToCheck = allArrays.FindAll(x => x.GetLevel() == userLevel);
+        foreach(ArrayInformation array in arraysToCheck)
+        {
+            increment = increment && array.GetFull();
+            if (!increment)
+            {
+                return;
+            }
+        }
+        if (increment)
+        {
+           foreach(ArrayInformation array in arraysToCheck)
+            {
+                array.SetBallsOfExpectedArray(false);
+            }
+           userLevel++;
+        }
        
+    }
+    private void ManipulateArrays(ArrayInformation associatedArray, ArrayInformation previousArray, int ballNumber,int prevBallIndex)
+    {
+        associatedArray.UpdateIsArrayOccupied(ballNumber, true,prevBallIndex);
+        previousArray.UpdateIsArrayOccupied(ballNumber, false,prevBallIndex);
+        checkExpectedListFull[associatedArray.GetExpectedArrayValues()] = associatedArray.GetFull(); ;
+        checkExpectedListFull[previousArray.GetExpectedArrayValues()] = previousArray.GetFull();
+
+    }   
     private void CreateExpectedArrays(List<int> ballsNumbers, int level)
     {
 
         if (ballsNumbers.Count == 1)
         {
-            expectedArrays.Add(new Tuple<int, List<int>>(level, ballsNumbers));
             return;
         }
         else
@@ -129,4 +179,5 @@ public class MergeSort : MonoBehaviour
         return ballsNumbers;
 
     }
+ 
 }

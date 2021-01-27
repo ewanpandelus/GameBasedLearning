@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &199789185
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
+  size: 8
 --- !u!1 &226101851
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fedc323838dd24f8e25a282472c8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialArray: {fileID: 209594437}
   ballPrefab1: {fileID: -2837978992980274310, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
     type: 3}
   ballPrefab2: {fileID: 3451570966449500847, guid: 2a1ec53c347d07443befd23a991183b2,
@@ -1039,6 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &555402917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,7 +1252,7 @@ RectTransform:
   m_Children:
   - {fileID: 1812406462}
   m_Father: {fileID: 831594365}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1320,6 +1324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  size: 2
 --- !u!1 &623958255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,10 +1999,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1733733321}
-  - {fileID: 1602626010}
   - {fileID: 1458823574}
   - {fileID: 608600055}
+  - {fileID: 1602626010}
+  - {fileID: 1733733321}
   m_Father: {fileID: 1395379801}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2375,6 +2380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &943787764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,6 +2574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &976972463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,6 +2768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &1082503744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3078,6 +3086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  size: 4
 --- !u!1 &1204698373
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &1286872071
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,6 +3474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &1316803932
 GameObject:
   m_ObjectHideFlags: 0
@@ -3904,7 +3915,7 @@ RectTransform:
   m_Children:
   - {fileID: 245202072}
   m_Father: {fileID: 831594365}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3976,6 +3987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  size: 2
 --- !u!1 &1480614514
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,6 +4093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  size: 4
 --- !u!1 &1527999298
 GameObject:
   m_ObjectHideFlags: 0
@@ -4150,7 +4163,7 @@ RectTransform:
   m_Children:
   - {fileID: 2131235563}
   m_Father: {fileID: 831594365}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4222,6 +4235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  size: 2
 --- !u!1 &1634212736
 GameObject:
   m_ObjectHideFlags: 0
@@ -4679,7 +4693,7 @@ RectTransform:
   m_Children:
   - {fileID: 4146126}
   m_Father: {fileID: 831594365}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4751,6 +4765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  size: 2
 --- !u!1 &1812406461
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,6 +4996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
+  size: 1
 --- !u!1 &1918338945
 GameObject:
   m_ObjectHideFlags: 0
