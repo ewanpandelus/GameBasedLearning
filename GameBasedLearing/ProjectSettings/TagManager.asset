@@ -11,6 +11,7 @@ TagManager:
   - Graph
   - CardHolder
   - floor
+  - TopArrayHolder
   layers:
   - Default
   - TransparentFX

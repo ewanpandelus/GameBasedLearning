@@ -12,7 +12,6 @@ public class Card : EventTrigger
     protected RectTransform rectTransform = null;
     protected CardHolder targetCardHolder = null;
     private int value;
-    private bool movedVertically = false;
     BubbleSort bubbleSort;
 
     private Vector3 initialPosition = new Vector3(0f, 0f, 0f);
@@ -31,11 +30,7 @@ public class Card : EventTrigger
         initialPosition = this.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
     public void SetCurrentCardHolder(CardHolder cardHolder)
     {
         this.currentCardHolder = cardHolder;

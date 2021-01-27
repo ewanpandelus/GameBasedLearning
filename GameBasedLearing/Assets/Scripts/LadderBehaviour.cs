@@ -52,7 +52,8 @@ public class LadderBehaviour : MonoBehaviour
 
     }
 }
-public class Ladder{
+public class Ladder
+{
     public void HandleCharacterEnteredNegativeVelocityAndJumping(PlayerMovement playerMovement)
     {
         playerMovement.SetIsClimbing(true);

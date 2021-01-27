@@ -16,7 +16,7 @@ public class CardHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void SetInitialCard(Card card)
     {
