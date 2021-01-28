@@ -23,7 +23,8 @@ public class MergeSort : MonoBehaviour
     private List<Tuple<int, List<int>>> expectedArrays = new List<Tuple<int, List<int>>>();
     Dictionary<List<int>, bool> checkExpectedListFull = new Dictionary<List<int>, bool>();
     List<ArrayInformation> allArrays = new List<ArrayInformation>();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    private bool merging = false;
+    private List<Tuple<int, List<int>>> sortedArrays = new List<Tuple<int, List<int>>>();
 
     void Start()
     {
@@ -77,27 +78,29 @@ public class MergeSort : MonoBehaviour
             allBalls.RemoveAt(random - 1);
         }
     }
-    public bool CheckMoveIsCorrect(int ballNumber, ArrayInformation associatedArray,ArrayInformation previousArray,bool belongsToArray)
-
+    private bool Splitting(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray)
     {
         List<Tuple<int, List<int>>> ArraysForLevel;
         int prevBallIndex = FindPreviousBallPosition(ballNumber);
-        Debug.Log(prevBallIndex);
         ArraysForLevel = expectedArrays.FindAll(x => x.Item1 == userLevel);
-        List<int> currrentArray = expectedArrays.Find(x => x.Item2.Contains(ballNumber)&&x.Item1 ==userLevel ).Item2;
+        List<int> currrentArray = expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel).Item2;
         if (associatedArray.GetLevel() == userLevel)
         {
-            if (associatedArray.GetEmpty()&&!belongsToArray)
+            if (associatedArray.GetEmpty() && !belongsToArray)
             {
 
                 associatedArray.SetExpectedArrayValues(currrentArray);
-                ManipulateArrays(associatedArray, previousArray, ballNumber,prevBallIndex);
+                ManipulateArrays(associatedArray, previousArray, ballNumber, prevBallIndex);
+                if (userLevel == 3)
+                {
+                    CheckIfUserLevelShouldChange();
+                }
                 return true;
             }
-            if(!associatedArray.GetEmpty() && associatedArray.GetExpectedArrayValues() == currrentArray)
+            if (!associatedArray.GetEmpty() && associatedArray.GetExpectedArrayValues() == currrentArray)
             {
-                ManipulateArrays(associatedArray, previousArray, ballNumber,prevBallIndex);
-                CheckIfUserLevelShouldIncrement();
+                ManipulateArrays(associatedArray, previousArray, ballNumber, prevBallIndex);
+                CheckIfUserLevelShouldChange();
                 return true;
             }
             else
@@ -107,34 +110,126 @@ public class MergeSort : MonoBehaviour
         }
         return false;
     }
+    public bool Merging(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray, PoolBallHolder poolBallHolder)
+    {
+        List<Tuple<int, List<int>>> arraysForLevel;
+        int prevBallIndex = FindPreviousBallPosition(ballNumber);
+        arraysForLevel = sortedArrays.FindAll(x => x.Item1 == userLevel-1);
+        List<int> currrentArray = arraysForLevel.Find(x => x.Item2.Contains(ballNumber)).Item2;
+        if (associatedArray.GetLevel() == userLevel-1)
+        {
+            if (associatedArray.GetEmpty() && !belongsToArray)
+            {
+                List<int> ascendingIndices = CreateAscendingIndices(associatedArray.GetSize());
+                associatedArray.SetExpectedArrayValues(currrentArray);
+                ManipulateArrays(associatedArray, previousArray, ballNumber, prevBallIndex);
+
+                return CheckCorrectBallPosition(associatedArray, ballNumber, poolBallHolder);
+            }
+            if (!associatedArray.GetEmpty() && associatedArray.GetExpectedArrayValues() == currrentArray&&CheckCorrectBallPosition(associatedArray,ballNumber,poolBallHolder)==true)
+            {
+                ManipulateArrays(associatedArray, previousArray, ballNumber, prevBallIndex);
+                CheckIfUserLevelShouldChange();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+    private bool CheckCorrectBallPosition(ArrayInformation associatedArray, int ballNumber,PoolBallHolder poolBallHolder)
+    {
+        return (associatedArray.GetExpectedArrayValues().IndexOf(ballNumber) == poolBallHolder.GetIndex());
+    }
+    private List<int> CreateAscendingIndices(int listLen)
+    {
+        List<int> ascendingIndices = new List<int>();
+        for(int i = 0; i < listLen; i++)
+        {
+            ascendingIndices.Add(i);
+        }
+        return ascendingIndices;
+    }
+    public bool CheckMoveIsCorrect(int ballNumber, ArrayInformation associatedArray,ArrayInformation previousArray,bool belongsToArray,PoolBallHolder poolBallHolder)
+
+    {
+        if (!merging)
+        {
+            return Splitting(ballNumber, associatedArray, previousArray, belongsToArray);
+        }
+        return Merging(ballNumber, associatedArray, previousArray, belongsToArray,poolBallHolder);
+    
+    }
     private int FindPreviousBallPosition(int ballNumber)
 
     {
-        List<Tuple<int, List<int>>> Arrays1= expectedArrays.FindAll(x => x.Item2.Contains(ballNumber));
-        List<Tuple<int, List<int>>> Arrays2 = expectedArrays.FindAll(x=> x.Item1 == userLevel -1);
+        if (!merging)
+        {
+            return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel - 1).Item2.IndexOf(ballNumber);
+        }
+        return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel).Item2.IndexOf(ballNumber);
 
-        return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel - 1).Item2.IndexOf(ballNumber) ;
     }
-    private void CheckIfUserLevelShouldIncrement()
+    private void CheckIfUserLevelShouldChange()
     {
-        bool increment = true;
+        bool change = true;
         List<ArrayInformation> arraysToCheck = new List<ArrayInformation>();
-        arraysToCheck = allArrays.FindAll(x => x.GetLevel() == userLevel);
+        if (!merging)
+        {
+            arraysToCheck = allArrays.FindAll(x => x.GetLevel() == userLevel);
+        }
+        else
+        {
+            arraysToCheck = allArrays.FindAll(x => x.GetLevel() == userLevel-1);
+        }
+       
         foreach(ArrayInformation array in arraysToCheck)
         {
-            increment = increment && array.GetFull();
-            if (!increment)
+            change = change && array.GetFull();
+            if (!change)
             {
                 return;
             }
         }
-        if (increment)
+        if (change)
         {
            foreach(ArrayInformation array in arraysToCheck)
             {
                 array.SetBallsOfExpectedArray(false);
             }
-           userLevel++;
+            if (!merging)
+            {
+                userLevel++;
+                if (userLevel == 4)
+                {
+                    SetupMerging();
+                }
+            }
+            else
+            {
+                userLevel--;
+            }
+       
+        }
+   
+       
+    }
+    private void SetupMerging()
+    {
+        userLevel = 3;
+        merging = true;
+        List<Tuple<int, List<int>>> arraysBelowLevel3 = expectedArrays.FindAll(x => x.Item1 <3);
+        foreach (Tuple<int, List<int>> array in arraysBelowLevel3)
+        {
+            array.Item2.Sort();
+            sortedArrays.Add(array);
+
+        }
+        foreach(ArrayInformation array in allArrays)
+        {
+            array.SetFull(false);
         }
        
     }

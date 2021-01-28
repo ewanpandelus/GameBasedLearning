@@ -34,11 +34,11 @@ public class QueenPiece : EventTrigger
         mRectTransform = GetComponent<RectTransform>();
         if (problemSize == 4)
         {
-            mRectTransform.sizeDelta = new Vector2(80, 80);
+            mRectTransform.sizeDelta = new Vector2(110, 110);
         }
         else
         {
-            mRectTransform.sizeDelta = new Vector2(57, 57);
+            mRectTransform.sizeDelta = new Vector2(95, 95);
         }
     }
 

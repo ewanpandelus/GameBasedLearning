@@ -56,7 +56,7 @@ public class Ball : EventTrigger
     private void MoveBall()
     {
         
-        if (mergeSort.CheckMoveIsCorrect(Int32.Parse(this.name.Substring(0,1)),this.targetPoolBallHolder.GetAssociatedArray(),this.currentPoolBallHolder.GetAssociatedArray(),belongsToArray))
+        if (mergeSort.CheckMoveIsCorrect(Int32.Parse(this.name.Substring(0,1)),this.targetPoolBallHolder.GetAssociatedArray(),this.currentPoolBallHolder.GetAssociatedArray(),belongsToArray,targetPoolBallHolder))
         {
             this.transform.position = targetPoolBallHolder.transform.position;
             currentPosition = targetPoolBallHolder.transform.position;

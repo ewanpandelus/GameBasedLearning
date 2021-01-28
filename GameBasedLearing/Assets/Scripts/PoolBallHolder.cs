@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PoolBallHolder : MonoBehaviour
 {
-    [SerializeField] ArrayInformation associatedArray;
+    [SerializeField] private ArrayInformation associatedArray;
+    [SerializeField] private int arrayIndex;
     private Ball currentBall = null;
     private Ball initialBall = null;
     private RectTransform rectTransform = null;
@@ -33,6 +34,10 @@ public class PoolBallHolder : MonoBehaviour
     public Ball GetCurrentBall()
     {
         return this.currentBall;
+    }
+    public int GetIndex()
+    {
+        return this.arrayIndex;
     }
     public RectTransform GetRectTransform()
     {

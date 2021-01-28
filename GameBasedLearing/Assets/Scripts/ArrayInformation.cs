@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ArrayInformation : MonoBehaviour
 {
      [SerializeField] private int level;
-    [SerializeField] private int size;
+     [SerializeField] private int size;
      private List<int> expectedArrayValues = new List<int>();
      private bool empty = true;
      private bool full = false;
@@ -84,8 +85,18 @@ public class ArrayInformation : MonoBehaviour
     {
         return this.expectedArrayValues;
     }
+
+
     public bool GetFull()
     {
         return this.full;
+    }
+    public void SetFull(bool value)
+    {
+        this.full = value;
+    }
+    public int GetSize()
+    {
+        return this.size;
     }
 }
