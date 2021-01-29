@@ -29,6 +29,10 @@ public class Ball : EventTrigger
     {
         this.currentPoolBallHolder = poolBallHolder;
     }
+    public PoolBallHolder GetCurrentPoolBallHolder()
+    {
+        return this.currentPoolBallHolder;
+    }
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolBallHolder : MonoBehaviour
-{
+{   
+    [SerializeField] private PoolBallHolder destinationPoolBallHolder; 
     [SerializeField] private ArrayInformation associatedArray;
     [SerializeField] private int arrayIndex;
     private Ball currentBall = null;
@@ -14,7 +15,10 @@ public class PoolBallHolder : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
     }
-
+    public PoolBallHolder GetDestinationPoolBallHolder()
+    {
+        return this.destinationPoolBallHolder;
+    }
     public ArrayInformation GetAssociatedArray()
     {
         return this.associatedArray;

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5948306160117349931, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
         type: 3}
       propertyPath: m_Name
-      value: BallPos1
+      value: BallPos1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7181105689280931760, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
         type: 3}

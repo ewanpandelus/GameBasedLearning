@@ -12,6 +12,7 @@ TagManager:
   - CardHolder
   - floor
   - TopArrayHolder
+  - Ball
   layers:
   - Default
   - TransparentFX

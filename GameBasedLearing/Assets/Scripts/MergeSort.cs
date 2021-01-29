@@ -25,12 +25,14 @@ public class MergeSort : MonoBehaviour
     List<ArrayInformation> allArrays = new List<ArrayInformation>();
     private bool merging = false;
     private List<Tuple<int, List<int>>> sortedArrays = new List<Tuple<int, List<int>>>();
-
+    private AnimatePoolBalls animatePoolBalls;
     void Start()
     {
+        animatePoolBalls = gameObject.GetComponent<AnimatePoolBalls>();
         allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
         aboveAll = GameObject.Find("AboveAll");
         ballObj = GameObject.Find("TopArray");
+     
         allBalls = new List<Ball> { ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
             ballPrefab5, ballPrefab6, ballPrefab7, ballPrefab8};
         numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
@@ -46,11 +48,16 @@ public class MergeSort : MonoBehaviour
         expectedArrays.Add(new Tuple<int, List<int>>(0, balls));
         initialArray.SetExpectedArrayValues(balls);
         CreateExpectedArrays(balls, 1);
-        foreach(Tuple<int, List<int>> expectedArray in expectedArrays)
+
+        foreach (Tuple<int, List<int>> expectedArray in expectedArrays)
         {
             checkExpectedListFull[expectedArray.Item2] = false;
         }
-        
+
+        //  animatePoolBalls.SetArraysToAnimate(expectedArrays);
+        //animatePoolBalls.SplittingAnimation();
+        animatePoolBalls.StartAnimation();
+
     }
     public void Shuffle()
     {
@@ -65,6 +72,7 @@ public class MergeSort : MonoBehaviour
             inGameBalls.Add(ballGo);
             ballGo.transform.SetParent(aboveAll.transform);
             ballGo.transform.position = poolHolder.transform.position;
+            animatePoolBalls.AddBallToActive(ballGo);
 
         }
     }

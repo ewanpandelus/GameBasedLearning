@@ -2,15 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class ArrayInformation : MonoBehaviour
 {
      [SerializeField] private int level;
      [SerializeField] private int size;
+     [SerializeField] private List<PoolBallHolder> associatedPoolBallHolders;
      private List<int> expectedArrayValues = new List<int>();
      private bool empty = true;
      private bool full = false;
      private List<bool> isArrayOccupied = new List<bool>(); 
+
 
 
     private void Start()
@@ -99,4 +101,9 @@ public class ArrayInformation : MonoBehaviour
     {
         return this.size;
     }
+    public List<PoolBallHolder> GetPoolBallHolders()
+    {
+        return this.associatedPoolBallHolders;
+    }
+   
 }
