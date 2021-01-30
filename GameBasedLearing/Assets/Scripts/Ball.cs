@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Ball : EventTrigger
 {
@@ -16,10 +17,11 @@ public class Ball : EventTrigger
     private ArrayInformation currentArray;
     private ArrayInformation expectedArray;
     private bool belongsToArray = false;
+    private bool finishedFirstHalf = false;
 
     private void Start()
     {
-       
+      
         currentPosition = this.transform.position;
         mergeSort = GameObject.Find("GameManager").GetComponent<MergeSort>();
         allPoolBallHolders = (PoolBallHolder[])Resources.FindObjectsOfTypeAll(typeof(PoolBallHolder));
@@ -95,9 +97,21 @@ public class Ball : EventTrigger
 
 
     }
+    public Outline GetOutline()
+    {
+        return this.transform.GetChild(0).GetComponent<Outline>();
+    }
     public  void SetBelongsToArray(bool val)
     {
         belongsToArray = val;
+    }
+    public void SetFirstHalf(bool val)
+    {
+        this.finishedFirstHalf = val;
+    }
+    public bool GetFirstHalf()
+    {
+        return this.finishedFirstHalf;
     }
 }
    

@@ -8,6 +8,7 @@ public class ArrayInformation : MonoBehaviour
      [SerializeField] private int level;
      [SerializeField] private int size;
      [SerializeField] private List<PoolBallHolder> associatedPoolBallHolders;
+     [SerializeField] private List<ArrayInformation> associatedMergingArrays;
      private List<int> expectedArrayValues = new List<int>();
      private bool empty = true;
      private bool full = false;
@@ -105,5 +106,8 @@ public class ArrayInformation : MonoBehaviour
     {
         return this.associatedPoolBallHolders;
     }
-   
+    public List<ArrayInformation> GetAssociatedMergingArrays()
+    {
+        return this.associatedMergingArrays;
+    }
 }

@@ -7,6 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1694187646345397007, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694187646345397007, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694187646345397007, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5273841201662296528, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
         type: 3}
       propertyPath: m_Sprite
@@ -101,7 +116,7 @@ PrefabInstance:
     - target: {fileID: 7181105689280931760, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -265.8
+      value: -265.1
       objectReference: {fileID: 0}
     - target: {fileID: 7181105689280931760, guid: 9ab3ec8532fdf7c43bdb2e0aa96e4028,
         type: 3}

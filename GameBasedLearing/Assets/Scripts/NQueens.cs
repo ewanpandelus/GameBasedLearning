@@ -15,6 +15,9 @@ public class NQueens : MonoBehaviour, IPuzzle
     private GameObject parentCanvas;
     private int problemSize;
     private bool solved = false;
+    private static int topOfFunction = 0;
+    private static int insideFor = 0;
+    private static int insideIf = 0;
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
     [SerializeField] private DynamicUI dynamicUI;
     AudioManager AudioManagement;
@@ -40,6 +43,9 @@ public class NQueens : MonoBehaviour, IPuzzle
         solveNQUtil(board, 0, problemSize);
         StartCoroutine(IterateThroughMoves(queenPlacement));
         solved = false;
+        Debug.Log("Top of function: " + topOfFunction);
+        Debug.Log("InsideFor: " + insideFor);
+        Debug.Log("Insideif: " + insideIf);
     }
 
      void IPuzzle.DisplaySteps()
@@ -122,7 +128,7 @@ public class NQueens : MonoBehaviour, IPuzzle
     Queen problem */
     bool solveNQUtil(int[,] chessBoard, int col, int n)
     {
-      
+        topOfFunction++;
 
         /* base case: If all queens are placed 
         then return true */
@@ -134,11 +140,13 @@ public class NQueens : MonoBehaviour, IPuzzle
         /* Consider this column and try placing 
         this queen in all rows one by one */
         for (int i = 0; i < n; i++)
-        { 
+        {
+            insideFor++;
             /* Check if the queen can be placed on 
             board[i,col] */
             if (isSafe(chessBoard, i, col, n))
             {
+                insideIf++;
 
                 chessBoard[i, col] = 1;
                 AddToMoves(i, col, 'I');
