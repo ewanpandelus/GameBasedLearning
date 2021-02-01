@@ -820,11 +820,11 @@ RectTransform:
   m_LocalScale: {x: 0.45000273, y: 0.45000273, z: 0.7279345}
   m_Children: []
   m_Father: {fileID: 3345870306472353272}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -114.85, y: -14.15}
+  m_AnchoredPosition: {x: -123.5, y: -19.755}
   m_SizeDelta: {x: 218.35681, y: 217.90906}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839908012
@@ -846,9 +846,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The algorithm in this mini-game is \nimplemented using the naive solution.
-    This means that every possible combinations of flowers are run through before
-    finding the shortest route."
+  m_text: "The algorithm in this mini-game is \nimplemented using the na\xEFve solution.
+    This means that every possible combination/route of flowers is explored before
+    the shortest is determined."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1, type: 2}
   m_sharedMaterial: {fileID: -1013404782577106135, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1,
@@ -1350,12 +1350,12 @@ RectTransform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 3345870306472353272}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -114.850006, y: 114.2}
-  m_SizeDelta: {x: 327.79132, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -84.674, y: 115.95}
+  m_SizeDelta: {x: -414.48746, y: -325.73007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1758279807
 MonoBehaviour:
@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Algorithm Information
+  m_text: More
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1, type: 2}
   m_sharedMaterial: {fileID: -1013404782577106135, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1,
@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -20.02442, w: 0}
+  m_margin: {x: -55.922947, y: -8.063979, z: -30.139248, w: -9.59222}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1767,8 +1767,8 @@ RectTransform:
   - {fileID: 3345870307778706941}
   - {fileID: 3345870308170152617}
   - {fileID: 3345870306782308351}
-  - {fileID: 839908011}
   - {fileID: 1758279806}
+  - {fileID: 839908011}
   m_Father: {fileID: 1561224774}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1900,8 +1900,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.4, y: 114.2}
-  m_SizeDelta: {x: 327.79132, y: 50}
+  m_AnchoredPosition: {x: -121.6, y: 116.4}
+  m_SizeDelta: {x: 159.36365, y: 25.152088}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3345870306550870765
 MonoBehaviour:
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Travelling Bee
+  m_text: TBP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1, type: 2}
   m_sharedMaterial: {fileID: -1013404782577106135, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1,
@@ -1950,14 +1950,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31
-  m_fontSizeBase: 31
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 5
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -56.77781, y: -8.758963, z: -53.169, w: -10.256193}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2579,8 +2579,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128.06, y: 114.2}
-  m_SizeDelta: {x: 256.12677, y: 50}
+  m_AnchoredPosition: {x: 123.8, y: 114.2}
+  m_SizeDelta: {x: 146.13754, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3345870308170152622
 MonoBehaviour:
@@ -2629,8 +2629,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31
-  m_fontSizeBase: 31
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2665,7 +2665,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -28.808725, y: 0, z: -39.591682, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

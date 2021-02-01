@@ -26,8 +26,11 @@ public class MergeSort : MonoBehaviour
     private bool merging = false;
     private List<Tuple<int, List<int>>> sortedArrays = new List<Tuple<int, List<int>>>();
     private AnimatePoolBalls animatePoolBalls;
+    private AudioManager audioManager;
     void Start()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioManager.Play("Bar");
         animatePoolBalls = gameObject.GetComponent<AnimatePoolBalls>();
         allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
         aboveAll = GameObject.Find("AboveAll");
@@ -59,6 +62,7 @@ public class MergeSort : MonoBehaviour
     }
     public void Shuffle()
     {
+        audioManager.Play("Pool");
         RandomiseBalls();
 
         foreach (PoolBallHolder poolHolder in allPoolBallHolders)

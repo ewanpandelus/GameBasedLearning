@@ -16,7 +16,15 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
-        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        try
+        {
+            globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        }
+        catch
+        {
+
+        }
+
         foreach (Sound s in sounds)
         {
             s.SetSource(gameObject.AddComponent<AudioSource>());

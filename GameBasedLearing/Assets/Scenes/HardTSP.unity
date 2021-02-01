@@ -2080,6 +2080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
         type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
+        type: 3}
       propertyPath: sounds.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: 2a6182b0e7475e740b66d1bf32a0027a, type: 3}
@@ -2116,7 +2121,7 @@ PrefabInstance:
     - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
         type: 3}
       propertyPath: sounds.Array.data[1].volume
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 6926366245186161239, guid: 1cf7811e44e220145bd14db2fab19f6a,
         type: 3}
