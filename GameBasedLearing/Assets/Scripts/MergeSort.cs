@@ -54,8 +54,6 @@ public class MergeSort : MonoBehaviour
             checkExpectedListFull[expectedArray.Item2] = false;
         }
 
-        //  animatePoolBalls.SetArraysToAnimate(expectedArrays);
-        //animatePoolBalls.SplittingAnimation();
         animatePoolBalls.StartAnimation();
 
     }

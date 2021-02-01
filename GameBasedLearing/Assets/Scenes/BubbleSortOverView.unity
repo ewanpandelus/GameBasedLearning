@@ -1248,6 +1248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3345870306856683342, guid: 2d413596564f21e4b8c4e572393d30fd,
         type: 3}
+      propertyPath: m_fontSize
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870306856683342, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
       propertyPath: m_margin.x
       value: -2.3833015
       objectReference: {fileID: 0}
@@ -1255,6 +1260,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.z
       value: -9.504585
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870306856683342, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870306856683342, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870306856683343, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -102.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870306856683343, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 111.9
       objectReference: {fileID: 0}
     - target: {fileID: 3345870306962729048, guid: 2d413596564f21e4b8c4e572393d30fd,
         type: 3}
@@ -1381,15 +1406,45 @@ PrefabInstance:
         If you want to see
         how bubblesort works graphically, click the ''Solve'' button.'
       objectReference: {fileID: 0}
+    - target: {fileID: 3345870307411332874, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 128.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870307411332874, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 111.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870307411332877, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870307411332877, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870307411332877, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 3345870307683594316, guid: 2d413596564f21e4b8c4e572393d30fd,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -108.8
+      value: -82.3
       objectReference: {fileID: 0}
     - target: {fileID: 3345870307683594316, guid: 2d413596564f21e4b8c4e572393d30fd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 119.8
+      value: 111.90001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870307683594319, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 3345870307683594319, guid: 2d413596564f21e4b8c4e572393d30fd,
         type: 3}
@@ -1400,6 +1455,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.z
       value: -14.107814
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870307683594319, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345870307683594319, guid: 2d413596564f21e4b8c4e572393d30fd,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d413596564f21e4b8c4e572393d30fd, type: 3}

@@ -16,7 +16,7 @@ public class Sound
     private AudioSource source;
     [SerializeField]
     private bool loop;
-
+ 
     public bool GetLoop()
     {
         return this.loop;
@@ -43,7 +43,7 @@ public class Sound
     }
     public void SetVolume(float v)
     {
-        this.volume = v;
+        this.source.volume = v;
     }
     public void SetSource(AudioSource s)
     {

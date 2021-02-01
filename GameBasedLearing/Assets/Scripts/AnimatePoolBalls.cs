@@ -52,7 +52,7 @@ public class AnimatePoolBalls : MonoBehaviour
     private IEnumerator MoveBackwards(bool moving, Ball ball, Vector3 targetPosition,PoolBallHolder desinationPoolBallHolder)
     {
    
-        float distanceThisFrame = 100f * 0.02f;
+        float distanceThisFrame = 350f* 0.02f;
         
         Vector2 direction = targetPosition - ball.transform.position;
         while (moving)
@@ -60,7 +60,7 @@ public class AnimatePoolBalls : MonoBehaviour
            
             ball.transform.Translate(direction.normalized * distanceThisFrame, Space.World);
 
-            if (targetPosition.y-ball.transform.position.y<=1f&&targetPosition.x - ball.transform.position.x <= 1f)
+            if (targetPosition.y - ball.transform.position.y <= 0.1f)
             {
                 ball.GetOutline().SetOutlineImage(false);
               
@@ -89,7 +89,7 @@ public class AnimatePoolBalls : MonoBehaviour
 
             foreach (Ball ball in balls)
             {
-                yield return new WaitForSecondsRealtime(0.75f);
+                yield return new WaitForSecondsRealtime(0.5f);
                 StartCoroutine(MoveFowards(true, ball, ball.GetCurrentPoolBallHolder().GetDestinationPoolBallHolder().transform.position));
             }
         }
