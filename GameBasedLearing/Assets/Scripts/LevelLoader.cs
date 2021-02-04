@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField] private Animator transition;
+  
     [SerializeField] private DynamicUI dynamicUI;
     public string levelName;
     public string destinationLevel;
-    
+    SceneTransition sceneTransition;
     AudioManager AudioManagement;
     GlobalDataHolder globalDataHolder;
     Scene scene;
@@ -18,6 +18,7 @@ public class LevelLoader : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         AudioManagement = AudioManager.instance;
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        sceneTransition = GameObject.Find("TransitionObject").GetComponent<SceneTransition>();
 
     }
 
@@ -27,8 +28,8 @@ public class LevelLoader : MonoBehaviour
     }
     private IEnumerator LoadLevel(string levelName)
     {
-        
-        transition.SetTrigger("Start");
+
+        sceneTransition.GetAnimator().SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
         if (scene.name.Contains("Overview")&&!this.name.Contains("Back"))
         {

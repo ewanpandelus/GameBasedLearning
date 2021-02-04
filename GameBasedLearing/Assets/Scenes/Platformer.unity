@@ -18145,7 +18145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdd0064194a7684ea0d2e9f25d4a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 7894971639601373689}
   dynamicUI: {fileID: 0}
   levelName: MergeSort
   destinationLevel: EasyTSP
@@ -18683,6 +18682,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &796525592
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1393531396968918222, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_Name
+      value: TransitionObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 518.14197
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 404.75192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -345.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314809918822721436, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d1f17f232c033840a9b43a5971d69c8, type: 3}
 --- !u!1 &815503058
 GameObject:
   m_ObjectHideFlags: 0
@@ -107681,7 +107749,7 @@ PrefabInstance:
     - target: {fileID: 338212273533884554, guid: eb4839586931fe848b56e53069368525,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 338212273533884554, guid: eb4839586931fe848b56e53069368525,
         type: 3}
@@ -107836,7 +107904,7 @@ PrefabInstance:
     - target: {fileID: 9020926443937789206, guid: eb4839586931fe848b56e53069368525,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9020926443937789206, guid: eb4839586931fe848b56e53069368525,
         type: 3}
@@ -110026,7 +110094,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdd0064194a7684ea0d2e9f25d4a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 7894971639601373689}
   dynamicUI: {fileID: 0}
   levelName: 
   destinationLevel: 
