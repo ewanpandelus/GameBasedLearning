@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IPlayerMovement
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private TextMeshProUGUI cherryText;
     public Rigidbody2D rb;
     private float horizontalVelocity = 12f;
     float horizontalMove = 0f;
@@ -14,9 +16,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     private float verticalVelocity = 0f;
     float verticalMove = 0f;
     private bool isJumping = false;
+    private int cherryCount = 0;
 
-
-    // Update is called once per frame
+  
+  
     void Update()
     {
         animator.speed = 1f;
@@ -58,7 +61,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         }
         FlipCharacter();
     }
-
+    private void IncrementCherryCount()
+    {
+        this.cherryCount++;
+        this.cherryText.text = cherryCount.ToString();
+    }
     private void NonClimbingMovement()
     {
 
@@ -103,37 +110,42 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     {
         if (horizontalMove > 0 && !m_FacingRight)
         {
-            // ... flip the player.
             Flip();
         }
-        // Otherwise if the input is moving the player left and the player is facing right...
         else if (horizontalMove < 0 && m_FacingRight)
         {
-            // ... flip the player.
             Flip();
         }
     }
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-    //make sure u replace "floor" with your gameobject name.on which player is standing
-    void OnCollisionEnter2D(Collision2D theCollision)
+    private void OnCollisionEnter2D(Collision2D theCollision)
     {
-        if (theCollision.gameObject.transform.tag == "floor" && theCollision.gameObject.name != "Ladder")
+        if (theCollision.gameObject.transform.tag == "Floor" && theCollision.gameObject.name != "Ladder")
         {
 
             isgrounded = true;
             animator.SetBool("IsJumping", false);
             isJumping = false;
+
         }
     }
+   private void OnTriggerEnter2D(Collider2D collider)
+    {
+        
+        if (collider.gameObject.transform.tag == "Cherry")
+        {
+            IncrementCherryCount();
+            Destroy(collider.gameObject);
+        }
+    }
+
 
     void OnCollisionExit2D(Collision2D theCollision)
     {

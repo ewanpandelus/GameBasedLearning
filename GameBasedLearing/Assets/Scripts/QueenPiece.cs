@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class QueenPiece : EventTrigger
 {
     [HideInInspector]
+    private DynamicSolve dynamicSolve;
     public Color mColor = Color.clear;
     public bool mIsFirstMove = true;
     protected Cell mOriginalCell = null;
@@ -24,7 +25,7 @@ public class QueenPiece : EventTrigger
     AudioManager AudioManagement;
     void Start()
     {
-
+        dynamicSolve = GameObject.Find("ChessBoard").GetComponent<DynamicSolve>();
         AudioManagement = AudioManager.instance;
         board = GameObject.Find("ChessBoard").GetComponent<ChessBoard>();
         problemSize = board.GetProblemSize();
@@ -39,6 +40,10 @@ public class QueenPiece : EventTrigger
         else
         {
             mRectTransform.sizeDelta = new Vector2(95, 95);
+        }
+        if (dynamicSolve.GetCreated())
+        {
+            mRectTransform.sizeDelta /= 2;
         }
     }
 

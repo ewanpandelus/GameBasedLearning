@@ -29,10 +29,7 @@ public class Edge : MonoBehaviour
         travelingSalesman = TravelingSalesman.instance;
     }
 
-    //public void SetSortingOrder(int _sortingOrder)
-    //{
-      //  this.image.sortingOrder = _sortingOrder;
-    //}
+
     public void setColour(bool on)
     {
         if (on) 

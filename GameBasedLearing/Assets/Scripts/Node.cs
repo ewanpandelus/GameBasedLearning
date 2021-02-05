@@ -42,11 +42,15 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        SetNode();
+        if (!travellingSalesman.GetSolved())
+        {
+            SetNode();
+        }
+       
     }
         private void SetAllColours(bool on, int sortingOrder)
     {
-        if (!(this.name == "A" && travellingSalesman.GetPlayedNodes().Count != GameObject.FindGameObjectsWithTag("Node").Length))
+        if (!(this.name == "A" && travellingSalesman.GetPlayedNodes().Count != GameObject.FindGameObjectsWithTag("Node").Length)&&!travellingSalesman.GetSolved())
         {
             Distance distance = travellingSalesman.GetDistance(FindEdgeAssociatedWithNode());
             Edge edge = FindEdgeAssociatedWithNode();

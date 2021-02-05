@@ -138,8 +138,8 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             yield return new WaitForSecondsRealtime(1f);
             GameObject.Find(c.ToString()).GetComponent<Node>().SetWinningNode();
         }
-        Debug.Log(counter);
-       
+        solved = false;
+
     }
 
 
@@ -258,7 +258,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             int minDistance = int.MaxValue;
             List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
             StartCoroutine(IterateThroughPermutations(winningPath, minDistance, nodePermutations));
-            solved = false;
+    
         }
         
     }
@@ -287,5 +287,8 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         else return false;
     }
 
-  
+    public bool GetSolved()
+    {
+        return this.solved;
+    }
 }

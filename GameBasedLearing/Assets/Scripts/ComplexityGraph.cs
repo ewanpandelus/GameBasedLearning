@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,7 @@ public class ComplexityGraph : MonoBehaviour
     private RectTransform graphContainer;
     private GameObject title;
     [SerializeField] private Sprite circleSprite;
-    private int n = 6;
+    private int n = 8;
     [SerializeField] private Sprite lineSprite;
     [SerializeField] private bool complexityIllustration;
     [SerializeField] private GameObject xScaleText;
@@ -44,11 +45,19 @@ public class ComplexityGraph : MonoBehaviour
 
     public void IncrementN()
     {
-        n+=2;
+        if (n != 20)
+        {
+            n += 2;
+        }
+   
     }
     public void DecrementN()
     {
-        n-=2;
+        if (n != 2)
+        {
+            n -= 2;
+        }
+     
     }
     private void Start()
     {
@@ -75,8 +84,15 @@ public class ComplexityGraph : MonoBehaviour
         if(sceneName == "HardTSP"||sceneName == "EasyTSP")
         {
             dataList = complexityData.GetTBPValueList(n);
+            ShowChangableGraph(dataList, Color.yellow + new Color(0, 0, 0, -0.5f), "Traveling Bee Algorithm");
         }
-        ShowChangableGraph(dataList, Color.yellow + new Color(0, 0, 0, -0.5f),"Traveling Bee Algorithm");
+      
+        if(sceneName =="NQueensLevel1"||sceneName == "NQueensLevel2")
+        {
+            dataList = complexityData.GetNQueensValueList(n);
+            ShowChangableGraph(dataList, Color.cyan + new Color(0, 0, 0, -0.5f), "NQueens Algorithm");
+       
+        }
 
     }
     private void ShowDifferentComplexities()
@@ -186,7 +202,7 @@ public class ComplexityGraph : MonoBehaviour
             prevCircleObj = circleGameObject;
         }
     }
-    private void ShowChangableGraph(List<float> valueList, Color color,string name)
+    private void ShowChangableGraph(List<float> valueList, Color color, string name)
     {
         title = GameObject.Find("Title");
         title.GetComponent<TextMeshProUGUI>().text = name;
@@ -194,15 +210,22 @@ public class ComplexityGraph : MonoBehaviour
         float startX = 0;
         float graphHeight = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.y;
         float graphWidth = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.x + 57;
-        float yMax = valueList[valueList.Count - 1];
+      
+       
+        float yMax = valueList.Max();
         float xSize = graphWidth / valueList.Count;
         GameObject prevCircleObj = null;
-        for(int i = 0; i < valueList.Count; i++)
+        for (int i = 0; i < valueList.Count; i++)
         {
-            float xPos =  (i * xSize);
-            float yPos = ((graphHeight/yMax) * valueList[i]);
-           
-            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f),10);
+            if (valueList[i] == -1)
+            {
+                continue;
+            }
+            float xPos = (i * xSize);
+            float yPos = ((graphHeight / yMax) * valueList[i]);
+            startY = GameObject.Find("Origin").transform.position.y;
+
+            GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f), 10);
             pointList.Add(circleGameObject);
             if (i == 0)
             {
@@ -210,10 +233,10 @@ public class ComplexityGraph : MonoBehaviour
                 startY = circleGameObject.transform.position.y;
             }
             Vector3 xAxis = new Vector3(circleGameObject.transform.position.x, startY, 0);
-            CreateScaleText( i, xAxis+down,valueList[i]);
-            
-          
-            
+            CreateScaleText(i, xAxis + down, valueList[i]);
+
+
+
 
 
             if (prevCircleObj)
@@ -221,14 +244,14 @@ public class ComplexityGraph : MonoBehaviour
                 CreateDotConnection(prevCircleObj.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition, color);
             }
             prevCircleObj = circleGameObject;
-            
+
         }
- 
+
     }
 
-   private void ShowValueUnderGraph(float value, Vector3 position,float i)
+    private void ShowValueUnderGraph(float value, Vector3 position, float i)
     {
-        InstantiateText(Round(value), position,12,i);
+        InstantiateText(Round(value), position, 12, i);
     }
     private bool IfViableToShow(float i)
     {
@@ -244,14 +267,14 @@ public class ComplexityGraph : MonoBehaviour
         }
         return true;
     }
-    private void CreateScaleText(float loop, Vector3 position,float value)
+    private void CreateScaleText(float loop, Vector3 position, float value)
     {
         if (IfViableToShow(loop))
         {
-            InstantiateText(loop, position, 32,loop);
-            ShowValueUnderGraph(value, position+(2.5f*down),loop);
+            InstantiateText(loop, position, 32, loop);
+            ShowValueUnderGraph(value, position + (2.5f * down), loop);
         }
-    
+
     }
 
     public static float Round(float value)
@@ -264,34 +287,34 @@ public class ComplexityGraph : MonoBehaviour
         }
         else return value;
     }
-    private void InstantiateText(float value, Vector3 position,int size, float i)
+    private void InstantiateText(float value, Vector3 position, int size, float i)
     {
         GameObject textInstance = Instantiate(xScaleText, position, Quaternion.identity);
-        if (value > 10000&&i%2==0)
+        if (value > 10000 && i % 2 == 0)
         {
             var exponent = (Math.Floor(Math.Log10(Math.Abs(value))));
             var mantissa = (value / Math.Pow(10, exponent));
-            textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = mantissa.ToString("F2")+"e"+exponent;
+            textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = mantissa.ToString("F2") + "e" + exponent;
             textInstance.transform.SetParent(graphContainer, true);
             textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = size;
         }
-        if(value>10000&&i%2!=0)
+        if (value > 10000 && i % 2 != 0)
         {
             return;
         }
-        if(value<10000&&i%2==0)
+        if (value < 10000 &&i%2 == 0)
         {
             textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = value.ToString();
             textInstance.transform.SetParent(graphContainer, true);
             textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = size;
         }
-     
+
         scaleTextList.Add(textInstance);
     }
-    private void CreateDotConnection(Vector2 dotPosition1, Vector2 dotPosition2,Color color)
+    private void CreateDotConnection(Vector2 dotPosition1, Vector2 dotPosition2, Color color)
     {
         GameObject gameObject = new GameObject("dotConnection", typeof(Image));
-        gameObject.transform.SetParent(graphContainer,false);
+        gameObject.transform.SetParent(graphContainer, false);
         gameObject.GetComponent<Image>().color = color;
         gameObject.GetComponent<Image>().sprite = lineSprite;
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
@@ -300,26 +323,26 @@ public class ComplexityGraph : MonoBehaviour
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
         rectTransform.sizeDelta = new Vector2(distance, 3f);
-        rectTransform.anchoredPosition = dotPosition1 + dir *(distance/2);
+        rectTransform.anchoredPosition = dotPosition1 + dir * (distance / 2);
         rectTransform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
         lineList.Add(gameObject);
     }
     public void ClearGraph()
     {
-        foreach(GameObject line in lineList)
+        foreach (GameObject line in lineList)
         {
             Destroy(line);
-          
+
         }
-        foreach(GameObject point in pointList)
+        foreach (GameObject point in pointList)
         {
             Destroy(point);
-        
+
         }
-        foreach(GameObject textInstance in scaleTextList)
+        foreach (GameObject textInstance in scaleTextList)
         {
             Destroy(textInstance);
-            
+
         }
         lineList.Clear();
         pointList.Clear();

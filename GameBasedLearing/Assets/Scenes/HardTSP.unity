@@ -1647,6 +1647,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8107255578405751548, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 174655174}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d1f17f232c033840a9b43a5971d69c8, type: 3}
 --- !u!1 &1066390681
@@ -3397,7 +3402,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1425181093}
-        m_MethodName: HideGraphBeeLevel2
+        m_MethodName: HideGraphBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3561,7 +3566,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1425181093}
-        m_MethodName: ShowGraphBeeLevel2
+        m_MethodName: ShowGraphBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

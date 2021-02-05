@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AnimatePoolBalls : MonoBehaviour
 {
-    private bool moved = false;
+    
     bool firstHalf = false;
     private List<Tuple<int, List<int>>> arraysToAnimate = new List<Tuple<int, List<int>>>();
     List<ArrayInformation> allArrays = new List<ArrayInformation>();
@@ -59,9 +59,10 @@ public class AnimatePoolBalls : MonoBehaviour
         {
            
             ball.transform.Translate(direction.normalized * distanceThisFrame, Space.World);
-
+            ball.GetOutline().SetColour(Color.red);
             if (targetPosition.y - ball.transform.position.y <= 0.1f)
             {
+                ball.GetOutline().ResetColour();
                 ball.GetOutline().SetOutlineImage(false);
               
                 

@@ -45,7 +45,11 @@ public class DynamicUI : MonoBehaviour
     }
     public void SetShowGraphButtonActive()
     {
-        showGraphButon.SetActive(true);
+        if(hideGraphButton.activeInHierarchy == false)
+        {
+            showGraphButon.SetActive(true);
+        }
+      
     }
     public void SetShowGraphButtonUnactive()
     {

@@ -10,9 +10,10 @@ TagManager:
   - Queen
   - Graph
   - CardHolder
-  - floor
   - TopArrayHolder
   - Ball
+  - Cherry
+  - Floor
   layers:
   - Default
   - TransparentFX

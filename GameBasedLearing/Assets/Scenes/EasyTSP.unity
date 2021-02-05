@@ -776,7 +776,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 938759766078996846}
-        m_MethodName: HideGraphBeeLevel1
+        m_MethodName: HideGraphBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4986,7 +4986,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 938759766078996846}
-        m_MethodName: ShowGraphBeeLevel1
+        m_MethodName: ShowGraphBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

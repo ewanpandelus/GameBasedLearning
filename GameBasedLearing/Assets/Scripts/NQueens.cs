@@ -36,13 +36,14 @@ public class NQueens : MonoBehaviour, IPuzzle
 
     void IPuzzle.ComputerSolve()
     {
+        solved = true;
         ClearBoard();
         moves.Clear();
         int[,] board = new int[problemSize, problemSize];
         GameObject[,] queenPlacement = new GameObject[problemSize, problemSize];
         solveNQUtil(board, 0, problemSize);
         StartCoroutine(IterateThroughMoves(queenPlacement));
-        solved = false;
+  
         Debug.Log("Top of function: " + topOfFunction);
         Debug.Log("InsideFor: " + insideFor);
         Debug.Log("Insideif: " + insideIf);
@@ -185,15 +186,16 @@ public class NQueens : MonoBehaviour, IPuzzle
     IEnumerator IterateThroughMoves(GameObject[,] queenPlacement)
     {
         {
-            solved = true;
+     
             foreach (Tuple<Tuple<int, int>, char> move in moves)
             {
                 yield return new WaitForSeconds(1/slider.value);
                 if (move.Item2 == 'I')
                 {
+                    GameObject chessBoard = GameObject.Find("ChessBoard");
                     Transform cellTransform = board.GetCellAtXY(move.Item1.Item1, move.Item1.Item2).transform;
                     GameObject gameObject = (GameObject)Instantiate(queenPiecePrefab, cellTransform.position, cellTransform.rotation);
-                    gameObject.transform.SetParent(parentCanvas.transform);
+                    gameObject.transform.SetParent(chessBoard.transform);
                     queenPlacement[move.Item1.Item1, move.Item1.Item2] = gameObject;
                 }
                 else
@@ -202,5 +204,6 @@ public class NQueens : MonoBehaviour, IPuzzle
                 }
             }
         }
+        solved = false;
     }
 }

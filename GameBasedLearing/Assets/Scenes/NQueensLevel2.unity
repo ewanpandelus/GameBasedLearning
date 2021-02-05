@@ -2201,9 +2201,10 @@ GameObject:
   - component: {fileID: 1228035711}
   - component: {fileID: 1228035713}
   - component: {fileID: 1228035714}
+  - component: {fileID: 1228035715}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2273,6 +2274,18 @@ MonoBehaviour:
   showGraphButon: {fileID: 1745305264}
   hideGraphButton: {fileID: 82199645}
   slider: {fileID: 1522777373}
+--- !u!114 &1228035715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228035710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc94306d0425a847b6bbf5c3b7ba40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1299322728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,7 +3573,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1285734209352378038}
-        m_MethodName: ShowGraphBeeLevel1
+        m_MethodName: ShowGraphQueens
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
