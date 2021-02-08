@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
-  
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private DynamicUI dynamicUI;
     public string levelName;
     public string destinationLevel;
@@ -28,7 +28,11 @@ public class LevelLoader : MonoBehaviour
     }
     private IEnumerator LoadLevel(string levelName)
     {
-
+        if(scene.name == "Platformer")
+        {
+            
+            SaveSystem.SavePlayer(playerMovement);
+        }
         sceneTransition.GetAnimator().SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
         if (scene.name.Contains("Overview")&&!this.name.Contains("Back"))

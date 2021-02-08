@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dynamicUI: {fileID: 0}
-  levelName: LevelChooser
+  levelName: Platformer
   destinationLevel: 
 --- !u!114 &1839026155
 MonoBehaviour:

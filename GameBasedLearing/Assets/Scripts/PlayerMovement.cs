@@ -18,9 +18,13 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     private bool isJumping = false;
     private int cherryCount = 0;
 
-  
-  
-    void Update()
+
+    private void Start()
+    {
+        LoadPlayer();
+        DisplayCherryCount();
+    }
+    private void Update()
     {
         animator.speed = 1f;
 
@@ -61,10 +65,14 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         }
         FlipCharacter();
     }
+    private void DisplayCherryCount()
+    {
+        this.cherryText.text = cherryCount.ToString();
+    }
     private void IncrementCherryCount()
     {
         this.cherryCount++;
-        this.cherryText.text = cherryCount.ToString();
+       
     }
     private void NonClimbingMovement()
     {
@@ -136,12 +144,13 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
         }
     }
-   private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        
+
         if (collider.gameObject.transform.tag == "Cherry")
         {
             IncrementCherryCount();
+            DisplayCherryCount();
             Destroy(collider.gameObject);
         }
     }
@@ -150,6 +159,21 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     void OnCollisionExit2D(Collision2D theCollision)
     {
         isgrounded = false;
+    }
+    private void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPLayer();
+        if (data!=null)
+        {
+            this.cherryCount = data.totalCherries;
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            this.transform.position = position;
+        }
+       
+
     }
     public float GetHorizontalVelocity()
     {
@@ -176,5 +200,14 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     {
         isClimbing = _isClimbing;
     }
-}
+    public int GetCherries()
+    {
+        return this.cherryCount;
+    }
+    public Vector3 GetPosition()
+    {
+        return this.transform.position;
+    }
 
+
+}

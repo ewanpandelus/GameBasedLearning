@@ -9,6 +9,7 @@ public class GlobalDataHolder:MonoBehaviour
     [SerializeField] private Slider slider;
     private string destinationLevel = "";
     private float sliderValue;
+    private int cherryCount;
     private void Awake() 
     {
     DontDestroyOnLoad(transform.gameObject);
@@ -38,5 +39,13 @@ public class GlobalDataHolder:MonoBehaviour
             return this.sliderValue;
         }
        
+    }
+    public int GetCherries()
+    {
+        return this.cherryCount;
+    }
+    public void SetCherries(int count) 
+    {
+        this.cherryCount = count;
     }
 }
