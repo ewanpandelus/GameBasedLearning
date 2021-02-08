@@ -173,8 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdd0064194a7684ea0d2e9f25d4a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
   dynamicUI: {fileID: 0}
-  levelName: LevelChooser
+  levelName: Platformer
   destinationLevel: 
 --- !u!114 &432858231
 MonoBehaviour:
@@ -1014,6 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdd0064194a7684ea0d2e9f25d4a3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
   dynamicUI: {fileID: 0}
   levelName: BubbleSort
   destinationLevel: 

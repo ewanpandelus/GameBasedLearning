@@ -237,6 +237,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         {
                 dynamicUI.SetWinningPathText();
                 dynamicUI.SetButtonsActive();
+                dynamicUI.ShowCherryAdd(5);
                 AudioManagement.Play("WinGame");
         }
         else

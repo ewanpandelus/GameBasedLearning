@@ -5,7 +5,7 @@ using System;
 
 public static class SaveSystem 
 {
-    public static void SavePlayer(PlayerMovement playerMovement)
+    public static void SavePlayer(PlayerMovement playerMovement,GlobalDataHolder globalDataHolder)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Path.Combine(Application.persistentDataPath ,"player.txt");
@@ -13,7 +13,7 @@ public static class SaveSystem
         try
         {
          
-            PlayerData playerData = new PlayerData(playerMovement);
+            PlayerData playerData = new PlayerData(playerMovement,globalDataHolder);
             formatter.Serialize(stream, playerData);
         }
         catch(Exception e)

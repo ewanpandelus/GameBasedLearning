@@ -13,11 +13,14 @@ public class DynamicUI : MonoBehaviour
     [SerializeField] private GameObject showGraphButon;
     [SerializeField] private GameObject hideGraphButton;
     [SerializeField] private Slider slider;
+    [SerializeField] private GameObject cherryAddition;
+    private GlobalDataHolder globalDataHolder;
     private string originalWinningPathText;
     private string originalWrongPathText;
     // Start is called before the first frame update
     void Start()
     {
+        globalDataHolder = GameObject.Find("GlobalDataHolderData").GetComponent<GlobalDataHolder>();
         originalWinningPathText = winningText.text;
         originalWrongPathText = incorrectText.text;
         winningText.text = "";
@@ -26,6 +29,7 @@ public class DynamicUI : MonoBehaviour
         SetSliderUnactive();
         SetShowGraphButtonUnactive();
         SetHideGraphButtonUnactive();
+        cherryAddition.SetActive(false);
         
     }
     public void SetWinningPathText()
@@ -81,6 +85,14 @@ public class DynamicUI : MonoBehaviour
     {
         continueButton.SetActive(true);
         replayButton.SetActive(true);
+    }
+    public void ShowCherryAdd(int number)
+    {
+        cherryAddition.SetActive(true);
+        cherryAddition.GetComponentInChildren<TextMeshProUGUI>().text = number + "+";
+        globalDataHolder.SetCherries(globalDataHolder.GetCherries() + number);
+        
+       
     }
     private IEnumerator FadeOutRoutine(TextMeshProUGUI text,float waitTime)
     {

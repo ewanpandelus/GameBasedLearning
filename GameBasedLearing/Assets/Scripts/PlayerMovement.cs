@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 {
     [SerializeField] private Animator animator;
     [SerializeField] private TextMeshProUGUI cherryText;
+    private GlobalDataHolder globalDataHolder;
     public Rigidbody2D rb;
     private float horizontalVelocity = 12f;
     float horizontalMove = 0f;
@@ -21,8 +22,12 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
     private void Start()
     {
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        cherryCount = globalDataHolder.GetCherries();
         LoadPlayer();
-        DisplayCherryCount();
+        globalDataHolder.DisplayCherryCount();
+       
+        
     }
     private void Update()
     {
@@ -65,15 +70,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         }
         FlipCharacter();
     }
-    private void DisplayCherryCount()
-    {
-        this.cherryText.text = cherryCount.ToString();
-    }
-    private void IncrementCherryCount()
-    {
-        this.cherryCount++;
-       
-    }
+
     private void NonClimbingMovement()
     {
 
@@ -149,8 +146,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
         if (collider.gameObject.transform.tag == "Cherry")
         {
-            IncrementCherryCount();
-            DisplayCherryCount();
+            cherryCount++;
+            globalDataHolder.SetCherries(cherryCount);
+            globalDataHolder.DisplayCherryCount();
             Destroy(collider.gameObject);
         }
     }
@@ -199,6 +197,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     public void SetIsClimbing(bool _isClimbing)
     {
         isClimbing = _isClimbing;
+    }
+    public void SetCherries(int count)
+    {
+        this.cherryCount = count;
     }
     public int GetCherries()
     {

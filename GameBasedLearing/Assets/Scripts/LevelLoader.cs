@@ -31,7 +31,7 @@ public class LevelLoader : MonoBehaviour
         if(scene.name == "Platformer")
         {
             
-            SaveSystem.SavePlayer(playerMovement);
+            SaveSystem.SavePlayer(playerMovement,globalDataHolder);
         }
         sceneTransition.GetAnimator().SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
