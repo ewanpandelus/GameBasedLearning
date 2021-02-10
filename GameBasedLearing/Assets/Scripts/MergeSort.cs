@@ -11,6 +11,7 @@ public class MergeSort : MonoBehaviour
     [SerializeField]
     Ball ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
         ballPrefab5, ballPrefab6, ballPrefab7, ballPrefab8;
+    private DynamicUI dynamicUI;
     private List<Ball> allBalls = new List<Ball>();
     private List<int> numbers = new List<int>();
     private PoolBallHolder[] allPoolBallHolders = new PoolBallHolder[8];
@@ -29,6 +30,7 @@ public class MergeSort : MonoBehaviour
     private AudioManager audioManager;
     void Start()
     {
+        dynamicUI = GameObject.Find("GameManager").GetComponent<DynamicUI>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioManager.Play("Bar");
         animatePoolBalls = gameObject.GetComponent<AnimatePoolBalls>();
@@ -46,19 +48,40 @@ public class MergeSort : MonoBehaviour
             allPoolBallHolders[counter] = GO.GetComponent<PoolBallHolder>();
             counter++;
         }
+
+        InitialiseGame();
+        
+
+   
+    }
+    private void Reset()
+    {
+        foreach(Ball ball in inGameBalls)
+        {
+            Destroy(ball);
+        }
+    }
+    private void InitialiseGame()
+    {
         Shuffle();
         balls = ConvertToIntArray(inGameBalls);
         expectedArrays.Add(new Tuple<int, List<int>>(0, balls));
         initialArray.SetExpectedArrayValues(balls);
         CreateExpectedArrays(balls, 1);
-
         foreach (Tuple<int, List<int>> expectedArray in expectedArrays)
         {
             checkExpectedListFull[expectedArray.Item2] = false;
         }
-
+    }
+    public void Solve()
+    {
         animatePoolBalls.StartAnimation();
-
+        foreach(ArrayInformation array in allArrays) 
+        {
+            array.SetEmpty(true);
+            array.SetFull(false);
+            
+        }
     }
     public void Shuffle()
     {
@@ -115,9 +138,11 @@ public class MergeSort : MonoBehaviour
             }
             else
             {
+                dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array");
                 return false;
             }
         }
+        dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array");
         return false;
     }
     public bool Merging(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray, PoolBallHolder poolBallHolder)
@@ -144,9 +169,11 @@ public class MergeSort : MonoBehaviour
             }
             else
             {
+                dynamicUI.ChangeWrongPathText("The arrays are compared, \n and the balls are placed in order. \n The placement you have chosen isn't sorted");
                 return false;
             }
         }
+        dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array");
         return false;
     }
     private bool CheckCorrectBallPosition(ArrayInformation associatedArray, int ballNumber,PoolBallHolder poolBallHolder)

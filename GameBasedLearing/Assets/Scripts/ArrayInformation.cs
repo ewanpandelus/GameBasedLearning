@@ -18,19 +18,24 @@ public class ArrayInformation : MonoBehaviour
 
     private void Start()
     {
+
         for(int i = 0; i < size; i++)
         {
-            if(size == 8)
-            {
-                isArrayOccupied.Add(true);
-            }
-            else
-            {
-                isArrayOccupied.Add(false);
-            }
-           
+            InitialiseArrayOccupied();
         }
     
+    }
+    private void InitialiseArrayOccupied()
+    {
+        if (size == 8)
+        {
+            isArrayOccupied.Add(true);
+        }
+        else
+        {
+            isArrayOccupied.Add(false);
+        }
+
     }
     public void UpdateIsArrayOccupied(int ballToUpdate,bool adding,int prevBallIndex)
     {
@@ -79,6 +84,11 @@ public class ArrayInformation : MonoBehaviour
     public int GetLevel()
     {
         return this.level;
+    }
+    public void SetAllOccupiedFalse()
+    {
+        isArrayOccupied.Clear();
+        InitialiseArrayOccupied();
     }
     public void SetExpectedArrayValues(List<int> _expectedArrayValues)
     {
