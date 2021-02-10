@@ -71,6 +71,7 @@ public class DynamicUI : MonoBehaviour
     {
         continueButton.SetActive(false);
         replayButton.SetActive(false);
+        cherryAddition.SetActive(false);
     }
     public void SetSliderUnactive()
     {
@@ -91,6 +92,7 @@ public class DynamicUI : MonoBehaviour
         cherryAddition.SetActive(true);
         cherryAddition.GetComponentInChildren<TextMeshProUGUI>().text = number + "+";
         globalDataHolder.SetCherries(globalDataHolder.GetCherries() + number);
+        globalDataHolder.DisplayCherryCount();
         
        
     }

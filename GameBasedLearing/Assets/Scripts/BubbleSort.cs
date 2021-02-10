@@ -61,6 +61,12 @@ public class BubbleSort : MonoBehaviour
 
 
     }
+    public void Replay()
+    {
+        Reset();
+        dynamicUI.SetButtonsUnactive();
+        dynamicUI.FadeOutWinningPathtext();
+    }
     private void CorrectExecution()
     {
         dynamicUI.SetWinningPathText();
@@ -109,7 +115,7 @@ public class BubbleSort : MonoBehaviour
     {
         GameObject.Find("StepCount").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Step Count: " + moveCounter.ToString();
     }
-    public void RandomiseCards()
+    private void RandomiseCards()
     {
         for (int i = 0; i < 9; i++)
         {
