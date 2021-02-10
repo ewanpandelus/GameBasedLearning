@@ -35,42 +35,30 @@ public class Card : EventTrigger
     {
         this.currentCardHolder = cardHolder;
     }
-    protected virtual void Move()
-    {
-      
-        originalCardHolder = currentCardHolder;
-     
-        // Switch cells
-        if (targetCardHolder)
-        {
-            int i = int.Parse(targetCardHolder.name);
-            int j = int.Parse(currentCardHolder.name);
 
-            Vector3 tempPosition = currentCardHolder.transform.position;
-            targetCardHolder.GetCurrentCard().transform.position = tempPosition;
-            currentCardHolder = targetCardHolder;
-            transform.position = currentCardHolder.transform.position;
-            targetCardHolder = originalCardHolder;
-            SwapCardHolder(i, j);
-            Debug.Log(transform.position);
-        }
-
-    }
+    
    public void SetInitialPosition(Vector3 position)
     {
         this.initialPosition = position;
     }
     private void MoveCard()
     {
-        
+      
         if (targetCard)
         {
             if(bubbleSort.CheckMoveIsCorrect(this.gameObject, targetCard.gameObject))
             {
                 transform.position = targetCard.transform.position;
+                currentCardHolder.SetCurrentCard(targetCard);
+                targetCardHolder = targetCard.currentCardHolder;
+                targetCard.SetCurrentCardHolder(currentCardHolder);
                 targetCard.transform.position = initialPosition;
                 targetCard.SetInitialPosition(initialPosition);
+              
+                currentCard.SetCurrentCardHolder(targetCardHolder);
+                targetCardHolder.SetCurrentCard(this);
                 initialPosition = transform.position;
+                bubbleSort.TestIfFinished();
             }
             else
             {
@@ -83,12 +71,7 @@ public class Card : EventTrigger
         }
         targetCard = null;
     }
-    private void SwapCardHolder(int i, int j)
-    {
-        Card tmp = allCards[i];
-        allCards[i] = allCards[j];
-        allCards[j] = tmp;
-    }
+ 
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);

@@ -18,10 +18,6 @@ public class GlobalDataHolder:MonoBehaviour
     {
         DontDestroyOnLoad(transform.gameObject);
        
-       
-        
-     
-      
     }
     public void LoadGlobalDataHolder()
     {

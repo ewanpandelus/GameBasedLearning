@@ -10,16 +10,19 @@ public class BubbleSort : MonoBehaviour
 {
     AudioManager AudioManagement;
     [SerializeField] private Slider slider;
+    [SerializeField] private DynamicUI dynamicUI;
     private int moveCounter = 0;
     private Vector3 down = new Vector3(0f, -200f);
     private Vector3 up = new Vector3(0f, 200f);
     private GameObject[] allCardHoldersGO;
     int[] cards = new int[9];
+    int[] finalArray = new int[9];
     private List<int> numbers = new List<int>();
     private List<Card> allCards = new List<Card>();
+    private List<Card> listToCompare = new List<Card>();
     private List<Card> inGameCards = new List<Card>();
     List<Tuple<int, int>> moves = new List<Tuple<int, int>>();
-    GameObject cardObj;
+    private  GameObject cardObj;
     private CardHolder[] allCardHolders = new CardHolder[9];
     private bool moving = true;
     [SerializeField] Card cardPrefab1;
@@ -39,7 +42,7 @@ public class BubbleSort : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        dynamicUI = GameObject.Find("GameManager").GetComponent<DynamicUI>();
         AudioManagement = AudioManager.instance;
         cardObj = GameObject.Find("Cards");
         numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
@@ -58,6 +61,28 @@ public class BubbleSort : MonoBehaviour
 
 
     }
+    private void CorrectExecution()
+    {
+        dynamicUI.SetWinningPathText();
+        dynamicUI.SetButtonsActive();
+        dynamicUI.ShowCherryAdd(4);
+        AudioManagement.Play("WinGame");
+    }
+    public void TestIfFinished()
+    {
+        bool finished = true;
+        int counter = 0;
+        foreach(CardHolder cardHolder in allCardHolders)
+        {
+         
+            finished = finished && int.Parse(Regex.Match(cardHolder.GetCurrentCard().name, @"\d+").Value) == finalArray[counter];
+            counter++;
+        }
+        if (finished)
+        {
+            CorrectExecution();
+        }
+    }
     public void Solve()
     {
         Reset();
@@ -69,12 +94,15 @@ public class BubbleSort : MonoBehaviour
         {
             return false;
         }
-        if (moves[moveCounter].Item1 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value) && moves[moveCounter].Item2 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value))
+        if (moves[moveCounter].Item1 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value) && moves[moveCounter].Item2 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value) 
+            || moves[moveCounter].Item1== int.Parse(Regex.Match(rightCard.name, @"\d+").Value) && moves[moveCounter].Item2 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value))
         {
             moveCounter++;
             DisplaySteps();
+           
             return true;
         }
+        dynamicUI.SetWrongPathText();
         return false;
     }
     private void DisplaySteps()
@@ -87,10 +115,13 @@ public class BubbleSort : MonoBehaviour
         {
             int random = UnityEngine.Random.Range(1, numbers.Count);
             allCardHolders[i].SetCurrentCard(allCards[random]);
+            listToCompare.Add(allCards[random]);
             numbers.RemoveAt(random);
             allCards.RemoveAt(random);
         }
     }
+    
+    
     public void Shuffle()
     {
         RandomiseCards();
@@ -214,6 +245,7 @@ public class BubbleSort : MonoBehaviour
                     arr[j + 1] = temp;
 
                 }
+        finalArray = arr;
     }
     IEnumerator BubbleSortAnimateAlgorithm(int[] arr)
     {
@@ -243,6 +275,8 @@ public class BubbleSort : MonoBehaviour
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
                 }
+        CorrectExecution();
+
     }
 
 }

@@ -17,10 +17,10 @@ public class DynamicUI : MonoBehaviour
     private GlobalDataHolder globalDataHolder;
     private string originalWinningPathText;
     private string originalWrongPathText;
-    // Start is called before the first frame update
-    void Start()
+  
+   private void Start()
     {
-        globalDataHolder = GameObject.Find("GlobalDataHolderData").GetComponent<GlobalDataHolder>();
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
         originalWinningPathText = winningText.text;
         originalWrongPathText = incorrectText.text;
         winningText.text = "";
