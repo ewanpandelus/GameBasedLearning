@@ -64,6 +64,7 @@ public class AnimatePoolBalls : MonoBehaviour
             {
                 ball.GetOutline().ResetColour();
                 ball.GetOutline().SetOutlineImage(false);
+                ball.transform.position = targetPosition;
               
                 
               
@@ -133,7 +134,7 @@ public class AnimatePoolBalls : MonoBehaviour
             
         {
             List<ArrayInformation> arraysToMoveTo = allArrays.FindAll(x => x.GetLevel() == i-1);
-            arraysToMoveTo.Reverse();
+            arraysToMoveTo = SortArraysToMoveTo(arraysToMoveTo);
             List<Ball> leftPoolBalls = new List<Ball>();
             List<Ball> rightPoolBalls = new List<Ball>();
             foreach (ArrayInformation array in arraysToMoveTo)
@@ -158,6 +159,19 @@ public class AnimatePoolBalls : MonoBehaviour
         }
         StartCoroutine("MergingAnimation");
     }
+    private List<ArrayInformation> SortArraysToMoveTo(List<ArrayInformation> arraysToMoveTo)
+    {
+        List<ArrayInformation> resultArray = new List<ArrayInformation>();
+        for(int i = 1; i < arraysToMoveTo.Count+1; i++)
+        {
+            ArrayInformation array = arraysToMoveTo.Find(x => x.name.Contains(i.ToString()));
+            resultArray.Add(array);
+        }
+        return resultArray;
+    }
+    
+
+    
     private void SetPoolBallHolder(PoolBallHolder destinationPoolBallHolder,Ball ball)
     {
         ball.SetCurrentBallHolder(destinationPoolBallHolder);

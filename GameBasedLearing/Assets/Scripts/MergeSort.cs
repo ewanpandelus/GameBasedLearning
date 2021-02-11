@@ -36,7 +36,7 @@ public class MergeSort : MonoBehaviour
         animatePoolBalls = gameObject.GetComponent<AnimatePoolBalls>();
         allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
         aboveAll = GameObject.Find("AboveAll");
-        ballObj = GameObject.Find("TopArray");
+        ballObj = GameObject.Find("TopArray1");
      
         allBalls = new List<Ball> { ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
             ballPrefab5, ballPrefab6, ballPrefab7, ballPrefab8};
@@ -209,6 +209,7 @@ public class MergeSort : MonoBehaviour
         return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel).Item2.IndexOf(ballNumber);
 
     }
+
     private void CheckIfUserLevelShouldChange()
     {
         bool change = true;
