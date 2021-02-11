@@ -50,7 +50,7 @@ public class MergeSort : MonoBehaviour
         }
 
         InitialiseGame();
-        
+        animatePoolBalls.StartAnimation();
 
    
     }

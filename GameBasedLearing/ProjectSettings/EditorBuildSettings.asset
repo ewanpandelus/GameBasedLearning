@@ -41,7 +41,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 05cabb161b041554d982fa15d4eed5d3
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MergeSort.unity
-    guid: 76dd35178c87ca04ea3acd4dc4e91d2f
+    guid: e39d4d7e7d26bc94cafb4c6baf6276ab
   m_configObjects: {}
