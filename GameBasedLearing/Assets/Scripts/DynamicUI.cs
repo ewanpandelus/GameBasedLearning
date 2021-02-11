@@ -48,11 +48,11 @@ public class DynamicUI : MonoBehaviour
         incorrectText.text = originalWrongPathText;
         StartCoroutine(FadeOutRoutine(incorrectText,1f));
     }
-    public void ChangeWrongPathText(string message)
+    public void ChangeWrongPathText(string message,float time)
     {
         incorrectText.color = Color.white;
         incorrectText.text = message;
-        StartCoroutine(FadeOutRoutine(incorrectText, 1f));
+        StartCoroutine(FadeOutRoutine(incorrectText, time));
     }
     public void SetShowGraphButtonActive()
     {

@@ -50,7 +50,7 @@ public class MergeSort : MonoBehaviour
         }
 
         InitialiseGame();
-        animatePoolBalls.StartAnimation();
+        
 
    
     }
@@ -117,6 +117,10 @@ public class MergeSort : MonoBehaviour
         int prevBallIndex = FindPreviousBallPosition(ballNumber);
         ArraysForLevel = expectedArrays.FindAll(x => x.Item1 == userLevel);
         List<int> currrentArray = expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel).Item2;
+        if (associatedArray == previousArray)
+        {
+            return false;
+        }
         if (associatedArray.GetLevel() == userLevel)
         {
             if (associatedArray.GetEmpty() && !belongsToArray)
@@ -138,11 +142,11 @@ public class MergeSort : MonoBehaviour
             }
             else
             {
-                dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array");
+                dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array",1.5f);
                 return false;
             }
         }
-        dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array");
+        dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array",1.5f);
         return false;
     }
     public bool Merging(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray, PoolBallHolder poolBallHolder)
@@ -151,6 +155,7 @@ public class MergeSort : MonoBehaviour
         int prevBallIndex = FindPreviousBallPosition(ballNumber);
         arraysForLevel = sortedArrays.FindAll(x => x.Item1 == userLevel-1);
         List<int> currrentArray = arraysForLevel.Find(x => x.Item2.Contains(ballNumber)).Item2;
+       
         if (associatedArray.GetLevel() == userLevel-1)
         {
             if (associatedArray.GetEmpty() && !belongsToArray)
@@ -169,11 +174,11 @@ public class MergeSort : MonoBehaviour
             }
             else
             {
-                dynamicUI.ChangeWrongPathText("The arrays are compared, \n and the balls are placed in order. \n The placement you have chosen isn't sorted");
+                dynamicUI.ChangeWrongPathText("The arrays are compared, \n and the balls are placed in order. \n The placement you have chosen isn't sorted",3f);
                 return false;
             }
         }
-        dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array");
+        dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array",1.5f);
         return false;
     }
     private bool CheckCorrectBallPosition(ArrayInformation associatedArray, int ballNumber,PoolBallHolder poolBallHolder)
@@ -233,6 +238,7 @@ public class MergeSort : MonoBehaviour
         }
         if (change)
         {
+       
            foreach(ArrayInformation array in arraysToCheck)
             {
                 array.SetBallsOfExpectedArray(false);
