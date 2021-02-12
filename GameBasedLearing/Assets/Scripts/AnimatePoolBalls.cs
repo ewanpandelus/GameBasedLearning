@@ -38,6 +38,7 @@ public class AnimatePoolBalls : MonoBehaviour
                 ball.SetFirstHalf(true);
                 ball.SetCurrentBallHolder(ball.GetCurrentPoolBallHolder().GetDestinationPoolBallHolder());
                 ball.GetCurrentPoolBallHolder().SetCurrentBall(ball);
+                ball.transform.position = targetPosition;
                 moving = false;
             }
             yield return new WaitForSecondsRealtime(0.01f);
