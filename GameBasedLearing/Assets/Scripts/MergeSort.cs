@@ -38,9 +38,7 @@ public class MergeSort : MonoBehaviour
         aboveAll = GameObject.Find("AboveAll");
         ballObj = GameObject.Find("TopArray1");
      
-        allBalls = new List<Ball> { ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
-            ballPrefab5, ballPrefab6, ballPrefab7, ballPrefab8};
-        numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
+     
         allPoolBallHoldersGO = GameObject.FindGameObjectsWithTag("TopArrayHolder");
         int counter = 0;
         foreach (GameObject GO in allPoolBallHoldersGO)
@@ -54,15 +52,30 @@ public class MergeSort : MonoBehaviour
 
    
     }
-    private void Reset()
+    public void Reset()
     {
-        foreach(Ball ball in inGameBalls)
+        foreach (ArrayInformation array in allArrays)
         {
-            Destroy(ball);
+            array.SetEmpty(true);
+            array.SetFull(false);
+            array.SetAllOccupiedFalse();
+
         }
+        foreach (Ball ball in inGameBalls)
+        {
+            GameObject ballGO = ball.gameObject;
+            Destroy(ballGO);
+        }
+        userLevel = 1;
+        inGameBalls.Clear();
+        InitialiseGame();
     }
     private void InitialiseGame()
     {
+        expectedArrays.Clear();
+        numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
+        allBalls = new List<Ball> { ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
+            ballPrefab5, ballPrefab6, ballPrefab7, ballPrefab8};
         Shuffle();
         balls = ConvertToIntArray(inGameBalls);
         expectedArrays.Add(new Tuple<int, List<int>>(0, balls));
@@ -174,7 +187,7 @@ public class MergeSort : MonoBehaviour
             }
             else
             {
-                dynamicUI.ChangeWrongPathText("The arrays are compared, \n and the balls are placed in order. \n The placement you have chosen isn't sorted",3f);
+                dynamicUI.ChangeWrongPathText("When merging, the arrays become sorted",3f);
                 return false;
             }
         }

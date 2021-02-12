@@ -18,25 +18,25 @@ public class ArrayInformation : MonoBehaviour
 
     private void Start()
     {
-
-        for(int i = 0; i < size; i++)
-        {
-            InitialiseArrayOccupied();
-        }
-    
+     InitialiseArrayOccupied();
     }
+
+
     private void InitialiseArrayOccupied()
     {
-        if (size == 8)
+        for (int i = 0; i < size; i++)
         {
-            isArrayOccupied.Add(true);
+            if (size == 8)
+            {
+                isArrayOccupied.Add(true);
+            }
+            else
+            {
+                isArrayOccupied.Add(false);
+            }
         }
-        else
-        {
-            isArrayOccupied.Add(false);
-        }
-
     }
+    
     public void UpdateIsArrayOccupied(int ballToUpdate,bool adding,int prevBallIndex)
     {
         if (adding)
