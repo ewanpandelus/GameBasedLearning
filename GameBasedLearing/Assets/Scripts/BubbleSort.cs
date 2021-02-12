@@ -12,8 +12,8 @@ public class BubbleSort : MonoBehaviour
     [SerializeField] private Slider slider;
     private DynamicUI dynamicUI;
     private int moveCounter = 0;
-    private Vector3 down = new Vector3(0f, -200f);
-    private Vector3 up = new Vector3(0f, 200f);
+    private Vector3 down = new Vector3(0f, -150f);
+    private Vector3 up = new Vector3(0f, 150f);
     private GameObject[] allCardHoldersGO;
     int[] cards = new int[9];
     int[] finalArray = new int[9];

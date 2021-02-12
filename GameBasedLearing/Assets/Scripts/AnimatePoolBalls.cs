@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimatePoolBalls : MonoBehaviour
 {
-    
+    [SerializeField] private Slider slider;
     bool firstHalf = false;
     private List<Tuple<int, List<int>>> arraysToAnimate = new List<Tuple<int, List<int>>>();
     List<ArrayInformation> allArrays = new List<ArrayInformation>();
@@ -23,7 +24,8 @@ public class AnimatePoolBalls : MonoBehaviour
     }
     private IEnumerator MoveFowards(bool moving, Ball ball,Vector3 targetPosition)
     {
-        float distanceThisFrame = 500f * 0.02f;
+        float distanceThisFrame = slider.value * 0.02f;
+
        
         Vector2 direction = targetPosition - ball.transform.position;
         while (moving)
@@ -51,8 +53,8 @@ public class AnimatePoolBalls : MonoBehaviour
     }
     private IEnumerator MoveBackwards(bool moving, Ball ball, Vector3 targetPosition,PoolBallHolder desinationPoolBallHolder)
     {
-   
-        float distanceThisFrame = 350f* 0.02f;
+        float distanceThisFrame = slider.value * 0.02f;
+        
         
         Vector2 direction = targetPosition - ball.transform.position;
         while (moving)
@@ -91,7 +93,7 @@ public class AnimatePoolBalls : MonoBehaviour
 
             foreach (Ball ball in balls)
             {
-                yield return new WaitForSecondsRealtime(0.5f);
+                yield return new WaitForSecondsRealtime((0.5f/3f) / (slider.value / slider.maxValue));
                 StartCoroutine(MoveFowards(true, ball, ball.GetCurrentPoolBallHolder().GetDestinationPoolBallHolder().transform.position));
             }
         }
@@ -107,12 +109,12 @@ public class AnimatePoolBalls : MonoBehaviour
         {
 
            
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds((1.5f / 3f) / (slider.value / slider.maxValue));
             if (move.Item1)
             {
                 HighLightBalls(move.Item1, move.Item2.Item1);
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds((0.5f / 3f) / (slider.value / slider.maxValue));
             StartCoroutine(MoveBackwards(true, move.Item2.Item1, move.Item2.Item2.transform.position, move.Item2.Item2));
 
 
