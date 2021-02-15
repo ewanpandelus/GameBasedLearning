@@ -2051,6 +2051,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8107255578405751548, guid: 5d1f17f232c033840a9b43a5971d69c8,
+        type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 181909890}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d1f17f232c033840a9b43a5971d69c8, type: 3}
 --- !u!1 &1125945645
@@ -3288,7 +3293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 389696097}
-  dynamicUI: {fileID: 0}
   cardPrefab1: {fileID: 844145324545747776, guid: 2b1fbd619f9d37e44ae66915f66e8e3c,
     type: 3}
   cardPrefab2: {fileID: 2329891636734944851, guid: c3e2133ad6d819d4c804657a91f9e2f4,

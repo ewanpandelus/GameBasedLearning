@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     [SerializeField] private TextMeshProUGUI cherryText;
     private GlobalDataHolder globalDataHolder;
     public Rigidbody2D rb;
+    private Vector3 startPoint = new Vector3(4, 0, 0);
     private float horizontalVelocity = 12f;
     float horizontalMove = 0f;
     bool isgrounded = true;
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     }
     private void Update()
     {
+        if(this.transform.position.y <= -35)
+        {
+            this.transform.position = startPoint;
+        }
         animator.speed = 1f;
 
         if (isJumping)
