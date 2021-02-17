@@ -8,9 +8,9 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private DynamicUI dynamicUI;
     public string levelName;
     public string destinationLevel;
-    SceneTransition sceneTransition;
-    AudioManager AudioManagement;
-    GlobalDataHolder globalDataHolder;
+    private SceneTransition sceneTransition;
+    [SerializeField] private AudioManager AudioManagement;
+    private GlobalDataHolder globalDataHolder;
     Scene scene;
 
     private void Start()
@@ -25,6 +25,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevel()
     {
         StartCoroutine(LoadLevel(levelName));
+        globalDataHolder.SetLevelToAssessComplexity(SceneManager.GetActiveScene().name);
     }
     private IEnumerator LoadLevel(string levelName)
     {

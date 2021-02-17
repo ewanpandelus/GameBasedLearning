@@ -103,6 +103,7 @@ public class ComplexityGraph : MonoBehaviour
        ShowGraph(CreateONLogNList(42), Color.white, 15f,0,1);
        ShowGraph(CreateLogNList(45), Color.magenta, 15f, 0,1);
        ShowGraph(CreateNSquaredList(25), Color.green, 15f,0,1);
+        ShowGraph(CreateExponentialList(9), Color.cyan, 31f, 0, 1);
     }
     private List<float> CreateFactorialList(int problemSize)
     {
@@ -114,12 +115,26 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
     }
+    private List<float> CreateExponentialList(int problemSize)
+    {
+        List<float> valueList = new List<float>();
+        valueList.Add(0);
+        for (int i = 1; i <= problemSize; i++)
+        {
+            valueList.Add(Exponential(i)*1.15f);
+        }
+        return valueList;
+    }
     private int Factorial(int n)
     {
         if (n == 0)
             return 1;
         else
             return n * Factorial(n - 1);
+    }
+    private int Exponential(int n) 
+    {
+        return (int)Math.Pow(2, n);
     }
     private List<float> CreateONLogNList(int problemSize)
     {

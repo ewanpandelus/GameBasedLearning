@@ -183,15 +183,15 @@ MonoBehaviour:
     You must swap cards in the same order as bubble sort would based on the cards
     value.
 
-    
 
-    To swap cards, drag and drop the card you wish to swap into
-    the card you want to swap it with.
 
-    
+    To swap cards, drag and drop the card you wish to swap into the
+    card you want to swap it with.
 
-    If you want to see how bubble
-    sort works graphically, click the ''Solve'' button.
+
+
+    If you want to see how bubble sort works
+    graphically, click the ''Solve'' button.
 
 '
   m_isRightToLeft: 0
@@ -457,6 +457,7 @@ MonoBehaviour:
   dynamicUI: {fileID: 0}
   levelName: Platformer
   destinationLevel: 
+  AudioManagement: {fileID: 0}
 --- !u!114 &432858231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,8 +985,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36.9, y: -2.9}
-  m_SizeDelta: {x: 44.753853, y: 50}
+  m_AnchoredPosition: {x: 45.13, y: -2.9}
+  m_SizeDelta: {x: 61.217743, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865550248
 MonoBehaviour:
@@ -2094,6 +2095,7 @@ MonoBehaviour:
   dynamicUI: {fileID: 0}
   levelName: BubbleSort
   destinationLevel: 
+  AudioManagement: {fileID: 0}
 --- !u!1 &1323016389
 GameObject:
   m_ObjectHideFlags: 0

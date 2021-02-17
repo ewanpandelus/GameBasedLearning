@@ -13,6 +13,7 @@ public class GlobalDataHolder:MonoBehaviour
     private string destinationLevel = "";
     private float sliderValue;
     private int cherryCount;
+    private string levelToAssessComplexity = "";
 
     private void Awake() 
     {
@@ -64,6 +65,15 @@ public class GlobalDataHolder:MonoBehaviour
         }
        
     }
+    public string GetLevelToAssessComplexity()
+    {
+        return this.levelToAssessComplexity;
+    }
+    public void SetLevelToAssessComplexity(string levelName)
+    {
+        this.levelToAssessComplexity = levelName;
+    }
+
     public int GetCherries()
     {
         return this.cherryCount;

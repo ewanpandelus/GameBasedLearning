@@ -2730,6 +2730,7 @@ MonoBehaviour:
   dynamicUI: {fileID: 0}
   levelName: ComplexityGraph
   destinationLevel: 
+  AudioManagement: {fileID: 0}
 --- !u!114 &839831074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3388,8 +3389,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 332.5, y: 95.4}
-  m_SizeDelta: {x: 281.28784, y: 310.05194}
+  m_AnchoredPosition: {x: 350, y: 34.979}
+  m_SizeDelta: {x: 273.44604, y: 339.17853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031313894
 MonoBehaviour:
@@ -4495,8 +4496,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36.9, y: -2.9}
-  m_SizeDelta: {x: 44.753853, y: 50}
+  m_AnchoredPosition: {x: 47.6, y: -2.9}
+  m_SizeDelta: {x: 66.15682, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1396867594
 MonoBehaviour:
@@ -4953,6 +4954,7 @@ MonoBehaviour:
   dynamicUI: {fileID: 556914912}
   levelName: 
   destinationLevel: 
+  AudioManagement: {fileID: 0}
 --- !u!1 &1463548466
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,8 +4989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336.78, y: 49.631}
-  m_SizeDelta: {x: 126.4512, y: 166.04108}
+  m_AnchoredPosition: {x: -18.3, y: -179.16}
+  m_SizeDelta: {x: 264.88123, y: 76.35672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463548468
 MonoBehaviour:
@@ -5037,14 +5039,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
-  m_fontSizeBase: 21
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     }
     private void Update()
     {
-        if(this.transform.position.y <= -35)
+        if(this.transform.position.y <= -35|| Input.GetKeyDown("r"))
         {
             this.transform.position = startPoint;
         }
