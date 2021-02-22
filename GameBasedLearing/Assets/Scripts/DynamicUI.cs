@@ -17,10 +17,15 @@ public class DynamicUI : MonoBehaviour
     private GlobalDataHolder globalDataHolder;
     private string originalWinningPathText;
     private string originalWrongPathText;
-  
-   private void Start()
+    private int cherryCount = 0;
+ 
+
+    private void Start()
     {
+   
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        cherryCount = globalDataHolder.GetCherries();
+        globalDataHolder.DisplayCherryCount();
         originalWinningPathText = winningText.text;
         originalWrongPathText = incorrectText.text;
         winningText.text = "";
@@ -98,9 +103,9 @@ public class DynamicUI : MonoBehaviour
     {
         cherryAddition.SetActive(true);
         cherryAddition.GetComponentInChildren<TextMeshProUGUI>().text = number + "+";
-        globalDataHolder.SetCherries(globalDataHolder.GetCherries() + number);
-        globalDataHolder.DisplayCherryCount();
-        
+        cherryCount+=number;
+        globalDataHolder.SetCherries(cherryCount);
+        globalDataHolder.DisplayCherryCount();    
        
     }
     private IEnumerator FadeOutRoutine(TextMeshProUGUI text,float waitTime)

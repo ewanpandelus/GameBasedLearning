@@ -165,10 +165,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     }
     private void LoadPlayer()
     {
-        PlayerData data = SaveSystem.LoadPLayer();
+        PlayerData data = SaveSystem.LoadPlayer();
+    
         if (data!=null)
         {
-            this.cherryCount = data.totalCherries;
+            this.cherryCount = globalDataHolder.GetCherries();
             Vector3 position;
             position.x = data.position[0];
             position.y = data.position[1];

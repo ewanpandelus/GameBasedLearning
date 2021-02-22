@@ -22,7 +22,7 @@ public class GlobalDataHolder:MonoBehaviour
     }
     public void LoadGlobalDataHolder()
     {
-        PlayerData data = SaveSystem.LoadPLayer();
+        TotalCherriesData data = SaveSystem.LoadTotalCherriesData();
         if (data != null)
         {
             this.cherryCount = data.totalCherries;

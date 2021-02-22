@@ -5,7 +5,7 @@ using System;
 
 public static class SaveSystem 
 {
-    public static void SavePlayer(PlayerMovement playerMovement,GlobalDataHolder globalDataHolder)
+    public static void SavePlayer(PlayerMovement playerMovement)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Path.Combine(Application.persistentDataPath ,"player.txt");
@@ -13,7 +13,7 @@ public static class SaveSystem
         try
         {
          
-            PlayerData playerData = new PlayerData(playerMovement,globalDataHolder);
+            PlayerData playerData = new PlayerData(playerMovement);
             formatter.Serialize(stream, playerData);
         }
         catch(Exception e)
@@ -26,7 +26,54 @@ public static class SaveSystem
         }
     
     }
-    public static PlayerData LoadPLayer()
+    public static void SaveTotalCherries(GlobalDataHolder globalDataHolder)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Path.Combine(Application.persistentDataPath, "totalcherries.txt");
+        FileStream stream = new FileStream(path, FileMode.Create);
+        try
+        {
+
+            TotalCherriesData totalCherriesData = new TotalCherriesData(globalDataHolder);
+            formatter.Serialize(stream, totalCherriesData);
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.Log(e);
+        }
+        finally
+        {
+            stream.Close();
+        }
+
+    }
+    public static TotalCherriesData LoadTotalCherriesData()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "totalcherries.txt");
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            try
+            {
+                TotalCherriesData totalCherriesData = formatter.Deserialize(stream) as TotalCherriesData;
+                stream.Close();
+                return totalCherriesData;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public static PlayerData LoadPlayer()
     {
         string path = Path.Combine(Application.persistentDataPath, "player.txt");
         if (File.Exists(path))

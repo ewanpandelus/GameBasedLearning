@@ -20,7 +20,7 @@ public class ChessBoard : MonoBehaviour
     private int compensation;
 
 
-    // We create the board here, no surprise
+   
      void Awake()
     {
         mAllCells = new Cell[problemSize, problemSize];

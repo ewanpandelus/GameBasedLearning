@@ -24,16 +24,16 @@ public class ComplexityGraph : MonoBehaviour
     private List<GameObject> scaleTextList = new List<GameObject>();
     private Vector3 down = new Vector3(0, -20, 0);
     private Vector3 left = new Vector3(-90, 0, 0);
+    private GlobalDataHolder globalDataHolder;
     ComplexityDataHolder complexityData; 
     private void Awake()
     {
         sceneName = SceneManager.GetActiveScene().name;
-
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
         if (complexityIllustration)
         {
             complexityData = GameObject.FindGameObjectWithTag("GameController").GetComponent<ComplexityDataHolder>();
         }
-      
        
      
       

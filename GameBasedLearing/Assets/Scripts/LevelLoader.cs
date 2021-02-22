@@ -31,9 +31,9 @@ public class LevelLoader : MonoBehaviour
     {
         if(scene.name == "Platformer")
         {
-            
-            SaveSystem.SavePlayer(playerMovement,globalDataHolder);
+             SaveSystem.SavePlayer(playerMovement);
         }
+        SaveSystem.SaveTotalCherries(globalDataHolder);
         sceneTransition.GetAnimator().SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
         if (scene.name.Contains("Overview")&&!this.name.Contains("Back"))

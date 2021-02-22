@@ -54,7 +54,13 @@ public class DynamicSolve : MonoBehaviour
         this.gameObject.transform.position += new Vector3(-200f, 20f, 0);
         this.gameObject.transform.localScale /= 1.2f;
     }
-    
+    public void HideGraphQueen()
+    {
+        DestroyGraph();
+        created = false;
+        this.gameObject.transform.localScale *= 2f;
+        this.gameObject.transform.position -= new Vector3(0, -200f, 0);
+    }
     public void HideGraphBee()
     {
 

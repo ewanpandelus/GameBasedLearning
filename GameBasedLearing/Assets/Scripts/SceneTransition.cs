@@ -11,11 +11,12 @@ public class SceneTransition : MonoBehaviour
     {
         return this.transition;
     }
-    private void Start()
+    private void Awake()
     {
+     
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
         globalDataHolder.LoadGlobalDataHolder();
-     
+
         cherryIcon = GameObject.FindGameObjectWithTag("CherryIcon");
         globalDataHolder.SetCherryIcon(cherryIcon);
         globalDataHolder.DisplayCherryCount();
