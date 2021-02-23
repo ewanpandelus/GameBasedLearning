@@ -22,11 +22,11 @@ public class QueenPiece : EventTrigger
     ChessBoard board;
     private bool safe = true;
 
-    AudioManager AudioManagement;
+    private AudioManager audioManagement;
     void Start()
     {
         dynamicSolve = GameObject.Find("ChessBoard").GetComponent<DynamicSolve>();
-        AudioManagement = AudioManager.instance;
+        audioManagement = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         board = GameObject.Find("ChessBoard").GetComponent<ChessBoard>();
         problemSize = board.GetProblemSize();
         mMovement = new Vector3Int(problemSize - 1, problemSize - 1, problemSize - 1);
@@ -209,7 +209,7 @@ public class QueenPiece : EventTrigger
 
 
         // Move on board
-        AudioManagement.Play("PlacePiece");
+        audioManagement.Play("PlacePiece");
         mTargetCell = null;
     }
 

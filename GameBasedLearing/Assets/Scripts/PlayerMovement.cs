@@ -19,13 +19,14 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     float verticalMove = 0f;
     private bool isJumping = false;
     private int cherryCount = 0;
-
+    private AudioManager audioManager;
 
     private void Start()
     {
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
         cherryCount = globalDataHolder.GetCherries();
         LoadPlayer();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         globalDataHolder.DisplayCherryCount();
        
         
@@ -154,6 +155,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             cherryCount++;
             globalDataHolder.SetCherries(cherryCount);
             globalDataHolder.DisplayCherryCount();
+            audioManager.Play("Crunch");
             Destroy(collider.gameObject);
         }
     }
