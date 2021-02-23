@@ -93,7 +93,11 @@ public class ComplexityGraph : MonoBehaviour
             ShowChangableGraph(dataList, Color.cyan + new Color(0, 0, 0, -0.5f), "NQueens Algorithm");
        
         }
-
+        if(sceneName == "BubbleSort")
+        {
+            dataList = complexityData.GetBubbleSortValueList(n);
+            ShowChangableGraph(dataList, Color.red, "          Bubblesort");
+        }
     }
     private void ShowDifferentComplexities()
     {

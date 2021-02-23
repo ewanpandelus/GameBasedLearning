@@ -25,6 +25,7 @@ public class BubbleSort : MonoBehaviour
     private  GameObject cardObj;
     private CardHolder[] allCardHolders = new CardHolder[9];
     private bool moving = true;
+    private bool solved = false;
     [SerializeField] Card cardPrefab1;
     [SerializeField] Card cardPrefab2;
     [SerializeField] Card cardPrefab3;
@@ -91,8 +92,12 @@ public class BubbleSort : MonoBehaviour
     }
     public void Solve()
     {
-        Reset();
-        StartCoroutine(BubbleSortAnimateAlgorithm(ConvertToIntArray(inGameCards)));
+        if (!solved)
+        {
+            Reset();
+            StartCoroutine(BubbleSortAnimateAlgorithm(ConvertToIntArray(inGameCards)));
+        }
+     
     }
     public bool CheckMoveIsCorrect(GameObject leftCard, GameObject rightCard)
     {
@@ -145,18 +150,23 @@ public class BubbleSort : MonoBehaviour
     }
     public void Reset()
     {
-
-        foreach (CardHolder cardHolder in allCardHolders)
-        {
-            cardHolder.GetInitialCard().SetCurrentPosition(cardHolder.transform.position);
-            cardHolder.SetCurrentCard(cardHolder.GetInitialCard());
-            cardHolder.GetCurrentCard().SetInitialPosition(cardHolder.transform.position);
+        if (!solved){
+            foreach (CardHolder cardHolder in allCardHolders)
+            {
+                cardHolder.GetInitialCard().SetCurrentPosition(cardHolder.transform.position);
+                cardHolder.SetCurrentCard(cardHolder.GetInitialCard());
+                cardHolder.GetCurrentCard().SetInitialPosition(cardHolder.transform.position);
+            }
+            moveCounter = 0;
+            DisplaySteps();
+            AudioManagement.Play("CardShuffle");
         }
-        moveCounter = 0;
-        DisplaySteps();
-        AudioManagement.Play("CardShuffle");
+       
     }
-
+    public void StopAnimating()
+    {
+        solved = false;
+    }
     private void AnimateMoveLeftAndRight(GameObject leftCard, GameObject rightCard, Vector3 leftInitialPosition, Vector3 rightInitialPosition)
     {
         moving = true;
@@ -255,34 +265,37 @@ public class BubbleSort : MonoBehaviour
     }
     IEnumerator BubbleSortAnimateAlgorithm(int[] arr)
     {
+        solved = true;
         int n = arr.Length;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
-                if (arr[j] > arr[j + 1])
-                {
-                    // swap temp and arr[i] 
-                    GameObject leftCard = GameObject.Find(arr[j].ToString() + "(Clone)");
-                    GameObject rightCard = GameObject.Find(arr[j + 1].ToString() + "(Clone)");
-                    Vector3 leftInitialPosition = leftCard.transform.position;
-                    Vector3 rightInitialPosition = rightCard.transform.position;
-                    float difference = Mathf.Abs(rightInitialPosition.x - leftInitialPosition.x);
-                    Vector3 right = new Vector3(difference, 0f, 0f);
-                    AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + up, rightInitialPosition + down);
-                    yield return new WaitUntil(() => moving == false);
+            for (int i = 0; i < n - 1; i++)
+                for (int j = 0; j < n - i - 1; j++)
+                    if (arr[j] > arr[j + 1])
+                    {
+                        // swap temp and arr[i] 
+                        GameObject leftCard = GameObject.Find(arr[j].ToString() + "(Clone)");
+                        GameObject rightCard = GameObject.Find(arr[j + 1].ToString() + "(Clone)");
+                        Vector3 leftInitialPosition = leftCard.transform.position;
+                        Vector3 rightInitialPosition = rightCard.transform.position;
+                        float difference = Mathf.Abs(rightInitialPosition.x - leftInitialPosition.x);
+                        Vector3 right = new Vector3(difference, 0f, 0f);
+                        AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + up, rightInitialPosition + down);
+                        yield return new WaitUntil(() => moving == false);
 
-                    AnimateMoveLeftAndRight(leftCard, rightCard, leftInitialPosition, rightInitialPosition);
-                    yield return new WaitUntil(() => moving == false);
-                    yield return new WaitForSecondsRealtime(0.2f);
-                    AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + right, rightInitialPosition - right);
-                    yield return new WaitUntil(() => moving == false);
-                    leftCard.transform.position = new Vector3(leftCard.transform.position.x, leftInitialPosition.y, leftCard.transform.position.z);
-                    rightCard.transform.position = new Vector3(rightCard.transform.position.x, leftInitialPosition.y, rightCard.transform.position.z);
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-        CorrectExecution();
+                        AnimateMoveLeftAndRight(leftCard, rightCard, leftInitialPosition, rightInitialPosition);
+                        yield return new WaitUntil(() => moving == false);
+                        yield return new WaitForSecondsRealtime(0.2f);
+                        AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + right, rightInitialPosition - right);
+                        yield return new WaitUntil(() => moving == false);
+                        leftCard.transform.position = new Vector3(leftCard.transform.position.x, leftInitialPosition.y, leftCard.transform.position.z);
+                        rightCard.transform.position = new Vector3(rightCard.transform.position.x, leftInitialPosition.y, rightCard.transform.position.z);
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+            CorrectExecution();
+            solved = false;
+  
 
     }
-
+  
 }

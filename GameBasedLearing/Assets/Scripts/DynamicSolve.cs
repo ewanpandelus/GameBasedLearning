@@ -9,8 +9,14 @@ public class DynamicSolve : MonoBehaviour
     private GameObject complexityIllustration;
     private RectTransform crossFade;
     private bool created = false;
+    [SerializeField] private GameObject bubbleSort;
+    private BubbleSort bubbleSortInstance;
     void Start()
     {
+        if (bubbleSort)
+        {
+            bubbleSortInstance = bubbleSort.GetComponent<BubbleSort>();
+        }
         crossFade = GameObject.Find("CrossFade").GetComponent<RectTransform>();
 
     }
@@ -32,9 +38,19 @@ public class DynamicSolve : MonoBehaviour
             BeeAdjustments();
             created = true;
         }
-   
-
-
+   }
+   public void ShowGraphBubbleSort()
+    {
+        if (!created)
+        {
+            bubbleSortInstance.StopAllCoroutines();
+            bubbleSortInstance.StopAnimating();
+            CreateGraph(new Vector3(200, 40, 0));
+            BubbleSortAdjustments();
+            created = true;
+            bubbleSortInstance.Reset();
+            bubbleSortInstance.Solve();
+        }
     }
     private void CreateGraph(Vector3 position)
     {
@@ -42,7 +58,15 @@ public class DynamicSolve : MonoBehaviour
         complexityIllustration.transform.localScale /= 2.9f;
         complexityIllustration.transform.SetParent(crossFade, false);
         ComplexityGraph complexityGraph = complexityIllustration.GetComponent<ComplexityGraph>();
+        complexityIllustration.transform.SetSiblingIndex(1);
         complexityGraph.UpdateGraph();
+    }
+    private void BubbleSortAdjustments()
+    {
+        {
+            this.gameObject.transform.position += new Vector3(-250f, 20f, 0);
+            this.gameObject.transform.localScale /= 1.7f;
+        }
     }
     private void QueenAdjustments()
     {
@@ -53,6 +77,17 @@ public class DynamicSolve : MonoBehaviour
     {
         this.gameObject.transform.position += new Vector3(-200f, 20f, 0);
         this.gameObject.transform.localScale /= 1.2f;
+    }
+    public void HideGraphBubbleSort()
+    {
+        DestroyGraph();
+        created = false;
+        this.gameObject.transform.position -= new Vector3(-250f, 20f, 0);
+        this.gameObject.transform.localScale *= 1.7f;
+        bubbleSortInstance.StopAllCoroutines();
+        bubbleSortInstance.StopAnimating();
+        bubbleSortInstance.Reset();
+        bubbleSortInstance.Solve();
     }
     public void HideGraphQueen()
     {

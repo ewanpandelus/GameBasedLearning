@@ -29,7 +29,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     private Edge edge;
     private int counter = 0;
     AudioManager AudioManagement;
-
+   
     void Awake()
     {
         if (!instance)
@@ -84,7 +84,11 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     }
     public void Reset()
     {
-        ClearBoard(0);
+        if (!solved)
+        {
+            ClearBoard(0);
+        }
+       
     }
     public List<GameObject> GetPlayedNodes()
     {
@@ -107,10 +111,13 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     public void Solve()
     {
         ((IPuzzle)this).ComputerSolve();
+      
+       
     }
 
     IEnumerator IterateThroughPermutations(List<char> winningPath, int minDistance, List<List<char>> nodePermutations)
     {
+       
         foreach (List<char> nodeList in nodePermutations)
         {
             counter++;

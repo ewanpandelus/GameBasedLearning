@@ -545,17 +545,17 @@ PrefabInstance:
     - target: {fileID: 8809046169132955861, guid: 9e8304ced68f9b241a25d1c1d1e7981b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -369
+      value: -373.1
       objectReference: {fileID: 0}
     - target: {fileID: 8809046169132955861, guid: 9e8304ced68f9b241a25d1c1d1e7981b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 261
+      value: 302.66
       objectReference: {fileID: 0}
     - target: {fileID: 8809046169132955862, guid: 9e8304ced68f9b241a25d1c1d1e7981b,
         type: 3}
       propertyPath: m_text
-      value: Time to Complete(Steps)
+      value: Time to Complete
       objectReference: {fileID: 0}
     - target: {fileID: 8809046169132955862, guid: 9e8304ced68f9b241a25d1c1d1e7981b,
         type: 3}
