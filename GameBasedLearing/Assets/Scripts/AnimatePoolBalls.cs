@@ -9,14 +9,24 @@ public class AnimatePoolBalls : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     bool firstHalf = false;
+    private bool animating = false;
     private List<Tuple<int, List<int>>> arraysToAnimate = new List<Tuple<int, List<int>>>();
     List<ArrayInformation> allArrays = new List<ArrayInformation>();
     List<Ball> balls = new List<Ball>();
     List<Tuple<Ball, Tuple<Ball, PoolBallHolder>>> moveList = new List<Tuple<Ball, Tuple<Ball, PoolBallHolder>>>();
+    private MergeSort mergeSort;
     private void Awake()
     {
         allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
+        mergeSort = GameObject.Find("GameManager").GetComponent<MergeSort>();
 
+    }
+    public void ClearAnimationObjects()
+    {
+        balls.Clear();
+        moveList.Clear();
+        firstHalf = false;
+      
     }
     public void AddBallToActive(Ball ball)
     {
@@ -82,13 +92,17 @@ public class AnimatePoolBalls : MonoBehaviour
     }
     public void StartAnimation()
     {
-        StartCoroutine("FirstAnimation");
-      
-        StartCoroutine("IterateThroughArrays");
+        if (!animating)
+        {
+            StartCoroutine("FirstAnimation");
+
+            StartCoroutine("IterateThroughArrays");
+        }
+   
     }
     private IEnumerator FirstAnimation()
     {
-
+        animating = true;
         for (int i = 0; i < 3; i++)
         {
 
@@ -120,7 +134,9 @@ public class AnimatePoolBalls : MonoBehaviour
 
 
         }
-       
+        animating = false;
+        mergeSort.CorrectExecution();
+        mergeSort.SetSolved(true);
     }
 
     public void SetArraysToAnimate(List<Tuple<int, List<int>>> _arraysToAnimate)
@@ -234,5 +250,9 @@ public class AnimatePoolBalls : MonoBehaviour
     private bool CompareElements(Ball left,Ball right)
     {
         return Int32.Parse(left.name.Substring(0, 1)) < Int32.Parse(right.name.Substring(0, 1));
+    }
+    public bool GetAnimating()
+    {
+        return this.animating;
     }
 }

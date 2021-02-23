@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class MergeSort : MonoBehaviour
 {
+    
+    private bool solved = false;
     [SerializeField] ArrayInformation initialArray;
     [SerializeField]
     Ball ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
@@ -54,21 +56,28 @@ public class MergeSort : MonoBehaviour
     }
     public void Reset()
     {
-        foreach (ArrayInformation array in allArrays)
+ 
+        if (!animatePoolBalls.GetAnimating())
+         
         {
-            array.SetEmpty(true);
-            array.SetFull(false);
-            array.SetAllOccupiedFalse();
+            animatePoolBalls.ClearAnimationObjects();
+            foreach (ArrayInformation array in allArrays)
+            {
+                array.SetEmpty(true);
+                array.SetFull(false);
+                array.SetAllOccupiedFalse();
 
+            }
+            foreach (Ball ball in inGameBalls)
+            {
+                GameObject ballGO = ball.gameObject;
+                Destroy(ballGO);
+            }
+            userLevel = 1;
+            inGameBalls.Clear();
+            InitialiseGame();
         }
-        foreach (Ball ball in inGameBalls)
-        {
-            GameObject ballGO = ball.gameObject;
-            Destroy(ballGO);
-        }
-        userLevel = 1;
-        inGameBalls.Clear();
-        InitialiseGame();
+  
     }
     private void InitialiseGame()
     {
@@ -88,14 +97,48 @@ public class MergeSort : MonoBehaviour
     }
     public void Solve()
     {
+        if (!solved)
+        {
+            InitiateSolveAnimation();
+        }
+        else
+        {
+            if (!animatePoolBalls.GetAnimating())
+            {
+                Reset();
+                InitiateSolveAnimation();
+            }
+              
+        }
+
+     
+    }
+    private void InitiateSolveAnimation()
+    {
         animatePoolBalls.StartAnimation();
-        foreach(ArrayInformation array in allArrays) 
+        foreach (ArrayInformation array in allArrays)
         {
             array.SetEmpty(true);
             array.SetFull(false);
-            
+
         }
     }
+   
+    public void Replay()
+    {
+        Reset();
+        dynamicUI.SetButtonsUnactive();
+        dynamicUI.FadeOutWinningPathtext();
+    }
+    public void CorrectExecution()
+    {
+        solved = true;
+        dynamicUI.SetWinningPathText();
+        dynamicUI.SetButtonsActive();
+        dynamicUI.ShowCherryAdd(6);
+        audioManager.Play("WinGame");
+    }
+    
     public void Shuffle()
     {
         audioManager.Play("Pool");
@@ -331,5 +374,8 @@ public class MergeSort : MonoBehaviour
         return ballsNumbers;
 
     }
- 
+    public void SetSolved(bool _solved)
+    {
+        this.solved = _solved;
+    }
 }

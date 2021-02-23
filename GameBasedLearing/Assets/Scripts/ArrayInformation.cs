@@ -36,6 +36,18 @@ public class ArrayInformation : MonoBehaviour
             }
         }
     }
+    public bool CheckFinished()
+    {
+        if(level == 0)
+        {
+            if(full == true)
+            {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
     
     public void UpdateIsArrayOccupied(int ballToUpdate,bool adding,int prevBallIndex)
     {

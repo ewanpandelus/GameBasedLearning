@@ -96,7 +96,12 @@ public class ComplexityGraph : MonoBehaviour
         if(sceneName == "BubbleSort")
         {
             dataList = complexityData.GetBubbleSortValueList(n);
-            ShowChangableGraph(dataList, Color.red, "          Bubblesort");
+            ShowChangableGraph(dataList, Color.red + new Color(0, 0, 0, -0.5f), "          Bubblesort");
+        }
+        else
+        {
+            dataList = complexityData.GetMergeSortValueList(n);
+            ShowChangableGraph(dataList, Color.green + new Color(0, 0, 0, -0.5f), "          MergeSort");
         }
     }
     private void ShowDifferentComplexities()

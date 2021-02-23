@@ -18,13 +18,15 @@ public class Ball : EventTrigger
     private ArrayInformation expectedArray;
     private bool belongsToArray = false;
     private bool finishedFirstHalf = false;
-  
+    private AnimatePoolBalls animatePoolBalls;
+
 
     private void Start()
     {
       
         currentPosition = this.transform.position;
         mergeSort = GameObject.Find("GameManager").GetComponent<MergeSort>();
+        animatePoolBalls = GameObject.Find("GameManager").GetComponent<AnimatePoolBalls>();
         allPoolBallHolders = (PoolBallHolder[])Resources.FindObjectsOfTypeAll(typeof(PoolBallHolder));
         currentArray = currentPoolBallHolder.GetAssociatedArray();
     }
@@ -38,6 +40,10 @@ public class Ball : EventTrigger
     }
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        if (animatePoolBalls.GetAnimating())
+        {
+            return;
+        }
         base.OnBeginDrag(eventData);
         this.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
         
@@ -45,6 +51,10 @@ public class Ball : EventTrigger
     }
     public override void OnDrag(PointerEventData eventData)
     {
+        if (animatePoolBalls.GetAnimating())
+        {
+            return;
+        }
         base.OnDrag(eventData);
 
         // Follow pointer
@@ -65,10 +75,18 @@ public class Ball : EventTrigger
      
         if (mergeSort.CheckMoveIsCorrect(Int32.Parse(this.name.Substring(0,1)),this.targetPoolBallHolder.GetAssociatedArray(),this.currentPoolBallHolder.GetAssociatedArray(),belongsToArray,targetPoolBallHolder))
         {
+           
             this.transform.position = targetPoolBallHolder.transform.position;
             currentPosition = targetPoolBallHolder.transform.position;
             this.currentPoolBallHolder = targetPoolBallHolder;
             currentPoolBallHolder.SetCurrentBall(this);
+            if (targetPoolBallHolder.GetAssociatedArray().CheckFinished())
+            {
+                mergeSort.CorrectExecution();
+            }
+           
+
+
         }
         else
         {
@@ -80,6 +98,10 @@ public class Ball : EventTrigger
     }
     public override void OnEndDrag(PointerEventData eventData)
     {
+        if (animatePoolBalls.GetAnimating())
+        {
+            return;
+        }
         base.OnEndDrag(eventData);
         this.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
 

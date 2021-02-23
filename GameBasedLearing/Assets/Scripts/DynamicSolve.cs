@@ -39,6 +39,15 @@ public class DynamicSolve : MonoBehaviour
             created = true;
         }
    }
+   public void ShowGraphMergeSort()
+    {
+        if (!created)
+        {
+            CreateGraph(new Vector3(200, 40, 0));
+            BubbleSortAdjustments();
+            created = true;
+        }
+    }
    public void ShowGraphBubbleSort()
     {
         if (!created)

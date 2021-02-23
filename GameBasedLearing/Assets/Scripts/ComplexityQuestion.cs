@@ -23,7 +23,7 @@ public class ComplexityQuestion : MonoBehaviour
     {
         if (globalDataHolder.GetLevelToAssessComplexity().Contains("Merge"))
         {
-            complexityAnswer = "O(nLogn)";
+            complexityAnswer = "O(nlogn)";
             explanationText = "This is because the recursive splitting\n of the array is O(logn), and the merging \n " +"step will have to compare at most the entire array of n elements.\n" +
                 "when we combine these two we have O(logn)*O(n) giving us \n" +
                 "O(nlogn)";
