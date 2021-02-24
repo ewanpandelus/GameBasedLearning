@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 339.2, y: -105.29997}
+  m_AnchoredPosition: {x: 361, y: -156.62}
   m_SizeDelta: {x: 111.45398, y: 58.620605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &95792055
@@ -1610,7 +1610,7 @@ GameObject:
   - component: {fileID: 556914916}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2201,8 +2201,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 556914913}
-        m_MethodName: Solve
+      - m_Target: {fileID: 556914912}
+        m_MethodName: SetHideGraphButtonUnactive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2213,7 +2213,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 556914912}
-        m_MethodName: SetSliderActive
+        m_MethodName: SetShowGraphButtonActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1271471126}
+        m_MethodName: HideGraphMergeSort
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3281,7 +3292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 339.2, y: -54.2}
+  m_AnchoredPosition: {x: 361, y: -105}
   m_SizeDelta: {x: 111.45398, y: 58.620605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839831073
@@ -3959,8 +3970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: 34.979}
-  m_SizeDelta: {x: 273.44604, y: 339.17853}
+  m_AnchoredPosition: {x: 361, y: -36}
+  m_SizeDelta: {x: 191.95447, y: 240.83429}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031313894
 MonoBehaviour:
@@ -4014,8 +4025,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4633,9 +4644,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f202fb18314664a8b2dbfeb7055873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  complexityIllustrationPrefab: {fileID: 0}
+  complexityIllustrationPrefab: {fileID: 661332620116118764, guid: 00505f42d7fd99c4db11be2e8cd5746b,
+    type: 3}
   showGraphButton: {fileID: 574596794}
   bubbleSort: {fileID: 0}
+  mergeSort: {fileID: 556914911}
 --- !u!1 &1318084364
 GameObject:
   m_ObjectHideFlags: 0
@@ -8116,6 +8129,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 556914912}
         m_MethodName: SetSliderActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 556914912}
+        m_MethodName: SetShowGraphButtonActive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

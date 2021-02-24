@@ -41,7 +41,7 @@ public class ComplexityQuestion : MonoBehaviour
         {
             complexityAnswer = "O(n!)";
             explanationText = "This is because using the naive algorithm we go through half of all the possible permutations of nodes. \n\n A route ABC is the same as CBA so we don't need to " +
-                "go through every single combination of nodes.\n\n For example if we have a problem size of 4. Then the number of routes we need to explore before determining the shortetst route is\n" +
+                "go through every single combination of nodes.\n\n For example if we have a problem size of 4. Then the number of routes we need to explore before determining the shortest route is\n" +
          "(4*3*2*1)/2 = 12.\n\n" +
          "Therefore this algorithm has average case complexity of O(n!)";
         }

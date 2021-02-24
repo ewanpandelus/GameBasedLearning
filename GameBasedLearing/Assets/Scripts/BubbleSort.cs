@@ -297,5 +297,8 @@ public class BubbleSort : MonoBehaviour
   
 
     }
-  
+    public bool GetSolved()
+    {
+        return this.solved;
+    }
 }

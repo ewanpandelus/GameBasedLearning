@@ -90,7 +90,7 @@ public class ComplexityGraph : MonoBehaviour
         if(sceneName =="NQueensLevel1"||sceneName == "NQueensLevel2")
         {
             dataList = complexityData.GetNQueensValueList(n);
-            ShowChangableGraph(dataList, Color.cyan + new Color(0, 0, 0, -0.5f), "NQueens Algorithm");
+            ShowChangableGraph(dataList, new Color(168f/255f,37f/255f,224f/255f,1)+ new Color(0, 0, 0, -0.5f), "NQueens Algorithm");
        
         }
         if(sceneName == "BubbleSort")
@@ -98,7 +98,7 @@ public class ComplexityGraph : MonoBehaviour
             dataList = complexityData.GetBubbleSortValueList(n);
             ShowChangableGraph(dataList, Color.red + new Color(0, 0, 0, -0.5f), "          Bubblesort");
         }
-        else
+        if(sceneName =="MergeSort")
         {
             dataList = complexityData.GetMergeSortValueList(n);
             ShowChangableGraph(dataList, Color.green + new Color(0, 0, 0, -0.5f), "          MergeSort");

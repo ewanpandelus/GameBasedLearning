@@ -11,11 +11,19 @@ public class DynamicSolve : MonoBehaviour
     private bool created = false;
     [SerializeField] private GameObject bubbleSort;
     private BubbleSort bubbleSortInstance;
+    [SerializeField] private GameObject mergeSort;
+    private MergeSort mergeSortInstance;
+    private AnimatePoolBalls mergeSortAnimationInstance;
     void Start()
     {
         if (bubbleSort)
         {
             bubbleSortInstance = bubbleSort.GetComponent<BubbleSort>();
+        }
+        if (mergeSort)
+        {
+            mergeSortInstance = mergeSort.GetComponent<MergeSort>();
+            mergeSortAnimationInstance = mergeSort.gameObject.GetComponent<AnimatePoolBalls>();
         }
         crossFade = GameObject.Find("CrossFade").GetComponent<RectTransform>();
 
@@ -25,7 +33,7 @@ public class DynamicSolve : MonoBehaviour
         if (!created)
         {
             CreateGraph(new Vector3(0f, 110f, 0f));
-            QueenAdjustments();
+            Adjustments(2f, new Vector3(0, -200f, 0));
             created = true;
             
         }
@@ -35,7 +43,7 @@ public class DynamicSolve : MonoBehaviour
         if (!created)
         {
             CreateGraph(new Vector3(200, 40f, 0f));
-            BeeAdjustments();
+            Adjustments(1.2f, new Vector3(-200f, 20f, 0));
             created = true;
         }
    }
@@ -44,8 +52,12 @@ public class DynamicSolve : MonoBehaviour
         if (!created)
         {
             CreateGraph(new Vector3(200, 40, 0));
-            BubbleSortAdjustments();
+            Adjustments(1.7f, new Vector3(-250f, 20f, 0));
+            mergeSortAnimationInstance.StopAllCoroutines();
+            mergeSortAnimationInstance.ClearAnimationObjects();
             created = true;
+            mergeSortInstance.Reset();
+            mergeSortInstance.Solve();
         }
     }
    public void ShowGraphBubbleSort()
@@ -55,11 +67,16 @@ public class DynamicSolve : MonoBehaviour
             bubbleSortInstance.StopAllCoroutines();
             bubbleSortInstance.StopAnimating();
             CreateGraph(new Vector3(200, 40, 0));
-            BubbleSortAdjustments();
+            Adjustments(1.7f, new Vector3(-250f, 20f, 0));
             created = true;
             bubbleSortInstance.Reset();
             bubbleSortInstance.Solve();
         }
+    }
+    private void Adjustments(float scaleFactor, Vector3 moveByVector)
+    {
+        this.gameObject.transform.position += moveByVector;
+        this.gameObject.transform.localScale /= scaleFactor;
     }
     private void CreateGraph(Vector3 position)
     {
@@ -70,29 +87,22 @@ public class DynamicSolve : MonoBehaviour
         complexityIllustration.transform.SetSiblingIndex(1);
         complexityGraph.UpdateGraph();
     }
-    private void BubbleSortAdjustments()
+
+
+  
+    public void HideGraphMergeSort()
     {
-        {
-            this.gameObject.transform.position += new Vector3(-250f, 20f, 0);
-            this.gameObject.transform.localScale /= 1.7f;
-        }
-    }
-    private void QueenAdjustments()
-    {
-        this.gameObject.transform.position += new Vector3(0, -200f, 0);
-        this.gameObject.transform.localScale /= 2f;
-    }
-    private void BeeAdjustments()
-    {
-        this.gameObject.transform.position += new Vector3(-200f, 20f, 0);
-        this.gameObject.transform.localScale /= 1.2f;
+        mergeSortAnimationInstance.StopAllCoroutines();
+        mergeSortAnimationInstance.ClearAnimationObjects();
+        DestroyGraph();
+        Adjustments(1/1.7f, new Vector3(250f, -20f, 0));
+        mergeSortInstance.Reset();
+        mergeSortInstance.Solve();
     }
     public void HideGraphBubbleSort()
     {
         DestroyGraph();
-        created = false;
-        this.gameObject.transform.position -= new Vector3(-250f, 20f, 0);
-        this.gameObject.transform.localScale *= 1.7f;
+        Adjustments(1 / 1.7f, new Vector3(250f, -20f, 0));
         bubbleSortInstance.StopAllCoroutines();
         bubbleSortInstance.StopAnimating();
         bubbleSortInstance.Reset();
@@ -101,22 +111,20 @@ public class DynamicSolve : MonoBehaviour
     public void HideGraphQueen()
     {
         DestroyGraph();
-        created = false;
-        this.gameObject.transform.localScale *= 2f;
-        this.gameObject.transform.position -= new Vector3(0, -200f, 0);
+        Adjustments(1/2f, new Vector3(0, 200f, 0));
     }
     public void HideGraphBee()
     {
 
         DestroyGraph();
-        created = false;
-        this.gameObject.transform.localScale *= 1.2f;
-        this.gameObject.transform.position -= new Vector3(-200f, 20f, 0);
+        Adjustments(1/1.2f, new Vector3(200f, -20f, 0));
+        
 
     }
     private void DestroyGraph()
     {
         complexityIllustration = GameObject.FindGameObjectWithTag("Graph");
+        created = false;
         Destroy(complexityIllustration);
 
     }

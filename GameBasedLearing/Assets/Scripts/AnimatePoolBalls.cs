@@ -26,6 +26,8 @@ public class AnimatePoolBalls : MonoBehaviour
         balls.Clear();
         moveList.Clear();
         firstHalf = false;
+        animating = false;
+        mergeSort.SetSolved(true);
       
     }
     public void AddBallToActive(Ball ball)

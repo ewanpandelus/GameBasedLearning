@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MergeSort.unity
     guid: e39d4d7e7d26bc94cafb4c6baf6276ab
+  - enabled: 1
+    path: Assets/Scenes/MergeSortOverview.unity
+    guid: 556a5e9105aa3ed488ca9b634b2557e9
   m_configObjects: {}

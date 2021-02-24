@@ -74,6 +74,10 @@ public class Card : EventTrigger
  
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        if (bubbleSort.GetSolved())
+        {
+            return;
+        }
         base.OnBeginDrag(eventData);
         this.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
 
@@ -81,6 +85,10 @@ public class Card : EventTrigger
 
     public override void OnDrag(PointerEventData eventData)
     {
+        if (bubbleSort.GetSolved())
+        {
+            return;
+        }
         base.OnDrag(eventData);
 
         // Follow pointer
@@ -99,6 +107,10 @@ public class Card : EventTrigger
 
     public override void OnEndDrag(PointerEventData eventData)
     {
+        if (bubbleSort.GetSolved())
+        {
+            return;
+        }
         base.OnEndDrag(eventData);
         this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
 
@@ -116,7 +128,7 @@ public class Card : EventTrigger
 
 
     }
-    public void  SetCurrentPosition(Vector3 position)
+    public void SetCurrentPosition(Vector3 position)
     {
         this.transform.position = position;
     }

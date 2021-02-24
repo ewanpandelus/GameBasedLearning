@@ -99,6 +99,7 @@ public class MergeSort : MonoBehaviour
     {
         if (!solved)
         {
+            Reset();
             InitiateSolveAnimation();
         }
         else
