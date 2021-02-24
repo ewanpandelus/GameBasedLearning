@@ -145,6 +145,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             yield return new WaitForSecondsRealtime(1f);
             GameObject.Find(c.ToString()).GetComponent<Node>().SetWinningNode();
         }
+        TrySolution();
         solved = false;
 
     }

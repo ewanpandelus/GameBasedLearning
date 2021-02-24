@@ -35,11 +35,11 @@ public class QueenPiece : EventTrigger
         mRectTransform = GetComponent<RectTransform>();
         if (problemSize == 4)
         {
-            mRectTransform.sizeDelta = new Vector2(100, 100);
+            mRectTransform.sizeDelta = new Vector2(98, 98);
         }
         else
         {
-            mRectTransform.sizeDelta = new Vector2(75, 75);
+            mRectTransform.sizeDelta = new Vector2(80, 80);
         }
         if (dynamicSolve.GetCreated())
         {

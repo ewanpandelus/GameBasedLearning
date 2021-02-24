@@ -996,10 +996,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: "The algorithm used in the graphical solving is the backtracking algorithm.\n\nBacktracking
     is a recursive method which starts a queen at an edge and, ideally, saves the
-    possible attack positions. Then another queen is placed at a safe position and
-    this is repeated. \n\nHowever, if it is found that N number of queens cannot
-    be placed on that board, it will backtrack and try a different safe position.
-    This is over 100 times as fast as the brute force solution."
+    possible  positions. Then another queen is placed at a safe position and this
+    is repeated. \n\nHowever, if it is found that N number of queens cannot be placed
+    on that board, it will backtrack and try a different safe position. This is over
+    100 times faster than the brute force solution."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1, type: 2}
   m_sharedMaterial: {fileID: -1013404782577106135, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1,
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.8
+  m_fontSize: 27.9
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1

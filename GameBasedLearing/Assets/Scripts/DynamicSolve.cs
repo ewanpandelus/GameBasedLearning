@@ -43,7 +43,7 @@ public class DynamicSolve : MonoBehaviour
         if (!created)
         {
             CreateGraph(new Vector3(200, 40f, 0f));
-            Adjustments(1.2f, new Vector3(-200f, 20f, 0));
+            Adjustments(1.2f, new Vector3(-220f, 20f, 0));
             created = true;
         }
    }
@@ -117,7 +117,7 @@ public class DynamicSolve : MonoBehaviour
     {
 
         DestroyGraph();
-        Adjustments(1/1.2f, new Vector3(200f, -20f, 0));
+        Adjustments(1/1.2f, new Vector3(220f, -20f, 0));
         
 
     }

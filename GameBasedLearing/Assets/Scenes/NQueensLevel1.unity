@@ -1064,6 +1064,7 @@ MonoBehaviour:
     type: 3}
   showGraphButton: {fileID: 957497504}
   bubbleSort: {fileID: 0}
+  mergeSort: {fileID: 0}
 --- !u!1 &578925031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1608,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1806343900}
         m_MethodName: Replay
         m_Mode: 1
         m_Arguments:

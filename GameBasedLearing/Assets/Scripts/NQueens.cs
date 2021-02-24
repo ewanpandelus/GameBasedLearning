@@ -120,7 +120,12 @@ public class NQueens : MonoBehaviour, IPuzzle
         return true;
     }
 
-    
+    public void Replay()
+    {
+        ClearBoard();
+        dynamicUI.SetButtonsUnactive();
+        dynamicUI.FadeOutWinningPathtext();
+    }
     void AddToMoves(int i, int col, char indicator)
     {
         moves.Add(new Tuple<Tuple<int, int>, char>(new Tuple<int, int>(i, col), indicator));
@@ -204,6 +209,9 @@ public class NQueens : MonoBehaviour, IPuzzle
                 }
             }
         }
+        dynamicUI.SetWinningPathText();
+        dynamicUI.SetButtonsActive();
+        AudioManagement.Play("WinGame");
         solved = false;
     }
 }
