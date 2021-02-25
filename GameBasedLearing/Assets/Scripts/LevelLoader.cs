@@ -21,7 +21,10 @@ public class LevelLoader : MonoBehaviour
         sceneTransition = GameObject.Find("TransitionObject").GetComponent<SceneTransition>();
 
     }
-
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     public void LoadLevel()
     {
         StartCoroutine(LoadLevel(levelName));

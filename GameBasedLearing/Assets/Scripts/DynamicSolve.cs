@@ -52,7 +52,7 @@ public class DynamicSolve : MonoBehaviour
         if (!created)
         {
             CreateGraph(new Vector3(200, 40, 0));
-            Adjustments(1.7f, new Vector3(-250f, 20f, 0));
+            Adjustments(1.6f, new Vector3(-250f, 0, 0));
             mergeSortAnimationInstance.StopAllCoroutines();
             mergeSortAnimationInstance.ClearAnimationObjects();
             created = true;
@@ -67,7 +67,7 @@ public class DynamicSolve : MonoBehaviour
             bubbleSortInstance.StopAllCoroutines();
             bubbleSortInstance.StopAnimating();
             CreateGraph(new Vector3(200, 40, 0));
-            Adjustments(1.7f, new Vector3(-250f, 20f, 0));
+            Adjustments(1.6f, new Vector3(-280f, 20f, 0));
             created = true;
             bubbleSortInstance.Reset();
             bubbleSortInstance.Solve();
@@ -95,14 +95,14 @@ public class DynamicSolve : MonoBehaviour
         mergeSortAnimationInstance.StopAllCoroutines();
         mergeSortAnimationInstance.ClearAnimationObjects();
         DestroyGraph();
-        Adjustments(1/1.7f, new Vector3(250f, -20f, 0));
+        Adjustments(1/1.6f, new Vector3(250f, 0f, 0));
         mergeSortInstance.Reset();
         mergeSortInstance.Solve();
     }
     public void HideGraphBubbleSort()
     {
         DestroyGraph();
-        Adjustments(1 / 1.7f, new Vector3(250f, -20f, 0));
+        Adjustments(1 / 1.6f, new Vector3(280f, -20f, 0));
         bubbleSortInstance.StopAllCoroutines();
         bubbleSortInstance.StopAnimating();
         bubbleSortInstance.Reset();

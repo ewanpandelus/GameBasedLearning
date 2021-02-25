@@ -1868,7 +1868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bubblesort
+  m_text: Bubble Sort
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1, type: 2}
   m_sharedMaterial: {fileID: -1013404782577106135, guid: 6ff56ec9dc9697c49ab3191ae6a53bd1,
@@ -2622,7 +2622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Bubble sort is a basic algorithm for arranging a list of numbers (or any
+  m_text: "Bubble Sort is a basic algorithm for arranging a list of numbers (or any
     typed element) in ascending order. \r\n\r\nThe method works by checking each
     set of adjacent elements in the string, from left to right, swapping their positions
     if they are not in order. \r\n\r\nThe algorithm then repeats this process until

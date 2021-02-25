@@ -199,9 +199,7 @@ public class AnimatePoolBalls : MonoBehaviour
         ball.GetCurrentPoolBallHolder().SetCurrentBall(ball);
     }
     public void CompareLeftAndRightLists(List<Ball> leftBalls, List<Ball> rightBalls, ArrayInformation arrayToMoveTo)
-    {
-        Debug.Log("Array to Move to:" + arrayToMoveTo);
-
+    { 
         int leftI = 0;
         int rightI = 0;
         List<Tuple<int, PoolBallHolder>> poolBallHolderIndexes = new List<Tuple<int, PoolBallHolder>>();
@@ -215,7 +213,6 @@ public class AnimatePoolBalls : MonoBehaviour
         
 
             PoolBallHolder moveToPoolBallHolder = poolBallHolderIndexes.Find(x => x.Item1 == i).Item2;
-            Debug.Log("BallHolder to Move to" + moveToPoolBallHolder);
             if (rightBalls.Count ==rightI)
             {
                 moveList.Add(new Tuple<Ball, Tuple<Ball, PoolBallHolder>>(null, new Tuple<Ball, PoolBallHolder>(leftBalls[leftI], moveToPoolBallHolder)));
