@@ -8,7 +8,7 @@ public class NQueens : MonoBehaviour, IPuzzle
 {
     [SerializeField] private ChessBoard board;
     [SerializeField] private Slider slider;
-    GameObject[] queens;
+    private GameObject[] queens;
     [SerializeField] private GameObject queenPiecePrefab;
 
     private bool safe = true;
@@ -17,11 +17,13 @@ public class NQueens : MonoBehaviour, IPuzzle
     private bool solved = false;
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
     [SerializeField] private DynamicUI dynamicUI;
-    AudioManager AudioManagement;
+    private AudioManager audioManager;
     private Cell randomCell;
+    private QueenSpawner queenSpawner;
     void Start()
     {
-        AudioManagement = AudioManager.instance;
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        queenSpawner = GameObject.Find("GameManager").GetComponent<QueenSpawner>();
         parentCanvas = GameObject.Find("ParentCanvas");
         board.Create();
         problemSize = board.GetProblemSize();
@@ -71,7 +73,7 @@ public class NQueens : MonoBehaviour, IPuzzle
         {
             dynamicUI.SetWinningPathText();
             dynamicUI.SetButtonsActive();
-            AudioManagement.Play("WinGame");
+            audioManager.Play("WinGame");
         }
         else
         {
@@ -194,11 +196,10 @@ public class NQueens : MonoBehaviour, IPuzzle
                 {
                     GameObject chessBoard = GameObject.Find("ChessBoard");
                     Transform cellTransform = board.GetCellAtXY(move.Item1.Item1, move.Item1.Item2).transform;
-                    GameObject gameObject = (GameObject)Instantiate(queenPiecePrefab, cellTransform.position, cellTransform.rotation);
-                    gameObject.transform.SetParent(chessBoard.transform);
-                    RectTransform mRectTransform = gameObject.GetComponent<RectTransform>();
-                    mRectTransform.sizeDelta = (randomCell.gameObject.GetComponent<RectTransform>().sizeDelta) / 1.5f;
+                    queenSpawner.SpawnQueenOnBoard(cellTransform.position);
+                    GameObject gameObject = queenSpawner.GetLatestQueen();
                     queenPlacement[move.Item1.Item1, move.Item1.Item2] = gameObject;
+                    
                 }
                 else
                 {
@@ -208,7 +209,7 @@ public class NQueens : MonoBehaviour, IPuzzle
         }
         dynamicUI.SetWinningPathText();
         dynamicUI.SetButtonsActive();
-        AudioManagement.Play("WinGame");
+        audioManager.Play("WinGame");
         solved = false;
     }
 }
