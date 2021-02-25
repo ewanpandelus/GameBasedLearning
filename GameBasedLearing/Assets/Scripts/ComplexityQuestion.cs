@@ -41,7 +41,8 @@ public class ComplexityQuestion : MonoBehaviour
                 " It is known as Bubble Sort, because with every complete " +
                 "iteration the largest element in the given array, bubbles up towards the last place. " +
                 "\n\nIf we have n elements in a list then we can expect this process to be repeated n-1 times." +
-                "These rules of Bubble Sort give us average complexity of (n-1) + (n-2) + (n-3) + ..... + 3 + 2 + 1 = \n(n-1)/2 or <color=orange>O(n<sup>2</sup>)</color>." +
+                " These rules of Bubble Sort give us average complexity of <color=orange>O(n<sup>2</sup>)</color>, we also have a " +
+                "space complexity of O(1) as the algorithm needs to store a temporary variable to swap two elements." +
                 "\n\nFor futher information, visit https://www.studytonight.com/data-structures/bubble-sort";
             
         }
@@ -50,8 +51,8 @@ public class ComplexityQuestion : MonoBehaviour
             complexityAnswer = "O(2^n)";
             explanationText = "The algorithm used in the graphical solving is the backtracking algorithm." +
                 " This algorithm starts at one corner of the board and places a queen, it then looks at the possible" +
-                " attacked squares of that queen and places a queen avoiding this, repeating until the algorithm can no longer find a safe space for " +
-                "a queen or it completes." +
+                " attacked squares of that queen and places a queen avoiding those squares, repeating until the algorithm can no longer find a safe space for " +
+                "a queen or the problem is solved." +
                 " \n\nIn the case it cannot find a safe position for another queen, it will go back one step and change the position of that queen.\n\n" +
                 "This algorithm is much faster than the brute force route and is therefore of complexity <color=red>O(2<sup>n</sup>)</color>." +
                 "\n\n For further information, visit https://www.codesdope.com/blog/article/backtracking-explanation-and-n-queens-problem/";
@@ -60,13 +61,13 @@ public class ComplexityQuestion : MonoBehaviour
         {
             complexityAnswer = "O(n!)";
             explanationText = "This is because using the naive/brute force algorithm we go " +
-                "through half of all the possible permutations of nodes. \n A route" +
+                "through half of all the possible permutations of nodes. \n\n A route" +
                 " ABC is the same as CBA so we don't need to " +
                 "go through every single combination of nodes.\n\n For example if we have " +
                 "a problem size of 4, the number of routes we need to explore " +
                 "before determining the shortest route is" +
-         "(4*3*2*1)/2 = 12." +
-         "Therefore this algorithm has average case complexity of <color=red>O(n!)</color>.\n\n" +
+         " (4*3*2*1)/2 = 12." +
+         " Therefore this algorithm has average case complexity of <color=red>O(n!)</color>.\n\n" +
          "For further information, visit  https://en.wikipedia.org/wiki/Travelling_salesman_problem";
         }
     }

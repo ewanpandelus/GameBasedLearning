@@ -184,10 +184,8 @@ MonoBehaviour:
     value.
 
 
-
     To swap cards, drag and drop the card you wish to swap into the
     card you want to swap it with.
-
 
 
     If you want to see how bubble sort works

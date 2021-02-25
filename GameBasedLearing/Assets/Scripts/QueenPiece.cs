@@ -19,8 +19,9 @@ public class QueenPiece : EventTrigger
     protected List<Cell> occupiedCells = new List<Cell>();
     [SerializeField] Image image;
     private int problemSize;
-    ChessBoard board;
+    private ChessBoard board;
     private bool safe = true;
+    private Cell randomCell;
 
     private AudioManager audioManagement;
     void Start()
@@ -28,18 +29,16 @@ public class QueenPiece : EventTrigger
         dynamicSolve = GameObject.Find("ChessBoard").GetComponent<DynamicSolve>();
         audioManagement = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         board = GameObject.Find("ChessBoard").GetComponent<ChessBoard>();
+        randomCell = GameObject.Find("Cell(Clone)").GetComponent<Cell>();
         problemSize = board.GetProblemSize();
         mMovement = new Vector3Int(problemSize - 1, problemSize - 1, problemSize - 1);
-        
+       
 
         mRectTransform = GetComponent<RectTransform>();
-        if (problemSize == 4)
+
+        if (problemSize == 8)
         {
-            mRectTransform.sizeDelta = new Vector2(98, 98);
-        }
-        else
-        {
-            mRectTransform.sizeDelta = new Vector2(80, 80);
+            mRectTransform.sizeDelta /= 1.45f;
         }
         if (dynamicSolve.GetCreated())
         {

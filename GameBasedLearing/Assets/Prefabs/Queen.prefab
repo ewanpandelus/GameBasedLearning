@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1737986895777119271}
   - component: {fileID: 3587388090571941559}
   - component: {fileID: 5115273620321657789}
-  - component: {fileID: 738538709878487717}
+  - component: {fileID: 3711589843846603433}
   m_Layer: 0
   m_Name: Queen
   m_TagString: Queen
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 153.32, y: 270.13}
-  m_SizeDelta: {x: 92.97858, y: 83.38226}
+  m_AnchoredPosition: {x: 155.4, y: 273.26}
+  m_SizeDelta: {x: 104.100525, y: 98.25012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3587388090571941559
 MonoBehaviour:
@@ -62,7 +62,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8649813567948923964}
   m_CullTransparentMesh: 0
---- !u!114 &738538709878487717
+--- !u!114 &3711589843846603433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8862745}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
