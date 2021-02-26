@@ -62,6 +62,7 @@ public class NQueens : MonoBehaviour, IPuzzle
     }
     void IPuzzle.TrySolution()
     {
+        safe = true;
         queens = GameObject.FindGameObjectsWithTag("Queen");
         
         foreach (GameObject queen in queens)
