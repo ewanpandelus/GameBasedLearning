@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -24,7 +25,8 @@ public class BubbleSort : MonoBehaviour
     List<Tuple<int, int>> moves = new List<Tuple<int, int>>();
     private  GameObject cardObj;
     private CardHolder[] allCardHolders = new CardHolder[9];
-    private bool moving = true;
+    private List<CardHolder> allCardHoldersSorted = new List<CardHolder>();
+    private bool moving = false;
     private bool solved = false;
     [SerializeField] Card cardPrefab1;
     [SerializeField] Card cardPrefab2;
@@ -56,12 +58,32 @@ public class BubbleSort : MonoBehaviour
             allCardHolders[counter] = GO.GetComponent<CardHolder>();
             counter++;
         }
+        allCardHoldersSorted = SortCardHolders(allCardHolders);
         Shuffle();
         cards = ConvertToIntArray(inGameCards);
         StoreBubbleSortMoves(cards);
 
 
     }
+    private List<CardHolder> SortCardHolders(CardHolder[] cardHolders)
+    {
+        List<CardHolder> sortedCardHolders = new List<CardHolder>();
+        int[] cardHoldersNumbers = new int[cardHolders.Length];
+        int counter = 0;
+        foreach (CardHolder cardHolder in cardHolders)
+        {
+            int cardNumber = int.Parse(Regex.Match(cardHolder.name, @"\d+").Value);
+            cardHoldersNumbers[counter] = cardNumber;
+            counter++;
+        }
+        Array.Sort(cardHoldersNumbers);
+        foreach(int number in cardHoldersNumbers)
+        {
+            sortedCardHolders.Add(GameObject.Find(number.ToString()).GetComponent<CardHolder>());
+        }
+        return sortedCardHolders;
+    }
+
     public void Replay()
     {
         Reset();
@@ -137,7 +159,7 @@ public class BubbleSort : MonoBehaviour
     {
         RandomiseCards();
 
-        foreach (CardHolder cardHolder in allCardHolders)
+        foreach (CardHolder cardHolder in allCardHoldersSorted)
         {
             Card cardGO = Instantiate(cardHolder.GetCurrentCard(), cardHolder.transform);
             cardHolder.SetCurrentCard(cardGO);
@@ -151,7 +173,7 @@ public class BubbleSort : MonoBehaviour
     public void Reset()
     {
         if (!solved){
-            foreach (CardHolder cardHolder in allCardHolders)
+            foreach (CardHolder cardHolder in allCardHoldersSorted)
             {
                 cardHolder.GetInitialCard().SetCurrentPosition(cardHolder.transform.position);
                 cardHolder.SetCurrentCard(cardHolder.GetInitialCard());
