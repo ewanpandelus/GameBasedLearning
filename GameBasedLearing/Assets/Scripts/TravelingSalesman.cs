@@ -16,11 +16,13 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     public static TravelingSalesman instance;
     [SerializeField] private int winningPathLength;
     [SerializeField] private DynamicUI dynamicUI;
+    [SerializeField] private TravellingBeeInfo travellingBeeInfo;
     Permutations Permutate;
     private int moveCount = 0;
     private int totalDistance = 0;
     private bool solved = false;
-    private GameObject[] nodes;
+ 
+    private List<GameObject> nodes = new List<GameObject>();
     List<GameObject> edges = new List<GameObject>();
     List<GameObject> playedNodes = new List<GameObject>();
     List<GameObject> distanceObjects = new List<GameObject>();
@@ -41,11 +43,11 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     {
         AudioManagement = AudioManager.instance;
         Permutate = Permutations.instance;
-        nodes = GameObject.FindGameObjectsWithTag("Node");
-        edges = GameObject.FindGameObjectsWithTag("Edge").ToList<GameObject>();
-        distanceObjects = GameObject.FindGameObjectsWithTag("Distance").ToList<GameObject>();
+        nodes = travellingBeeInfo.GetNodes();
+        edges = travellingBeeInfo.GetEdges();
+        distanceObjects = travellingBeeInfo.GetDistances();
         this.playedNodes.Add(nodes[0]);
-        foreach (GameObject distance in GameObject.FindGameObjectsWithTag("Distance"))
+        foreach (GameObject distance in distanceObjects)
         {
             distances.Add(Int32.Parse(distance.name));
         }
@@ -241,7 +243,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
 
     void IPuzzle.TrySolution()
     {
-        if (this.totalDistance == winningPathLength &&playedNodes.Count-1  == nodes.Length)
+        if (this.totalDistance == winningPathLength &&playedNodes.Count-1  == nodes.Count)
         {
                 dynamicUI.SetWinningPathText();
                 dynamicUI.SetButtonsActive();
@@ -285,11 +287,11 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
 
      Boolean IPuzzle.CheckMoveIsPossible(GameObject node)
     {
-        if (playedNodes.Count < nodes.Length)
+        if (playedNodes.Count < nodes.Count)
         {
             return (!playedNodes.Contains(node));
         }
-        if (node.name == "A" && playedNodes.Count < nodes.Length + 1)
+        if (node.name == "A" && playedNodes.Count < nodes.Count + 1)
         {
             return true;
         }

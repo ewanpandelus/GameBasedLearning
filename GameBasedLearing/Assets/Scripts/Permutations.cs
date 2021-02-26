@@ -7,11 +7,12 @@ using UnityEngine;
 public class Permutations: MonoBehaviour
 {
     private GameObject[] nodes;
+    [SerializeField] private TravellingBeeInfo travellingBeeInfo;
     public static Permutations instance;
     // Start is called before the first frame update
     void Awake()
     {
-        nodes = GameObject.FindGameObjectsWithTag("Node");
+      
         if (!instance)
         {
             instance = this;
@@ -93,6 +94,7 @@ public class Permutations: MonoBehaviour
     }
     private char[] SetNodesToPermute()
     {
+        nodes = travellingBeeInfo.GetNodes().ToArray();
         char[] nodeChars = new char[nodes.Length-1];
         for (int i = 1; i < (nodes.Length); i++)
         {

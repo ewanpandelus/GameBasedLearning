@@ -101,7 +101,7 @@ public class BubbleSort : MonoBehaviour
     {
         bool finished = true;
         int counter = 0;
-        foreach(CardHolder cardHolder in allCardHolders)
+        foreach(CardHolder cardHolder in allCardHoldersSorted)
         {
          
             finished = finished && int.Parse(Regex.Match(cardHolder.GetCurrentCard().name, @"\d+").Value) == finalArray[counter];

@@ -67,7 +67,7 @@ public class DynamicSolve : MonoBehaviour
             bubbleSortInstance.StopAllCoroutines();
             bubbleSortInstance.StopAnimating();
             CreateGraph(new Vector3(200, 40, 0));
-            Adjustments(1.6f, new Vector3(-280f, 20f, 0));
+            Adjustments(1.6f, new Vector3(-330f, 20f, 0));
             created = true;
             bubbleSortInstance.Reset();
             bubbleSortInstance.Solve();
@@ -102,7 +102,7 @@ public class DynamicSolve : MonoBehaviour
     public void HideGraphBubbleSort()
     {
         DestroyGraph();
-        Adjustments(1 / 1.6f, new Vector3(280f, -20f, 0));
+        Adjustments(1 / 1.6f, new Vector3(330f, -20f, 0));
         bubbleSortInstance.StopAllCoroutines();
         bubbleSortInstance.StopAnimating();
         bubbleSortInstance.Reset();

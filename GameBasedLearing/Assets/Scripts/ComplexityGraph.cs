@@ -84,7 +84,7 @@ public class ComplexityGraph : MonoBehaviour
         if(sceneName == "HardTSP"||sceneName == "EasyTSP")
         {
             dataList = complexityData.GetTBPValueList(n);
-            ShowChangableGraph(dataList, Color.yellow + new Color(0, 0, 0, -0.5f), "Traveling Bee Algorithm");
+            ShowChangableGraph(dataList, Color.yellow + new Color(0, 0, 0, -0.5f), "Travelling Bee Algorithm");
         }
       
         if(sceneName =="NQueensLevel1"||sceneName == "NQueensLevel2")

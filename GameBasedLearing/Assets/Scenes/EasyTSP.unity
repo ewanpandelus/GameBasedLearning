@@ -4272,6 +4272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winningPathLength: 80
   dynamicUI: {fileID: 1398195064}
+  travellingBeeInfo: {fileID: 938759766078996850}
   slider: {fileID: 622238783}
 --- !u!4 &1398195062
 Transform:
@@ -4299,6 +4300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c99a5024cde5c47a746a3cc926dabd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  travellingBeeInfo: {fileID: 938759766078996850}
 --- !u!114 &1398195064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6008,6 +6010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938759766078996847}
   - component: {fileID: 938759766078996846}
+  - component: {fileID: 938759766078996850}
   m_Layer: 0
   m_Name: TravelingBeeObject
   m_TagString: Untagged
@@ -6015,6 +6018,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &938759766078996850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938759766078996849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9dd622d7a329a46aaae5f23a26fad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edgesParent: {fileID: 938759766951098032}
+  distancesParent: {fileID: 938759766995483840}
+  nodesParent: {fileID: 938759766432789629}
 --- !u!114 &938759766242203859
 MonoBehaviour:
   m_ObjectHideFlags: 0
