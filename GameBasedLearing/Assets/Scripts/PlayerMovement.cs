@@ -36,6 +36,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         if(this.transform.position.y <= -35|| Input.GetKeyDown("r"))
         {
             this.transform.position = startPoint;
+            rb.velocity = new Vector2(0f,0f);
+            return;
         }
         animator.speed = 1f;
 

@@ -13,14 +13,15 @@ public class MergeSort : MonoBehaviour
     [SerializeField]
     Ball ballPrefab1, ballPrefab2, ballPrefab3, ballPrefab4,
         ballPrefab5, ballPrefab6, ballPrefab7, ballPrefab8;
+    [SerializeField] GameObject topArray;
     private DynamicUI dynamicUI;
     private List<Ball> allBalls = new List<Ball>();
     private List<int> numbers = new List<int>();
     private PoolBallHolder[] allPoolBallHolders = new PoolBallHolder[8];
-    private GameObject[] allPoolBallHoldersGO;
+    private List<GameObject> allPoolBallHoldersGO = new List<GameObject>();
     private List<Ball> inGameBalls = new List<Ball>();
     private GameObject aboveAll;
-    GameObject ballObj;
+    private GameObject ballObj;
     List<int> balls = new List<int>();
     private int userLevel = 1;
     private List<Tuple<int, List<int>>> expectedArrays = new List<Tuple<int, List<int>>>();
@@ -39,9 +40,13 @@ public class MergeSort : MonoBehaviour
         allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
         aboveAll = GameObject.Find("AboveAll");
         ballObj = GameObject.Find("TopArray1");
-     
-     
-        allPoolBallHoldersGO = GameObject.FindGameObjectsWithTag("TopArrayHolder");
+
+
+        for(int i = 0; i < topArray.transform.childCount; i++)
+        {
+            allPoolBallHoldersGO.Add(topArray.transform.GetChild(i).gameObject);
+        }
+        
         int counter = 0;
         foreach (GameObject GO in allPoolBallHoldersGO)
         {

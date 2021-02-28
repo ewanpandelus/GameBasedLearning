@@ -72,9 +72,8 @@ public class NQueens : MonoBehaviour, IPuzzle
         }
         if (safe && queens.Length == board.GetProblemSize())
         {
-            dynamicUI.SetWinningPathText();
-            dynamicUI.SetButtonsActive();
-            audioManager.Play("WinGame");
+            WinBehaviour();
+            
         }
         else
         {
@@ -185,7 +184,12 @@ public class NQueens : MonoBehaviour, IPuzzle
     {
         return this.safe;
     }
-  
+    private void WinBehaviour()
+    {
+        dynamicUI.SetWinningPathText();
+        dynamicUI.SetButtonsActive();
+        audioManager.Play("WinGame");
+    }
     IEnumerator IterateThroughMoves(GameObject[,] queenPlacement)
     {
         {
@@ -208,9 +212,8 @@ public class NQueens : MonoBehaviour, IPuzzle
                 }
             }
         }
-        dynamicUI.SetWinningPathText();
-        dynamicUI.SetButtonsActive();
-        audioManager.Play("WinGame");
+        WinBehaviour();
+        dynamicUI.ShowCherryAdd(problemSize);
         solved = false;
     }
 }

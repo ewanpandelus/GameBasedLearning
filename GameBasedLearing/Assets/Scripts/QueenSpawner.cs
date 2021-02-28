@@ -29,11 +29,11 @@ public class QueenSpawner : MonoBehaviour
         float height = Screen.height;
         if (width / height > 1.65f)
         {
-            scaleFactor += new Vector2(0f, 0.12f);
+            scaleFactor += new Vector2(0f, 0.16f);
         }
         if (width / height > 1.99f)
         {
-            scaleFactor += new Vector2(0f, 0.12f);
+            scaleFactor += new Vector2(0f, 0.16f);
         }
         rectTransform.sizeDelta *= scaleFactor;
     }

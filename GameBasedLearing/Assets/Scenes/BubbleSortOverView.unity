@@ -2624,7 +2624,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Bubble Sort is a basic algorithm for arranging a list of numbers (or any
     typed element) in ascending order. \r\n\r\nThe method works by checking each
-    set of adjacent elements in the string, from left to right, swapping their positions
+    set of adjacent elements in the array, from left to right, swapping their positions
     if they are not in order. \r\n\r\nThe algorithm then repeats this process until
     it can run through the entire list and find no two elements that need to be swapped.\r\n"
   m_isRightToLeft: 0
