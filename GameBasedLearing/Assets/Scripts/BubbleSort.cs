@@ -41,11 +41,14 @@ public class BubbleSort : MonoBehaviour
     [SerializeField] Card cardPrefab11;
     [SerializeField] Card cardPrefab12;
     [SerializeField] Card cardPrefab13;
+    private GlobalDataHolder globalDataHolder;
 
     // Start is called before the first frame update
     void Start()
     {
         dynamicUI = GameObject.Find("GameManager").GetComponent<DynamicUI>();
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        globalDataHolder.SetBubbleSort(true);
         AudioManagement = AudioManager.instance;
         cardObj = GameObject.Find("Cards");
         numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };

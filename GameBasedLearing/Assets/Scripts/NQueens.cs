@@ -18,16 +18,24 @@ public class NQueens : MonoBehaviour, IPuzzle
     private List<Tuple<Tuple<int, int>, char>> moves = new List<Tuple<Tuple<int, int>, char>>();
     [SerializeField] private DynamicUI dynamicUI;
     private AudioManager audioManager;
-    private Cell randomCell;
     private QueenSpawner queenSpawner;
+    private GlobalDataHolder globalDataHolder;
     void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         queenSpawner = GameObject.Find("GameManager").GetComponent<QueenSpawner>();
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
         parentCanvas = GameObject.Find("ParentCanvas");
         board.Create();
         problemSize = board.GetProblemSize();
-        randomCell = GameObject.Find("Cell(Clone)").GetComponent<Cell>();
+        if(problemSize == 4)
+        {
+            globalDataHolder.SetNQueensLevel1(true);
+        }
+        else
+        {
+            globalDataHolder.SetNQueensLevel2(true);
+        }
     }
     public bool CheckMoveIsPossible(GameObject GO)
     {

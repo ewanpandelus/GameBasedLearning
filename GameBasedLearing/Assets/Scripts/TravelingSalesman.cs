@@ -31,7 +31,9 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     private Edge edge;
     private int counter = 0;
     AudioManager AudioManagement;
-   
+    private GlobalDataHolder globalDataHolder;
+    private Scene scene;
+
     void Awake()
     {
         if (!instance)
@@ -41,6 +43,15 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     }
     void Start()
     {
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        scene = SceneManager.GetActiveScene();
+        if (scene.name.Contains("Easy")){
+            globalDataHolder.SetEasyTSP(true);
+        }
+        else
+        {
+            globalDataHolder.SetHardTSP(true);
+        }
         AudioManagement = AudioManager.instance;
         Permutate = Permutations.instance;
         nodes = travellingBeeInfo.GetNodes();

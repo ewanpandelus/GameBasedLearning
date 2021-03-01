@@ -31,8 +31,12 @@ public class MergeSort : MonoBehaviour
     private List<Tuple<int, List<int>>> sortedArrays = new List<Tuple<int, List<int>>>();
     private AnimatePoolBalls animatePoolBalls;
     private AudioManager audioManager;
+    private GlobalDataHolder globalDataHolder;
+
     void Start()
     {
+        globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
+        globalDataHolder.SetMergeSort(true);
         dynamicUI = GameObject.Find("GameManager").GetComponent<DynamicUI>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioManager.Play("Bar");

@@ -11,7 +11,7 @@ public class LevelLoader : MonoBehaviour
     private SceneTransition sceneTransition;
     [SerializeField] private AudioManager AudioManagement;
     private GlobalDataHolder globalDataHolder;
-    Scene scene;
+    private Scene scene;
 
     private void Start()
     {
@@ -37,6 +37,7 @@ public class LevelLoader : MonoBehaviour
              SaveSystem.SavePlayer(playerMovement);
         }
         SaveSystem.SaveTotalCherries(globalDataHolder);
+        SaveSystem.SaveLevelVisitData(globalDataHolder);
         sceneTransition.GetAnimator().SetTrigger("Start");
         yield return new WaitForSecondsRealtime(1f);
         if (scene.name.Contains("Overview")&&!this.name.Contains("Back"))

@@ -47,6 +47,27 @@ public static class SaveSystem
         }
 
     }
+    public static void SaveLevelVisitData(GlobalDataHolder globalDataHolder)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Path.Combine(Application.persistentDataPath, "levelvisitdata.txt");
+        FileStream stream = new FileStream(path, FileMode.Create);
+        try
+        {
+
+            LevelVisitData levelVisitData = new LevelVisitData(globalDataHolder);
+            formatter.Serialize(stream, levelVisitData);
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.Log(e);
+        }
+        finally
+        {
+            stream.Close();
+        }
+
+    }
     public static TotalCherriesData LoadTotalCherriesData()
     {
         string path = Path.Combine(Application.persistentDataPath, "totalcherries.txt");
@@ -59,6 +80,32 @@ public static class SaveSystem
                 TotalCherriesData totalCherriesData = formatter.Deserialize(stream) as TotalCherriesData;
                 stream.Close();
                 return totalCherriesData;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public static LevelVisitData LoadLevelVisitData()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "levelvisitdata.txt");
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            try
+            {
+                LevelVisitData levelVisitData = formatter.Deserialize(stream) as LevelVisitData;
+                stream.Close();
+                return levelVisitData;
 
             }
             catch (Exception e)
