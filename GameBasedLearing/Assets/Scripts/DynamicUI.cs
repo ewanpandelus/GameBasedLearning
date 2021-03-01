@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class DynamicUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI winningText;
+    [SerializeField] private GameObject winPanel;
+
     [SerializeField] private TextMeshProUGUI incorrectText;
-    [SerializeField] private GameObject replayButton;
-    [SerializeField] private GameObject continueButton;
+
     [SerializeField] private GameObject showGraphButon;
     [SerializeField] private GameObject hideGraphButton;
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject cherryAddition;
     private GlobalDataHolder globalDataHolder;
-    private string originalWinningPathText;
+    
     private string originalWrongPathText;
     private int cherryCount = 0;
  
@@ -26,26 +26,25 @@ public class DynamicUI : MonoBehaviour
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
         cherryCount = globalDataHolder.GetCherries();
         globalDataHolder.DisplayCherryCount();
-        originalWinningPathText = winningText.text;
+
         originalWrongPathText = incorrectText.text;
-        winningText.text = "";
+      
         incorrectText.text = "";
-        SetButtonsUnactive();
         SetSliderUnactive();
         SetShowGraphButtonUnactive();
         SetHideGraphButtonUnactive();
         cherryAddition.SetActive(false);
         
     }
-    public void SetWinningPathText()
+    public void WinGame()
     {
-        winningText.color = Color.white;
-        winningText.text = originalWinningPathText;
+        winPanel.SetActive(true);
     }
-    public void FadeOutWinningPathtext()
+    public void ReplayGame()
     {
-        StartCoroutine(FadeOutRoutine(winningText,0.2f));
+        winPanel.SetActive(false);
     }
+ 
     public void SetWrongPathText()
     {
         
@@ -79,12 +78,7 @@ public class DynamicUI : MonoBehaviour
     {
         hideGraphButton.SetActive(false);
     }
-    public void SetButtonsUnactive()
-    {
-        continueButton.SetActive(false);
-        replayButton.SetActive(false);
-        cherryAddition.SetActive(false);
-    }
+
     public void SetSliderUnactive()
     {
         slider.gameObject.SetActive(false);
@@ -94,11 +88,7 @@ public class DynamicUI : MonoBehaviour
 
         slider.gameObject.SetActive(true);
     }
-    public void SetButtonsActive()
-    {
-        continueButton.SetActive(true);
-        replayButton.SetActive(true);
-    }
+
     public void ShowCherryAdd(int number)
     {
         cherryAddition.SetActive(true);

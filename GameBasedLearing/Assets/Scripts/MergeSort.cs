@@ -99,6 +99,7 @@ public class MergeSort : MonoBehaviour
         {
             checkExpectedListFull[expectedArray.Item2] = false;
         }
+        merging = false;
     }
     public void Solve()
     {
@@ -133,14 +134,12 @@ public class MergeSort : MonoBehaviour
     public void Replay()
     {
         Reset();
-        dynamicUI.SetButtonsUnactive();
-        dynamicUI.FadeOutWinningPathtext();
+        dynamicUI.ReplayGame();
     }
     public void CorrectExecution()
     {
         solved = true;
-        dynamicUI.SetWinningPathText();
-        dynamicUI.SetButtonsActive();
+        dynamicUI.WinGame();
         dynamicUI.ShowCherryAdd(6);
         audioManager.Play("WinGame");
     }

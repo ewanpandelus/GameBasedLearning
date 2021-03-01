@@ -236,8 +236,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         ClearBoard(0);
         moveCount = 0;
         ((IPuzzle)this).DisplaySteps();
-        dynamicUI.SetButtonsUnactive();
-        dynamicUI.FadeOutWinningPathtext();
+        dynamicUI.ReplayGame();
     }
 
 
@@ -245,8 +244,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     {
         if (this.totalDistance == winningPathLength &&playedNodes.Count-1  == nodes.Count)
         {
-                dynamicUI.SetWinningPathText();
-                dynamicUI.SetButtonsActive();
+                dynamicUI.WinGame();
                 dynamicUI.ShowCherryAdd(nodes.Count);
                 AudioManagement.Play("WinGame");
         }

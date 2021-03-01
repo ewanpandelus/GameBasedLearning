@@ -120,8 +120,7 @@ public class NQueens : MonoBehaviour, IPuzzle
     public void Replay()
     {
         ClearBoard();
-        dynamicUI.SetButtonsUnactive();
-        dynamicUI.FadeOutWinningPathtext();
+        dynamicUI.ReplayGame();
     }
     void AddToMoves(int i, int col, char indicator)
     {
@@ -186,8 +185,7 @@ public class NQueens : MonoBehaviour, IPuzzle
     }
     private void WinBehaviour()
     {
-        dynamicUI.SetWinningPathText();
-        dynamicUI.SetButtonsActive();
+        dynamicUI.WinGame();
         audioManager.Play("WinGame");
     }
     IEnumerator IterateThroughMoves(GameObject[,] queenPlacement)

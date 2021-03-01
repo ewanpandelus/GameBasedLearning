@@ -87,13 +87,11 @@ public class BubbleSort : MonoBehaviour
     public void Replay()
     {
         Reset();
-        dynamicUI.SetButtonsUnactive();
-        dynamicUI.FadeOutWinningPathtext();
+        dynamicUI.ReplayGame();
     }
     private void CorrectExecution()
     {
-        dynamicUI.SetWinningPathText();
-        dynamicUI.SetButtonsActive();
+        dynamicUI.WinGame();
         dynamicUI.ShowCherryAdd(4);
         AudioManagement.Play("WinGame");
     }
