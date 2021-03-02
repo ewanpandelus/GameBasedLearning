@@ -38,6 +38,11 @@ public class DynamicUI : MonoBehaviour
     }
     public void WinGame()
     {
+        StartCoroutine("WaitToWin");
+    }
+    private IEnumerator WaitToWin()
+    {
+        yield return new WaitForSeconds(3f);
         winPanel.SetActive(true);
     }
     public void ReplayGame()
