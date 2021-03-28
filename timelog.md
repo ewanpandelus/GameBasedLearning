@@ -180,3 +180,35 @@
 ### 17 Dec 2020
 * *3hours* Creating plan for Christmas break/semester2
 * *1hours* Creating status report for semester 1
+
+
+## Semester 2
+
+## Week 1 
+### 12 Jan 2021 
+* *5 hours* Adding overview for puzzles 
+### 13 Jan 2021
+* *5 hours* Adding overview for puzzles 
+### 14 Jan 2021 
+* *8 hours Adding sounds and music
+
+## Week 2 
+### 19 Jan 2021 
+* *8 hours* Creating scene/tilemap for platfromer
+### 20 Jan 2021
+* *2 hours* Adding moving character to platformer
+
+### 21 Jan 2021
+* *4 hours* Adding doors to levels to platformer
+
+## Week 3
+
+### 27 Jan 2021
+* *10 hours* Creating Merge Sort puzzle game
+
+### 30 Jan 2021
+* *12 hours* Creating Merge Sort graphical solve functionality
+
+## Week 4 
+### 1 Feb 2021
+
