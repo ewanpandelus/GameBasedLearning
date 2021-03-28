@@ -184,7 +184,7 @@
 ### 13 Jan 2021
 * *5 hours* Adding overview for puzzles 
 ### 14 Jan 2021 
-* *8 hours Adding sounds and music
+* *8 hours* Adding sounds and music
 
 ## Week 2 
 ### 19 Jan 2021 
@@ -205,4 +205,15 @@
 
 ## Week 4 
 ### 1 Feb 2021
+* *5 hours* Adding animations to character 
+* *5 hours* Adding ladders to platformer 
+
+### 3 Feb 2021
+* *4 hours* Adding cherries and sounds to platformer
+
+## Week 5
+### 8 Feb 2021 
+* *6 hours* Adding Saving & Loading Functionalities to game
+### 9 Feb 2021 
+* *5 hours* General bug fixes throughout game 
 
