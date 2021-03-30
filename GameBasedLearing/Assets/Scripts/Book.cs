@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 [System.Serializable]
 public class Book : MonoBehaviour
 {
@@ -13,28 +12,25 @@ public class Book : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] page2Texts = new TextMeshProUGUI[4];
     Color black = new Color(0f, 0f, 0f, 255f);
     private bool turned = false;
-
-    void Start()
+    private void Start()
     {
         AudioManagement = AudioManager.instance;
         this.animator.speed = 1.25f;
     }
-
-    private void  PageTurnAnim()
+    private void PageTurnAnim()
     {
         AudioManagement.Play("FlipPage");
-        animator.SetBool("Turn",true);
+        animator.SetBool("Turn", true);
         animator.SetBool("TurnBack", false);
     }
     private void PageTurnBackAnim()
     {
         AudioManagement.Play("FlipPage");
         animator.SetBool("TurnBack", true);
-        animator.SetBool("Turn", false) ;
+        animator.SetBool("Turn", false);
     }
     public void PageTurn()
     {
-      
         if (!turned)
         {
             FadeOutBookText(page1Texts);
@@ -42,13 +38,9 @@ public class Book : MonoBehaviour
             FadeInBookText(page2Texts);
             turned = true;
         }
-      
-      
-   
     }
     public void PageTurnBack()
     {
-  
         if (turned)
         {
             FadeOutBookText(page2Texts);
@@ -56,10 +48,8 @@ public class Book : MonoBehaviour
             FadeInBookText(page1Texts);
             turned = false;
         }
-
-
     }
-   
+
     private void FadeOutBookText(TextMeshProUGUI[] fadeOutTexts)
     {
         foreach (TextMeshProUGUI text in fadeOutTexts)
@@ -69,7 +59,6 @@ public class Book : MonoBehaviour
                 StartCoroutine(FadeOutRoutine(text, 0.25f));
             }
         }
-       
     }
     private void FadeInBookText(TextMeshProUGUI[] fadeInTexts)
     {
@@ -79,13 +68,11 @@ public class Book : MonoBehaviour
             {
                 StartCoroutine(FadeInRoutine(text, 0.25f));
             }
-        
+
         }
-   
     }
     private IEnumerator FadeOutRoutine(TextMeshProUGUI text, float waitTime)
     {
-        
         for (int i = 0; i < 1; i++)
         {
             yield return new WaitForSeconds(waitTime);
@@ -99,7 +86,6 @@ public class Book : MonoBehaviour
     }
     private IEnumerator FadeInRoutine(TextMeshProUGUI text, float waitTime)
     {
-
         for (int i = 0; i < 1; i++)
         {
             yield return new WaitForSeconds(waitTime);

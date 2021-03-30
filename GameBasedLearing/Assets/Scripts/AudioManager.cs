@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public Sound[] sounds;
-    // Start is called before the first frame update
     private float volume;
     GlobalDataHolder globalDataHolder;
     private void Awake()
@@ -38,32 +37,32 @@ public class AudioManager : MonoBehaviour
     {
         Play("Background");
         ChangeVolume();
-        StartCoroutine(StartFade("Background",3f, 0.3f*globalDataHolder.RetrieveAndSaveSliderValue()));
-        
+        StartCoroutine(StartFade("Background", 3f, 0.3f * globalDataHolder.RetrieveAndSaveSliderValue()));
+
     }
 
     public void ChangeVolume()
     {
         foreach (Sound s in sounds)
         {
-            s.SetVolume(s.GetVolume()*globalDataHolder.RetrieveAndSaveSliderValue());
-         }
+            s.SetVolume(s.GetVolume() * globalDataHolder.RetrieveAndSaveSliderValue());
+        }
     }
     public void Play(string name)
     {
-        Sound s =  Array.Find(sounds, sound => sound.GetName() == name);
-        if (s!=null)
+        Sound s = Array.Find(sounds, sound => sound.GetName() == name);
+        if (s != null)
         {
             s.GetSource().Play();
         }
-       
+
     }
     private AudioSource FindAudioSource(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.GetName() == name);
         return s.GetSource();
     }
-    public IEnumerator StartFade(string name ,  float duration, float targetVolume)
+    public IEnumerator StartFade(string name, float duration, float targetVolume)
     {
         AudioSource audioSource = FindAudioSource(name);
         float currentTime = 0;

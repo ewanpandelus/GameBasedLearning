@@ -23,7 +23,6 @@ public class Ball : EventTrigger
 
     private void Start()
     {
-      
         currentPosition = this.transform.position;
         mergeSort = GameObject.Find("GameManager").GetComponent<MergeSort>();
         animatePoolBalls = GameObject.Find("GameManager").GetComponent<AnimatePoolBalls>();
@@ -46,8 +45,6 @@ public class Ball : EventTrigger
         }
         base.OnBeginDrag(eventData);
         this.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
-        
-
     }
     public override void OnDrag(PointerEventData eventData)
     {
@@ -56,14 +53,11 @@ public class Ball : EventTrigger
             return;
         }
         base.OnDrag(eventData);
-
-        // Follow pointer
         transform.position += (Vector3)eventData.delta;
         foreach (PoolBallHolder holder in allPoolBallHolders)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(holder.GetRectTransform(), Input.mousePosition) && holder != currentPoolBallHolder)
             {
-                // If the mouse is within a valid cell, get it, and break.
                 targetPoolBallHolder = holder;
                 break;
             }
@@ -72,10 +66,9 @@ public class Ball : EventTrigger
     }
     private void MoveBall()
     {
-     
-        if (mergeSort.CheckMoveIsCorrect(Int32.Parse(this.name.Substring(0,1)),this.targetPoolBallHolder.GetAssociatedArray(),this.currentPoolBallHolder.GetAssociatedArray(),belongsToArray,targetPoolBallHolder))
+
+        if (mergeSort.CheckMoveIsCorrect(Int32.Parse(this.name.Substring(0, 1)), this.targetPoolBallHolder.GetAssociatedArray(), this.currentPoolBallHolder.GetAssociatedArray(), belongsToArray, targetPoolBallHolder))
         {
-           
             this.transform.position = targetPoolBallHolder.transform.position;
             currentPosition = targetPoolBallHolder.transform.position;
             this.currentPoolBallHolder = targetPoolBallHolder;
@@ -84,9 +77,6 @@ public class Ball : EventTrigger
             {
                 mergeSort.CorrectExecution();
             }
-           
-
-
         }
         else
         {
@@ -94,7 +84,7 @@ public class Ball : EventTrigger
             return;
         }
         currentArray = currentPoolBallHolder.GetAssociatedArray();
-       
+
     }
     public override void OnEndDrag(PointerEventData eventData)
     {
@@ -104,27 +94,18 @@ public class Ball : EventTrigger
         }
         base.OnEndDrag(eventData);
         this.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
-
-
-
-
-        // Return to original position
         if (!targetPoolBallHolder)
         {
             transform.position = currentPosition;
             return;
         }
-
-        // Move to new cell
         MoveBall();
-
-
     }
     public Outline GetOutline()
     {
         return this.transform.GetChild(0).GetComponent<Outline>();
     }
-    public  void SetBelongsToArray(bool val)
+    public void SetBelongsToArray(bool val)
     {
         belongsToArray = val;
     }
@@ -136,9 +117,8 @@ public class Ball : EventTrigger
     {
         return this.finishedFirstHalf;
     }
-  
 }
-   
 
 
-    
+
+

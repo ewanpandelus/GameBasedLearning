@@ -5,23 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class ArrayInformation : MonoBehaviour
 {
-     [SerializeField] private int level;
-     [SerializeField] private int size;
-     [SerializeField] private List<PoolBallHolder> associatedPoolBallHolders;
-     [SerializeField] private List<ArrayInformation> associatedMergingArrays;
-     private List<int> expectedArrayValues = new List<int>();
-     private bool empty = true;
-     private bool full = false;
-     private List<bool> isArrayOccupied = new List<bool>(); 
-
-
-
+    [SerializeField] private int level;
+    [SerializeField] private int size;
+    [SerializeField] private List<PoolBallHolder> associatedPoolBallHolders;
+    [SerializeField] private List<ArrayInformation> associatedMergingArrays;
+    private List<int> expectedArrayValues = new List<int>();
+    private bool empty = true;
+    private bool full = false;
+    private List<bool> isArrayOccupied = new List<bool>();
     private void Start()
     {
-     InitialiseArrayOccupied();
+        InitialiseArrayOccupied();
     }
-
-
     private void InitialiseArrayOccupied()
     {
         for (int i = 0; i < size; i++)
@@ -38,9 +33,9 @@ public class ArrayInformation : MonoBehaviour
     }
     public bool CheckFinished()
     {
-        if(level == 0)
+        if (level == 0)
         {
-            if(full == true)
+            if (full == true)
             {
                 return true;
             }
@@ -48,8 +43,8 @@ public class ArrayInformation : MonoBehaviour
         }
         return false;
     }
-    
-    public void UpdateIsArrayOccupied(int ballToUpdate,bool adding,int prevBallIndex)
+
+    public void UpdateIsArrayOccupied(int ballToUpdate, bool adding, int prevBallIndex)
     {
         if (adding)
         {
@@ -60,7 +55,7 @@ public class ArrayInformation : MonoBehaviour
         {
             isArrayOccupied[prevBallIndex] = adding;
         }
-    
+
         if (!isArrayOccupied.Contains(true))
         {
             empty = true;
@@ -79,9 +74,9 @@ public class ArrayInformation : MonoBehaviour
     }
     public void SetBallsOfExpectedArray(bool belongsToArray)
     {
-        foreach(int ballNumber in expectedArrayValues)
+        foreach (int ballNumber in expectedArrayValues)
         {
-            Ball ball = GameObject.Find(ballNumber.ToString()+"(Clone)").GetComponent<Ball>();
+            Ball ball = GameObject.Find(ballNumber.ToString() + "(Clone)").GetComponent<Ball>();
             ball.SetBelongsToArray(belongsToArray);
         }
     }
@@ -110,8 +105,6 @@ public class ArrayInformation : MonoBehaviour
     {
         return this.expectedArrayValues;
     }
-
-
     public bool GetFull()
     {
         return this.full;
