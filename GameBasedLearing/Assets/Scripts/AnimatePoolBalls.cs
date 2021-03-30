@@ -30,6 +30,7 @@ public class AnimatePoolBalls : MonoBehaviour
         animating = false;
         mergeSort.SetSolved(true);
     }
+
     public void AddBallToActive(Ball ball)
     {
         this.balls.Add(ball);
