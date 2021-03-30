@@ -29,7 +29,6 @@ public class AnimatePoolBalls : MonoBehaviour
         firstHalf = false;
         animating = false;
         mergeSort.SetSolved(true);
-      
     }
     public void AddBallToActive(Ball ball)
     {
@@ -39,8 +38,6 @@ public class AnimatePoolBalls : MonoBehaviour
     private IEnumerator MoveFowards(bool moving, Ball ball,Vector3 targetPosition)
     {
         float distanceThisFrame = slider.value * 0.02f;
-
-       
         Vector2 direction = targetPosition - ball.transform.position;
         while (moving)
         {
@@ -79,12 +76,7 @@ public class AnimatePoolBalls : MonoBehaviour
                 ball.GetOutline().ResetColour();
                 ball.GetOutline().SetOutlineImage(false);
                 ball.transform.position = targetPosition;
-              
-                
-              
-
                 moving = false;
-
             }
             yield return new WaitForSecondsRealtime(0.01f);
         }
@@ -129,8 +121,6 @@ public class AnimatePoolBalls : MonoBehaviour
             }
             yield return new WaitForSeconds((0.5f / 3f) / (slider.value / slider.maxValue));
             StartCoroutine(MoveBackwards(true, move.Item2.Item1, move.Item2.Item2.transform.position, move.Item2.Item2));
-
-
         }
         animating = false;
         mergeSort.CorrectExecution();
