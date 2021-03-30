@@ -5,12 +5,6 @@
 * 2319069P
 * Supervisor - Syed Waqar Nabi
 
-## Guidance
-
-* This file contains the time log for your project. It will be submitted along with your final dissertation.
-* **YOU MUST KEEP THIS UP TO DATE AND UNDER VERSION CONTROL.**
-* This timelog should be filled out honestly, regularly (daily) and accurately. It is for *your* benefit.
-* Follow the structure provided, grouping time by weeks.  Quantise time to the half hour.
 
 ## Week 1
 
@@ -180,3 +174,46 @@
 ### 17 Dec 2020
 * *3hours* Creating plan for Christmas break/semester2
 * *1hours* Creating status report for semester 1
+
+
+## Semester 2
+
+## Week 1 
+### 12 Jan 2021 
+* *5 hours* Adding overview for puzzles 
+### 13 Jan 2021
+* *5 hours* Adding overview for puzzles 
+### 14 Jan 2021 
+* *8 hours* Adding sounds and music
+
+## Week 2 
+### 19 Jan 2021 
+* *8 hours* Creating scene/tilemap for platfromer
+### 20 Jan 2021
+* *2 hours* Adding moving character to platformer
+
+### 21 Jan 2021
+* *4 hours* Adding doors to levels to platformer
+
+## Week 3
+
+### 27 Jan 2021
+* *10 hours* Creating Merge Sort puzzle game
+
+### 30 Jan 2021
+* *12 hours* Creating Merge Sort graphical solve functionality
+
+## Week 4 
+### 1 Feb 2021
+* *5 hours* Adding animations to character 
+* *5 hours* Adding ladders to platformer 
+
+### 3 Feb 2021
+* *4 hours* Adding cherries and sounds to platformer
+
+## Week 5
+### 8 Feb 2021 
+* *6 hours* Adding Saving & Loading Functionalities to game
+### 9 Feb 2021 
+* *5 hours* General bug fixes throughout game 
+
