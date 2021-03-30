@@ -68,8 +68,7 @@ public class AnimatePoolBalls : MonoBehaviour
         float distanceThisFrame = slider.value * 0.02f;
         Vector2 direction = targetPosition - ball.transform.position;
         while (moving)
-        {
-           
+        { 
             ball.transform.Translate(direction.normalized * distanceThisFrame, Space.World);
             ball.GetOutline().SetColour(Color.red);
             if (targetPosition.y - ball.transform.position.y <= 0.1f)
@@ -92,7 +91,6 @@ public class AnimatePoolBalls : MonoBehaviour
 
             StartCoroutine("IterateThroughArrays");
         }
-   
     }
 
     private IEnumerator SplittingAnimation()
@@ -197,7 +195,6 @@ public class AnimatePoolBalls : MonoBehaviour
                 moveList.Add(new Tuple<Ball, Tuple<Ball, PoolBallHolder>>(null, new Tuple<Ball, PoolBallHolder>(leftBalls[leftI], moveToPoolBallHolder)));
                 SetPoolBallHolder(moveToPoolBallHolder, leftBalls[leftI]);
                 leftI++;
-
                 continue;
             }
             if (leftBalls.Count == leftI)
@@ -205,7 +202,6 @@ public class AnimatePoolBalls : MonoBehaviour
                 moveList.Add(new Tuple<Ball, Tuple<Ball, PoolBallHolder>>(null, new Tuple<Ball, PoolBallHolder>(rightBalls[rightI], moveToPoolBallHolder)));
                 SetPoolBallHolder(moveToPoolBallHolder, rightBalls[rightI]);
                 rightI++;
-        
                 continue;
             }
             if (CompareElements(leftBalls[leftI], rightBalls[rightI]))
@@ -220,7 +216,6 @@ public class AnimatePoolBalls : MonoBehaviour
                 SetPoolBallHolder(moveToPoolBallHolder, rightBalls[rightI]);
                 rightI++;
             }
-        
         }
         rightBalls.Clear();
         leftBalls.Clear();

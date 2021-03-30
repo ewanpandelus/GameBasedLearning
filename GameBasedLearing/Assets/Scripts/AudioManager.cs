@@ -23,7 +23,6 @@ public class AudioManager : MonoBehaviour
         {
 
         }
-
         foreach (Sound s in sounds)
         {
             s.SetSource(gameObject.AddComponent<AudioSource>());
@@ -33,12 +32,12 @@ public class AudioManager : MonoBehaviour
             s.GetSource().loop = s.GetLoop();
         }
     }
+
     private void Start()
     {
         Play("Background");
         ChangeVolume();
         StartCoroutine(StartFade("Background", 3f, 0.3f * globalDataHolder.RetrieveAndSaveSliderValue()));
-
     }
 
     public void ChangeVolume()
@@ -55,19 +54,19 @@ public class AudioManager : MonoBehaviour
         {
             s.GetSource().Play();
         }
-
     }
+
     private AudioSource FindAudioSource(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.GetName() == name);
         return s.GetSource();
     }
+
     public IEnumerator StartFade(string name, float duration, float targetVolume)
     {
         AudioSource audioSource = FindAudioSource(name);
         float currentTime = 0;
         float start = audioSource.volume;
-
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
