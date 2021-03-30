@@ -43,7 +43,6 @@ public class AnimatePoolBalls : MonoBehaviour
         while (moving)
         {
             ball.transform.Translate(direction.normalized * distanceThisFrame, Space.World);
-
             if (ball.transform.position.y - targetPosition.y <= 0.1f)
             {
                
@@ -54,9 +53,7 @@ public class AnimatePoolBalls : MonoBehaviour
                 moving = false;
             }
             yield return new WaitForSecondsRealtime(0.01f);
-
         }
-    
         yield break;
     }
     private void HighLightBalls(Ball ball1, Ball ball2)
@@ -67,8 +64,6 @@ public class AnimatePoolBalls : MonoBehaviour
     private IEnumerator MoveBackwards(bool moving, Ball ball, Vector3 targetPosition,PoolBallHolder desinationPoolBallHolder)
     {
         float distanceThisFrame = slider.value * 0.02f;
-        
-        
         Vector2 direction = targetPosition - ball.transform.position;
         while (moving)
         {
@@ -96,18 +91,17 @@ public class AnimatePoolBalls : MonoBehaviour
     {
         if (!animating)
         {
-            StartCoroutine("FirstAnimation");
+            StartCoroutine("SplittingAnimation");
 
             StartCoroutine("IterateThroughArrays");
         }
    
     }
-    private IEnumerator FirstAnimation()
+    private IEnumerator SplittingAnimation()
     {
         animating = true;
         for (int i = 0; i < 3; i++)
         {
-
             foreach (Ball ball in balls)
             {
                 yield return new WaitForSecondsRealtime((0.5f/3f) / (slider.value / slider.maxValue));
@@ -117,15 +111,11 @@ public class AnimatePoolBalls : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         firstHalf = true;
         yield break;
-
-
     }
     private IEnumerator MergingAnimation()
     {
         foreach(Tuple<Ball, Tuple<Ball, PoolBallHolder>> move in moveList)
         {
-
-           
             yield return new WaitForSeconds((1.5f / 3f) / (slider.value / slider.maxValue));
             if (move.Item1)
             {
@@ -148,11 +138,8 @@ public class AnimatePoolBalls : MonoBehaviour
 
     public IEnumerator  IterateThroughArrays()
     {
-        
-        yield return new WaitUntil(() => firstHalf == true);
-       
+        yield return new WaitUntil(() => firstHalf == true);  
         for (int i = 3; i > 0; i--)
-            
         {
             List<ArrayInformation> arraysToMoveTo = allArrays.FindAll(x => x.GetLevel() == i-1);
             arraysToMoveTo = SortArraysToMoveTo(arraysToMoveTo);
@@ -173,10 +160,8 @@ public class AnimatePoolBalls : MonoBehaviour
                 {
                     rightPoolBalls.Add(poolBallHolder.GetCurrentBall());
                 }
-                CompareLeftAndRightLists(leftPoolBalls, rightPoolBalls,array);
-                
-            }
-          
+                CompareLeftAndRightLists(leftPoolBalls, rightPoolBalls,array);   
+            } 
         }
         StartCoroutine("MergingAnimation");
     }
@@ -190,9 +175,6 @@ public class AnimatePoolBalls : MonoBehaviour
         }
         return resultArray;
     }
-    
-
-    
     private void SetPoolBallHolder(PoolBallHolder destinationPoolBallHolder,Ball ball)
     {
         ball.SetCurrentBallHolder(destinationPoolBallHolder);
@@ -210,8 +192,6 @@ public class AnimatePoolBalls : MonoBehaviour
         }
         for (int i = 0; i <(poolBallHolderIndexes.Count); i++)
         {
-        
-
             PoolBallHolder moveToPoolBallHolder = poolBallHolderIndexes.Find(x => x.Item1 == i).Item2;
             if (rightBalls.Count ==rightI)
             {
