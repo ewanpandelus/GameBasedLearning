@@ -11,15 +11,12 @@ public class Card : EventTrigger
     protected CardHolder currentCardHolder = null;
     protected RectTransform rectTransform = null;
     protected CardHolder targetCardHolder = null;
-    private int value;
     BubbleSort bubbleSort;
-
     private Vector3 initialPosition = new Vector3(0f, 0f, 0f);
-
     protected Card originalCard = null;
     protected Card currentCard = null;
-
     protected Card targetCard = null;
+
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -30,20 +27,18 @@ public class Card : EventTrigger
         initialPosition = this.transform.position;
     }
 
-
     public void SetCurrentCardHolder(CardHolder cardHolder)
     {
         this.currentCardHolder = cardHolder;
     }
 
-    
    public void SetInitialPosition(Vector3 position)
     {
         this.initialPosition = position;
     }
+
     private void MoveCard()
     {
-      
         if (targetCard)
         {
             if(bubbleSort.CheckMoveIsCorrect(this.gameObject, targetCard.gameObject))
@@ -54,7 +49,6 @@ public class Card : EventTrigger
                 targetCard.SetCurrentCardHolder(currentCardHolder);
                 targetCard.transform.position = initialPosition;
                 targetCard.SetInitialPosition(initialPosition);
-              
                 currentCard.SetCurrentCardHolder(targetCardHolder);
                 targetCardHolder.SetCurrentCard(this);
                 initialPosition = transform.position;
@@ -65,9 +59,6 @@ public class Card : EventTrigger
                 transform.position = initialPosition;
                 return;
             }
-           
-
-
         }
         targetCard = null;
     }
@@ -90,19 +81,15 @@ public class Card : EventTrigger
             return;
         }
         base.OnDrag(eventData);
-
-        // Follow pointer
         transform.position += (Vector3)eventData.delta;
         foreach (Card card in allCards)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(card.GetRectTransform(), Input.mousePosition)&&card!=currentCard)
             {
-                // If the mouse is within a valid cell, get it, and break.
                 targetCard = card;
                 break;
             }
         }
-      
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -113,25 +100,19 @@ public class Card : EventTrigger
         }
         base.OnEndDrag(eventData);
         this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
-
-
-
-        // Return to original position
         if (!targetCard && currentCard)
         {
             transform.position = initialPosition;
             return;
         }
-
-        // Move to new cell
         MoveCard();
-
-
     }
+
     public void SetCurrentPosition(Vector3 position)
     {
         this.transform.position = position;
     }
+
     public RectTransform GetRectTransform()
     {
         return this.rectTransform;

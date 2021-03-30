@@ -12,13 +12,13 @@ public class ComplexityQuestion : MonoBehaviour
     [SerializeField] private GameObject graph;
     private string assertRight = "<color=green>That's correct!</color>\n\n";
     private string assertWrong  = "<color=red>That's not the right answer.</color>\n\n";
+
     private void Start()
     {
-       
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
         AssessComplexity();
-        
     }
+
     private void AssessComplexity()
     {
         if (globalDataHolder.GetLevelToAssessComplexity().Contains("Merge"))
@@ -71,6 +71,7 @@ public class ComplexityQuestion : MonoBehaviour
          "For further information, visit  https://en.wikipedia.org/wiki/Travelling_salesman_problem";
         }
     }
+
     public void AnswerQuestion()
     {
         if(this.name == complexityAnswer)
@@ -79,7 +80,6 @@ public class ComplexityQuestion : MonoBehaviour
             answerObject.SetActive(true);
             answerObject.GetComponentInChildren<TextMeshProUGUI>().text = explanationText;
             graph.SetActive(false);
-          
         }
         else
         {
@@ -87,7 +87,6 @@ public class ComplexityQuestion : MonoBehaviour
             answerObject.SetActive(true);
             answerObject.GetComponentInChildren<TextMeshProUGUI>().text = explanationText;
             graph.SetActive(false);
-      
         }
     }
 

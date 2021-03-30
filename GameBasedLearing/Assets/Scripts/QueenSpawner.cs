@@ -12,6 +12,7 @@ public class QueenSpawner : MonoBehaviour
     private CanvasScaler canvasScaler;
     private Vector2 ScreenScale;
     private GameObject latestQueen;
+
     public void SpawnQueen() 
     {
        GameObject queen = (GameObject)Instantiate(queenPiecePrefab, spawnPoint.transform.position, transform.rotation);
@@ -21,6 +22,7 @@ public class QueenSpawner : MonoBehaviour
        QueenScaleAdjustments(queen);
        latestQueen = queen;
     }
+
     private void QueenScaleAdjustments(GameObject queen)
     {
         RectTransform rectTransform = queen.GetComponent<RectTransform>();
@@ -37,6 +39,7 @@ public class QueenSpawner : MonoBehaviour
         }
         rectTransform.sizeDelta *= scaleFactor;
     }
+
     public void SpawnQueenOnBoard(Vector3 boardPosition)
     {
         GameObject queen = (GameObject)Instantiate(queenPiecePrefab, boardPosition, transform.rotation);
@@ -45,10 +48,12 @@ public class QueenSpawner : MonoBehaviour
         QueenScaleAdjustments(queen);
         latestQueen = queen;
     }
+
     public GameObject GetLatestQueen()
     {
         return this.latestQueen;
     }
+
     private Vector2 CalculateScreenScale(GameObject queen)
     {
         if(canvasScaler == null)

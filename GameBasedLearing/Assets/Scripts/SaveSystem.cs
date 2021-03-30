@@ -26,6 +26,7 @@ public static class SaveSystem
         }
     
     }
+
     public static void SaveTotalCherries(GlobalDataHolder globalDataHolder)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -47,6 +48,7 @@ public static class SaveSystem
         }
 
     }
+
     public static void SaveLevelVisitData(GlobalDataHolder globalDataHolder)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -66,8 +68,8 @@ public static class SaveSystem
         {
             stream.Close();
         }
-
     }
+
     public static TotalCherriesData LoadTotalCherriesData()
     {
         string path = Path.Combine(Application.persistentDataPath, "totalcherries.txt");
@@ -86,14 +88,13 @@ public static class SaveSystem
             {
                 return null;
             }
-
-
         }
         else
         {
             return null;
         }
     }
+
     public static LevelVisitData LoadLevelVisitData()
     {
         string path = Path.Combine(Application.persistentDataPath, "levelvisitdata.txt");
@@ -112,14 +113,13 @@ public static class SaveSystem
             {
                 return null;
             }
-
-
         }
         else
         {
             return null;
         }
     }
+
     public static PlayerData LoadPlayer()
     {
         string path = Path.Combine(Application.persistentDataPath, "player.txt");
@@ -138,8 +138,6 @@ public static class SaveSystem
             {
                 return null;
             }
-       
-         
         }
         else
         {

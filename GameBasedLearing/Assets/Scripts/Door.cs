@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
     [SerializeField] private Animator animator;
     [SerializeField] private string soundName;
     private LevelLoader levelLoader;
@@ -26,9 +25,9 @@ public class Door : MonoBehaviour
             AudioManagement = AudioManager.instance;
         }
     }
+
     private void Update()
     {
-
         if (Input.GetKeyDown("e") && playerAtDoor)
         {
             AudioManagement.Play("ButtonPress");
@@ -36,17 +35,12 @@ public class Door : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void OnTriggerEnter2D(Collider2D col)
     {
-       
         enterText.text = "Press E to Enter";
         if (col.CompareTag("Player"))
         {
             this.animator.speed = 1f;
-          
-
-
         }
     }
         void OnTriggerStay2D(Collider2D col)
@@ -71,18 +65,13 @@ public class Door : MonoBehaviour
                     return;
                 }
             }
-      
                 playerAtDoor = true;
                 enterText.text = "Press E to Enter";
-           
-        
-
             }
-
         }
+
         void OnTriggerExit2D(Collider2D col)
         {
-
             if (col.CompareTag("Player"))
             {
                 enterText.text = "";
@@ -90,8 +79,6 @@ public class Door : MonoBehaviour
                 this.animator.speed = 0f;
                 AudioManagement.Play(soundName);
             }
-
         }
-    
 }
 

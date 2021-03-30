@@ -13,10 +13,12 @@ public class ArrayInformation : MonoBehaviour
     private bool empty = true;
     private bool full = false;
     private List<bool> isArrayOccupied = new List<bool>();
+
     private void Start()
     {
         InitialiseArrayOccupied();
     }
+
     private void InitialiseArrayOccupied()
     {
         for (int i = 0; i < size; i++)
@@ -31,6 +33,7 @@ public class ArrayInformation : MonoBehaviour
             }
         }
     }
+
     public bool CheckFinished()
     {
         if (level == 0)
@@ -72,6 +75,7 @@ public class ArrayInformation : MonoBehaviour
         }
 
     }
+
     public void SetBallsOfExpectedArray(bool belongsToArray)
     {
         foreach (int ballNumber in expectedArrayValues)
@@ -80,47 +84,58 @@ public class ArrayInformation : MonoBehaviour
             ball.SetBelongsToArray(belongsToArray);
         }
     }
+
     public bool GetEmpty()
     {
         return this.empty;
     }
+
     public void SetEmpty(bool _empty)
     {
         this.empty = _empty;
     }
+
     public int GetLevel()
     {
         return this.level;
     }
+
     public void SetAllOccupiedFalse()
     {
         isArrayOccupied.Clear();
         InitialiseArrayOccupied();
     }
+
     public void SetExpectedArrayValues(List<int> _expectedArrayValues)
     {
         expectedArrayValues = _expectedArrayValues;
     }
+
     public List<int> GetExpectedArrayValues()
     {
         return this.expectedArrayValues;
     }
+
     public bool GetFull()
     {
         return this.full;
     }
+
     public void SetFull(bool value)
     {
         this.full = value;
     }
+
     public int GetSize()
     {
         return this.size;
     }
+
     public List<PoolBallHolder> GetPoolBallHolders()
     {
         return this.associatedPoolBallHolders;
     }
+
     public List<ArrayInformation> GetAssociatedMergingArrays()
     {
         return this.associatedMergingArrays;

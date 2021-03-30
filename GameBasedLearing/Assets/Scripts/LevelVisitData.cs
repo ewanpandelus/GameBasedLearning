@@ -15,6 +15,5 @@ public class LevelVisitData
         this.bubbleSort = globalDataHolder.GetBubbleSort();
         this.easyTSP = globalDataHolder.GetEasyTSP();
         this.hardTSP = globalDataHolder.GetHardTSP();
-
     }
 }

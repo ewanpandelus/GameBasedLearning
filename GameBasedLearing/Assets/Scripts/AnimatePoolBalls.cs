@@ -15,12 +15,13 @@ public class AnimatePoolBalls : MonoBehaviour
     List<Ball> balls = new List<Ball>();
     List<Tuple<Ball, Tuple<Ball, PoolBallHolder>>> moveList = new List<Tuple<Ball, Tuple<Ball, PoolBallHolder>>>();
     private MergeSort mergeSort;
+
     private void Awake()
     {
         allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
         mergeSort = GameObject.Find("GameManager").GetComponent<MergeSort>();
-
     }
+
     public void ClearAnimationObjects()
     {
         balls.Clear();
@@ -34,6 +35,7 @@ public class AnimatePoolBalls : MonoBehaviour
     {
         this.balls.Add(ball);
     }
+
     private IEnumerator MoveFowards(bool moving, Ball ball,Vector3 targetPosition)
     {
         float distanceThisFrame = slider.value * 0.02f;
@@ -56,11 +58,13 @@ public class AnimatePoolBalls : MonoBehaviour
         }
         yield break;
     }
+
     private void HighLightBalls(Ball ball1, Ball ball2)
     {
         ball1.GetOutline().SetOutlineImage(true);
         ball2.GetOutline().SetOutlineImage(true);
     }
+
     private IEnumerator MoveBackwards(bool moving, Ball ball, Vector3 targetPosition,PoolBallHolder desinationPoolBallHolder)
     {
         float distanceThisFrame = slider.value * 0.02f;
@@ -83,10 +87,10 @@ public class AnimatePoolBalls : MonoBehaviour
 
             }
             yield return new WaitForSecondsRealtime(0.01f);
-
         }
         yield break;
     }
+
     public void StartAnimation()
     {
         if (!animating)
@@ -97,6 +101,7 @@ public class AnimatePoolBalls : MonoBehaviour
         }
    
     }
+
     private IEnumerator SplittingAnimation()
     {
         animating = true;
@@ -112,6 +117,7 @@ public class AnimatePoolBalls : MonoBehaviour
         firstHalf = true;
         yield break;
     }
+
     private IEnumerator MergingAnimation()
     {
         foreach(Tuple<Ball, Tuple<Ball, PoolBallHolder>> move in moveList)
@@ -175,11 +181,13 @@ public class AnimatePoolBalls : MonoBehaviour
         }
         return resultArray;
     }
+
     private void SetPoolBallHolder(PoolBallHolder destinationPoolBallHolder,Ball ball)
     {
         ball.SetCurrentBallHolder(destinationPoolBallHolder);
         ball.GetCurrentPoolBallHolder().SetCurrentBall(ball);
     }
+
     public void CompareLeftAndRightLists(List<Ball> leftBalls, List<Ball> rightBalls, ArrayInformation arrayToMoveTo)
     { 
         int leftI = 0;
@@ -226,10 +234,12 @@ public class AnimatePoolBalls : MonoBehaviour
         rightBalls.Clear();
         leftBalls.Clear();
     }
+
     private bool CompareElements(Ball left,Ball right)
     {
         return Int32.Parse(left.name.Substring(0, 1)) < Int32.Parse(right.name.Substring(0, 1));
     }
+
     public bool GetAnimating()
     {
         return this.animating;

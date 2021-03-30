@@ -21,38 +21,47 @@ public class Sound
     {
         return this.loop;
     }
+
     public AudioClip GetClip()
     {
         return this.clip;
     }
+
     public void SetClip(AudioClip c)
     {
         this.clip = c;
     }
+
     public float GetPitch()
     {
         return this.pitch;
     }
+
     public void SetPitch(float p)
     {
         this.pitch = p;
     }
+
     public float GetVolume()
     {
         return this.volume;
     }
+
     public void SetVolume(float v)
     {
         this.source.volume = v;
     }
+
     public void SetSource(AudioSource s)
     {
         source = s;
     }
+
     public AudioSource GetSource()
     {
         return this.source;
     }
+
     public string GetName()
     {
         return this.name;

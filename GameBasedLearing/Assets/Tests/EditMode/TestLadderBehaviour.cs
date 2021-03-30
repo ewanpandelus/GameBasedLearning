@@ -13,7 +13,7 @@ namespace Tests
         [Test]
         public void PlayerEnteringLadderAndJumpingWithNegativeVelocityStartsClimbState()
         {
-            Ladder ladder = new Ladder();
+            HandleLadder ladder = new HandleLadder();
             var gameObject = new GameObject();
             PlayerMovement playerMovement = gameObject.AddComponent<PlayerMovement>();
             ladder.HandleCharacterEnteredNegativeVelocityAndJumping(playerMovement);
@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public void PlayerEnteringLadderAndJumpingWithPositiveVelocityDoesntClimb()
         {
-            Ladder ladder = new Ladder();
+            HandleLadder ladder = new HandleLadder();
             var gameObject = new GameObject();
             PlayerMovement playerMovement = gameObject.AddComponent<PlayerMovement>();
             ladder.HandleCharacterEnteredPositiveVelocityAndJumping(playerMovement);
@@ -31,7 +31,7 @@ namespace Tests
         [Test]
         public void PlayerEnteringLadderNotJumpingStartsClimbing()
         {
-            Ladder ladder = new Ladder();
+            HandleLadder ladder = new HandleLadder();
             var gameObject = new GameObject();
             PlayerMovement playerMovement = gameObject.AddComponent<PlayerMovement>();
             ladder.HandleCharacterEnteredNotJumping(playerMovement);

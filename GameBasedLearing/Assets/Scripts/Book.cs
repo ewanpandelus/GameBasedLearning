@@ -11,24 +11,28 @@ public class Book : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] page1Texts = new TextMeshProUGUI[4];
     [SerializeField] TextMeshProUGUI[] page2Texts = new TextMeshProUGUI[4];
     Color black = new Color(0f, 0f, 0f, 255f);
-    private bool turned = false;
+    private bool turned = false;  
+
     private void Start()
     {
         AudioManagement = AudioManager.instance;
         this.animator.speed = 1.25f;
     }
+
     private void PageTurnAnim()
     {
         AudioManagement.Play("FlipPage");
         animator.SetBool("Turn", true);
         animator.SetBool("TurnBack", false);
     }
+
     private void PageTurnBackAnim()
     {
         AudioManagement.Play("FlipPage");
         animator.SetBool("TurnBack", true);
         animator.SetBool("Turn", false);
     }
+
     public void PageTurn()
     {
         if (!turned)
@@ -39,6 +43,7 @@ public class Book : MonoBehaviour
             turned = true;
         }
     }
+
     public void PageTurnBack()
     {
         if (turned)
@@ -60,6 +65,7 @@ public class Book : MonoBehaviour
             }
         }
     }
+
     private void FadeInBookText(TextMeshProUGUI[] fadeInTexts)
     {
         foreach (TextMeshProUGUI text in fadeInTexts)
@@ -71,6 +77,7 @@ public class Book : MonoBehaviour
 
         }
     }
+
     private IEnumerator FadeOutRoutine(TextMeshProUGUI text, float waitTime)
     {
         for (int i = 0; i < 1; i++)
@@ -84,6 +91,7 @@ public class Book : MonoBehaviour
             yield return null;
         }
     }
+
     private IEnumerator FadeInRoutine(TextMeshProUGUI text, float waitTime)
     {
         for (int i = 0; i < 1; i++)

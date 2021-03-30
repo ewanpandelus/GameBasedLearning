@@ -12,7 +12,6 @@ using UnityEngine.SceneManagement;
 
 public class TravelingSalesman : MonoBehaviour, IPuzzle
 {
-    
     public static TravelingSalesman instance;
     [SerializeField] private int winningPathLength;
     [SerializeField] private DynamicUI dynamicUI;
@@ -21,7 +20,6 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
     private int moveCount = 0;
     private int totalDistance = 0;
     private bool solved = false;
- 
     private List<GameObject> nodes = new List<GameObject>();
     List<GameObject> edges = new List<GameObject>();
     List<GameObject> playedNodes = new List<GameObject>();
@@ -41,6 +39,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             instance = this;
         }
     }
+
     void Start()
     {
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
@@ -63,8 +62,8 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             distances.Add(Int32.Parse(distance.name));
         }
         AudioManagement.Play("Bee");
-        
     }
+
     private float Factorial(float n)
     {
         if (n == 0)
@@ -72,10 +71,12 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         else
             return n * Factorial(n - 1);
     }
+
     public GameObject GetLastPlayedNode()
     {
         return playedNodes[playedNodes.Count-1];
     }
+
     private void ClearBoard(int setDistance) 
     {
         SetDistance(setDistance);
@@ -95,6 +96,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         this.playedNodes.Add(nodes[0]);
         DisplayDistance(0);
     }
+
     public void Reset()
     {
         if (!solved)
@@ -103,10 +105,12 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         }
        
     }
+
     public List<GameObject> GetPlayedNodes()
     {
         return this.playedNodes;
     }
+
     public Distance GetDistance(Edge _edge) 
     {
         int i = 0;
@@ -138,7 +142,6 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             yield return new WaitForSecondsRealtime(1 / slider.value);   // Shows graphic display with speed relative to the problem size
             foreach (char c in nodeList)
             {
-                
                 GameObject.Find(c.ToString()).GetComponent<Node>().SetNode();
                 yield return new WaitForSecondsRealtime(1 / slider.value);
             }
@@ -160,15 +163,14 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         }
         TrySolution();
         solved = false;
-
     }
-
 
     public Boolean GetIsMovePossible(GameObject node)
     {
         return ((IPuzzle)this).CheckMoveIsPossible(node);
     }
-    private GameObject FindCurrentEdge()//Finds edge associated with recently played move, sometimes the edge name is backward so the nodes need to be flipped
+
+    private GameObject FindCurrentEdge()
     {
         try
         {
@@ -185,24 +187,20 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         {
             UnityEngine.Debug.Log(e); 
         } 
-
         return null;
-
      }
     public void SetPlayedEdge(bool played)
     {
         if (playedNodes.Count >= 2)
         {
-            edge = FindCurrentEdge().GetComponent<Edge>(); //Finds current edge passed
+            edge = FindCurrentEdge().GetComponent<Edge>(); 
             edge.setColour(true);
             edge.SetSelected(true);
-            
             int index = FindIndex(FindCurrentEdge());
             if (played) 
             {
                 DisplayDistance(distances[index]);
             }
-           
          }
     }
    
@@ -216,12 +214,13 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             }
         }
         return 0;
-       
     }
+
     public void SetDistance(int distance)
     {
         this.totalDistance = distance;
     }
+
     private void DisplayDistance(int distanceAdd)
     {
         totalDistance += distanceAdd;
@@ -237,10 +236,12 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             ((IPuzzle)this).DisplaySteps();
         }
     }
+
     public void TrySolution()
     {
         ((IPuzzle)this).TrySolution();
     }
+
     public void Replay()
     {
         DisplayDistance(totalDistance - totalDistance);
@@ -249,7 +250,6 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
         ((IPuzzle)this).DisplaySteps();
         dynamicUI.ReplayGame();
     }
-
 
     void IPuzzle.TrySolution()
     {
@@ -278,9 +278,7 @@ public class TravelingSalesman : MonoBehaviour, IPuzzle
             int minDistance = int.MaxValue;
             List<List<char>> nodePermutations = Permutate.GetFinalPermutations();
             StartCoroutine(IterateThroughPermutations(winningPath, minDistance, nodePermutations));
-    
         }
-        
     }
 
     void IPuzzle.DisplaySteps()

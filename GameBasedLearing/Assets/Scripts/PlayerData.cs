@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [System.Serializable]
 public class PlayerData 
 {
@@ -14,6 +13,5 @@ public class PlayerData
         this.position[0] = playerMovement.GetPosition().x;
         this.position[1] = playerMovement.GetPosition().y;
         this.position[2] = playerMovement.GetPosition().z;
-        
     }
 }

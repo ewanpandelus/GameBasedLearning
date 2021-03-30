@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class Ball : EventTrigger
 {
-
     protected PoolBallHolder currentPoolBallHolder = null;
     protected RectTransform rectTransform = null;
     protected PoolBallHolder targetPoolBallHolder = null;
@@ -19,7 +18,6 @@ public class Ball : EventTrigger
     private bool belongsToArray = false;
     private bool finishedFirstHalf = false;
     private AnimatePoolBalls animatePoolBalls;
-
 
     private void Start()
     {
@@ -33,10 +31,12 @@ public class Ball : EventTrigger
     {
         this.currentPoolBallHolder = poolBallHolder;
     }
+
     public PoolBallHolder GetCurrentPoolBallHolder()
     {
         return this.currentPoolBallHolder;
     }
+
     public override void OnBeginDrag(PointerEventData eventData)
     {
         if (animatePoolBalls.GetAnimating())
@@ -46,6 +46,7 @@ public class Ball : EventTrigger
         base.OnBeginDrag(eventData);
         this.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
     }
+
     public override void OnDrag(PointerEventData eventData)
     {
         if (animatePoolBalls.GetAnimating())
@@ -62,8 +63,8 @@ public class Ball : EventTrigger
                 break;
             }
         }
-
     }
+
     private void MoveBall()
     {
 
@@ -84,8 +85,8 @@ public class Ball : EventTrigger
             return;
         }
         currentArray = currentPoolBallHolder.GetAssociatedArray();
-
     }
+
     public override void OnEndDrag(PointerEventData eventData)
     {
         if (animatePoolBalls.GetAnimating())
@@ -101,18 +102,22 @@ public class Ball : EventTrigger
         }
         MoveBall();
     }
+
     public Outline GetOutline()
     {
         return this.transform.GetChild(0).GetComponent<Outline>();
     }
+
     public void SetBelongsToArray(bool val)
     {
         belongsToArray = val;
     }
+
     public void SetFirstHalf(bool val)
     {
         this.finishedFirstHalf = val;
     }
+
     public bool GetFirstHalf()
     {
         return this.finishedFirstHalf;

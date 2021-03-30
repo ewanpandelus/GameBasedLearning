@@ -23,27 +23,16 @@ public class BubbleSort : MonoBehaviour
     private List<Card> listToCompare = new List<Card>();
     private List<Card> inGameCards = new List<Card>();
     List<Tuple<int, int>> moves = new List<Tuple<int, int>>();
-    private  GameObject cardObj;
+    private GameObject cardObj;
     private CardHolder[] allCardHolders = new CardHolder[9];
     private List<CardHolder> allCardHoldersSorted = new List<CardHolder>();
     private bool moving = false;
     private bool solved = false;
-    [SerializeField] Card cardPrefab1;
-    [SerializeField] Card cardPrefab2;
-    [SerializeField] Card cardPrefab3;
-    [SerializeField] Card cardPrefab4;
-    [SerializeField] Card cardPrefab5;
-    [SerializeField] Card cardPrefab6;
-    [SerializeField] Card cardPrefab7;
-    [SerializeField] Card cardPrefab8;
-    [SerializeField] Card cardPrefab9;
-    [SerializeField] Card cardPrefab10;
-    [SerializeField] Card cardPrefab11;
-    [SerializeField] Card cardPrefab12;
-    [SerializeField] Card cardPrefab13;
+    [SerializeField]
+    private Card cardPrefab1, cardPrefab2, cardPrefab3, cardPrefab4, cardPrefab5,
+        cardPrefab6, cardPrefab7, cardPrefab8, cardPrefab9, cardPrefab10, cardPrefab11, cardPrefab12, cardPrefab13;
     private GlobalDataHolder globalDataHolder;
 
-    // Start is called before the first frame update
     void Start()
     {
         dynamicUI = GameObject.Find("GameManager").GetComponent<DynamicUI>();
@@ -65,9 +54,8 @@ public class BubbleSort : MonoBehaviour
         Shuffle();
         cards = ConvertToIntArray(inGameCards);
         StoreBubbleSortMoves(cards);
-
-
     }
+
     private List<CardHolder> SortCardHolders(CardHolder[] cardHolders)
     {
         List<CardHolder> sortedCardHolders = new List<CardHolder>();
@@ -80,7 +68,7 @@ public class BubbleSort : MonoBehaviour
             counter++;
         }
         Array.Sort(cardHoldersNumbers);
-        foreach(int number in cardHoldersNumbers)
+        foreach (int number in cardHoldersNumbers)
         {
             sortedCardHolders.Add(GameObject.Find(number.ToString()).GetComponent<CardHolder>());
         }
@@ -92,19 +80,20 @@ public class BubbleSort : MonoBehaviour
         Reset();
         dynamicUI.ReplayGame();
     }
+
     private void CorrectExecution()
     {
         dynamicUI.WinGame();
         dynamicUI.ShowCherryAdd(4);
         AudioManagement.Play("WinGame");
     }
+
     public void TestIfFinished()
     {
         bool finished = true;
         int counter = 0;
-        foreach(CardHolder cardHolder in allCardHoldersSorted)
+        foreach (CardHolder cardHolder in allCardHoldersSorted)
         {
-         
             finished = finished && int.Parse(Regex.Match(cardHolder.GetCurrentCard().name, @"\d+").Value) == finalArray[counter];
             counter++;
         }
@@ -113,6 +102,7 @@ public class BubbleSort : MonoBehaviour
             CorrectExecution();
         }
     }
+
     public void Solve()
     {
         if (!solved)
@@ -120,29 +110,31 @@ public class BubbleSort : MonoBehaviour
             Reset();
             StartCoroutine(BubbleSortAnimateAlgorithm(ConvertToIntArray(inGameCards)));
         }
-     
+
     }
+
     public bool CheckMoveIsCorrect(GameObject leftCard, GameObject rightCard)
     {
         if (moveCounter >= moves.Count)
         {
             return false;
         }
-        if (moves[moveCounter].Item1 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value) && moves[moveCounter].Item2 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value) 
-            || moves[moveCounter].Item1== int.Parse(Regex.Match(rightCard.name, @"\d+").Value) && moves[moveCounter].Item2 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value))
+        if (moves[moveCounter].Item1 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value) && moves[moveCounter].Item2 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value)
+            || moves[moveCounter].Item1 == int.Parse(Regex.Match(rightCard.name, @"\d+").Value) && moves[moveCounter].Item2 == int.Parse(Regex.Match(leftCard.name, @"\d+").Value))
         {
             moveCounter++;
             DisplaySteps();
-           
             return true;
         }
         dynamicUI.SetWrongPathText();
         return false;
     }
+
     private void DisplaySteps()
     {
         GameObject.Find("StepCount").transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Step Count: " + moveCounter.ToString();
     }
+
     private void RandomiseCards()
     {
         for (int i = 0; i < 9; i++)
@@ -154,12 +146,10 @@ public class BubbleSort : MonoBehaviour
             allCards.RemoveAt(random);
         }
     }
-    
-    
+
     public void Shuffle()
     {
         RandomiseCards();
-
         foreach (CardHolder cardHolder in allCardHoldersSorted)
         {
             Card cardGO = Instantiate(cardHolder.GetCurrentCard(), cardHolder.transform);
@@ -171,9 +161,11 @@ public class BubbleSort : MonoBehaviour
         }
         AudioManagement.Play("CardShuffle");
     }
+
     public void Reset()
     {
-        if (!solved){
+        if (!solved)
+        {
             foreach (CardHolder cardHolder in allCardHoldersSorted)
             {
                 cardHolder.GetInitialCard().SetCurrentPosition(cardHolder.transform.position);
@@ -184,12 +176,13 @@ public class BubbleSort : MonoBehaviour
             DisplaySteps();
             AudioManagement.Play("CardShuffle");
         }
-       
     }
+
     public void StopAnimating()
     {
         solved = false;
     }
+
     private void AnimateMoveLeftAndRight(GameObject leftCard, GameObject rightCard, Vector3 leftInitialPosition, Vector3 rightInitialPosition)
     {
         moving = true;
@@ -197,44 +190,36 @@ public class BubbleSort : MonoBehaviour
         moveCounter++;
         DisplaySteps();
     }
+
     private void AnimateMoveDownAndUp(GameObject leftCard, GameObject rightCard, Vector3 leftInitialPosition, Vector3 rightInitialPosition)
     {
         moving = true;
         StartCoroutine(ChangeCardSpaceUpAndDown(leftCard, rightCard, (leftInitialPosition), (rightInitialPosition)));
-
     }
 
     IEnumerator ChangeCardSpaceUpAndDown(GameObject leftCard, GameObject rightCard, Vector3 leftCardMove, Vector3 rightCardMove)
     {
-
         Vector2 leftCardDirection = leftCardMove - leftCard.transform.position;
         Vector2 rightCardDirection = rightCardMove - rightCard.transform.position;
         float distanceThisFrame = slider.value * 0.02f;
-
-
         while (moving)
         {
-
             if (leftCard.transform.position.y - leftCardMove.y <= 0.2f)
             {
                 moving = false;
-
                 yield break;
-
             }
             rightCard.transform.Translate(rightCardDirection.normalized * distanceThisFrame, Space.World);
             leftCard.transform.Translate(leftCardDirection.normalized * distanceThisFrame, Space.World);
             yield return new WaitForSecondsRealtime(0.01f);
         }
-
     }
+
     IEnumerator ChangeCardSpaceLeftAndRight(GameObject leftCard, GameObject rightCard, Vector3 leftCardMove, Vector3 rightCardMove)
     {
         float distanceThisFrame = slider.value * 0.02f;
-
         Vector2 leftCardDirection = leftCardMove - leftCard.transform.position;
         Vector2 rightCardDirection = rightCardMove - rightCard.transform.position;
-
         while (moving)
         {
             rightCard.transform.Translate(rightCardDirection.normalized * distanceThisFrame, Space.World);
@@ -242,14 +227,12 @@ public class BubbleSort : MonoBehaviour
             if (rightCard.transform.position.x - rightCardMove.x <= 0.1f)
             {
                 moving = false;
-
                 yield break;
-
             }
             yield return new WaitForSecondsRealtime(0.01f);
         }
-
     }
+
     private int[] ConvertToIntArray(List<Card> cards)
     {
         int[] cardsNumbers = new int[cards.Count];
@@ -262,14 +245,17 @@ public class BubbleSort : MonoBehaviour
         }
         return cardsNumbers;
     }
+
     public CardHolder[] GetAllCardHolders()
     {
         return this.allCardHolders;
     }
+
     public List<Card> AllCards()
     {
         return this.inGameCards;
     }
+
     private void StoreBubbleSortMoves(int[] arr)
     {
         int n = arr.Length;
@@ -277,49 +263,45 @@ public class BubbleSort : MonoBehaviour
             for (int j = 0; j < n - i - 1; j++)
                 if (arr[j] > arr[j + 1])
                 {
-                    // swap temp and arr[i] 
                     moves.Add(new Tuple<int, int>(arr[j], arr[j + 1]));
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
-
                 }
         finalArray = arr;
     }
+
     IEnumerator BubbleSortAnimateAlgorithm(int[] arr)
     {
         solved = true;
         int n = arr.Length;
-            for (int i = 0; i < n - 1; i++)
-                for (int j = 0; j < n - i - 1; j++)
-                    if (arr[j] > arr[j + 1])
-                    {
-                        // swap temp and arr[i] 
-                        GameObject leftCard = GameObject.Find(arr[j].ToString() + "(Clone)");
-                        GameObject rightCard = GameObject.Find(arr[j + 1].ToString() + "(Clone)");
-                        Vector3 leftInitialPosition = leftCard.transform.position;
-                        Vector3 rightInitialPosition = rightCard.transform.position;
-                        float difference = Mathf.Abs(rightInitialPosition.x - leftInitialPosition.x);
-                        Vector3 right = new Vector3(difference, 0f, 0f);
-                        AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + up, rightInitialPosition + down);
-                        yield return new WaitUntil(() => moving == false);
-
-                        AnimateMoveLeftAndRight(leftCard, rightCard, leftInitialPosition, rightInitialPosition);
-                        yield return new WaitUntil(() => moving == false);
-                        yield return new WaitForSecondsRealtime(0.2f);
-                        AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + right, rightInitialPosition - right);
-                        yield return new WaitUntil(() => moving == false);
-                        leftCard.transform.position = new Vector3(leftCard.transform.position.x, leftInitialPosition.y, leftCard.transform.position.z);
-                        rightCard.transform.position = new Vector3(rightCard.transform.position.x, leftInitialPosition.y, rightCard.transform.position.z);
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                    }
-            CorrectExecution();
-            solved = false;
-  
-
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (arr[j] > arr[j + 1])
+                {
+                    GameObject leftCard = GameObject.Find(arr[j].ToString() + "(Clone)");
+                    GameObject rightCard = GameObject.Find(arr[j + 1].ToString() + "(Clone)");
+                    Vector3 leftInitialPosition = leftCard.transform.position;
+                    Vector3 rightInitialPosition = rightCard.transform.position;
+                    float difference = Mathf.Abs(rightInitialPosition.x - leftInitialPosition.x);
+                    Vector3 right = new Vector3(difference, 0f, 0f);
+                    AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + up, rightInitialPosition + down);
+                    yield return new WaitUntil(() => moving == false);
+                    AnimateMoveLeftAndRight(leftCard, rightCard, leftInitialPosition, rightInitialPosition);
+                    yield return new WaitUntil(() => moving == false);
+                    yield return new WaitForSecondsRealtime(0.2f);
+                    AnimateMoveDownAndUp(leftCard, rightCard, leftInitialPosition + right, rightInitialPosition - right);
+                    yield return new WaitUntil(() => moving == false);
+                    leftCard.transform.position = new Vector3(leftCard.transform.position.x, leftInitialPosition.y, leftCard.transform.position.z);
+                    rightCard.transform.position = new Vector3(rightCard.transform.position.x, leftInitialPosition.y, rightCard.transform.position.z);
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+        CorrectExecution();
+        solved = false;
     }
+
     public bool GetSolved()
     {
         return this.solved;

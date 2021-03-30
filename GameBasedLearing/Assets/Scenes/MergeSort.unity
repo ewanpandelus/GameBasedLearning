@@ -4576,7 +4576,6 @@ GameObject:
   - component: {fileID: 1321219439}
   - component: {fileID: 1321219442}
   - component: {fileID: 1321219441}
-  - component: {fileID: 1321219440}
   m_Layer: 0
   m_Name: LevelComplete
   m_TagString: Untagged
@@ -4606,18 +4605,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.00018310547}
   m_SizeDelta: {x: 0, y: -15.231201}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1321219440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321219438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66f9aa8fe911866449cd94d112dc2715, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1321219441
 MonoBehaviour:
   m_ObjectHideFlags: 0

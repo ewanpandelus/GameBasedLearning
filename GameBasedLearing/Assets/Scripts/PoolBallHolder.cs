@@ -10,39 +10,47 @@ public class PoolBallHolder : MonoBehaviour
     private Ball currentBall = null;
     private Ball initialBall = null;
     private RectTransform rectTransform = null;
-    // Start is called before the first frame update
+
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
     }
+
     public PoolBallHolder GetDestinationPoolBallHolder()
     {
         return this.destinationPoolBallHolder;
     }
+
     public ArrayInformation GetAssociatedArray()
     {
         return this.associatedArray;
     }
+
     public void SetInitialBall(Ball ball)
     {
         this.currentBall = ball;
     }
+
     public Ball GetInitialBall()
     {
         return this.initialBall;
     }
+
     public void SetCurrentBall(Ball ball)
     {
         this.currentBall = ball;
     }
+
     public Ball GetCurrentBall()
     {
         return this.currentBall;
     }
+
     public int GetIndex()
     {
         return this.arrayIndex;
     }
+
     public RectTransform GetRectTransform()
     {
         return this.rectTransform;

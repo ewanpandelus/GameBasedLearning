@@ -22,8 +22,8 @@ public class QueenPiece : EventTrigger
     private ChessBoard board;
     private bool safe = true;
     private Cell randomCell;
-
     private AudioManager audioManagement;
+
     void Start()
     {
         dynamicSolve = GameObject.Find("ChessBoard").GetComponent<DynamicSolve>();
@@ -32,10 +32,7 @@ public class QueenPiece : EventTrigger
         randomCell = GameObject.Find("Cell(Clone)").GetComponent<Cell>();
         problemSize = board.GetProblemSize();
         mMovement = new Vector3Int(problemSize - 1, problemSize - 1, problemSize - 1);
-       
-
         mRectTransform = GetComponent<RectTransform>();
-
         if (problemSize == 8)
         {
             mRectTransform.sizeDelta /= 1.45f;
@@ -46,29 +43,6 @@ public class QueenPiece : EventTrigger
         }
     }
 
-    public virtual void Place(Cell newCell)
-    {
-        // Cell stuff
-        mCurrentCell = newCell;
-        mOriginalCell = newCell;
-        mCurrentCell.mCurrentPiece = this;
-
-        // Object stuff
-        transform.position = newCell.transform.position;
-        gameObject.SetActive(true);
-    }
-    private void AllCellPaths()
-    {
-    
-        foreach(Cell cell in board.GetAllCells())
-        {
-            if (cell) 
-            {
-                highlightedCells.Add(cell);
-            }
-           
-        }
-    }
     private void FindPossibleCells()
     {
        
@@ -85,16 +59,14 @@ public class QueenPiece : EventTrigger
                 }
             }
            
-
         }
     }
+
     private void CreateCellPath(int xDirection, int yDirection, int movement)
     {
-        // Target position
         int currentX = mCurrentCell.mBoardPosition.x;
         int currentY = mCurrentCell.mBoardPosition.y;
       
-        // Check each cell
         for (int i = 1; i <= movement; i++)
         {
             currentX += xDirection;
@@ -109,8 +81,6 @@ public class QueenPiece : EventTrigger
                     this.safe = false;
                     occupiedCells.Add(cell);
                 }
-
-                
                 if (cell.GetOccupied() == false && cellState != CellState.OutOfBounds)
                 {
                     highlightedCells.Add(mCurrentCell.mBoard.GetAllCells()[currentX, currentY]);
@@ -120,10 +90,7 @@ public class QueenPiece : EventTrigger
             {
                 continue;
             }
-            
-          
         }
-           
     }
 
     protected virtual void CheckPathing()
@@ -138,15 +105,14 @@ public class QueenPiece : EventTrigger
             CreateCellPath(1, 0, mMovement.x);
             CreateCellPath(-1, 0, mMovement.x);
 
-            // Vertical 
+    
             CreateCellPath(0, 1, mMovement.y);
             CreateCellPath(0, -1, mMovement.y);
 
-            // Upper diagonal
+
             CreateCellPath(1, 1, mMovement.z);
             CreateCellPath(-1, 1, mMovement.z);
 
-            // Lower diagonal
             CreateCellPath(-1, -1, mMovement.z);
             CreateCellPath(1, -1, mMovement.z);
         }
@@ -174,8 +140,6 @@ public class QueenPiece : EventTrigger
             cell.SetColour(Color.red + new Color(0, 0, 0, -0.3f));
         }
         FindPossibleCells();
-           
-      
     }
     
     protected void ClearCells()
@@ -190,14 +154,11 @@ public class QueenPiece : EventTrigger
     }
     protected virtual void Move()
     {
-        // First move switch
-       
-        // Clear current
         if (mCurrentCell)
         {
             mCurrentCell.SetOccupied(false);
         }
-        // Switch cells
+
         if (mTargetCell)
         {
             mIsFirstMove = false;
@@ -205,44 +166,29 @@ public class QueenPiece : EventTrigger
             mCurrentCell.SetOccupied(true);
             transform.position = mCurrentCell.transform.position;
         }
-
-
-        // Move on board
         audioManagement.Play("PlacePiece");
         mTargetCell = null;
     }
-
 
     #region Events
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);
-
-        // Test for cells
         CheckPathing();
-
-        // Show valid cells
         ShowCells();
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
-
-        // Follow pointer
         transform.position += (Vector3)eventData.delta;
-
-        // Check for overlapping available squares
         foreach (Cell cell in highlightedCells)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
             {
-                // If the mouse is within a valid cell, get it, and break.
                 mTargetCell = cell;
                 break;
             }
-
-            // If the mouse is not within any highlighted cell, we don't have a valid move.
             mTargetCell = null;
         }
     }
@@ -250,36 +196,21 @@ public class QueenPiece : EventTrigger
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
-
-        // Hide
         ClearCells();
-
-        // Return to original position
         if (!mTargetCell&&mCurrentCell)
         {
             transform.position = mCurrentCell.gameObject.transform.position;
             return;
         }
-
-        // Move to new cell
         Move();
-
-       
     }
     #endregion
-    public Cell GetCell()
-    {
-     return this.mCurrentCell;
-  
-    }
+
     public bool GetSafe()
     {
         CheckPathing();
         return this.safe;
     }
-    public void SetSafe(bool _safe)
-    {
-        this.safe = _safe;
-    }
+
 }
 

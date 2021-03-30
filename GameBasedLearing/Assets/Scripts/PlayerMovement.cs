@@ -28,9 +28,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         LoadPlayer();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         globalDataHolder.DisplayCherryCount();
-       
-        
     }
+
     private void Update()
     {
         if(this.transform.position.y <= -35|| Input.GetKeyDown("r"))
@@ -40,7 +39,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             return;
         }
         animator.speed = 1f;
-
         if (isJumping)
         {
             verticalVelocity = rb.velocity.y;
@@ -59,6 +57,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             ClimbingMovement();
         }
     }
+
     private void ClimbingMovement()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * horizontalVelocity;
@@ -74,7 +73,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             animator.speed = 1f;
 
             Jump();
-
         }
         FlipCharacter();
     }
@@ -91,11 +89,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             animator.speed = 1f;
 
             Jump();
-
         }
         FlipCharacter();
-
     }
+
     private void FixedUpdate()
     {
         if (!isClimbing)
@@ -107,9 +104,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             rb.velocity = new Vector2(horizontalMove, verticalMove);
         }
     }
+
     private void Jump()
     {
-
         if (isgrounded == true || isClimbing == true)
         {
             isClimbing = false;
@@ -119,6 +116,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             rb.velocity = new Vector2(rb.velocity.x, 17.5f);
         }
     }
+
     private void FlipCharacter()
     {
         if (horizontalMove > 0 && !m_FacingRight)
@@ -130,6 +128,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             Flip();
         }
     }
+
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;
@@ -138,20 +137,19 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
     private void OnCollisionEnter2D(Collision2D theCollision)
     {
         if (theCollision.gameObject.transform.tag == "Floor" && theCollision.gameObject.name != "Ladder")
         {
-
             isgrounded = true;
             animator.SetBool("IsJumping", false);
             isJumping = false;
-
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-
         if (collider.gameObject.transform.tag == "Cherry")
         {
             cherryCount++;
@@ -162,15 +160,14 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         }
     }
 
-
     void OnCollisionExit2D(Collision2D theCollision)
     {
         isgrounded = false;
     }
+
     private void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-    
         if (data!=null)
         {
             this.cherryCount = globalDataHolder.GetCherries();
@@ -180,46 +177,50 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             position.z = data.position[2];
             this.transform.position = position;
         }
-       
-
     }
+
     public float GetHorizontalVelocity()
     {
         return this.horizontalVelocity;
     }
+
     public float GetVerticalVelocity()
     {
         return this.rb.velocity.y;
-
     }
+
     public bool GetIsJumping()
     {
         return this.isJumping;
     }
+
     public void SetIsJumping(bool _isJumping)
     {
         isJumping = _isJumping;
     }
+
     public bool GetIsClimbing()
     {
         return this.isClimbing;
     }
+
     public void SetIsClimbing(bool _isClimbing)
     {
         isClimbing = _isClimbing;
     }
+
     public void SetCherries(int count)
     {
         this.cherryCount = count;
     }
+
     public int GetCherries()
     {
         return this.cherryCount;
     }
+
     public Vector3 GetPosition()
     {
         return this.transform.position;
     }
-
-
 }

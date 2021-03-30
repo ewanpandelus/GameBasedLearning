@@ -18,17 +18,17 @@ public class Edge : MonoBehaviour
         image = this.GetComponent<Image>();
         initialColour = image.color;
         selected = false;
-        
     }
-    public void SetSelected(bool _selected)
-    {
-         selected = _selected;
-    }
+
     private void Start()
     {
         travelingSalesman = TravelingSalesman.instance;
     }
 
+    public void SetSelected(bool _selected)
+    {
+         selected = _selected;
+    }
 
     public void setColour(bool on)
     {
@@ -41,8 +41,5 @@ public class Edge : MonoBehaviour
         {
            image.color = initialColour;
         }
-            
-        
-        
     }
 }

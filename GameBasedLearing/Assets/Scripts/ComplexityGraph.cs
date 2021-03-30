@@ -8,9 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ComplexityGraph : MonoBehaviour
-
 {
-
     private string sceneName;
     private RectTransform graphContainer;
     private GameObject title;
@@ -26,6 +24,8 @@ public class ComplexityGraph : MonoBehaviour
     private Vector3 left = new Vector3(-90, 0, 0);
     private GlobalDataHolder globalDataHolder;
     ComplexityDataHolder complexityData; 
+
+
     private void Awake()
     {
         sceneName = SceneManager.GetActiveScene().name;
@@ -34,13 +34,7 @@ public class ComplexityGraph : MonoBehaviour
         {
             complexityData = GameObject.FindGameObjectWithTag("GameController").GetComponent<ComplexityDataHolder>();
         }
-       
-     
-      
         graphContainer = GameObject.Find("GraphContainer").GetComponent<RectTransform>();
-       
-
-      
     }
 
     public void IncrementN()
@@ -49,8 +43,8 @@ public class ComplexityGraph : MonoBehaviour
         {
             n += 2;
         }
-   
     }
+
     public void DecrementN()
     {
         if (n != 2)
@@ -58,6 +52,7 @@ public class ComplexityGraph : MonoBehaviour
             n -= 2;
         }
      
+
     }
     private void Start()
     {
@@ -69,14 +64,15 @@ public class ComplexityGraph : MonoBehaviour
         {
             UpdateN();
         }
-        
     }
+
     public void UpdateN()
     {
     
         title = GameObject.Find("XText");
         title.GetComponent<TextMeshProUGUI>().text = "N = " + n.ToString();
     }
+
     public void UpdateGraph()
     {
         ClearGraph();
@@ -86,12 +82,10 @@ public class ComplexityGraph : MonoBehaviour
             dataList = complexityData.GetTBPValueList(n);
             ShowChangableGraph(dataList, Color.yellow + new Color(0, 0, 0, -0.5f), "Travelling Bee Algorithm");
         }
-      
         if(sceneName =="NQueensLevel1"||sceneName == "NQueensLevel2")
         {
             dataList = complexityData.GetNQueensValueList(n);
             ShowChangableGraph(dataList, new Color(168f/255f,37f/255f,224f/255f,1)+ new Color(0, 0, 0, -0.5f), "NQueens Algorithm");
-       
         }
         if(sceneName == "BubbleSort")
         {
@@ -104,6 +98,7 @@ public class ComplexityGraph : MonoBehaviour
             ShowChangableGraph(dataList, Color.green + new Color(0, 0, 0, -0.5f), "          MergeSort");
         }
     }
+
     private void ShowDifferentComplexities()
     {
        ShowGraph(CreateLinearList(65), Color.red, 10f,0,1);
@@ -112,8 +107,9 @@ public class ComplexityGraph : MonoBehaviour
        ShowGraph(CreateONLogNList(42), Color.white, 15f,0,1);
        ShowGraph(CreateLogNList(45), Color.magenta, 15f, 0,1);
        ShowGraph(CreateNSquaredList(25), Color.green, 15f,0,1);
-        ShowGraph(CreateExponentialList(9), Color.cyan, 31f, 0, 1);
+       ShowGraph(CreateExponentialList(9), Color.cyan, 31f, 0, 1);
     }
+
     private List<float> CreateFactorialList(int problemSize)
     {
         List<float> valueList = new List<float>();
@@ -124,6 +120,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
     }
+
     private List<float> CreateExponentialList(int problemSize)
     {
         List<float> valueList = new List<float>();
@@ -134,6 +131,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
     }
+
     private int Factorial(int n)
     {
         if (n == 0)
@@ -141,10 +139,12 @@ public class ComplexityGraph : MonoBehaviour
         else
             return n * Factorial(n - 1);
     }
+
     private int Exponential(int n) 
     {
         return (int)Math.Pow(2, n);
     }
+
     private List<float> CreateONLogNList(int problemSize)
     {
         List<float> valueList = new List<float>();
@@ -155,6 +155,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
     }
+
     private List<float> CreateLogNList(int problemSize)
     {
         List<float> valueList = new List<float>();
@@ -165,6 +166,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
     }
+
     private List<float> CreateConstantList(int problemSize)
     {
         List<float> valueList = new List<float>();
@@ -174,6 +176,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
     }
+
     private List<float> CreateNSquaredList(int problemSize)
     {
         List<float> valueList = new List<float>();
@@ -183,6 +186,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         return valueList;
     }
+
     private List<float> CreateLinearList(int problemSize )
     {
         List<float> valueList = new List<float>();
@@ -191,7 +195,8 @@ public class ComplexityGraph : MonoBehaviour
             valueList.Add(i*5);
         }
         return valueList;
-   }
+    }
+
     private GameObject CreateCircle(Vector2 anchoredPosition,Color color,int size)
     {
         GameObject gameObject = new GameObject("circle", typeof(Image));
@@ -205,20 +210,17 @@ public class ComplexityGraph : MonoBehaviour
         rectTransform.anchorMax = new Vector2(0, 0);
         return gameObject;
     }
+
     private void ShowGraph(List<float> valueList, Color color, float xSize, float waitTime, int scalingfactor)
     {
-        
         float graphHeight = graphContainer.sizeDelta.y;
         float yMax = 100f;
-
         GameObject prevCircleObj = null;
         for (int i = 0; i < valueList.Count; i++)
         {
             float xPos = (i * xSize);
             float yPos = ((valueList[i] / yMax) * graphHeight) / scalingfactor;
             GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f),5);
-
-
             if (prevCircleObj)
             {
                 CreateDotConnection(prevCircleObj.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition, color);
@@ -226,16 +228,14 @@ public class ComplexityGraph : MonoBehaviour
             prevCircleObj = circleGameObject;
         }
     }
+
     private void ShowChangableGraph(List<float> valueList, Color color, string name)
     {
         title = GameObject.Find("Title");
         title.GetComponent<TextMeshProUGUI>().text = name;
-        float startY = 0;
-        float startX = 0;
+        float startY;
         float graphHeight = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.y;
         float graphWidth = graphContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.x + 57;
-      
-       
         float yMax = valueList.Max();
         float xSize = graphWidth / valueList.Count;
         GameObject prevCircleObj = null;
@@ -248,35 +248,27 @@ public class ComplexityGraph : MonoBehaviour
             float xPos = (i * xSize);
             float yPos = ((graphHeight / yMax) * valueList[i]);
             startY = GameObject.Find("Origin").transform.position.y;
-
             GameObject circleGameObject = CreateCircle(new Vector2(xPos, yPos), color + new Color(0, 0, 0, 0.5f), 10);
             pointList.Add(circleGameObject);
             if (i == 0)
             {
-                startX = circleGameObject.transform.position.x;
                 startY = circleGameObject.transform.position.y;
             }
             Vector3 xAxis = new Vector3(circleGameObject.transform.position.x, startY, 0);
             CreateScaleText(i, xAxis + down, valueList[i]);
-
-
-
-
-
             if (prevCircleObj)
             {
                 CreateDotConnection(prevCircleObj.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition, color);
             }
             prevCircleObj = circleGameObject;
-
         }
-
     }
 
     private void ShowValueUnderGraph(float value, Vector3 position, float i)
     {
         InstantiateText(Round(value), position, 12, i);
     }
+
     private bool IfViableToShow(float i)
     {
         if (n > 9)
@@ -298,7 +290,6 @@ public class ComplexityGraph : MonoBehaviour
             InstantiateText(loop, position, 32, loop);
             ShowValueUnderGraph(value, position + (2.5f * down), loop);
         }
-
     }
 
     public static float Round(float value)
@@ -311,6 +302,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         else return value;
     }
+
     private void InstantiateText(float value, Vector3 position, int size, float i)
     {
         GameObject textInstance = Instantiate(xScaleText, position, Quaternion.identity);
@@ -332,9 +324,9 @@ public class ComplexityGraph : MonoBehaviour
             textInstance.transform.SetParent(graphContainer, true);
             textInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = size;
         }
-
         scaleTextList.Add(textInstance);
     }
+
     private void CreateDotConnection(Vector2 dotPosition1, Vector2 dotPosition2, Color color)
     {
         GameObject gameObject = new GameObject("dotConnection", typeof(Image));
@@ -351,6 +343,7 @@ public class ComplexityGraph : MonoBehaviour
         rectTransform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
         lineList.Add(gameObject);
     }
+
     public void ClearGraph()
     {
         foreach (GameObject line in lineList)

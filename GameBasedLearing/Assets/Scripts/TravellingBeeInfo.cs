@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TravellingBeeInfo : MonoBehaviour
 {
-
     [SerializeField] private GameObject edgesParent;
     private List<GameObject> edges = new List<GameObject>();
     [SerializeField] GameObject distancesParent;
     private List<GameObject> distances = new List<GameObject>();
     [SerializeField] private GameObject nodesParent;
     private List<GameObject> nodes = new List<GameObject>();
+
     private void Awake()
     {
         for (int i = 0; i < nodesParent.transform.childCount; i++)
@@ -26,16 +26,18 @@ public class TravellingBeeInfo : MonoBehaviour
         {
             distances.Add(distancesParent.transform.GetChild(i).gameObject);
         }
-    
     }
+
     public List<GameObject> GetNodes()
     {
         return this.nodes;
     }
+
     public List<GameObject> GetEdges()
     {
         return this.edges;
     }
+
     public List<GameObject> GetDistances()
     {
         return this.distances;

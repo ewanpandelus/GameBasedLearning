@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class MergeSort : MonoBehaviour
 {
-    
     private bool solved = false;
     [SerializeField] ArrayInformation initialArray;
     [SerializeField]
@@ -33,6 +32,7 @@ public class MergeSort : MonoBehaviour
     private AudioManager audioManager;
     private GlobalDataHolder globalDataHolder;
 
+
     void Start()
     {
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
@@ -44,30 +44,22 @@ public class MergeSort : MonoBehaviour
         allArrays = GameObject.FindObjectsOfType<ArrayInformation>().ToList();
         aboveAll = GameObject.Find("AboveAll");
         ballObj = GameObject.Find("TopArray1");
-
-
         for(int i = 0; i < topArray.transform.childCount; i++)
         {
             allPoolBallHoldersGO.Add(topArray.transform.GetChild(i).gameObject);
         }
-        
         int counter = 0;
         foreach (GameObject GO in allPoolBallHoldersGO)
         {
             allPoolBallHolders[counter] = GO.GetComponent<PoolBallHolder>();
             counter++;
         }
-
         InitialiseGame();
-        
-
-   
     }
+
     public void Reset()
     {
- 
         if (!animatePoolBalls.GetAnimating())
-         
         {
             animatePoolBalls.ClearAnimationObjects();
             foreach (ArrayInformation array in allArrays)
@@ -75,7 +67,6 @@ public class MergeSort : MonoBehaviour
                 array.SetEmpty(true);
                 array.SetFull(false);
                 array.SetAllOccupiedFalse();
-
             }
             foreach (Ball ball in inGameBalls)
             {
@@ -86,8 +77,8 @@ public class MergeSort : MonoBehaviour
             inGameBalls.Clear();
             InitialiseGame();
         }
-  
     }
+
     private void InitialiseGame()
     {
         expectedArrays.Clear();
@@ -105,6 +96,7 @@ public class MergeSort : MonoBehaviour
         }
         merging = false;
     }
+
     public void Solve()
     {
         if (!solved)
@@ -119,11 +111,9 @@ public class MergeSort : MonoBehaviour
                 Reset();
                 InitiateSolveAnimation();
             }
-              
         }
-
-     
     }
+
     private void InitiateSolveAnimation()
     {
         animatePoolBalls.StartAnimation();
@@ -131,7 +121,6 @@ public class MergeSort : MonoBehaviour
         {
             array.SetEmpty(true);
             array.SetFull(false);
-
         }
     }
    
@@ -140,6 +129,7 @@ public class MergeSort : MonoBehaviour
         Reset();
         dynamicUI.ReplayGame();
     }
+
     public void CorrectExecution()
     {
         solved = true;
@@ -163,9 +153,9 @@ public class MergeSort : MonoBehaviour
             ballGo.transform.SetParent(aboveAll.transform);
             ballGo.transform.position = poolHolder.transform.position;
             animatePoolBalls.AddBallToActive(ballGo);
-
         }
     }
+
     public void RandomiseBalls()
     {
         for (int i = 0; i < 8; i++)
@@ -176,6 +166,7 @@ public class MergeSort : MonoBehaviour
             allBalls.RemoveAt(random - 1);
         }
     }
+
     private bool Splitting(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray)
     {
         List<Tuple<int, List<int>>> ArraysForLevel;
@@ -214,6 +205,7 @@ public class MergeSort : MonoBehaviour
         dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array",1.5f);
         return false;
     }
+
     public bool Merging(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray, PoolBallHolder poolBallHolder)
     {
         List<Tuple<int, List<int>>> arraysForLevel;
@@ -246,10 +238,12 @@ public class MergeSort : MonoBehaviour
         dynamicUI.ChangeWrongPathText("The ball doesn't belong to this array",1.5f);
         return false;
     }
+
     private bool CheckCorrectBallPosition(ArrayInformation associatedArray, int ballNumber,PoolBallHolder poolBallHolder)
     {
         return (associatedArray.GetExpectedArrayValues().IndexOf(ballNumber) == poolBallHolder.GetIndex());
     }
+
     private List<int> CreateAscendingIndices(int listLen)
     {
         List<int> ascendingIndices = new List<int>();
@@ -259,25 +253,23 @@ public class MergeSort : MonoBehaviour
         }
         return ascendingIndices;
     }
-    public bool CheckMoveIsCorrect(int ballNumber, ArrayInformation associatedArray,ArrayInformation previousArray,bool belongsToArray,PoolBallHolder poolBallHolder)
 
+    public bool CheckMoveIsCorrect(int ballNumber, ArrayInformation associatedArray,ArrayInformation previousArray,bool belongsToArray,PoolBallHolder poolBallHolder)
     {
         if (!merging)
         {
             return Splitting(ballNumber, associatedArray, previousArray, belongsToArray);
         }
         return Merging(ballNumber, associatedArray, previousArray, belongsToArray,poolBallHolder);
-    
     }
-    private int FindPreviousBallPosition(int ballNumber)
 
+    private int FindPreviousBallPosition(int ballNumber)
     {
         if (!merging)
         {
             return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel - 1).Item2.IndexOf(ballNumber);
         }
         return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel).Item2.IndexOf(ballNumber);
-
     }
 
     private void CheckIfUserLevelShouldChange()
@@ -292,7 +284,6 @@ public class MergeSort : MonoBehaviour
         {
             arraysToCheck = allArrays.FindAll(x => x.GetLevel() == userLevel-1);
         }
-       
         foreach(ArrayInformation array in arraysToCheck)
         {
             change = change && array.GetFull();
@@ -320,10 +311,7 @@ public class MergeSort : MonoBehaviour
             {
                 userLevel--;
             }
-       
         }
-   
-       
     }
     private void SetupMerging()
     {
@@ -334,13 +322,11 @@ public class MergeSort : MonoBehaviour
         {
             array.Item2.Sort();
             sortedArrays.Add(array);
-
         }
         foreach(ArrayInformation array in allArrays)
         {
             array.SetFull(false);
         }
-       
     }
     private void ManipulateArrays(ArrayInformation associatedArray, ArrayInformation previousArray, int ballNumber,int prevBallIndex)
     {
@@ -348,11 +334,10 @@ public class MergeSort : MonoBehaviour
         previousArray.UpdateIsArrayOccupied(ballNumber, false,prevBallIndex);
         checkExpectedListFull[associatedArray.GetExpectedArrayValues()] = associatedArray.GetFull(); ;
         checkExpectedListFull[previousArray.GetExpectedArrayValues()] = previousArray.GetFull();
-
     }   
+
     private void CreateExpectedArrays(List<int> ballsNumbers, int level)
     {
-
         if (ballsNumbers.Count == 1)
         {
             return;
@@ -367,9 +352,9 @@ public class MergeSort : MonoBehaviour
             expectedArrays.Add(new Tuple<int, List<int>>(level, L));
             CreateExpectedArrays(L, level + 1);
             CreateExpectedArrays(R, level + 1);
-
         }
     }
+
     private List<int> ConvertToIntArray(List<Ball> balls)
     {
         List<int> ballsNumbers = new List<int>();
@@ -381,8 +366,8 @@ public class MergeSort : MonoBehaviour
             counter++;
         }
         return ballsNumbers;
-
     }
+
     public void SetSolved(bool _solved)
     {
         this.solved = _solved;

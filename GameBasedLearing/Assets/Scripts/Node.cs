@@ -11,9 +11,8 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private Boolean selected = false;
     private Image image;
     private Color initialColour;
-    Color lightGreen = new Color(131f/255f, 243f/255f, 127f/255f, 1);
-   
-  
+    Color lightGreen = new Color(131f / 255f, 243f / 255f, 127f / 255f, 1);
+
     void Start()
     {
         image = this.GetComponent<Image>();
@@ -21,17 +20,15 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         travellingSalesman = TravelingSalesman.instance;
     }
 
-    // Update is called once per frame
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!selected)
         {
-
             SetAllColours(true, -1);
-
             image.material.color = Color.white;
         }
     }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!selected)
@@ -40,35 +37,34 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             image.material.color = initialColour;
         }
     }
+
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         if (!travellingSalesman.GetSolved())
         {
             SetNode();
         }
-       
     }
-        private void SetAllColours(bool on, int sortingOrder)
+
+    private void SetAllColours(bool on, int sortingOrder)
     {
-        if (!(this.name == "A" && travellingSalesman.GetPlayedNodes().Count != GameObject.FindGameObjectsWithTag("Node").Length)&&!travellingSalesman.GetSolved())
+        if (!(this.name == "A" && travellingSalesman.GetPlayedNodes().Count != GameObject.FindGameObjectsWithTag("Node").Length) && !travellingSalesman.GetSolved())
         {
             Distance distance = travellingSalesman.GetDistance(FindEdgeAssociatedWithNode());
             Edge edge = FindEdgeAssociatedWithNode();
             edge.setColour(on);
-            //edge.SetSortingOrder(sortingOrder);
             image.material.color = Color.white;
             distance.setColour(on);
         }
     }
 
- 
     private Edge FindEdgeAssociatedWithNode()
     {
         try
         {
             if (GameObject.Find("(" + travellingSalesman.GetLastPlayedNode().name + "," + this.name + ")") == null)
             {
-                return   (GameObject.Find("(" + this.name  + "," + travellingSalesman.GetLastPlayedNode().name + ")")).GetComponent<Edge>() ;
+                return (GameObject.Find("(" + this.name + "," + travellingSalesman.GetLastPlayedNode().name + ")")).GetComponent<Edge>();
             }
             else
             {
@@ -79,34 +75,33 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             UnityEngine.Debug.Log(e);
         }
-
         return null;
-
     }
+
     private void SwitchOnNode()
     {
         SetAllColours(true, -1);
         selected = true;
     }
+
     public void SetNode()
     {
-   
-            if (travellingSalesman.GetIsMovePossible(gameObject))
-            {
-                SwitchOnNode();
-                travellingSalesman.SetPlayedNode(gameObject, false);
-            }
+        if (travellingSalesman.GetIsMovePossible(gameObject))
+        {
+            SwitchOnNode();
+            travellingSalesman.SetPlayedNode(gameObject, false);
         }
+    }
+
     public void SetWinningNode()
     {
         SwitchOnNode();
         travellingSalesman.SetPlayedNode(gameObject, true);
-        
     }
+
     public void DeselectNode()
     {
         image.material.color = initialColour;
         selected = false;
     }
-    
 }

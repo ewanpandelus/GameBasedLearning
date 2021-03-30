@@ -7,6 +7,7 @@ public class VisitUI : MonoBehaviour
 {
     private GlobalDataHolder globalDataHolder;
     [SerializeField] private Image mergeSort, bubbleSort, easyTSP, hardTSP, nQueensLevel1, nQueensLevel2;
+
     private void Start()
     {
         globalDataHolder = GameObject.Find("GlobalDataHolder").GetComponent<GlobalDataHolder>();
@@ -24,6 +25,7 @@ public class VisitUI : MonoBehaviour
         on = globalDataHolder.GetNQueensLevel2();
         SetImageColour(nQueensLevel2, on);
     }
+
     private  void SetImageColour(Image image, bool on)
     {
         if (on)
@@ -31,6 +33,4 @@ public class VisitUI : MonoBehaviour
             image.color = Color.green;
         }
     }
-
-   
 }

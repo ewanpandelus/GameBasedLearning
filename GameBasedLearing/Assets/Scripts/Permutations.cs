@@ -9,10 +9,9 @@ public class Permutations: MonoBehaviour
     private GameObject[] nodes;
     [SerializeField] private TravellingBeeInfo travellingBeeInfo;
     public static Permutations instance;
-    // Start is called before the first frame update
+
     void Awake()
     {
-      
         if (!instance)
         {
             instance = this;
@@ -29,8 +28,6 @@ public class Permutations: MonoBehaviour
     {
         if (start == end)
         {
-            // We have one of our possible n! solutions,
-            // add it to the list.
             list.Add(new List<char>(nodes));
         }
         else
@@ -45,33 +42,39 @@ public class Permutations: MonoBehaviour
 
         return list;
     }
+
     void Swap(ref char a, ref char b)
     {
         var temp = a;
         a = b;
         b = temp;
     }
+
     public List<List<char>> GetFinalPermutations()
     {
         return SolveFinalPermutations();
     }
+
     private List<List<char>> SolveFinalPermutations()
     {
         List<List<char>> intermediatePermutations = CalculateAllPermutationsForNodes();
         List<List<char>> finalPermuations = RemoveUneccesaryPermutations(intermediatePermutations);
         return finalPermuations;
     }
+
     private List<List<char>> CalculateAllPermutationsForNodes()
     {
         char[] nodeChars = SetNodesToPermute();
         return Permute(nodeChars);
     }
+
     public static string Reverse(string s)
     {
         char[] charArray = s.ToCharArray();
         Array.Reverse(charArray);
         return new string(charArray);
     }
+
     private List<List<char>> RemoveUneccesaryPermutations(List<List<char>> permList)
     {
         List<List<char>> finPermutations = new List<List<char>>();
@@ -92,13 +95,14 @@ public class Permutations: MonoBehaviour
 
         return finPermutations;
     }
+
     private char[] SetNodesToPermute()
     {
         nodes = travellingBeeInfo.GetNodes().ToArray();
         char[] nodeChars = new char[nodes.Length-1];
         for (int i = 1; i < (nodes.Length); i++)
         {
-            nodeChars.SetValue(Convert.ToChar(nodes[i].name), i - 1); //Setting up intermediate list of nodes to be permuted, !(n-1) 
+            nodeChars.SetValue(Convert.ToChar(nodes[i].name), i - 1); 
         }
         return nodeChars;
     }
