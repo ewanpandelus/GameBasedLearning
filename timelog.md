@@ -216,4 +216,91 @@
 * *6 hours* Adding Saving & Loading Functionalities to game
 ### 9 Feb 2021 
 * *5 hours* General bug fixes throughout game 
+### 10 Feb 2021 
+* *2 hours* Setup test suite 
 
+## Week 6
+### 17 Feb 2021 
+* *8 hours* Make main menu and guide for game.
+### 18 Feb 2021 
+* *4 hours* Start working on post-game question functionalities
+
+### 19 Feb 2021 
+* *4 hours* Finish working on post-game question functionalities 
+## Week 7
+### 23 Feb 2021 
+* *8 hours* Fixing all known bugs
+
+### 25 Feb 2021 
+* *8 hours* Working on building game & installer for game
+
+### 27 Feb 2021 
+* *8 hours* Fixing built game as new bugs arise from build due to change in environment
+
+### 28 Feb 2021 
+* *4 hours* Generate ideas for evaluation and create survey 
+
+## Week 8 
+
+### 1 Mar 2021 
+* *5 hours* dissertation work
+* *2 hours* release survey
+
+### 2 Mar 2021 
+* *5 hours* dissertation work
+
+### 3 Mar 2021 
+* *3 hours* dissertation work
+
+### 4 Mar 2021 
+* *3 hours* dissertation work
+
+### 6 Mar 2021 
+* *3 hours* dissertation work
+
+## Week 9
+
+### 8 Mar 2021 
+* *6 hours* dissertation work
+
+### 9 Mar 2021 
+* *4 hours* dissertation work
+
+### 10 Mar 2021 
+* *8 hours* dissertation work
+
+### 12 Mar 2021 
+* *2 hours* dissertation work
+
+## Week 10
+### 15 Mar 2021 
+* *2 hours* dissertation work
+
+### 16 Mar 2021 
+* *7 hours* dissertation work
+
+### 17 Mar 2021 
+* *3 hours* dissertation work
+
+### 18 Mar 2021 
+* *4 hours* dissertation work
+
+### 21 Mar 2021 
+* *4 hours* dissertation work
+
+## Week 11
+
+### 22 Mar 2021 
+* *6 hours* dissertation work
+
+### 24 Mar 2021 
+* *6 hours* dissertation work
+
+### 26 Mar 2021 
+* *6 hours* dissertation work
+## Week 12
+### 29 Mar 2021 
+* *10 hours* dissertation work
+
+### 31 Mar 2021 
+* *10 hours* dissertation work, finishing up 
