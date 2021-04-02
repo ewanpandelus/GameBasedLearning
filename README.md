@@ -1,4 +1,4 @@
-# GameBasedLearning
+# Game-Based Learning
 This project is concerned with creating a game to help first year students who are taking a theory-heavy course. The game will apply a work-based learning approach. The game takes the form of a puzzle game, designed to teach players about the complexity of algorithms. Unity game engine was used to develop this project.
 
 
