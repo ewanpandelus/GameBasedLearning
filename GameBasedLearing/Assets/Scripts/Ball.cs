@@ -67,9 +67,11 @@ public class Ball : EventTrigger
         return this.currentPoolBallHolder;
     }
     
-    /// <summary>This method icreases the size of the ball while being
+    /// <summary>
+    ///This method icreases the size of the ball while being
     /// dragged and doesn't allow the ball to be dragged while the animations
-    /// are occuring.</summary>
+    /// are occuring.
+    /// </summary>
     public override void OnBeginDrag(PointerEventData eventData)
     {
         if (animatePoolBalls.GetAnimating())
@@ -100,10 +102,12 @@ public class Ball : EventTrigger
         }
     }
     
-    /// <summary>This method transfers the position of the ball if the 
+    /// <summary>
+    /// This method transfers the position of the ball if the 
     /// move is the correct move. It also sets the current
     /// array of the ball, and if the puzzle is completed it calls a function
-    /// from the MergeSort class to let players know they won</summary>
+    /// from the MergeSort class to let players know they won
+    ///</summary>
      private void MoveBall()
     {
 
@@ -126,8 +130,10 @@ public class Ball : EventTrigger
         currentArray = currentPoolBallHolder.GetAssociatedArray();
     }
 
-    /// <summary>This method moves the ball when the 
-    /// player releases the mouse.</summary>
+    /// <summary>
+    ///This method moves the ball when the 
+    /// player releases the mouse.
+    ///</summary>
     public override void OnEndDrag(PointerEventData eventData)
     {
         if (animatePoolBalls.GetAnimating())
