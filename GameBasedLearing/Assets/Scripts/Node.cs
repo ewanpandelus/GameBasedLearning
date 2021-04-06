@@ -92,7 +92,9 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
     }
 
-    ///<summary>Finds edges corresponding to last played node</summary>
+    /// <summary>
+    /// Finds edges corresponding to last played node
+    /// </summary>
     private Edge FindEdgeAssociatedWithNode()
     {
         try
@@ -119,7 +121,9 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         selected = true;
     }
 
-    /// <summary>If move is possible then node is added to list of nodes played </summary>
+    /// <summary>
+    /// If move is possible then node is added to list of nodes played 
+    /// </summary>
     public void SetNode()
     {
         if (travellingSalesman.GetIsMovePossible(gameObject))
