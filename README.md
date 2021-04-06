@@ -6,12 +6,13 @@ of Glasgow. The game is a puzzle game developed in Unity.
 ## File structure 
 The file structure for the game takes a standard Unity template, the Scripts are stored in their own folder within 
 an Assets folder. And the tests are stored in a Tests folder, which contains a reference the the scripts in the form of an assembly file.
-Tests folder
-
+Tests folder.
+*IMPORTANT*, as this is a game, a lot of meta needs to be saved to run it properly. The FULL project 
+can be downloaded from https://gla-my.sharepoint.com/:f:/g/personal/2319069p_student_gla_ac_uk/EvbaaiX4OJFBhCGueYZV8goBgzUb9ky-f1tcM-5IMBikgw?e=ey06hv
 ## Build instructions
 
 ### Step 1. Download version 2019.4.21f1 of Unity Game Engine from https://unity.com/.
-### Step 2. Download full version of project from https://gla-my.sharepoint.com/:u:/g/personal/2319069p_student_gla_ac_uk/EZxYtjcBkC5Lnjxf9c3hEsYB8cIytnJYWm_OZQVdet9aCA?e=GR1huM
+### Step 2. Download full version of project fromhttps://gla-my.sharepoint.com/:f:/g/personal/2319069p_student_gla_ac_uk/EvbaaiX4OJFBhCGueYZV8goBgzUb9ky-f1tcM-5IMBikgw?e=ey06hv
 ### Step 3 Launch Unity Hub Application
 ### Step 4. In Unity Hub , go to Projects -> Add . Then, browse to where that project is located. Select that project.
 ### Step 5. Launch the project by double clicking on it, Unity Engine Application will now open
