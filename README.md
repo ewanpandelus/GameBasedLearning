@@ -10,7 +10,7 @@ Tests folder
 
 ## Build instructions
 
-# Step 1. Download version 2019.4.21f1 of Unity Game Engine from https://unity.com/.
+### Step 1. Download version 2019.4.21f1 of Unity Game Engine from https://unity.com/.
 Step 2. Download full version of project from ..
 Step 3 Launch Unity Hub Application
 Step 4. In Unity Hub , go to Projects -> Add . Then, browse to where that project is located. Select that project.
