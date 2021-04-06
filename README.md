@@ -10,16 +10,16 @@ Tests folder
 
 ## Build instructions
 
-*Step 1. Download version 2019.4.21f1 of Unity Game Engine from https://unity.com/.
-*Step 2. Download full version of project from ..
-*Step 3 Launch Unity Hub Application
-*Step 4. In Unity Hub , go to Projects -> Add . Then, browse to where that project is located. Select that project.
-*Step 5. Launch the project by double clicking on it, Unity Engine Application will now open
-*Step 6. Navigate to  File -> Build and Run 
-*Step 7. Copy layout from BuildSettings.png, from within the submission folder, this step is very important and
+# Step 1. Download version 2019.4.21f1 of Unity Game Engine from https://unity.com/.
+Step 2. Download full version of project from ..
+Step 3 Launch Unity Hub Application
+Step 4. In Unity Hub , go to Projects -> Add . Then, browse to where that project is located. Select that project.
+Step 5. Launch the project by double clicking on it, Unity Engine Application will now open
+Step 6. Navigate to  File -> Build and Run 
+Step 7. Copy layout from BuildSettings.png, from within the submission folder, this step is very important and
 is hard to explain with text, which is why an image is provided.
-*Step 8. Click Build and Run
-*Step 9. Run .exe which is built from Unity
+Step 8. Click Build and Run
+Step 9. Run .exe which is built from Unity
 
 ### Requirements
 
