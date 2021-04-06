@@ -123,7 +123,7 @@ public class BubbleSort : MonoBehaviour
 
     /// <summary>
     /// This method checks if player has solved the puzzle
-    /// </summary
+    /// </summary>
     public void TestIfFinished()
     {
         bool finished = true;
