@@ -103,7 +103,9 @@ public class ComplexityGraph : MonoBehaviour
         title.GetComponent<TextMeshProUGUI>().text = "N = " + n.ToString();
     }
 
-    /// <summary>This method draws a graph depending on the puzzle type </summary>
+    /// <summary>
+    /// This method draws a graph depending on the puzzle type 
+    /// </summary>
     public void UpdateGraph()
     {
         ClearGraph();
