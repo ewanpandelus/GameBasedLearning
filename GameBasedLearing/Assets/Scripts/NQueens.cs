@@ -43,6 +43,7 @@ public class NQueens : MonoBehaviour, IPuzzle
         throw new System.NotImplementedException();
     }
 
+    ///<summary>Solves puzzle graphically </summary>
     void IPuzzle.ComputerSolve()
     {
         solved = true;
@@ -68,6 +69,8 @@ public class NQueens : MonoBehaviour, IPuzzle
     {
         ((IPuzzle)this).TrySolution();
     }
+
+    /// <summary>Tests if player's solution is correct</summary>
     void IPuzzle.TrySolution()
     {
         safe = true;
@@ -101,6 +104,15 @@ public class NQueens : MonoBehaviour, IPuzzle
             Destroy(queen);
         }
     }
+
+    /// <summary>
+    /// Evaluates if a queen is fafe
+    /// </summary>
+    /// <param name="board"> int list representing thechessboard</param>
+    /// <param name="row">Row in chessboard to check</param>
+    /// <param name="col">Column in chessboard to check</param>
+    /// <param name="n">Problem size</param>
+    /// <returns>True if queen is safe, false otherwise</returns>
     bool isSafe(int[,] board, int row, int col, int n)
     {
         int i, j;
@@ -128,6 +140,13 @@ public class NQueens : MonoBehaviour, IPuzzle
         moves.Add(new Tuple<Tuple<int, int>, char>(new Tuple<int, int>(i, col), indicator));
     }
   
+   /// <summary>
+   /// Solves NQueens puzzle(backtracking algorithm) and adds moves to list
+   /// </summary>
+   /// <param name="chessBoard">Two dimensional int list representing the board</param>
+   /// <param name="col">Current column</param>
+   /// <param name="n">Problem size</param>
+   /// <returns>Recursive, returns true if board is currently safe and false otherwise</returns>
     bool solveNQUtil(int[,] chessBoard, int col, int n)
     {
         if (col >= n)
@@ -167,6 +186,11 @@ public class NQueens : MonoBehaviour, IPuzzle
         audioManager.Play("WinGame");
     }
 
+    /// <summary>
+    /// This Coroutine solves NQueens graphically, spwaning and destorying 
+    /// queens(uses backtracking algorithm)
+    /// </summary>
+    /// <param name="queenPlacement">List of queens on the board, and their positions</param>
     IEnumerator IterateThroughMoves(GameObject[,] queenPlacement)
     {
         {

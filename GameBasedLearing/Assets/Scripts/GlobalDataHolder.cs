@@ -1,4 +1,34 @@
-﻿using System.Collections;
+﻿///BSD 3 - Clause License
+
+/// Copyright(c) 2021, ewanpandelus
+///All rights reserved.
+
+///Redistribution and use in source and binary forms, with or without
+///modification, are permitted provided that the following conditions are met:
+
+///1.Redistributions of source code must retain the above copyright notice, this
+///list of conditions and the following disclaimer.
+
+///2. Redistributions in binary form must reproduce the above copyright notice,
+///this list of conditions and the following disclaimer in the documentation
+///and/or other materials provided with the distribution.
+
+///3. Neither the name of the copyright holder nor the names of its
+///contributors may be used to endorse or promote products derived from
+///this software without specific prior written permission.
+
+///THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+///AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+///IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+///DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+///FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+///DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+///SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+///CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+///OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+///OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,7 +39,7 @@ public class GlobalDataHolder : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     private GameObject cherryIcon;
-    private bool nQueensLevel1=false, nQueensLevel2 = false, mergeSort = false, 
+    private bool nQueensLevel1 = false, nQueensLevel2 = false, mergeSort = false,
         bubbleSort = false, easyTSP = false, hardTSP = false;
     private TextMeshProUGUI cherryText;
     private string destinationLevel = "";
@@ -17,11 +47,15 @@ public class GlobalDataHolder : MonoBehaviour
     private int cherryCount;
     private string levelToAssessComplexity = "";
 
-    private void Awake() 
+    private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-       
+
     }
+
+    /// <summary> 
+    /// Loads data which is global to all levels
+    /// </summary>
     public void LoadGlobalDataHolder()
     {
         TotalCherriesData data = SaveSystem.LoadTotalCherriesData();
@@ -30,7 +64,7 @@ public class GlobalDataHolder : MonoBehaviour
             this.cherryCount = data.totalCherries;
         }
         LevelVisitData levelVisitData = SaveSystem.LoadLevelVisitData();
-        if(levelVisitData!= null)
+        if (levelVisitData != null)
         {
             this.mergeSort = levelVisitData.mergeSort;
             this.bubbleSort = levelVisitData.bubbleSort;
@@ -40,6 +74,7 @@ public class GlobalDataHolder : MonoBehaviour
             this.nQueensLevel2 = levelVisitData.nQueensLevel2;
         }
     }
+
     public void SetCherryIcon(GameObject _cherryIcon)
     {
         this.cherryIcon = _cherryIcon;
@@ -50,33 +85,36 @@ public class GlobalDataHolder : MonoBehaviour
         this.cherryText.text = cherryCount.ToString();
 
     }
-   
-        
+
     public string GetDestinationLevel()
     {
         return this.destinationLevel;
     }
+
     public void SetSliderValue(float val)
     {
         this.sliderValue = val;
     }
+
     public void SetDestinationLevel(string destinationLevelName)
     {
         destinationLevel = destinationLevelName;
     }
+
     public float RetrieveAndSaveSliderValue()
     {
         if (slider)
-            {
+        {
             this.SetSliderValue(slider.value);
             return this.slider.value;
-           }
+        }
         else
         {
             return this.sliderValue;
         }
-       
+
     }
+
     public string GetLevelToAssessComplexity()
     {
         return this.levelToAssessComplexity;
@@ -90,7 +128,7 @@ public class GlobalDataHolder : MonoBehaviour
     {
         return this.cherryCount;
     }
-    public void SetCherries(int count) 
+    public void SetCherries(int count)
     {
         this.cherryCount = count;
     }
@@ -143,3 +181,4 @@ public class GlobalDataHolder : MonoBehaviour
         this.nQueensLevel2 = value;
     }
 }
+

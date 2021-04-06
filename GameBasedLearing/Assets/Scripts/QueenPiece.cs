@@ -43,6 +43,10 @@ public class QueenPiece : EventTrigger
         }
     }
 
+    /// <summary>
+    /// Finds the cells which are occupied by queens and 
+    /// sets that they can be highlighted green
+    /// </summary>
     private void FindPossibleCells()
     {
        
@@ -62,6 +66,15 @@ public class QueenPiece : EventTrigger
         }
     }
 
+    /// <summary>
+    ///  Shows the path from a queen, if a queen is in anothers 
+    ///  path they will be added to an occupied list,
+    ///  and the cell outline will be red, if no queen is in a cell within
+    ///  their sight, then the cell will be outlined green.
+    /// </summary>
+    /// <param name="xDirection">XDirection of sight</param>
+    /// <param name="yDirection">YDirection of sight</param>
+    /// <param name="movement">Number of spaces to check</param>
     private void CreateCellPath(int xDirection, int yDirection, int movement)
     {
         int currentX = mCurrentCell.mBoardPosition.x;
@@ -93,6 +106,9 @@ public class QueenPiece : EventTrigger
         }
     }
 
+    /// <summary>
+    /// Check cells for Queen's full range of sight
+    /// </summary>
     protected virtual void CheckPathing()
     {
         this.safe = true;
@@ -119,6 +135,9 @@ public class QueenPiece : EventTrigger
   
     }
 
+    /// <summary>
+    /// Draw the outline for cells
+    /// </summary>
     protected void ShowCells()
     {
         foreach (Cell cell in highlightedCells)
@@ -142,6 +161,9 @@ public class QueenPiece : EventTrigger
         FindPossibleCells();
     }
     
+    /// <summary>
+    /// Delete outline of cells
+    /// </summary>
     protected void ClearCells()
     {
         foreach (Cell cell in highlightedCells)
@@ -152,6 +174,10 @@ public class QueenPiece : EventTrigger
         occupiedCells.Clear();
         highlightedCells.Clear();
     }
+
+    /// <summary>
+    /// Move queen to cell if unoccupied
+    /// </summary>
     protected virtual void Move()
     {
         if (mCurrentCell)
@@ -171,6 +197,10 @@ public class QueenPiece : EventTrigger
     }
 
     #region Events
+    /// <summary>
+    /// Allows queen to be dragged, and shows pathing for queen
+    /// </summary>
+    /// <param name="eventData">Variable which holds pointer data(mouse)</param>
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);
@@ -178,6 +208,11 @@ public class QueenPiece : EventTrigger
         ShowCells();
     }
 
+    /// <summary>
+    /// Allows queens to have a target cell to be moved to if they are
+    /// dragged over a cell.
+    /// </summary>
+    /// <param name="eventData">Variable which holds pointer data(mouse</param>
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
@@ -193,6 +228,11 @@ public class QueenPiece : EventTrigger
         }
     }
 
+    /// <summary>
+    /// Moves queen after releasing mouse 
+    /// to a new cell
+    /// </summary>
+    /// <param name="eventData">Variable which holds pointer data(mouse</param>
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);

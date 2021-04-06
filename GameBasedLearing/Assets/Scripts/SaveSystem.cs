@@ -5,6 +5,12 @@ using System;
 
 public static class SaveSystem 
 {
+
+   /// <summary>
+   /// Saves a player objects properties to the local memory of the computer
+   /// running the game
+   /// </summary>
+   /// <param name="playerMovement"></param>
     public static void SavePlayer(PlayerMovement playerMovement)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -120,6 +126,10 @@ public static class SaveSystem
         }
     }
 
+    /// <summary>
+    /// Loads the player's data from local memory
+    /// </summary>
+    /// <returns></returns>
     public static PlayerData LoadPlayer()
     {
         string path = Path.Combine(Application.persistentDataPath, "player.txt");

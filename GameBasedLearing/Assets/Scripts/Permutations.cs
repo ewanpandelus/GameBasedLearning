@@ -18,6 +18,11 @@ public class Permutations: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates a list of permutations of nodes
+    /// </summary>
+    /// <param name="nodes"></param>
+    /// <returns>list of permuations of all nodes</returns>
     public List<List<char>> Permute(char[] nodes)
     {
         var list = new List<List<char>>();
@@ -75,6 +80,12 @@ public class Permutations: MonoBehaviour
         return new string(charArray);
     }
 
+   /// <summary>
+   /// Removes permutations which are equal
+   /// for example ABC == CAB, so one is removed
+   /// </summary>
+   /// <param name="permList">Full permutation list</param>
+   /// <returns>Half of all permutations of nodes</returns>
     private List<List<char>> RemoveUneccesaryPermutations(List<List<char>> permList)
     {
         List<List<char>> finPermutations = new List<List<char>>();
@@ -96,6 +107,10 @@ public class Permutations: MonoBehaviour
         return finPermutations;
     }
 
+    /// <summary>
+    /// Converts nodes names into chars to be permuted
+    /// </summary>
+    /// <returns>List of Characters for Nodes</returns>
     private char[] SetNodesToPermute()
     {
         nodes = travellingBeeInfo.GetNodes().ToArray();

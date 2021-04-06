@@ -1,4 +1,34 @@
-﻿using System.Collections;
+﻿///BSD 3 - Clause License
+
+/// Copyright(c) 2021, ewanpandelus
+///All rights reserved.
+
+///Redistribution and use in source and binary forms, with or without
+///modification, are permitted provided that the following conditions are met:
+
+///1.Redistributions of source code must retain the above copyright notice, this
+///list of conditions and the following disclaimer.
+
+///2. Redistributions in binary form must reproduce the above copyright notice,
+///this list of conditions and the following disclaimer in the documentation
+///and/or other materials provided with the distribution.
+
+///3. Neither the name of the copyright holder nor the names of its
+///contributors may be used to endorse or promote products derived from
+///this software without specific prior written permission.
+
+///THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+///AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+///IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+///DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+///FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+///DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+///SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+///CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+///OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+///OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
+
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -30,6 +60,14 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         globalDataHolder.DisplayCherryCount();
     }
 
+    /// <summary>
+    /// Update function is called every frame
+    /// for player it decides the movement for players based on certain variables
+    /// If the player is jumping a vertical velocity is applied.
+    /// If the player falls off the map their position is reset.
+    /// If the player is climbing on a ladder they are given climbing movement,
+    /// else they can move left and right using the arrow keys
+    /// </summary>
     private void Update()
     {
         if(this.transform.position.y <= -35|| Input.GetKeyDown("r"))
@@ -58,6 +96,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         }
     }
 
+    /// <summary>
+    /// Provides vertical movement while climbing
+    /// </summary>
     private void ClimbingMovement()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * horizontalVelocity;
@@ -77,6 +118,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         FlipCharacter();
     }
 
+    /// <summary>
+    /// Provides non-climbing movement, character can jump and walk/run
+    /// left and right.
+    /// </summary>
     private void NonClimbingMovement()
     {
 
@@ -93,6 +138,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         FlipCharacter();
     }
 
+    /// <summary>
+    /// Moves the character in fixed increments, based on preset velocities
+    /// </summary>
     private void FixedUpdate()
     {
         if (!isClimbing)
@@ -117,6 +165,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         }
     }
 
+    /// <summary>
+    /// Flips the direction the character is facing
+    /// </summary>
     private void FlipCharacter()
     {
         if (horizontalMove > 0 && !m_FacingRight)
@@ -138,6 +189,12 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         transform.localScale = theScale;
     }
 
+    /// <summary>
+    /// Sets the character as not jumping while colliding with the floor,
+    /// so that it can jump.
+    /// </summary>
+    /// <param name="theCollision">
+    /// The variable which holds the collision data</param>
     private void OnCollisionEnter2D(Collision2D theCollision)
     {
         if (theCollision.gameObject.transform.tag == "Floor" && theCollision.gameObject.name != "Ladder")
@@ -147,7 +204,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
             isJumping = false;
         }
     }
-
+    /// <summary>
+    /// Increment cherry count and play sound if character
+    /// collides with cherry.
+    /// </summary>
+    /// <param name="collider">Variable which holds collision dara</param>
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.transform.tag == "Cherry")
@@ -165,6 +226,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         isgrounded = false;
     }
 
+    /// <summary>
+    /// Loads player data when scene is initialised
+    /// </summary>
     private void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();

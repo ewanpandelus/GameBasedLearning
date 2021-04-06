@@ -1,4 +1,34 @@
-﻿using System;
+﻿///BSD 3 - Clause License
+
+/// Copyright(c) 2021, ewanpandelus
+///All rights reserved.
+
+///Redistribution and use in source and binary forms, with or without
+///modification, are permitted provided that the following conditions are met:
+
+///1.Redistributions of source code must retain the above copyright notice, this
+///list of conditions and the following disclaimer.
+
+///2. Redistributions in binary form must reproduce the above copyright notice,
+///this list of conditions and the following disclaimer in the documentation
+///and/or other materials provided with the distribution.
+
+///3. Neither the name of the copyright holder nor the names of its
+///contributors may be used to endorse or promote products derived from
+///this software without specific prior written permission.
+
+///THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+///AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+///IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+///DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+///FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+///DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+///SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+///CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+///OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+///OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
+///
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +103,7 @@ public class ComplexityGraph : MonoBehaviour
         title.GetComponent<TextMeshProUGUI>().text = "N = " + n.ToString();
     }
 
+    /// <summary>This method draws a graph depending on the puzzle type </summary>
     public void UpdateGraph()
     {
         ClearGraph();
@@ -98,16 +129,20 @@ public class ComplexityGraph : MonoBehaviour
             ShowChangableGraph(dataList, Color.green + new Color(0, 0, 0, -0.5f), "          MergeSort");
         }
     }
-
+   
+    /// <summary>
+    /// This method draws lines on the post-game question of different complexity trends
+    /// 
+    /// </summary>
     private void ShowDifferentComplexities()
     {
-       ShowGraph(CreateLinearList(65), Color.red, 10f,0,1);
-       ShowGraph(CreateConstantList(67), Color.yellow, 10f,0,1);
-       ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60, 200, 600 }, Color.blue, 25f,0,1);
-       ShowGraph(CreateONLogNList(42), Color.white, 15f,0,1);
-       ShowGraph(CreateLogNList(45), Color.magenta, 15f, 0,1);
-       ShowGraph(CreateNSquaredList(25), Color.green, 15f,0,1);
-       ShowGraph(CreateExponentialList(9), Color.cyan, 31f, 0, 1);
+       ShowGraph(CreateLinearList(65), Color.red, 10f,1);
+       ShowGraph(CreateConstantList(67), Color.yellow, 10f,1);
+       ShowGraph(new List<float>() { 0, 1, 2, 3, 6, 12, 60, 200, 600 }, Color.blue, 25f,1);
+       ShowGraph(CreateONLogNList(42), Color.white, 15f,1);
+       ShowGraph(CreateLogNList(45), Color.magenta, 15f, 1);
+       ShowGraph(CreateNSquaredList(25), Color.green, 15f,1);
+       ShowGraph(CreateExponentialList(9), Color.cyan, 31f, 1);
     }
 
     private List<float> CreateFactorialList(int problemSize)
@@ -197,6 +232,11 @@ public class ComplexityGraph : MonoBehaviour
         return valueList;
     }
 
+    /// <summary> 
+    /// Draws point(circle on plot)
+    /// </summary>
+    /// <param name="anchoredPosition">Where the circle should be drawn</param>
+    /// <param name="size">How big the point is </param>
     private GameObject CreateCircle(Vector2 anchoredPosition,Color color,int size)
     {
         GameObject gameObject = new GameObject("circle", typeof(Image));
@@ -211,7 +251,14 @@ public class ComplexityGraph : MonoBehaviour
         return gameObject;
     }
 
-    private void ShowGraph(List<float> valueList, Color color, float xSize, float waitTime, int scalingfactor)
+    /// <summary> 
+    /// Draws a static trend line on the graph
+    /// </summary>
+    /// <param name="valueList">List of positions for points on graph</param>
+    /// <param name="color">Colour of line</param>
+    /// <param name="xSize">Distance between points on x-axis</param>
+    /// <param name="scalingfactor">How the y-value scales in relation to the graph height</param>
+    private void ShowGraph(List<float> valueList, Color color, float xSize,  int scalingfactor)
     {
         float graphHeight = graphContainer.sizeDelta.y;
         float yMax = 100f;
@@ -229,6 +276,12 @@ public class ComplexityGraph : MonoBehaviour
         }
     }
 
+    /// <summary> 
+    /// Draws a dynamic graph
+    /// </summary>
+    /// <param name="valueList">List of positions for points on graph</param>
+    /// <param name="color">Colour of line</param>
+    /// <param name="name">Name of algorithm/puzzle, title of graph+</param>
     private void ShowChangableGraph(List<float> valueList, Color color, string name)
     {
         title = GameObject.Find("Title");
@@ -283,6 +336,14 @@ public class ComplexityGraph : MonoBehaviour
         }
         return true;
     }
+
+    /// <summary> 
+    /// Shows the total number of steps for a given problem size
+    /// under the graph
+    /// </summary>
+    /// <param name="loop">Iteration value</param>
+    /// <param name="position">Position of text to instantiate</param>
+    /// <param name="value">Value of text to instantiate</param>
     private void CreateScaleText(float loop, Vector3 position, float value)
     {
         if (IfViableToShow(loop))
@@ -302,7 +363,7 @@ public class ComplexityGraph : MonoBehaviour
         }
         else return value;
     }
-
+ 
     private void InstantiateText(float value, Vector3 position, int size, float i)
     {
         GameObject textInstance = Instantiate(xScaleText, position, Quaternion.identity);
@@ -327,6 +388,11 @@ public class ComplexityGraph : MonoBehaviour
         scaleTextList.Add(textInstance);
     }
 
+    /// <summary> 
+    /// Draws line between two points
+    /// </summary>
+    /// <param name="dotPosition1">start position</param>
+    /// <param name="dotPosition2">end position</param>
     private void CreateDotConnection(Vector2 dotPosition1, Vector2 dotPosition2, Color color)
     {
         GameObject gameObject = new GameObject("dotConnection", typeof(Image));

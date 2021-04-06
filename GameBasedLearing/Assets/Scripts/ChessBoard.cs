@@ -23,6 +23,9 @@ public class ChessBoard : MonoBehaviour
         mAllCells = new Cell[problemSize, problemSize];
     }
 
+    /// <summary>
+    /// This draws the board depending on the problem size 
+    /// </summary>
     public void Create()
     {
         #region Create

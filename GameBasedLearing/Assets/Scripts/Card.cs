@@ -37,6 +37,9 @@ public class Card : EventTrigger
         this.initialPosition = position;
     }
 
+    /// <summary> 
+    /// Swaps two cards if move is correct
+    /// </summary>
     private void MoveCard()
     {
         if (targetCard)
@@ -62,7 +65,12 @@ public class Card : EventTrigger
         }
         targetCard = null;
     }
- 
+
+    /// <summary>
+    /// This method allows the cards to be dragged and increases
+    /// the physical size of the card on the screen whilst being 
+    /// dragged.
+    /// </summary>
     public override void OnBeginDrag(PointerEventData eventData)
     {
         if (bubbleSort.GetSolved())
@@ -74,6 +82,10 @@ public class Card : EventTrigger
 
     }
 
+    /// <summary>
+    /// This method allows the cards to be dragged and 
+    /// sets the target holder if hovered over
+    /// </summary>
     public override void OnDrag(PointerEventData eventData)
     {
         if (bubbleSort.GetSolved())
@@ -92,6 +104,10 @@ public class Card : EventTrigger
         }
     }
 
+    /// <summary>
+    /// This method moves the card when the 
+    /// player releases the mouse.
+    /// </summary>
     public override void OnEndDrag(PointerEventData eventData)
     {
         if (bubbleSort.GetSolved())

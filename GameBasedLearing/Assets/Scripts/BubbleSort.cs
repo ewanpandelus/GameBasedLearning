@@ -1,4 +1,34 @@
-﻿using System;
+﻿///BSD 3 - Clause License
+
+/// Copyright(c) 2021, ewanpandelus
+///All rights reserved.
+
+///Redistribution and use in source and binary forms, with or without
+///modification, are permitted provided that the following conditions are met:
+
+///1.Redistributions of source code must retain the above copyright notice, this
+///list of conditions and the following disclaimer.
+
+///2. Redistributions in binary form must reproduce the above copyright notice,
+///this list of conditions and the following disclaimer in the documentation
+///and/or other materials provided with the distribution.
+
+///3. Neither the name of the copyright holder nor the names of its
+///contributors may be used to endorse or promote products derived from
+///this software without specific prior written permission.
+
+///THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+///AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+///IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+///DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+///FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+///DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+///SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+///CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+///OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+///OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +111,9 @@ public class BubbleSort : MonoBehaviour
         dynamicUI.ReplayGame();
     }
 
+    /// <summary>
+    /// This method provides feedback to player if they win the game
+    /// </summary>
     private void CorrectExecution()
     {
         dynamicUI.WinGame();
@@ -88,6 +121,9 @@ public class BubbleSort : MonoBehaviour
         AudioManagement.Play("WinGame");
     }
 
+    /// <summary>
+    /// This method checks if player has solved the puzzle
+    /// </summary
     public void TestIfFinished()
     {
         bool finished = true;
@@ -147,6 +183,9 @@ public class BubbleSort : MonoBehaviour
         }
     }
 
+    /// <summary> 
+    /// Shuffles cards in scene
+    /// </summary>
     public void Shuffle()
     {
         RandomiseCards();
@@ -197,6 +236,13 @@ public class BubbleSort : MonoBehaviour
         StartCoroutine(ChangeCardSpaceUpAndDown(leftCard, rightCard, (leftInitialPosition), (rightInitialPosition)));
     }
 
+    /// <summary> 
+    /// Moves one card up and the adjacent swapping card down
+    /// </summary>
+    /// <param name="leftCard">left card object</param>
+    /// <param name="rightCard">right card object </param>
+    /// <param name="leftCardMove">where the left card should be moved to</param>
+    /// <param name="rightCardMove">where the right card should be moved to</param>
     IEnumerator ChangeCardSpaceUpAndDown(GameObject leftCard, GameObject rightCard, Vector3 leftCardMove, Vector3 rightCardMove)
     {
         Vector2 leftCardDirection = leftCardMove - leftCard.transform.position;
@@ -215,6 +261,13 @@ public class BubbleSort : MonoBehaviour
         }
     }
 
+    /// <summary> 
+    /// Moves one card right and the adjacent swapping card left
+    /// </summary>
+    /// <param name="leftCard">left card object</param>
+    /// <param name="rightCard">right card object </param>
+    /// <param name="leftCardMove">where the left card should be moved to</param>
+    /// <param name="rightCardMove">where the right card should be moved to</param>
     IEnumerator ChangeCardSpaceLeftAndRight(GameObject leftCard, GameObject rightCard, Vector3 leftCardMove, Vector3 rightCardMove)
     {
         float distanceThisFrame = slider.value * 0.02f;
@@ -256,6 +309,10 @@ public class BubbleSort : MonoBehaviour
         return this.inGameCards;
     }
 
+    /// <summary>
+    /// Performs bubble sort algorithm and storesd the moves in a list
+    /// </summary>
+    /// <param name="arr">integer array of the values on the cards in the scene</param>
     private void StoreBubbleSortMoves(int[] arr)
     {
         int n = arr.Length;
@@ -271,6 +328,10 @@ public class BubbleSort : MonoBehaviour
         finalArray = arr;
     }
 
+    /// <summary>
+    /// Graphically solves bubble sort
+    /// </summary>
+    /// <param name="arr">integer array of the values on the cards in the scene</param>
     IEnumerator BubbleSortAnimateAlgorithm(int[] arr)
     {
         solved = true;

@@ -1,4 +1,34 @@
-﻿using System;
+﻿///BSD 3 - Clause License
+
+/// Copyright(c) 2021, ewanpandelus
+///All rights reserved.
+
+///Redistribution and use in source and binary forms, with or without
+///modification, are permitted provided that the following conditions are met:
+
+///1.Redistributions of source code must retain the above copyright notice, this
+///list of conditions and the following disclaimer.
+
+///2. Redistributions in binary form must reproduce the above copyright notice,
+///this list of conditions and the following disclaimer in the documentation
+///and/or other materials provided with the distribution.
+
+///3. Neither the name of the copyright holder nor the names of its
+///contributors may be used to endorse or promote products derived from
+///this software without specific prior written permission.
+
+///THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+///AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+///IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+///DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+///FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+///DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+///SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+///CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+///OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+///OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +87,9 @@ public class MergeSort : MonoBehaviour
         InitialiseGame();
     }
 
+    /// <summary>
+    /// This method resets the game
+    /// </summary>
     public void Reset()
     {
         if (!animatePoolBalls.GetAnimating())
@@ -97,6 +130,9 @@ public class MergeSort : MonoBehaviour
         merging = false;
     }
 
+    /// <summary>
+    /// This method graphically solves the puzzle/algorithm
+    /// </summary>
     public void Solve()
     {
         if (!solved)
@@ -130,6 +166,10 @@ public class MergeSort : MonoBehaviour
         dynamicUI.ReplayGame();
     }
 
+    /// <summary>
+    /// This method tells the player when they have won the game
+    /// and adds cherries to the count 
+    /// </summary>
     public void CorrectExecution()
     {
         solved = true;
@@ -137,7 +177,10 @@ public class MergeSort : MonoBehaviour
         dynamicUI.ShowCherryAdd(6);
         audioManager.Play("WinGame");
     }
-    
+    /// <summary>
+    /// This method shuffles the pool balls
+    /// in the scene so they are unsorted
+    /// </summary>
     public void Shuffle()
     {
         audioManager.Play("Pool");
@@ -167,6 +210,15 @@ public class MergeSort : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if move is correct at the splitting stage
+    /// </summary>
+    /// <param name="ballNumber">the number of the ball in question</param>
+    /// <param name="associatedArray">the array the ball is being moved to.</param>
+    /// <param name="previousArray">the array the ball is being moved from.</param>
+    /// <param name="belongsToArray">represents if the ball belongs to the associated array</param>
+    /// <param name="poolBallHolder">the pool ball holder the ball is being moved to</param>
+    /// <returns> true if the move was correct, false otherwise </returns>
     private bool Splitting(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray)
     {
         List<Tuple<int, List<int>>> ArraysForLevel;
@@ -206,6 +258,15 @@ public class MergeSort : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Checks if move is correct at the merging stage
+    /// </summary>
+    /// <param name="ballNumber">the number of the ball in question</param>
+    /// <param name="associatedArray">the array the ball is being moved to.</param>
+    /// <param name="previousArray">the array the ball is being moved from.</param>
+    /// <param name="belongsToArray">represents if the ball belongs to the associated array</param>
+    /// <param name="poolBallHolder">the pool ball holder the ball is being moved to</param>
+    /// <returns> true if the move was correct, false otherwise </returns>
     public bool Merging(int ballNumber, ArrayInformation associatedArray, ArrayInformation previousArray, bool belongsToArray, PoolBallHolder poolBallHolder)
     {
         List<Tuple<int, List<int>>> arraysForLevel;
@@ -253,7 +314,7 @@ public class MergeSort : MonoBehaviour
         }
         return ascendingIndices;
     }
-
+    
     public bool CheckMoveIsCorrect(int ballNumber, ArrayInformation associatedArray,ArrayInformation previousArray,bool belongsToArray,PoolBallHolder poolBallHolder)
     {
         if (!merging)
@@ -263,6 +324,11 @@ public class MergeSort : MonoBehaviour
         return Merging(ballNumber, associatedArray, previousArray, belongsToArray,poolBallHolder);
     }
 
+    /// <summary>
+    /// Finds the position where the ball used to be
+    /// </summary>
+    /// <param name="ballNumber">the integer of the array element</param>
+    /// <returns> index of previous ball position</returns>
     private int FindPreviousBallPosition(int ballNumber)
     {
         if (!merging)
@@ -272,6 +338,10 @@ public class MergeSort : MonoBehaviour
         return expectedArrays.Find(x => x.Item2.Contains(ballNumber) && x.Item1 == userLevel).Item2.IndexOf(ballNumber);
     }
 
+    /// <summary>
+    /// Changes array level if all balls have been 
+    /// placed into the arrays at the current level
+    /// </summary>
     private void CheckIfUserLevelShouldChange()
     {
         bool change = true;
@@ -313,6 +383,11 @@ public class MergeSort : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// This method sets up the expected pool balls
+    /// for each array in the merging step
+    /// </summary>
     private void SetupMerging()
     {
         userLevel = 3;
@@ -328,14 +403,24 @@ public class MergeSort : MonoBehaviour
             array.SetFull(false);
         }
     }
+    /// <summary>
+    /// This method updates the array the ball is moved to 
+    /// with true at the index.
+    /// </summary>
     private void ManipulateArrays(ArrayInformation associatedArray, ArrayInformation previousArray, int ballNumber,int prevBallIndex)
     {
         associatedArray.UpdateIsArrayOccupied(ballNumber, true,prevBallIndex);
         previousArray.UpdateIsArrayOccupied(ballNumber, false,prevBallIndex);
         checkExpectedListFull[associatedArray.GetExpectedArrayValues()] = associatedArray.GetFull(); ;
         checkExpectedListFull[previousArray.GetExpectedArrayValues()] = previousArray.GetFull();
-    }   
+    }
 
+    /// <summary>
+    /// This method sets up the expected pool balls
+    /// for each array in the splitting step
+    /// </summary>
+    /// /// <param name="ballsNumbers">list of ints of array ekements</param>
+    /// /// <param name="level">the level of array the user is currently at</param>
     private void CreateExpectedArrays(List<int> ballsNumbers, int level)
     {
         if (ballsNumbers.Count == 1)
