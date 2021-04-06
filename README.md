@@ -1,6 +1,6 @@
 # Game-Based Learning
 
-This project concerns the game developed to supplement the Practical Algorithms course, at the Univeristy
+This project concerns a game developed to supplement the Practical Algorithms course, at the Univeristy
 of Glasgow. The game is a puzzle game developed in Unity. 
 
 ## File structure 
