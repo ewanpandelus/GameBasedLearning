@@ -134,7 +134,6 @@ public class ComplexityGraph : MonoBehaviour
    
     /// <summary>
     /// This method draws lines on the post-game question of different complexity trends
-    /// 
     /// </summary>
     private void ShowDifferentComplexities()
     {
