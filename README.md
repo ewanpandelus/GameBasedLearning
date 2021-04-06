@@ -6,7 +6,6 @@ of Glasgow. The game is a puzzle game developed in Unity.
 ## File structure 
 The file structure for the game takes a standard Unity template, the Scripts are stored in their own folder within 
 an Assets folder. And the tests are stored in a Tests folder, which contains a reference the the scripts in the form of an assembly file.
-Tests folder.
 *IMPORTANT*, as this is a game, a lot of meta needs to be saved to run it properly. The FULL project 
 can be downloaded from https://gla-my.sharepoint.com/:f:/g/personal/2319069p_student_gla_ac_uk/EvbaaiX4OJFBhCGueYZV8goBgzUb9ky-f1tcM-5IMBikgw?e=ey06hv
 ## Build instructions
