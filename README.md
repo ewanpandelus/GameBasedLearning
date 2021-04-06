@@ -1,6 +1,45 @@
-# Readme
+### Game-Based Learning
 
-Put a brief description of your code here. This should at least describe the file structure.
+This project concerns the game developed to supplement the Practical Algorithms course, at the Univeristy
+of Glasgow. The game is a puzzle game developed in Unity. 
+
+## Project Directory 
+GameBasedLearning
+  \Assets
+    \Animations
+    \Backgrounds
+    \Clean Vector Icons
+    \Fonts
+    \Forest
+    \Materials
+    \Plugins
+    \Prefabs
+    \Scenes
+    \Scripts
+    \SoundClips
+    \Sprites
+    \SunnyLand
+    \Tests
+    \TextMesh Pro
+    \Tileset
+  \Library
+    \APIUpdater
+    \Artifacts
+    \AtlasCache
+    \GridBrush
+    \il2cpp_cache
+    \PackageCache
+    \PlayerDataCache
+    \ScriptAssemblies
+    \ShaderCache
+    \TempArtifacts
+    \UIElements
+    \webgl_cache
+  \Logs
+  \obj
+    \Debug
+  \Packages
+\ProjectSettings
 
 ## Build instructions
 
