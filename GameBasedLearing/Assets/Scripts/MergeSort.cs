@@ -177,6 +177,7 @@ public class MergeSort : MonoBehaviour
         dynamicUI.ShowCherryAdd(6);
         audioManager.Play("WinGame");
     }
+
     /// <summary>
     /// This method shuffles the pool balls
     /// in the scene so they are unsorted
@@ -403,6 +404,7 @@ public class MergeSort : MonoBehaviour
             array.SetFull(false);
         }
     }
+
     /// <summary>
     /// This method updates the array the ball is moved to 
     /// with true at the index.
