@@ -41,7 +41,7 @@ The raw survey data is stored in the folder SurveyData.
  4. In Unity Hub , go to Projects -> Add. Then browse to where that project is located. Select that project.
  5. Launch the project by double clicking on it, Unity Engine Application will now open.
  6. Navigate to  File -> Build and Run.
- 7. Copy layout from BuildSettings.png, from within the submission folder, this step is very important and is hard to explain with text, which is why an image is provided.
+ 7. Copy layout from BuildSettings.png, from within the submission folder, this step is very important and is hard to explain with text, which is why an image is provided. Add all scenes to build if none are within your Unity application.
  8. Click Build and Run.
  9. Run .exe which is built from Unity.
 
