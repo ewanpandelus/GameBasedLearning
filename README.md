@@ -10,15 +10,15 @@ an Assets folder. And the tests are stored in a Tests folder, which contains a r
 can be downloaded from https://gla-my.sharepoint.com/:f:/g/personal/2319069p_student_gla_ac_uk/EvbaaiX4OJFBhCGueYZV8goBgzUb9ky-f1tcM-5IMBikgw?e=ey06hv
 ## Build instructions
 
- Step 1. Download version 2019.4.21f1 of Unity Game Engine from https://unity.com/.
- Step 2. Download full version of project fromhttps://gla-my.sharepoint.com/:f:/g/personal/2319069p_student_gla_ac_uk/EvbaaiX4OJFBhCGueYZV8goBgzUb9ky-f1tcM-5IMBikgw?e=ey06hv
- Step 3 Launch Unity Hub Application
- Step 4. In Unity Hub , go to Projects -> Add . Then, browse to where that project is located. Select that project.
- Step 5. Launch the project by double clicking on it, Unity Engine Application will now open
- Step 6. Navigate to  File -> Build and Run 
- Step 7. Copy layout from BuildSettings.png, from within the submission folder, this step is very important and is hard to explain with text, which is why an image is provided.
- Step 8. Click Build and Run
- Step 9. Run .exe which is built from Unity
+ 1. Step 1. Download version 2019.4.21f1 of Unity Game Engine from https://unity.com/.
+ 2. Step 2. Download full version of project fromhttps://gla-my.sharepoint.com/:f:/g/personal/2319069p_student_gla_ac_uk/EvbaaiX4OJFBhCGueYZV8goBgzUb9ky-f1tcM-5IMBikgw?e=ey06hv
+ 3. Step 3 Launch Unity Hub Application
+ 4. Step 4. In Unity Hub , go to Projects -> Add . Then, browse to where that project is located. Select that project.
+ 5. Step 5. Launch the project by double clicking on it, Unity Engine Application will now open
+ 6. Step 6. Navigate to  File -> Build and Run 
+ 7. Step 7. Copy layout from BuildSettings.png, from within the submission folder, this step is very important and is hard to explain with text, which is why an image is provided.
+ 8. Step 8. Click Build and Run
+ 9. Step 9. Run .exe which is built from Unity
 
 ## Requirements
 
@@ -28,10 +28,10 @@ can be downloaded from https://gla-my.sharepoint.com/:f:/g/personal/2319069p_stu
 
 ## Test steps
 
-Step 1. Follow steps in Build instructions to get project into Unity Game Engine
-Step 2. Navigate to Window-> General -> Test Runner
-Step 3. Navigate to 'PlayMode' tab
-Step 4. Click run all tests
+1. Step 1. Follow steps in Build instructions to get project into Unity Game Engine
+2. Step 2. Navigate to Window-> General -> Test Runner
+3. Step 3. Navigate to 'PlayMode' tab
+4. Step 4. Click run all tests
 
 
 
