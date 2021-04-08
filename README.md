@@ -59,5 +59,6 @@ The raw survey data is stored in the folder SurveyData.
 4. Click run all tests.
 
 
-
-
+## Running without Unity
+The installer for the game BigOAdventure Setup(x86).exe can be double clicked, then follow the instructions to install onto a computer with Windows Operating System.
+Your computer might not recognise the publisher, in this case, click 'more information' and follow through with the installation. The installed application can then be launched to run the game without the game engine. This will be included in the project submission for ease of access.
