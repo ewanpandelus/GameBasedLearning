@@ -6,7 +6,7 @@ of Glasgow. The game is a puzzle game developed in Unity.
 ## File structure 
 The file structure for the game takes a standard Unity template, the Scripts are stored in their own folder 'Scripts'. And the tests are stored in a 'Tests' folder, which contains a reference the the scripts in the form of an assembly file.
 *IMPORTANT*, as this is a game, the project holds meta files for most of the files, so for example a .cs file in the scripts folder will have a meta file associated.
-The raw survey data is stored in the folder SurveyData.
+The raw survey data is stored in the folder SurveyData. GameBasedLearning folder holds the project files, and the InstallerForGame folder holds the installer for the game in the form of a .exe.
 
 ```
 \2319069p
@@ -31,6 +31,7 @@ The raw survey data is stored in the folder SurveyData.
   \Packages
   \ProjectSettings
  \SurveyData
+ \InstallerForGame
 ```
 
 ## Build instructions/steps
