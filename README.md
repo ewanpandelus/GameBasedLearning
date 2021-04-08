@@ -33,7 +33,6 @@ The raw survey data is stored in the folder SurveyData. GameBasedLearning folder
   \Packages
   \ProjectSettings
  \SurveyData
- \InstallerForGame
 ```
 
 ## Build instructions/steps
